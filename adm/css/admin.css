@@ -1,0 +1,375 @@
+@charset "utf-8";
+/* Alma CMS 121130 cms83@almacomm.co.kr */
+
+/* base */
+/* *{margin:0; padding:0}
+html, body {height: 100%; }
+body{background: #fff;color:#666; font:12px/1.6 "NanumGothicWeb", 나눔고딕, sans-serif;}
+
+div, p, ul, li, img, a, table, td, th, tr, h1, h2, h3, h4, h5, h6, form, input, span, iframe, dl, dt, dd  {margin:0;padding:0;}
+fieldset{border:none;}
+img {border: 0 none;}
+em {font-style: normal; font-weight: bold;}
+address{font-style:normal;}
+table {border-collapse:collapse;}
+ul,ol  {list-style:none;} */
+
+/* float 해제 */
+.fixed:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.fixed{display:block;}
+/*  \*/
+.fixed{min-height:1%;}
+* html .fixed{height:1%}
+
+a {
+    color:#333333 !important;
+}
+
+/* hidden */
+.hid1 {position:absolute; width:0; height:0; font-size:0; line-height:0; overflow:hidden; visibility:hidden; }/* 공간없음 */
+.hid2 {visibility:hidden;width:0;height:0;overflow:hidden;line-height:0;}/*  ie6에서 공간 잡아먹음 */
+.fl {float:left !important}
+.fr {float:right !important}
+.cb {clear:both !important}
+.ac {text-align:center !important}
+.al {text-align:left !important}
+.ar {text-align:right !important}
+.vt {vertical-align:top !important}
+.vm {vertical-align:middle !important}
+.vb {vertical-align:bottom !important}
+.oh {overflow:hidden !important}
+.cp {cursor:pointer !important}
+.di {display:inline !important}
+.dn {display:none !important}
+.db {display:block !important}
+.dib {display:inline-block !important}
+.vv {visibility:visible !important}
+.vh {visibility:hidden !important}
+.bn {border:none !important}
+.bbn {border-bottom:none !important}
+.brn {border-right:none !important}
+.bgn {background:none !important}
+.fb {font-weight:bold !important}
+.fsall {font-size:100% !important}
+
+/* common */
+/* Margin */
+.MN0 {margin:0 !important}
+.MT5 {margin-top:5px}
+.MT10 {margin-top:10px !important}
+.MT20 {margin-top:20px}
+.MT30 {margin-top:30px}
+.MT40 {margin-top:40px}
+
+.MR10 {margin-right:10px}
+.MR20 {margin-right:20px}
+.MR30 {margin-right:30px}
+
+.ML10 {margin-left:10px !important}
+.ML20 {margin-left:20px}
+.ML30 {margin-left:30px}
+.ML90 {margin-left:90px}
+.ML200 {margin-left:200px}
+
+.MB5 {margin-bottom:5px}
+.MB10 {margin-bottom:10px}
+.MB20 {margin-bottom:20px}
+.MB25 {margin-bottom:25px}
+.MB30 {margin-bottom:30px}
+.MB35 {margin-bottom:35px}
+.MB57 {margin-bottom:57px}
+
+/* padding */
+.PT0 {padding:0}
+.PT10 {padding-top:10px}
+.PT20 {padding-top:20px}
+.PT30 {padding-top:30px}
+
+.PR10 {padding-right:10px}
+.PR20 {padding-right:20px}
+.PR30 {padding-right:30px}
+
+.PB10 {padding-bottom:10px}
+.PB20 {padding-bottom:20px}
+.PB30 {padding-bottom:30px}
+
+.PL10 {padding-left:10px}
+.PL20 {padding-left:20px}
+.PL30 {padding-left:30px}
+
+
+/* width */
+.w150 {width:150px}
+.w350 {width:350px}
+.w400 {width:400px}
+.w670 {width:670px}
+
+/* font */
+@font-face {
+/* 클라이언트 컴퓨터에 있는 폰트이름
+ * 과 동일하게 하면 안됩니다. */
+font-family:'NanumGothicWeb';
+font-style: normal;
+font-weight: normal;
+src:url('../font/nanumGothicWeb.eot');
+src:local('☺'),
+ url('../font/nanumGothicWeb.woff') format('woff')
+}
+
+/* common */
+button, input.btn, a.btn {font-weight:normal; font-size:14px}
+.acButton {text-align:center; margin:0 0}
+.acButton button.btn {padding:4px 14px; height:35px;}
+.bothButton {overflow:hidden; margin:20px 0}
+.bothButton > button:first-child {float:left}
+.bothButton > button:first-child + button {float:right}
+
+/* font color */
+.fc4762bc {color:#4762bc}
+.fce00c0c {color:#e00c0c}
+
+.required {color:#de4141; font-size:11px; margin:10px 0 5px 0}
+
+/* Login */
+#admin_content {position:absolute; top:50%; left:50%; margin:-110px 0 0 -200px; width:400px; height:220px}
+#admin_content .login_area { height:220px}
+#admin_content .login_area .loginTxt {width:100%; margin-bottom:10px; font-size:16px}
+#admin_content .login_area .login_box {overflow:hidden; width:100%; padding-top:6px;}
+#admin_content .login_area .login_box dl {float:left;  width:300px}
+#admin_content .login_area .login_box dl dt {float:left; width:30px; margin-right:10px; font-size:16px; font-weight:normal; letter-spacing:-0.1em; text-align:right}
+#admin_content .login_area .login_box dl dd {float:left; margin-bottom:15px; *margin-bottom:12px}
+#admin_content .login_area .login_box .loginBtn {float:right; text-align:center;}
+#admin_content .login_area .login_box .loginBtn button {font-size:14px ; padding: 18px 19px}
+
+.inputText_login {border:1px solid #dadada; height:15px; padding-left:4px; color:#666;}
+
+/* layout */
+.hr {border:0; border-top:3px solid #00b7ee; line-height:0; line-height:0;; margin:0; font-size:0; padding:0}
+#wrap {width:100%;  position:relative; margin:0 0 -59px 0; *margin:-7px 0 -52px 0; min-height:100%; padding:0}
+#header {position: relative; z-index: 1; overflow:hidden; width:1024px; padding:38px 0 38px 0; margin:auto; background:url("../images/manager/common/bg_header.gif") no-repeat 378px 0; *line-height:0}
+#header h1 {float:left; display:inline-block; margin:0 23px 0 15px;  font-size:14px}
+#header p {float:left; display:inline; margin-left:15px;}
+#header div {float:right; display:inline; margin-right:20px}
+
+#container {overflow:hidden; width:1024px; margin:0 auto}
+#snb {float:left; width:170px; margin-right:15px}
+#snb ul {width:147px}
+#snb ul li {padding:7px 0 7px 23px; font-size:15px; color:#222; font-weight:bold}
+#snb ul li a {color:#222; text-decoration:none}
+#snb ul li.on a{font-weight:bold; color:#11a2e6}
+#snb ul li ul {margin-left:-23px}
+#snb ul li ul li  {padding:0; font-weight:normal}
+#snb ul li ul li a {text-decoration:none; display:block; padding:2px 0 2px 24px; margin-top:2px; font-size:14px; font-weight:normal; color:#050505}
+#snb ul li ul li a.on {background:#11a2e6; color:#fff; font-weight:bold}
+
+#content {float:left; width:820px}
+.cntHeader {overflow:hidden; width:100%; margin-bottom:22px; border-bottom:1px solid #6fd7f7}
+.cntHeader h2 {float:left; font-size:24px; font-weight:normal}
+.cntHeader ul {float:right; margin-top:15px}
+.cntHeader ul li {float:left; padding-right:9px; margin-right:5px; color:#b7b7b7; font-size:11px;  /*background:url("/images/manager/common/borad.gif") repeat right 7px*/}
+.cntHeader ul li.last {background:none; padding:0}
+
+.push {height:59px; text-indent:-50000px}
+.push02 {text-indent:-50000px}
+#footer {position:relative; width:100%; background:#2e53a2}
+#footer p{width:993px;; margin:0 auto; padding:20px 0 20px 31px; color:#89a1d5}
+
+
+/* board */
+.colTable {clear:both; width:100%; border-top:2px solid #93989b; line-height:1}
+.colTable th {width:139px; padding:10px 0 10px 19px;  text-align:left; color:#646262; border:1px solid #cdd2d5; border-left:none; background:#f5f5f5; line-height:1}
+.colTable td {padding:10px 9px 10px 9px; *padding:8px 9px 9px 9px;  border-bottom:1px solid #cdd2d5; font-size:14px}
+.colTable td label {font-size:14px}
+.colTable td.other {padding:0 9px}
+.colTable td .wave {margin:0 20px}
+.colTable td.contentPsot {height:300px}
+.colTable td .file_img img {width:300px}
+
+.colTable02 {clear:both; width:100%;  line-height:1}
+.colTable02 th {width:139px; padding:10px 0 10px 19px;  text-align:left; color:#646262; border-left:none; line-height:1; border:none; background:none}
+.colTable02 td {padding:10px 9px 10px 9px; *padding:8px 9px 9px 9px; font-size:14px; border:none; border-left:1px solid #cdd2d5; border-bottom:1px solid #cdd2d5; vertical-align:top}
+.colTable02 td label {font-size:14px; display:block}
+.colTable02 td input[type="checkbox"] {margin-right:3px}
+.colTable02 td.bbn {border-bottom:none}
+.colTable02 td.bty {border-top:1px solid #cdd2d5}
+.colTable02 td .wave {margin:0 20px}
+.colTable02 td.contentPsot {height:300px}
+
+.rowTable {clear:both; width:100%; border-top:2px solid #333333;}
+.rowTable th {padding:10px 5px; color:#646262; border-bottom:1px solid #d9d9d9; background:#eee; line-height:1; text-align: center;}
+.rowTable td {padding:10px 5px; border-bottom:1px solid #cfcfcf; text-align:center}
+.rowTable td .label {width:50px}
+.rowTable td a {color:#666; text-decoration:none}
+.rowTable td a:hover {color:#0088cc; text-decoration:underline}
+
+
+
+.pageCount {text-align:right; margin-bottom:5px}
+.pageCount select {width: auto; padding-left:10px; padding-right: 10px;}
+.pageCount select, .pageCount input, .pageCount label, .pageCount button {vertical-align:middle;}
+
+/* 달력 */
+.hasDatepicker {margin-right:5px}
+.ui-datepicker-trigger {cursor:pointer}
+
+/* 사진 갤러리 */
+.gallery {overflow:hidden; margin:0; border-top:2px solid #438fd7; border-bottom:1px solid #438fd7; padding:20px 0}
+.gallery li {float:left; width:205px; text-align:center; margin-bottom:20px;}
+.gallery li img {border:1px solid #6fd7f7}
+
+
+/* 메인관리 */
+.mainAdministration {border:1px solid #cdd2d5; border-bottom:none; margin-top:20px}
+.mainList {overflow:hidden; padding:10px;  border-bottom:1px solid #cdd2d5}
+.mainAdministration .list_tit {float:left; margin-right:10px; font-weight:bold; color:#000}
+.mainAdministration select {float:left; vertical-align:middle; width:70px; margin-right:50px}
+.mainAdministration input {float:left; vertical-align:middle; width:500px}
+.mainAdministration button {float:left; vertical-align:middle; margin-left:10px}
+
+
+/*-----------------------
+ * gnu css start
+ *-----------------------/
+/* thead 한 줄 테이블 */
+.tbl_head01 {}
+.tbl_head01 table {clear:both;width:100%;border-collapse:collapse;border-spacing:0}
+.tbl_head01 thead th {background:#6f809a;color:#fff;border:1px solid #60718b;font-weight:normal;text-align:center;padding:8px 5px;font-size:0.92em}
+.tbl_head01 thead th a{color:#fff}
+.tbl_head01 thead input {vertical-align:top} /* middle 로 하면 게시판 읽기에서 목록 사용시 체크박스 라인 깨짐 */
+.tbl_head01 thead a {color:#383838;text-decoration:underline}
+.tbl_head01 tbody th{border:1px solid #d6dce7;padding:5px;text-align:center}
+.tbl_head01 tbody td{border:1px solid #d6dce7;padding:5px;text-align:center}
+.tbl_head01 tbody tr:nth-child(even){background:#eff3f9}
+.tbl_head01 tbody td .frm_input{width:100%;}
+.tbl_head01 tbody td select{width:100%}
+.tbl_head01 table .tbl_input{height:27px;line-height:25px;border:1px solid #d5d5d5;}
+.tbl_head01 table select {height: 27px;line-height: 25px;width: 100%;}
+
+/* 메뉴설정 */
+#menu_frm #menu_result {margin:10px 0}
+
+#menulist .sub_menu_class {padding-left:25px;background:url('../images/sub_menu_ico.gif') 5px 15px no-repeat}
+.exist_menu_link {font-weight:bold;color:red}
+
+.td_mng a.btn,.td_mng a{display:inline-block;height:26px;line-height:26px;border:0;;border-radius:3px;padding:0 8px;margin:1px;font-weight:normal}
+.td_mng button,.td_mng button.btn{height:26px;border:0;border-radius:3px;padding:0 8px;margin:1px;border:0;;font-weight:normal}
+
+a.btn{display:inline-block;height:34px;line-height:30px;border:0;;border-radius:2px;padding:0 13px;font-weight:normal;font-size:14px;vertical-align:middle}
+.btn_submit{background:#ff4081;color:#fff}
+a.btn_submit{background:#ff4081;color:#fff}
+.btn_submit:hover{background:#ff1464}
+.btn_01,a.btn_01{background:#ff4081;color:#fff;}
+.btn_01:hover,a.btn_01:hover{background:#ff1464}
+
+.btn_02,a.btn_02{background:#9eacc6;color:#fff;}
+.btn_03,a.btn_03{background:#3f51b5;color:#fff;}
+
+
+/*form*/
+.sound_only {display:inline-block !important;position:absolute;top:0;left:0;margin:0 !important;padding:0 !important;width:1px !important;height:1px !important;font-size:0;line-height:0;border:0 !important;overflow:hidden !important}
+.frm_input{height:35px;line-height:32px;border:1px solid #d5d5d5;}
+.frm_input_full{width:100%}
+select{height:35px;line-height:32px;border:1px solid #d5d5d5;}
+textarea{width:100%;border:1px solid #d5d5d5;min-height:80px}
+legend {position:absolute;width:0;height:0;font-size:0;line-height:0;text-indent:-9999em;border:0;overflow:hidden}
+.code_input{font:bold 15px Consolas}
+
+/* 공통 */
+.td_addr {text-align:left !important}
+.td_alignc {text-align:center}
+.td_addr_line {line-height:2em}
+.td_addr_line .frm_input{margin:2px 0}
+.td_amount {width:70px;text-align:center}
+.td_auth {width:100px;text-align:center}
+.td_auth_mbnick {width:200px}
+.td_boolean {width:50px;text-align:center}
+.td_category {width:120px;text-align:center;}
+.td_categorysmall {width:60px;text-align:center}
+.td_chk {width:30px;text-align:center}
+.td_chk2{width:70px;}
+.td_cnt {width:100px;font-size:0.95em;text-align:center}
+.td_cntsmall {width:50px;font-size:0.95em;text-align:center}
+.td_code {width:80px;text-align:center}
+.td_confirm {width:90px;text-align:center}
+.td_date {width:70px;text-align:center}
+.td_datetime {width:130px;text-align:center}
+.td_delicom {width:100px}
+.td_delino {width:130px}
+.td_device {width:70px;text-align:center}
+.td_etc {width:80px;text-align:center}
+.td_extra label {display:inline-block;width:100px}
+.td_extra input {margin-right:5px;width:130px}
+.td_grid {width:60px;text-align:center}
+td.td_grpset {width:160px;border-left:1px solid #e9ecee;text-align:center}
+.td_id {width:150px}
+.td_idsmall {width:75px}
+.td_itname {text-align:left !important}
+.td_itopt {width:200px}
+.td_itopt_tl {text-align:left !important}
+.td_img {text-align:center}
+.td_imgline {width:70px;text-align:center}
+.td_input input {width:94%}
+.td_mbcert {text-align:center}
+.td_mbid, .td_name, .td_mbname {width:100px;text-align:left !important}
+.td_mbstat {text-align:center}
+.td_mng {width:100px;font-size:0.95em;text-align:center;letter-spacing:-0.1em}
+.td_mngsmall {width:60px;text-align:center;}
+.td_num {width:60px;text-align:center}
+.td_num_c{width:70px;text-align:center}
+.td_num_c2{width:60px;text-align:center}
+.td_num_c3{width:100px;text-align:center}
+.td_numbig {width:100px;text-align:right !important}
+.td_numcancel0 {color:#999;text-align:right !important}
+.td_numcancel1 {color:#ff3061;font-weight:bold;text-align:right !important}
+.td_numcoupon {color:#86b325;text-align:right !important}
+.td_numincome {text-align:right !important}
+.td_num_right {text-align:right !important}
+.td_numsmall {width:40px;text-align:center}
+.td_numsum {font-weight:bold;text-align:right !important}
+.td_numrdy {color:#ff3061;text-align:right !important}
+.td_odrnum {width:250px;text-align:center}
+.td_odrnum2 {width:140px;text-align:center}
+.td_odrnum3 {width:110px;text-align:center}
+.td_odrstatus {width:70px;letter-spacing:-0.1em;text-align:center}
+.td_output {width:90px;text-align:center}
+.td_payby {width:70px;text-align:center;letter-spacing:-0.1em}
+.td_paybybig {width:140px;text-align:center;letter-spacing:-0.1em}
+.td_possible {width:70px;text-align:center}
+.td_postal {width:60px;text-align:center}
+.td_postalbig {width:140px;text-align:center}
+.td_price {text-align:right !important}
+.td_pt {text-align:right !important}
+.td_send {width:50px;text-align:center}
+.td_sendcost_by {width:50px;text-align:center}
+.td_sendcost_add {width:100px;text-align:center}
+.td_stat {width:70px;text-align:center}
+.td_tdiv {border-bottom:1px solid #c9c9c9 !important}
+.td_tel{width:120px;text-align:left !important}
+.td_telbig {width:100px;text-align:center}
+.td_test {width:50px;text-align:center}
+.td_category1{width:130px;text-align:center}
+.td_category2{width:100px;text-align:center}
+.td_category3{width:80px;text-align:center}
+.td_time{text-align:center;width:130px}
+.td_center{text-align:center;}
+.td_type{width:120px}
+
+.td_mng_s{width:60px}
+.td_mng_m{width:100px}
+.td_mng_l{width:160px}
+
+.txt_true {color:#e8180c}
+.txt_false {color:#ccc}
+.txt_succeed {color:#40b300}
+.txt_fail {color:#ce4242}
+.td_left{text-align:left !important}
+
+.banner_or_img {margin:10px 0 0}
+.banner_or_img button {display:block;margin:5px 0 0}
+.txt_active {color:#5d910b}
+.txt_expired {color:#ccc}
+#sct_mobileimg{width:125px}
+
+/*-----------------------
+ * gnu css end
+ *-----------------------/

@@ -1,0 +1,219 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+    $tab = nvl($_GET['tab'], 2);
+    if(!$tab){
+      $tab = '2';
+    }
+
+    $job = $_GET['job'];
+	  $obj = $_GET['obj'];
+	  $ext2 = $_GET['ext2'];
+    
+
+    $total_count = 0;
+    
+    if($tab=='2'){
+      $itemList2 = select_support_list('incident', 1000, $keyword, $job, $obj, $ext2);
+      $total_count = select_support_list_count('incident', $keyword, $job, $obj, $ext2);
+    }
+
+?>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+<body class="recruit">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+  <?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+  <!--230202 style 삭제-->
+	<!-- //header -->
+
+	<div id="container" class="container">
+
+    <div class="sub-header">
+      <h2 class="sub-header__title"><span class="sub-header__label">인재채용 > 채용</span>디지털 마케팅 시장에서 <br>함께 <strong>성장할 플레이어</strong>를 기다립니다.</h2>
+      <div class="sub-tabs">
+        <!-- <a href="javascript:;" class="sub-tabs__item <?phpif($tab=='1'){?>sub-tabs__item--active<?php}?>" onclick="javascript:location.href='recruit.html?tab=1';">상시채용</a> -->
+        <a href="javascript:;" class="sub-tabs__item <?phpif($tab=='2'){?>sub-tabs__item--active<?php}?>" onclick="javascript:location.href='recruit.html?tab=2';">채용공고</a>
+        <a href="javascript:;" class="sub-tabs__item <?phpif($tab=='3'){?>sub-tabs__item--active<?php}?>" onclick="javascript:location.href='recruit.html?tab=3';">채용프로세스</a>
+      </div>
+    </div>
+
+    <!-- <div class="sub-container <?phpif($tab=='1'){?>sub-container--located<?php}?>" data-content="상시채용">
+      <div class="accordian">
+        <?phpfor ($i=0; $row=sql_fetch_array($itemList); $i++) { ?>
+        <div class="accordian__item">
+          <div class="accordian__title"><a href="#"><?=$row['S_FIELD']?></a></div>
+          <div class="accordian__content">
+            <?=$row['S_CONT']?>
+            <div class="button__wrap">
+              <a href="javascript:;" onclick="javascript:window.open('<?=$row['S_EXT1']?>');" class="button button__radius button__filled-black">상시채용 지원</a>
+            </div>
+          </div>
+        </div>
+        <?php}?>
+        
+      </div>
+    </div> -->
+
+    <div class="sub-container  <?phpif($tab=='2'){?>sub-container--located<?php}?>" data-content="채용공고">
+      <div class="search-form">
+        <div class="search-form__wrap">
+          <input type="search" id="recruit-search" name="" placeholder="직무 검색하기" onkeyup="enterSelect()" value="<?=$keyword?>">
+          <button><div class="a11y">검색</div></button>
+        </div>
+        <div class="search-list">
+          <div class="search-item">
+            <div class="drop-box">
+               <div class="drop-box__title">
+                <p class="drop-box__text"><?phpif($job){?><?=$job?><?php}else{?>
+									전체직군<?php}?></p> <!-- 20220623 //-->
+              </div>
+              <div class="drop-box__wrap">
+                <div>
+                  <p><a href="javascript:;" onclick="javascript:selectJob('');">전체</a></p> <!-- 20220623 //-->
+                  <p><a href="javascript:;" onclick="javascript:selectJob('영업·마케팅');">영업·마케팅</a></p>
+									<p><a href="javascript:;" onclick="javascript:selectJob('디자인');">디자인</a></p>
+									<p><a href="javascript:;" onclick="javascript:selectJob('개발');">개발</a></p>
+									<p><a href="javascript:;" onclick="javascript:selectJob('기획');">기획</a></p>
+									<p><a href="javascript:;" onclick="javascript:selectJob('경영지원');">경영지원</a></p>
+									<p><a href="javascript:;" onclick="javascript:selectJob('영업지원');">영업지원</a></p>
+                </div>  
+              </div>
+            </div>
+          </div>
+          <div class="search-item">
+            <div class="drop-box">
+              <div class="drop-box__title">
+                <p class="drop-box__text"><?phpif($obj){?><?=$obj?><?php}else{?>경력사항<?php}?></p> <!-- 20220623 //-->
+              </div>
+              <div class="drop-box__wrap">
+                <div>
+                  <p><a href="javascript:;" onclick="javascript:selectObj('');">전체</a></p> <!-- 20220623 //-->
+                  <p><a href="javascript:;" onclick="javascript:selectObj('신입');">신입</a></p>
+                  <p><a href="javascript:;" onclick="javascript:selectObj('경력');">경력</a></p>
+                  <p><a href="javascript:;" onclick="javascript:selectObj('무관');">무관</a></p>
+                </div>  
+              </div>
+            </div>
+          </div>
+          <div class="search-item">
+          <div class="drop-box">
+            <div class="drop-box__title">
+                <p class="drop-box__text"><?phpif($ext2){?><?=$ext2?><?php}else{?>고용 형태<?php}?></p> <!-- 20220623 //-->
+              </div>
+              <div class="drop-box__wrap">
+                <div>
+                  <p><a href="javascript:;" onclick="javascript:selectExt('');">전체</a></p> <!-- 20220623 //-->
+                  <p><a href="javascript:;" onclick="javascript:selectExt('정규직');">정규직</a></p>
+                  <p><a href="javascript:;" onclick="javascript:selectExt('계약직');">계약직</a></p>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?phpfor ($i=0; $row=sql_fetch_array($itemList2); $i++) { 
+        
+        $nDate = date("Y-m-d",time());
+        $valDate = substr($row['S_ET_DATE'],0,10);
+        $leftDate = intval((strtotime($valDate)-strtotime($nDate)) / 86400);
+
+
+        ?>
+      <div class="relate-content">
+        <a href="<?=$row['S_EXT1']?>" target="_blank">
+          <div class="relate-content__title">
+            <div class="relate-content__wrap">
+              <?=$row['S_FIELD']?>
+              <?phpif($leftDate<0){?>
+              <div class="relate-content__date relate-content__date--end">
+                <p>END</p>
+              </div>
+              <?php}else{?>
+              <div class="relate-content__date">
+                <p>D-<span><?=$leftDate?></span></p>
+              </div>
+              <?php}?>
+            </div>
+            <div class="relate-content__type">
+              <span><?=$row['S_JOB']?></span>
+              <span><?=$row['S_OBJ']?></span>
+              <span><?=$row['S_EXT2']?></span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <?php}?>
+    </div>
+
+    <div class="sub-container  <?phpif($tab=='3'){?>sub-container--located<?php}?>" data-content="채용프로세스">
+      <div class="diagram">
+        <p class="diagram__title">신입</p>
+        <ol class="diagram__list">
+          <li class="diagram__phase" data-phase="1"><span class="phase">01</span><span class="phase__title">지원서 접수</span></li>
+          <li class="diagram__phase" data-phase="2"><span class="phase">02</span><span class="phase__title">서류 검토</span></li>
+          <li class="diagram__phase" data-phase="3"><span class="phase">03</span><span class="phase__title">1차 면접</span></li>
+          <li class="diagram__phase" data-phase="4"><span class="phase">04</span><span class="phase__title">2차 면접</span></li>
+          <li class="diagram__phase" data-phase="5"><span class="phase">05</span><span class="phase__title">인턴십<br>(2개월/3개월)</span></li>
+          <li class="diagram__phase" data-phase="6"><span class="phase">06</span><span class="phase__title"><strong>최종합격<br>(수습기간 3개월)</strong></span></li>
+        </ol>
+      </div>
+      <div class="diagram">
+        <p class="diagram__title"><strong>경력</strong><br>(정규직)</p>
+        <ol class="diagram__list">
+          <li class="diagram__phase" data-phase="1"><span class="phase">01</span><span class="phase__title">지원서 접수</span></li>
+          <li class="diagram__phase" data-phase="2"><span class="phase">02</span><span class="phase__title">서류 검토</span></li>
+          <li class="diagram__phase" data-phase="3"><span class="phase">03</span><span class="phase__title">1차 면접</span></li>
+          <li class="diagram__phase" data-phase="4"><span class="phase">04</span><span class="phase__title">2차 면접</span></li>
+          <li class="diagram__phase" data-phase="5"><span class="phase">05</span><span class="phase__title">처우협의</span></li>
+          <li class="diagram__phase" data-phase="6"><span class="phase">06</span><span class="phase__title"><strong>최종합격<br>(수습기간 3개월)</strong></span></li>
+        </ol>
+      </div>
+      <!-- <div class="button__wrap">
+        <a href="https://recruit.kt.com/apply/notifyList" type="button" target="_blank" class="button button__large button__filled-black">입사지원</a>
+      </div> -->
+    </div>
+	</div>
+</div>
+
+<script>
+
+var g_job = '<?=$job?>';
+  var g_obj = '<?=$obj?>';
+  var g_ext2 = '<?=$ext2?>';
+  
+  function selectJob(val){
+    g_job = val;
+  }
+  function selectObj(val){
+    g_obj = val;
+  }
+  function selectExt(val){
+    g_ext2 = val;
+  }
+
+function enterSelect(){
+	if (window.event.keyCode == 13) {
+    var keyword = $('#recruit-search').val();
+		document.location.href = 'recruit.html?tab=<?=$tab?>&job=' + g_job + '&obj=' + g_obj + '&ext2=' + g_ext2 + '&keyword=' + keyword;
+	}
+}
+
+
+function enterIcon(){
+    var keyword = $('#recruit-search').val();
+		document.location.href = 'recruit.html?tab=<?=$tab?>&job=' + g_job + '&obj=' + g_obj + '&ext2=' + g_ext2 + '&keyword=' + keyword;
+
+}
+
+</script>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

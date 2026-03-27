@@ -1,0 +1,95 @@
+<?php
+$sub_sql = "";
+$search = "";
+
+// if($category && $category != "성공사례") $sub_sql .= "AND B_TYPE = '$category'";
+if($s_con) $sub_sql .= "AND B_TITLE LIKE '%$s_con%'";
+if($category) $search .= "&category=".$category;
+if($s_con) $search .= "&s_con=".$s_con;
+if(!$page) $page = 1;
+
+// if($code == "news") {
+//     if(!$category) $code_sub_sql = "B_CODE IN ('nsmpr', 'nsmext')";
+//     else if($category && $category != "성공사례") $code_sub_sql = "B_CODE = '$menu_code[$code]'";
+//     else if($category == "성공사례") $code_sub_sql = "B_CODE = 'nsmext' AND B_TYPE IS NULL";
+// }
+if($code == "news")  $sub_sql .=  "  and (B_SITE ='플레이디' or B_SITE = '' or B_SITE is null) ";
+if($category) $sub_sql .= " and B_TYPE = '$category'";
+$num_sql = "SELECT COUNT(*) FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' AND B_EXPS_YN = 'N' $sub_sql";
+$sql = "SELECT * FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' AND B_EXPS_YN = 'N' $sub_sql ORDER BY B_REGDATE DESC";
+
+
+if($_SERVER['REMOTE_ADDR']=="49.254.187.250") {
+	echo $s_con;
+}
+
+$result = $func->listNpage(&$total, &$paging, $sql, $num_sql, $dbconn, $search, 12);
+
+$exps_sql = "SELECT * FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' AND B_EXPS_YN = 'Y' $sub_sql ORDER BY B_REGDATE DESC LIMIT 3";
+$exps_result = mysql_query($exps_sql);
+?>
+<div id="board">
+    <div class="board_list_top_bar">
+        <div class="inner">
+           <div class="board_search">
+                <form method="get" action="<?php echo $PHP_SELF; ?>">
+                    <input type="hidden" name="category" value="<?php echo $category; ?>" />
+                    <fieldset>
+                        <input type="text" name="s_con" placeholder="Search" value="<?php echo $s_con; ?>" />
+                        <button type="submit" class="bd_search_btn"><img src="../../images/board/search_ico.png" alt="검색"></button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="board_cate">
+                <a href="<?php echo $PHP_SELF; ?>" class="<?php echo !$category ? "active" : ""; ?>">전체</a>
+                <a href="<?php echo $PHP_SELF; ?>?category=안내" class="<?php echo $category == "안내" ? "active" : ""; ?>">안내</a>
+                <a href="<?php echo $PHP_SELF; ?>?category=업데이트" class="<?php echo $category == "업데이트" ? "active" : ""; ?>">업데이트</a>
+                <a href="<?php echo $PHP_SELF; ?>?category=공지" class="<?php echo $category == "공지" ? "active" : ""; ?>">공지</a>
+                <!-- <a href="<?php echo $PHP_SELF; ?>?category=성공사례" class="<?php echo $category == "성공사례" ? "active" : ""; ?>">성공사례</a> -->
+            </div>
+        </div>
+    </div>
+    <div class="board_list_wrap">
+        <ul class="board_list">
+            <?php
+                while($exps_arr = mysql_fetch_array($exps_result)) {
+                    if($exps_arr[B_FILE2]) $thum = 'style="background-image: url(\'http://nsm.co.kr'.$exps_arr[B_FILE2].'\')"';
+                    else $thum = "";
+            ?>
+            <li class="notice">
+                <a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $exps_arr[B_SEQ].$search; ?>&exps=Y">
+                    <span class="thumb" <?php echo $thum; ?>></span>
+                    <div class="wrap">
+                        <span class="cate"><?php echo $exps_arr[B_TYPE]; ?></span>
+                        <span class="title"><?php echo $exps_arr[B_TITLE]; ?></span>
+                    </div>
+                </a>
+            </li>
+            <?php } ?>
+        </ul>
+        <ul class="board_list">
+            <?php
+                while($arr = mysql_fetch_array($result)) {
+                    if($arr[B_FILE2]) $thum = 'style="background-image: url(\'http://nsm.co.kr'.$arr[B_FILE2].'\')"';
+                    else $thum = "";
+            ?>
+            <li>
+                <a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $arr[B_SEQ].$search; ?>&exps=N">
+                    <span class="thumb" <?php echo $thum; ?>></span>
+                    <div class="wrap">
+                        <span class="cate"><?php echo $arr[B_TYPE]; ?></span>
+                        <span class="title"><?php echo $arr[B_TITLE]; ?></span>
+                    </div>
+                </a>
+            </li>
+            <?php } ?>
+            <?php if($total[num] == 0) { ?>
+                <li class="no_data">
+					게시글이 없습니다.
+				</li>
+            <?php } ?>
+        </ul>
+    </div>
+    <?php echo $paging; ?>
+    <?php include "../../board/list_link_common.html"; ?>
+</div>

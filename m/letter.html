@@ -1,0 +1,200 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	$years = select_board_years();
+?>
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
+?>
+
+<body class="letter">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
+?>
+	<!-- //header -->
+
+    <div class="sub-header">
+      <h2 class="sub-header__title">하루 5분, 플레이디 뉴스레터로<br><span>트렌드</span>를 빠르게 받아보세요.</h2>
+      <section class="visual">
+				<div class="visual__inner">
+					<h3 class="visual__slogan">광고·미디어에 특화된 업계 동향 및 <br>마케팅·트렌드 소식을 월 2회 빠르게 전달해 드립니다.</h3>
+					<div class="button__wrap">
+            <a href="https://page.stibee.com/subscriptions/213340" target="_blank" class="button button__radius button__filled-black">뉴스레터 신청</a>
+            <!-- <a href="#" class="button button__radius button__filled-black">뉴스레터 신청</a> -->
+          </div>
+				</div>
+        <div class="visual__image" style="background-image: url('../assets/images/m/sub/img_letter_1.png')"></div>
+      </section>
+    </div>
+
+		<div class="search-form">
+			<div class="search-form__wrap">
+				<input type="text" id="insightLetter-search" name="" placeholder="검색어를 입력하세요." onkeyup="enterSelect()" maxlength="52">
+				<button type="button" onclick="javascript:keywordSelect();"><div class="a11y">검색</div></button>
+			</div>
+			<div class="sub-tabs">
+				<div class="sub-tabs__wrap">
+					<div class="sub-tabs__box">
+						<p>
+							<button type="button" id="years_" onclick="javascript:yearSelect('');" class="sub-tabs__item sub-tabs__item--active">전체</button>
+						</p>
+						<?phpfor ($i=0; $row=sql_fetch_array($years); $i++) {?>
+						<p><button type="button" id="years_<?=$row['B_YEAR']?>"  class="sub-tabs__item" onclick="javascript:yearSelect('<?=$row['B_YEAR']?>');"><?=$row['B_YEAR']?></button></p>
+						<?php}?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sub-content">
+			<!-- <div class="list-content">
+				<a href="./letter-detail.html">
+					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_letter_2.png')"></p>
+					<p class="list-content__title"><span class="numbering">Vol. 112</span> 국내 기업의 해외 온라인 마케팅 지원 본격화</p>
+					<p class="list-content__description">
+						2022.03
+					</p>	
+				</a>
+			</div> -->
+		</div>
+
+		<div class="sub-content__warning" style="display: none">
+			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
+		</div>
+
+		<div class="button__wrap button__wrap--seemore">
+			<a href="javascript:itemMore();"  class="button button__seemore">더 보기</a>
+		</div>
+	</div>
+
+
+<script>
+var g_page = 1;
+var g_listsize = 6;
+var g_year = '';
+
+$(document).ready(function(){
+	
+	ajaxItemList();
+
+});
+
+function ajaxItemList(){
+	var keyword = $('#insightLetter-search').val();
+	if(isLoading) return;
+	isLoading = true;
+		$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_list.php',
+                    data: {
+                        'year':g_year,
+						'keyword':keyword,
+						'page':g_page,
+						'listsize':g_listsize,
+						'code':'nsmnw',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                    },
+                    success: function (json) {
+						isLoading = false;
+                        if(json){
+							if(g_listsize * g_page >= json['count']){
+								$('.button__wrap--seemore').hide();
+							} else {
+								$('.button__wrap--seemore').show();
+							}
+							fetchItemList(json['list'], json['count']);
+
+							if(json['count'] == 0){
+								$('.sub-content__warning').show();
+							} else {
+								$('.sub-content__warning').hide();
+							}
+							
+                        }
+                    }
+        });
+}
+
+function fetchItemList(json, count){
+		var html = '';
+		for(var i=0;i<json.length;i++){
+			var image = '';
+			var alt = '';
+			var vol = count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
+
+			var datestr = json[i]['B_YEAR'] + '.' + json[i]['B_MONTH'];
+
+			<?phpif($is_mobile){?>
+			if(json[i]['B_FILE2']){
+				image = json[i]['B_FILE2'];
+			}
+			if(json[i]['B_EXT2']){
+				alt = json[i]['B_EXT2'];
+			}
+			<?php}else{?>
+			if(json[i]['B_FILE1']){
+				image = json[i]['B_FILE1'];
+			}
+			if(json[i]['B_EXT1']){
+				alt = json[i]['B_EXT1'];
+			}
+			<?php}?>
+
+			html+='<div class="list-content"><a href="./letter-detail.html?seq=' + json[i]['B_SEQ'] + '&vol=' + vol + '">';
+			html+='<div class="list-content__cover"><p class="list-content__image" style="background-image:url('+image+')" title="'+alt+'"></p></div>';
+			html+='<p class="list-content__title"><span class="numbering">Vol. '+vol+'</span> '+json[i]['B_TITLE']+'</p>';
+			html+='<p class="list-content__description">'+datestr+'</p>';
+			html+='</a></div>';
+			
+		}
+
+		$('.sub-content').append(html);
+		
+}
+function itemMore(){
+	g_page = g_page + 1;
+	ajaxItemList();
+}
+function yearSelect(year){
+	g_page = 1;
+	g_year = year;
+	$("button[id^='years_']").each(function (i, el) {
+		$(this).removeClass('sub-tabs__item--active');
+	});
+	$('#years_' + year).addClass('sub-tabs__item--active');
+
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function keywordSelect(){
+	g_page = 1;
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function enterSelect(){
+	if (window.event.keyCode == 13) {
+		g_page = 1;
+		$('.sub-content').empty();
+		ajaxItemList();
+	}
+}
+
+</script>
+
+  <?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.m.php');
+?>

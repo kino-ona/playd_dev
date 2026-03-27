@@ -1,0 +1,228 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+
+
+	// 1건 가져오기 
+	$b_seq = nvl($_GET['seq'],2);
+	if(!$b_seq){
+		alert('잘못된 방식으로 접근하였습니다.','/');
+		exit;
+	}
+	$itemOne = select_board_one('report', $b_seq);
+
+	// HITS 업데이트 
+	update_board_hits($b_seq);
+	
+	$slideImage = '';
+	if($is_mobile){
+		$slideImage = $itemOne['B_FILE2'];
+	} else {
+		$slideImage = $itemOne['B_FILE1'];
+	}
+
+	// 관련 리스트
+	$otherList = select_board_list('report', 3, $b_seq, 'other');
+
+
+	$fileList = select_board_file_list($b_seq);
+	$fileCount = select_board_file_list_count($b_seq);
+?>
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
+?>
+<body class="report-detail"> 
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
+?>
+	<!-- //header -->
+		<div class="sub-content">
+			<div class="sub-content__head">
+				<p class="sub-content__type"><?=$itemOne['B_TYPE']?></p>
+				<h3 class="sub-content__title"><?=$itemOne['B_TITLE']?></h3>
+				<p>
+					<span class="sub-content__date"><?=substr($itemOne['B_SEND_DT'],0,4)?>.<?=substr($itemOne['B_SEND_DT'],5,2)?></span>
+					<a href="javascript:;" class="sub-content__share"><span class="a11y">공유하기</span></a>
+				</p>
+			</div>
+			<div class="list-content">
+				<div class="list-content__slide swiper">
+					<div class="swiper-wrapper">
+							<div class="list-content__item swiper-slide">
+								<p><span class="list-content__image" style="background-image:url('<?=$slideImage?>')"></span></p>
+								<p class="list-content__description"><?=$itemOne['B_CONT']?></p>
+							</div>
+					</div>
+				</div>
+				<a href="javascript:download('<?=$itemOne['FI_SEQ2']?>','<?=$itemOne['B_LINKURL']?>','<?=$itemOne['B_SEQ']?>');" class="download">리포트 다운로드</a>
+			</div>
+			<div class="slide">
+				<div class="slide__wrap">
+					<h4 class="slide__sub-title">추천 리포트</h4>
+					<a href="./report.html" class="slide__back">목록</a>
+				</div>
+				<div class="slide-swiper swiper">
+					<div class="swiper-wrapper">
+
+
+					<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+				
+				$image = '';
+				$alt = '';
+				if($is_mobile){
+					if($row['B_FILE4']){
+						$image =$row['B_FILE4'];
+					}
+					if($row['B_EXT4']){
+						$alt = $row['B_EXT4'];
+					}
+				} else {
+					if($row['B_FILE3']){
+						$image = $row['B_FILE3'];
+					}
+					if($row['B_EXT3']){
+						$alt = $row['B_EXT3'];
+					}
+				}
+
+				?>
+
+						<div class="slide__item swiper-slide">
+							<a href="report-detail.html?seq=<?=$row['B_SEQ']?>">
+								<p><span class="slide__image" style="background-image:url(<?=$image?>)" title="<?=$alt?>"></span></p>
+								<p class="slide__type"><?=$row['B_TYPE']?></p>
+								<h3 class="slide__title"><?=$row['B_TITLE']?></h3>
+								<span class="slide__date"><?=substr($row['B_SEND_DT'],0,4)?>.<?=substr($row['B_SEND_DT'],5,2)?></span>
+							</a>
+							<a href="javascript:download('<?=$row['FI_SEQ']?>','<?=$row['B_LINKURL']?>','<?=$row['B_SEQ']?>');" class="slide__download"><span>download</span></a>
+							
+						</div>
+					<?php}?>
+						
+						<!-- <div class="slide__item swiper-slide">
+							<a href="/">
+								<p><span class="slide__image" style="background-image:url('../assets/images/m/sub/img_report_3.png')"></span></p>
+								<p class="slide__type">Trend Delivery</p>
+								<h3 class="slide__title">OTT 서비스 트렌드 리포트</h3>
+								<span class="slide__date">2022.04</span>
+								<a href="/" class="slide__download"><span>download</span></a>
+							</a>
+						</div>
+						<div class="slide__item swiper-slide">
+							<a href="/">
+								<p><span class="slide__image" style="background-image:url('../assets/images/m/sub/img_report_2.png')"></span></p>
+								<p class="slide__type">Trend Delivery</p>
+								<h3 class="slide__title">OTT 서비스 트렌드 리포트</h3>
+								<span class="slide__date">2022.04</span>
+								<a href="/" class="slide__download"><span>download</span></a>
+							</a>
+						</div>
+						<div class="slide__item swiper-slide">
+							<a href="/">
+								<p><span class="slide__image" style="background-image:url('../assets/images/m/sub/img_report_3.png')"></span></p>
+								<p class="slide__type">Trend Delivery</p>
+								<h3 class="slide__title">OTT 서비스 트렌드 리포트</h3>
+								<span class="slide__date">2022.04</span>
+								<a href="/" class="slide__download"><span>download</span></a>
+							</a>
+						</div> -->
+					</div>
+					<div class="swiper-pagination numbering"></div>
+				</div>
+
+				
+			
+			</div>
+		</div>
+	</div>
+
+	<div class="layer__body popup share-popup" id="share-popup" aria-hidden="true" role="dialog">
+		<div class="layer__wrap">
+			<div class="layer__close">
+				<button class="close"><span>close</span></button>
+			</div>
+			<div class="layer__inner">
+				<div class="layer__head">
+					<p class="content__title">공유하기</p>
+				</div>
+				<!--220623 수정 start-->
+				<div class="layer__content">
+					<div class="share-list">
+						<ul>
+							<li class="kakao">
+								<a href="javascript:kakaoShareLink();">
+									<img src="../assets/images/m/sub/icon_share_kakao.png" alt="카카오톡 아이콘">
+									<span>
+										카카오톡
+									</span>
+								</a>
+							</li>
+							<li class="twitter">
+								<a href="javascript:twitterShare()">
+									<img src="../assets/images/m/sub/icon_share_twitter.png" alt="트위터 아이콘">
+									<span>
+										트위터
+									</span>
+								</a>
+							</li>
+							<li class="facebook">
+								<a href="javascript:facebookShare()">
+									<img src="../assets/images/m/sub/icon_share_facebook.png" alt="페이스북 아이콘">
+									<span>
+										페이스북
+									</span>
+								</a>
+							</li>
+							<li class="url">
+								<a href="javascript:linkShare()">
+									<img src="../assets/images/m/sub/icon_share_url.png" alt="URL 아이콘">
+									<span>
+										URL 복사
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--220623 수정 end-->
+			</div>
+		</div>
+	</div>
+
+<script>
+var g_url = '';
+var g_val = '';
+var g_seq = '';
+
+function download(val, url, seq){
+	g_url = url;
+	g_val = val;
+	g_seq = seq;
+	// if(url){
+	// 	window.open(url);
+	// } else {
+	// 	document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	// }   
+	layerOpen('report');
+}
+
+function kakaoShareLink(){
+	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
+	var desc = '<?=nvldesc($itemOne['B_BRIEF'])?>';
+
+	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share2.jpg';
+	kakaoShare(title, desc, imageUrl);
+}
+
+
+</script>
+	<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.m.php');
+?>

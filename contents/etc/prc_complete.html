@@ -1,0 +1,77 @@
+<?php include"../include/head.html"; ?>
+
+<!-- conversion Logscript Start ---------------------------------------------------------------->
+
+<!-- naver -->
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script> 
+<script type="text/javascript"> 
+var _nasa={};
+_nasa["cnv"] = wcs.cnv("4","1"); // 전환유형, 전환가치 설정해야함. 설치매뉴얼 참고
+</script> 
+
+<!-- pixel-->
+<script>
+	fbq('track', 'CompleteRegistration');
+</script>
+
+<!-- PlayD TERA Log Cart item Script -->
+<!-- 구매 제품 갯수에 따라 반복 노출 -->
+<script>
+_LA("PRCH", ['counsel1', '문의완료', 1, 1, '1']);
+</script>
+
+<!-- Amount Script -->
+<script>
+_LA("PC", 1);
+</script>
+
+<!-- conversion Logscript End ---------------------------------------------------------------->
+
+
+
+        <div id="container">
+
+            <div class="sub_top_section company_top03">
+                <h2 class="sub_page_tit">문의완료</h2>
+            </div>
+
+            <div id="subContent" class="company_cont">
+
+				<div class="sec03 company_sec ad_inquiry_sec">
+                    <div class="inner">
+                        <p class="company_tit_desc">
+							<img src="../../images/common/ad_inquiry_sec_logo.jpg" alt="PLAY D"><br/>
+							문의가 <span>접수 완료</span>되었습니다.<br/>
+							신속하게 답변 드리겠습니다.<br/>
+							감사합니다.
+						</p>
+						
+						<div id="newsletter_apply">
+							<p class="newsletter_pop_ttxt">플레이디 <b>뉴스레터 구독신청</b>을 하시면<br>최신 마케팅 트렌드 및 상품 정보를 매달 받아보실 수 있습니다.</p>
+							<form method="post" action="../../board/newsletter_Prc.php" onsubmit="return quick_form_check()" >
+								<div class="newsletter_pop_fix">
+									<h2 class="newsletter_pop_fix_tit">PlayD 뉴스레터 구독하기</h2>
+									<div class="newsletter_apply_box">
+										<span class="newsletter_pop_fix_txt" id="pop_inquiry2" style="cursor:pointer">개인정보 처리방침 확인하기</span>
+										<span class="newsletter_pop_fix_alert"><input type="checkbox" id="agreedY" name="newsletter_agreed" value="Y" />개인정보 수집 및 이용에 동의합니다.</span>
+										<div class="newsletter_pop_fix_mail">
+											 <input type="text" placeholder="이메일 주소를 입력하세요" name="news_email" id="news_email" class="newsletter_pop_fix_mailadd" />
+											 <input type="submit" value="구독신청" class="newsletter_pop_fix_mail_submit" onmouseup="gtag('event', '신청', {'event_category' : '뉴스레터'});"/>
+										</div>
+									</div>
+								</div>
+								<a href="https://www.playd.com/contents/business/newsletter.html" target="_blank" title="새창으로 열림" class="newsletter_link">PlayD 뉴스레터 보러가기</a>
+							</form>
+						</div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div> <!-- End container -->
+
+<?php include"../include/tail.html"; ?>
+

@@ -1,0 +1,185 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	// 1건 가져오기 
+	$b_seq = nvl($_GET['seq'],2);
+	$tab = nvl($_GET['tab'],2);
+	$num = nvl($_GET['num'],2);
+
+	if(!$b_seq || !$tab || !$num){
+		alert('잘못된 방식으로 접근하였습니다.','/');
+		exit;
+	}
+	if($tab=='1'){
+		$b_code = 'ir_notice';
+	} else if($tab=='3'){
+		$b_code = 'pr_notice';
+	}
+	
+	$itemOne = select_board_one($b_code, $b_seq);
+
+	// HITS 업데이트 
+	update_board_hits($b_seq);
+
+	$slideImage = '';
+	if($is_mobile){
+		$slideImage = $itemOne['B_FILE2'];
+	} else {
+		$slideImage = $itemOne['B_FILE1'];
+	}
+
+	if($tab=='1'){
+
+		if($itemOne['B_SEND_DT']){
+			$datestr = substr($itemOne['B_SEND_DT'],0,4).".".substr($itemOne['B_SEND_DT'],5,2);
+		} else{
+			$datestr = substr($itemOne['B_REGDATE'],0,4).".".substr($itemOne['B_REGDATE'],5,2);
+		}
+
+	} else {
+		$datestr = substr($itemOne['B_REGDATE'],0,4).".".substr($itemOne['B_REGDATE'],5,2);
+	}
+
+
+	if($itemOne['B_SEQ']){
+		$sql = " select * from T_BOARD_FILES where B_SEQ = ".$itemOne['B_SEQ']." AND FI_INDEX = '2' order by FI_SORT asc ";
+		$file_res2 = sql_query($sql);
+	}
+
+?>
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
+?>
+<body class="ir-detail"> 
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
+?>
+	<!-- //header -->
+		<div class="sub-content">
+			<div class="sub-content__head">
+				<p class="sub-content__type"><?=$_GET['num']?$_GET['num']:$itemOne['B_SEQ']?></p>
+				<h3 class="sub-content__title"><?=$itemOne['B_TITLE']?></h3>
+				<p>
+					<span class="sub-content__date"><?=$datestr?></span>
+					<a href="/" class="sub-content__share"><span class="a11y">공유하기</span></a>
+				</p>
+			</div>
+			<div class="list-content">
+				<div class="inner"><?=$itemOne['B_CONT']?></div>
+
+				<div class="file__download__wrap">
+
+				<?php        for ($i=0; $row=sql_fetch_array($file_res2); $i++) {
+			$exploded_file = explode(".", $row['FI_ORG']);
+			$file_extension = array_pop($exploded_file);
+			$ext = 'img';
+			if($file_extension == 'jpg' || $file_extension == 'png' || $file_extension == 'jpeg' || $file_extension == 'gif') {
+				$ext = 'img';
+			} else if($file_extension == 'pdf') {
+				$ext = 'pdf';
+			} else if($file_extension == 'zip') {
+				$ext = 'zip';
+			}
+
+    ?>
+
+				<div class="file__download">
+						<img src="../assets/images/m/common/icon_<?=$ext?>.png" alt="이미지 아이콘">
+						<a href="<?=$row['FI_NAME']?>" download="<?=$row['FI_ORG']?>"><?=$row['FI_ORG']?></a>
+					</div>
+    <?php}?>
+					
+					<!-- <div class="file__download">
+						<img src="../assets/images/m/common/icon_img.png" alt="이미지 아이콘">
+						<a href="#" download="test.jpg">It is an image file_It is an image file It is an image file_It is an image file.jpg</a>
+					</div>
+					<div class="file__download">
+						<img src="../assets/images/m/common/icon_pdf.png" alt="PDF 아이콘">
+						<a href="#" download="test.pdf">It looks like image file but it is not.pdf</a>
+					</div>
+					<div class="file__download">
+						<img src="../assets/images/m/common/icon_zip.png" alt="ZIP 아이콘">
+						<a href="#" download="test.zip">Honestly this is a big size file.zip</a>
+					</div> -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="layer__body popup share-popup" id="share-popup" aria-hidden="true" role="dialog">
+		<div class="layer__wrap">
+			<div class="layer__close">
+				<button class="close"><span>close</span></button>
+			</div>
+			<div class="layer__inner">
+				<div class="layer__head">
+					<p class="content__title">공유하기</p>
+				</div>
+				<div class="layer__content">
+					<div class="share-list">
+						<ul>
+							<li class="kakao">
+								<a href="javascript:kakaoShareLink();">
+									<img src="../assets/images/m/sub/icon_share_kakao.png" alt="카카오톡 아이콘">
+									<span>카카오톡</span>
+								</a>
+							</li>
+							<li class="facebook">
+								<a href="javascript:facebookShare();">
+									<img src="../assets/images/m/sub/icon_share_facebook.png" alt="페이스북 아이콘">
+									<span>페이스북</span>
+								</a>
+							</li>
+							<li class="twitter">
+								<a href="javascript:twitterShare();">
+									<img src="../assets/images/m/sub/icon_share_twitter.png" alt="트위터 아이콘">
+									<span>트위터</span>
+								</a>
+							</li>
+							<li class="url">
+								<a href="javascript:linkShare();">
+									<img src="../assets/images/m/sub/icon_share_url.png" alt="URL 아이콘">
+									<span>URL 복사</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<script>
+
+
+function download(val){
+	if(val!=''){
+		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	}
+	
+}
+
+
+function kakaoShareLink(){
+	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
+	var desc = '<?=nvldesc($itemOne['B_TITLE'])?>';
+
+	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share.jpg';
+	kakaoShare(title, desc, imageUrl);
+}
+
+
+
+</script>
+
+	<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.m.php');
+?>

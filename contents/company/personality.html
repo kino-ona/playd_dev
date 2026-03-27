@@ -1,0 +1,68 @@
+<?php include"../include/head.html"; ?>
+
+<?php
+	$personality_sql = "SELECT * FROM T_BOARD WHERE B_CODE = 'playdprivate' AND B_NOTI_YN = 'Y' ORDER BY B_SEQ DESC LIMIT 1";
+	$personality_result = mysql_query($personality_sql);
+	$personality_arr = mysql_fetch_array($personality_result);
+?>
+
+<div id="container">
+
+	<div class="sub_top_section company_top06">
+		<h2 class="sub_page_tit">개인정보처리방침</h2>
+	</div>
+
+	<!-- 상단 선언 스크립트 : 필수 -->
+	<!-- PlayD TERA Log Definition Script Start -->
+	<script>
+	window['_LA']=window['_LA']||function(){
+	   (window['_LA'].q=window['_LA'].q||[]).push(arguments)
+	}
+	</script>
+
+	<!-- PlayD TERA Log Cart item Script -->
+	<!-- 장바구니에 담긴 제품 갯수에 따라 반복 노출 -->
+	<script>
+	_LA("CART", ['A001', '개인정보처리방침', 100, 1, '']);
+	_LA("CART", ['A002', '개인정보처리방침1', 200, 1, '']);
+	_LA("CART", ['A003', '개인정보처리방침2', 300, 1, '']);
+	_LA("CART", ['A004', '개인정보처리방침3', 400, 1, '']);
+	</script>
+
+	<script language='javascript'>
+		var _SA_cnt=0;
+		var _SA_pl = Array(1);
+		var _SA_nl = Array(1);
+		var _SA_ct = Array(1);
+		var _SA_pn = Array(1);
+		var _SA_amt = Array(1);
+	</script>
+
+	<!-- A Square|Site Analyst eCommerce (Product_Detail) v6.5 Start -->
+	<!-- Data Allocation (Product_Detail) -->
+	<script language='javascript'>
+	var totalpri = 100;
+	for(_SA_cnt=0;_SA_cnt>=2;_SA_cnt++){
+		_SA_amt[_SA_cnt]=''+totalpri;
+		_SA_nl[_SA_cnt]='1';
+		_SA_pl[_SA_cnt]='A00'+_SA_cnt;
+		_SA_pn[_SA_cnt]='개인정보처리방침'+_SA_cnt;
+		_SA_ct[_SA_cnt]='';
+		_SA_cnt++;
+		totalpri=totalpri+100
+		}
+	</script>
+
+	<div id="subContent" class="company_cont">
+		<div class="company_sec">
+			<div class="inner">
+				<?php echo $personality_arr[B_CONT];?>
+				<br/><br/>
+				<a href="../file/PLAYD_Company_Brief.pdf" target="_blank" class="down_btn">개인정보처리방침서 다운로드</a>
+			</div>
+		</div>
+	</div>
+
+</div> <!-- End container -->
+
+<?php include"../include/tail.html"; ?>

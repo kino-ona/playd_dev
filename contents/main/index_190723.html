@@ -1,0 +1,259 @@
+<?php include"../include/head.html"; ?>
+<link rel="stylesheet" href="../../css/sub_test_190723.css">
+
+<script  type="text/javascript">
+	function setCookie( name, value, expiredays ) {
+		var todayDate = new Date();
+		todayDate.setDate( todayDate.getDate() + expiredays );
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	}
+//<![CDATA[
+	/*var cookiedata = document.cookie;
+	if ( cookiedata.indexOf("maindiv1=done") < 0 ){
+		//document.all['divpop1'].style.visibility = "visible";
+	} else {
+		//document.all['divpop1'].style.visibility = "hidden";
+		$("#divpop1").hide();
+	}*/
+//]]>
+
+function closeWin1() {
+    if ( document.notice_form1.chkbox.checked ){
+        setCookie( "maindiv1", "done" , 1 );
+    }
+    //document.all['divpop1'].style.visibility = "hidden";
+	$("#divpop1").hide();
+}
+
+	$(document).ready(function() {
+		var cookiedata = document.cookie;
+		if ( cookiedata.indexOf("maindiv1=done") < 0 ){
+			//document.all['divpop1'].style.visibility = "visible";
+			$("#divpop1").show();
+		} else {
+			//document.all['divpop1'].style.visibility = "hidden";
+			$("#divpop1").hide();
+		}
+
+	});
+
+    function email_chg(val) {
+        var email = $("input[name='email[]']");
+
+        if(val == "") {
+            email.eq(1).attr("readonly", false);
+            email.eq(1).val("");
+            email.eq(1).focus();
+        } else {
+            email.eq(1).val(val);
+            email.eq(1).attr("readonly", true);
+        }
+    }
+
+    function form_submit() {
+        if(form_check()) $("#ad_form").submit();
+    }
+
+    function form_check() {
+        var email = $("input[name='email[]']");
+
+        if(!$("#agreedChk").is(":checked")) {
+            alert("개인정보 수집 이용에 동의해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='name']").val()) == "") {
+            alert("이름을 입력해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='phone']").val() == "") {
+            alert("연락처를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim(email.eq(0).val()) == "" || $.trim(email.eq(1).val()) == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='homepage']").val()) == "") {
+            alert("홈페이지 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("textarea[name='content']").val()) == "") {
+            alert("문의 내용을 입력해주시기 바랍니다.");
+            return false;
+        } else if($("#spam_code").val() == "") {
+			alert("자동입력방지 코드를 입력하세요");
+			$("#spam_code").focus();
+			return false;
+		}
+
+		var echo_code1 = $("#echo_code1").html();
+		var echo_code2 = $("#echo_code2").html();
+		var spam_code = $("#spam_code").val();
+
+		if((echo_code1 != spam_code) && (echo_code2 != spam_code)) {
+			alert("자동입력방지 코드를 잘못 입력하였습니다.");
+			$("#spam_code").focus();
+			return false;
+		}
+
+        return true;
+    }
+</script>
+
+
+        <div id="container">
+
+		<!-- 레이어팝업 -->
+		<!-- <div id="divpop1">
+			<div class="popImg"><img src="../../images/popup/popup.jpg" alt=""/></div>
+			<div class="formWrap">
+				<form name="notice_form1">
+					<div class="checkWrap">
+						<input type="checkbox" name="chkbox" id="chkbox_id" value="checkbox" />
+						<span><label for="chkbox_id">오늘 하루 이 창을 열지 않습니다.</label></span>
+						<span><a href="javascript:closeWin1();" class="close_btn"><img src="../../images/popup/close_btn.png" alt="닫기" border="0" /></a>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div> 180228 삭제요청-->
+
+<!-- solution-->		
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=554"></script>
+<!-- AD SERVICE-->
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=555"></script>
+<!-- introduce-->
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=556"></script>
+
+		<!-- 레이어팝업 끝//-->
+
+            <div id="visualSection">
+                <ul class="visual_list">
+                    <li class="cur">
+                        <div class="bg"><img src="../../images/main/visual_img01.jpg" alt=""></div>
+                        <div class="visual_txt">
+							<p class="txt1">"No.1 데이터 마케팅 컴퍼니 PlayD"</p>
+                            <!--p class="txt1">“데이터 기반의 통합 마케팅 전문기업”</p-->
+                            <p class="txt2"><!--데이터 기반의 디지털 마케팅 선도기업으로-->데이터 마케팅 전문 기업으로 광고주의 니즈에 맞는 차별화된 서비스를 제공해 드리겠습니다.</p>
+                            <a href="../business/AD_service.html" class="visual_btn" onclick="_LA.BCT('555')">AD SERVICE</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg"><img src="../../images/main/visual_img02.jpg" alt=""></div>
+                        <div class="visual_txt">
+                            <p class="txt1">"최신 기술과 노하우를 기반으로 한 솔루션"</p>
+                            <p class="txt2">다양한 솔루션을 통해 광고 전략 수립과 실행을 돕고 운영 효율을 높여드립니다.</p>
+                            <a href="../business/AD_solution.html" class="visual_btn" onclick="_LA.BCT('554')">SOLUTION</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg"><img src="../../images/main/visual_img03.jpg" alt=""></div>
+                        <div class="visual_txt">
+                            <p class="txt1"><!--"KT그룹 종합 온라인 광고 대행사 PlayD"-->"데이터 마케팅 전문 기업 PlayD"</p>
+                            <p class="txt2">온라인 광고 시장의 변화에 발 빠르게 대응하여 다양한 성공 사례를 만들어 내고 있습니다. </p>
+                            <a href="../company/introduce.html" class="visual_btn" onclick="_LA.BCT('556')">WHY PLAYD</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="visual_paging">
+                    <a href="#" class="cur">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                </div>
+                <div class="visual_ctrl">
+                    <button type="button" class="left">이전 비쥬얼 이미지</button>
+                    <button type="button" class="right">다음 비쥬얼 이미지</button>
+                </div>
+            </div> <!-- End visualSection -->
+
+            <div id="mSection01">
+                <div class="inner">
+                    <h2 class="mSection_tit"><img src="../../images/main/mSection_img.jpg" alt="PLAY D"></h2>
+                    <p class="txt1">데이터를 기반으로 <!--통합-->마케팅을 제안하고 서비스하는 데이터 마케팅 컴퍼니<!--종합 온라인 광고 대행사--></p>
+                    <p class="txt2">PlayD는 높은 매체 전문성을 바탕으로 다양한 광고 매체(검색광고, 디스플레이 광고, 네트워크 광고, 소셜 광고, 모바일 광고 등)를 집행하며,<br> 사이트 컨설팅 및 크리에이티브 디자인까지 온라인 광고에 필요한 모든 서비스를 지원하는 종합 온라인 광고 대행사입니다.</p>
+                </div>
+            </div>
+<!-- 삭제금지 180122 -->
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=29"></script> 
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=30"></script>
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=31"></script>
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=32"></script>
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=33"></script>
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=34"></script>
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=35"></script>
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=36"></script>
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=37"></script>
+<!-- END -->
+
+            <div id="mSection02">
+                <ul class="m_link_list">
+                    <li class="link_item01"><a href="../business/AD_service.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico01.png" alt="" onclick="javascipt:_LA.BCT('29');"></span>
+                            <span class="txt">Ad service</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item02"><a href="../business/AD_solution.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico02.png" alt="" onclick="javascript:_LA.BCT('30');"></span>
+                            <span class="txt">Solution</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item03"><a href="../business/AD_column.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico03.png" alt="" onclick="javascript:_LA.BCT('31');"></span>
+                            <span class="txt">Column</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item04"><a href="../business/newsletter.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico04.png" alt="" onclick="javascript:_LA.BCT('32');"></span>
+                            <span class="txt">Newsletter</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item05"><a href="../company/news.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico05.png" alt="" onclick="javascript:_LA.BCT('33');"></span>
+                            <span class="txt">News</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item06"><a href="../company/social.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico06.png" alt="" onclick="javascript:_LA.BCT('34');"></span>
+                            <span class="txt">CSR</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item07"><a href="../recruit/join.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico07.png" alt="" onclick="javascript:_LA.BCT('35');"></span>
+                            <span class="txt">Recruit</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item08"><a href="../company/look.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico08.png" alt="" onclick="javascript:_LA.BCT('36');"></span>
+                            <span class="txt">Contact</span>
+                        </div>
+                    </a></li>
+                </ul>
+            </div>
+            <div id="mSection03">
+                <div class="left_bx bx_con">
+                    <h2 class="mSection_tit">PlayD IS</h2>
+                    <p class="txt"><!--㈜플레이디(구.엔서치마케팅)는 데이터 기반의 통합 마케팅 선도기업으로-->No.1 데이터 마케팅 컴퍼니 플레이디는<br> 광고주의 니즈에 맞는 차별화된 서비스를 제공해 드리겠습니다. </p>
+                    <a href="../file/PLAYD_Company_Brief.pdf" target="_blank" class="com_intro_down" onclick="javascript:_LA.BCT('37')">회사소개서 다운로드</a>
+                </div>
+                <div class="right_bx bx_con">
+                    <h2 class="mSection_tit">CONTACT INFO</h2>
+                    <ul class="contact_info_list">
+                        <li><span class="title">Address</span>
+                            <span class="txt">경기도 성남시 분당구 황새울로 359번길 11, 5층</span>
+                        </li>
+                        <li><span class="title">E-mail</span>
+                            <span class="txt">master@playd.com</span>
+                        </li>
+                        <li><span class="title">Tel</span>
+                            <span class="txt"><a href="tel:1566-3265"><span class="red">1566-3265</a></span><br> Monday-Friday : 10am -7pm<br> Saturday-Sunday : Holiday</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div> <!-- End container -->
+
+<?php include"../include/tail_190723.html"; ?>

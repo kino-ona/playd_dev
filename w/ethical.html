@@ -1,0 +1,1334 @@
+<?php
+  session_start();
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+    if(!$_GET['tab']){
+      $tab = '2';
+    }
+    if(!$_GET['sub']){
+      $sub = '1';
+    }
+
+    $report_mail= get_session('report_mail');
+    $report_pwd = get_session('report_pwd');
+
+    $itemList = select_report_list($report_mail, $report_pwd);
+
+    // set_session('report_mail', '');
+    // set_session('report_pwd', '');
+
+    if(empty($_SESSION['CSRFToken'])){
+      $_SESSION['CSRFToken'] = bin2hex(random_bytes(32));
+    }
+    $CSRFToken = $_SESSION['CSRFToken'];
+
+
+?>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+<body class="ethical nav03">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+	<!-- //header -->
+
+	<div id="container" class="container">
+
+      <div class="sub-header">
+        <h2 class="sub-header__title"><span class="sub-header__label">윤리경영</span>플레이디는 경영활동에 있어<br><strong>윤리</strong>를
+          최우선 가치로 생각합니다.</h2>
+        <div class="sub-tabs">
+          <a href="#" class="sub-tabs__item <?phpif($tab=='2'){?>sub-tabs__item--active<?php}?> ">윤리 강령</a>
+          <a href="#" class="sub-tabs__item <?phpif($tab=='3'){?>sub-tabs__item--active<?php}?>">윤리경영 신고</a>
+        </div>
+      </div>
+
+
+      <div class="sub-container  <?phpif($tab=='2'){?>sub-container--located<?php}?>" data-content="윤리 강령">
+        <div class="sub-notice">
+          <div class="sub-notice__wrap">
+            <p class="sub-notice__item">
+              이 원칙은 당사의 주주, 직원, 더 나아가 고객사 및 협력사로부터의 존중을 확보하고 유지하는데
+              필수 요소이며, 지속적 경영과 회사의 성공에 필요한 핵심가치입니다.<br>
+              ㈜플레이디 윤리강령은 당사의 방향성에 기준이 되는 이러한 원칙과 가치를 포함하고 있으며,
+              당사와 관련한 모든 사람들 또한 이에 근거하여 살아가기를 기대합니다.<br>
+              ㈜플레이디 경영진 및 임직원들은 의사결정과 행동의 기준이 되는 본 윤리강령을 숙지하고 준수하여
+              도덕성, 자율성, 공정성 및 신뢰와 존중의 원칙이 지켜질 수<br> 있도록 많은 노력을 부탁드립니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="sub-list-category sub-list-category__inpage">
+          <div class="sub-list-category__wrap">
+            <div class="sub-list-category__box">
+              <p><a href="#" class="sub-list-category__item sub-list-category__item--chapter-1 sub-list-category__item--active">제 1장 총칙</a></p>
+              <p><a href="#" class="sub-list-category__item sub-list-category__item--chapter-2">제 2장 고객에 대한 윤리</a></p>
+              <p><a href="#" class="sub-list-category__item sub-list-category__item--chapter-3">제 3장 주주에 대한 윤리</a></p>
+              <p><a href="#" class="sub-list-category__item sub-list-category__item--chapter-4">제 4장 협력회사에 대한 윤리</a></p>
+              <p><a href="#" class="sub-list-category__item sub-list-category__item--chapter-5">제 5장 사회에 대한 윤리</a></p>
+              <p><a href="#" class="sub-list-category__item sub-list-category__item--chapter-6">제 6장 임직원에 대한 윤리</a></p>
+              <p><a href="#" class="sub-list-category__item sub-list-category__item--chapter-7">제 7장 임직원 복무윤리</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-list">
+          <div class="sub-list__item sub-list__item--chapter-1 sub-list__item--active">
+            <p class="sub-list__title"><a class="sub-list__link">제 1장 총칙</a></p>
+            <div class="sub-list__wrap">
+              <div class="sub-list__description">
+                <h4>제 1 조 [목적]</h4>
+                <ul class="bullet-type">
+                  <li>본 윤리강령은 ㈜플레이디의 원칙과 핵심가치를 경영현장에서 실천하기 위하여 임직원이 지켜야 할 행동과 가치판단의 기준을 제공하고, 회사의 경영이념을 구현하여 윤리강영을
+                    정착시키는데 목적이 있다.</li>
+                </ul>
+
+                <h4>제 2 조 [적용범위]</h4>
+                <ul class="bullet-type">
+                  <li>본 윤리강령은 ㈜플레이디의 모든 임직원에게 적용되며, 당사의 이사회를 비롯한 모든 임원과 상근 및 비상근 임직원 그리고 자사와 독립계약을 체결한 모든 도급인에게 적용한다.
+                  </li>
+                </ul>
+
+                <h4>제 3 조 [윤리강령 운영 및 해석]</h4>
+                <ul class="bullet-type">
+                  <li>㈜플레이디 윤리강령 및 제반 정책은 내부/외부 환경 변화에 따라 수시로 개정하며, 사내 그룹웨어 시스템을 활용하여 항시 게시한다.</li>
+                  <li>회사는 본 윤리강령의 적용을 받는 모든 대상자에게 윤리강령을 숙지하고 이를 준수하고 있는지의 여부를 정기적으로 확인할 수 있다.</li>
+                  <li>회사는 합법적이고 윤리적인 운영 원칙을 고수하며, 부정행위 및 위반행위의 방지, 발견 및 조사에 최선의 노력을 다한다.</li>
+                  <li>본 윤리강령을 이행하는데 있어 불분명한 사항과 본 강령에 규정되지 않았거나 또는 해석에 이견이 있는 경우에는 윤리경영 담당부서의 해석에 따른다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sub-list__item sub-list__item--chapter-2">
+            <p class="sub-list__title"><a class="sub-list__link">제 2장 고객에 대한 윤리</a></p>
+            <div class="sub-list__wrap">
+              <p class="sub-list__description">
+                <p>
+                  우리는 고객중심 경영을 기초로 맡은 바 업무를 완벽하게 수행함으로써 고객에 대한 약속을 성실히 이행하고,
+                  고객가치 창출에 매진하여 모든 고객이 우리의 서비스를 믿고 사용할 수 있도록 최선을 다합니다.
+                </p>
+                <ul class="bullet-type">
+                  <li>고객의 입장에서 생각하고 행동하며, 고객이 신뢰할 수 있는 최고의 서비스를 제공하여 고객만족 실현을 위해 노력한다.</li>
+                  <li>고객의 소리를 소중히 여기고 품질 및 서비스 개선에 적극 활용하여 가치 창출에 기여한다.</li>
+                  <li>고객의 이익과 안전을 위해 최선을 다하며 약속을 훼손하거나 부당한 행위를 하여서는 안 된다.</li>
+                  <li>고객의 개인정보 및 민감정보 등을 철저히 보호하여 외부에 유출되지 않도록 정보보호 조치에 만전을 기한다.</li>
+                </ul>
+              </p>
+            </div>
+          </div>
+          <div class="sub-list__item sub-list__item--chapter-3">
+            <p class="sub-list__title"><a class="sub-list__link">제 3장 주주에 대한 윤리</a></p>
+            <div class="sub-list__wrap">
+              <div class="sub-list__description">
+                <p>
+                  주주에게 최고의 가치를 제공하고 주주로부터 신뢰를 받는 것은 건강한 회사 성질의 필수요건입니다.
+                  우리는 주주가 현명한 투자를 할 수 있도록 필요한 정보를 제공할 의무가 있으며, 자산을 성실하게
+                  보호 및 관리하여 주주와의 두터운 신뢰관계를 기반으로 하는 회사가 되어야 합니다.
+                </p>
+
+                <ul class="bullet-type">
+                  <li>주주의 권리를 보호하고 주주의 정당한 요구와 제안을 존중한다.</li>
+                  <li>효율적 경영을 통해 건실한 이익을 실현함으로써 주주가치의 극대화를 추구한다.</li>
+                  <li>경영정보를 성실히 공개하고 주주 및 투자자와 상호 신뢰관계를 구축하여 주주 이익의 극대화를 위해 노력한다.</li>
+                  <li>회계정보의 신뢰성을 제고하고, 투명성의 확보를 위해 노력한다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sub-list__item sub-list__item--chapter-4">
+            <p class="sub-list__title"><a class="sub-list__link">제 4장 협력회사에 대한 윤리</a></p>
+            <div class="sub-list__wrap">
+              <div class="sub-list__description">
+                <p>
+                  공정한 대우, 공평한 기회, 그리고 정당한 경쟁은 시장에서의 협력 거래 또는 경쟁을 할 때 우리가
+                  준수해야 할 행동지침입니다. 우리는 투명하고 공정한 거래를 통해 신뢰를 기반으로 협력관계를
+                  구축함으로써 장기적인 관점에서 공동의 발전을 추구합니다.
+                </p>
+
+                <ul class="bullet-type">
+                  <li>협력회사와 공정하고 정직한 거래를 통해 상호신뢰와 협력관계를 구축하고 공동의 발전을 추구한다.</li>
+                  <li>우월적 지위를 이용한 어떠한 형태의 부당한 행위를 강요하거나 부정한 영향력을 행사하지 않는다.</li>
+                  <li>정당한 방법으로 달성한 성과만을 인정하여, 편법을 배척하고 혁신과 창의력이 존중 받는 기업환경을 조성한다.</li>
+                  <li>자유경쟁의 원칙에 따른 공정하고 자유로운 시장경제 질서를 존중하고, 경쟁사와 공정하고 정당하게 경쟁한다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sub-list__item sub-list__item--chapter-5">
+            <p class="sub-list__title"><a class="sub-list__link">제 5장 사회에 대한 윤리</a></p>
+            <div class="sub-list__wrap">
+              <div class="sub-list__description">
+                <p>
+                  우리 사회는 우리가 살아가고 일하는 터전일 뿐 아니라 회사의 원동력이 되는 인재, 인프라 등을
+                  제공합니다. 이에 우리는 기업시민으로서 국가와 사회의 발전에 이바지해야 할 의무가 있으며, 사회
+                  구성원의 삶의 질을 향상시키기 위해서 노력해야 합니다.
+                </p>
+
+                <ul class="bullet-type">
+                  <li>국가와 지역사회의 일원으로서 사회적 가치, 국내&#183;외 법규와 국제적으로 통용되는 제반 규범을 준수한다.</li>
+                  <li>기술과 품질을 바탕으로 한 선의의 경쟁을 통해 건전한 시장질서를 유지한다.</li>
+                  <li>건전한 시장질서를 위배하는 부조리를 철저히 배격한다.</li>
+                  <li>생산성 향상, 고용창출, 성실한 조세의 납부, 사회공헌 등을 통하여 사회와 국가경제 발전에 이바지 한다.</li>
+                  <li>기업의 사회적 역할과 책임을 성실히 수행하고, 지역사회의 발전을 위하여 노력한다.</li>
+                  <li>자연을 보호하고 깨끗한 환경 보전을 노력하며, 환경보호와 관련한 제반 법규를 준수한다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sub-list__item sub-list__item--chapter-6">
+            <p class="sub-list__title"><a class="sub-list__link">제 6장 임직원에 대한 윤리</a></p>
+            <div class="sub-list__wrap">
+              <div class="sub-list__description">
+                <p>
+                  우리는 사람의 가치를 소중하게 생각하며, 회사 구성원 개개인의 창의와 자율성을 중시합니다.
+                  또한 공정한 기회 제공을 통해 회사와 임직원간의 두터운 신뢰관계를 기반으로 안전하고 즐거운
+                  업무환경을 유지하고, 다양성을 인정하여 모든 부분에서 최고의 결과와 가치를 제공하는 조직문화를
+                  구축합니다.
+                </p>
+                <ul class="bullet-type">
+                  <li>회사는 임직원의 존엄한 가치를 인식하고 독립적 인격과 기본권을 존중한다.</li>
+                  <li>회사는 임직원 개인의 창의와 자율을 존중하고 인재육성과 자아실현을 지원한다.</li>
+                  <li>회사는 임직원의 업무수행과 능력 개발을 위해 필요한 제도를 구비하고 실천할 수 있는 환경을 조성한다.</li>
+                  <li>회사는 자유로운 제안과 건의를 할 수 있도록 신뢰를 기반으로 하는 소통 환경 조성을 위해 노력한다.</li>
+                  <li>회사는 임직원의 인종, 국적, 성별, 학력, 출신지역, 연령 등 기타사유로 인한 부당한 차별 대우를 하지 않고, 능력과 자질에 따라 공정한 기회를 부여한다.</li>
+                  <li>회사는 임직원이 건강하고 안전한 업무환경에서 근무할 수 있도록 중대재해 및 안전사고 방지를 위하여 최선의 노력을 다한다.</li>
+                <li>회사는 직장 내 괴롭힘 및 성희롱 방지와 같은 인격&#183;인권 침해행위는 어떠한 경우에도 용납하지 않으며, 이를 방지하기 위하여 교육훈련 등 필요한 조치를 실시한다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sub-list__item sub-list__item--chapter-7">
+            <p class="sub-list__title"><a class="sub-list__link">제 7장 임직원 복무윤리</a></p>
+            <div class="sub-list__wrap">
+              <div class="sub-list__description">
+                <p>
+                  우리는 ㈜플레이디의 임직원으로서 자부심을 가지고, 정당한 방법으로 맡은 바 미션을 완벽하게
+                  수행하여 고객과 주주에게 회사의 최고의 가치와 신뢰를 제공하여야 합니다. 또한 투명하고 공정한
+                  업무 활동을 기반으로 지역사회와 국가에 긍정적인 영향력을 발휘하는 회사를 만들어 갑니다.
+                </p>
+
+                <h4>1&#41; 기본윤리</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 긍지와 자부심을 가지고 명예와 품위를 지키며 청렴한 업무자세를 견지한다.</li>
+                  <li>일상생활 및 직무와 관련하여 명예와 품위를 손상시키는 비도덕적, 비윤리적 행위를 하지 않는다.</li>
+                  <li>임직원은 공사의 구분을 엄격히 하여 업무에 임하며 상하&#183;동료간의 원활한 의사소통과 신뢰를 바탕으로 한 조직문화를 창출한다.</li>
+                  <li>임직원은 직무를 공정하게 수행하며, 본 윤리강령의 기준과 원칙을 기반으로 하여 투명하고 합리적으로 업무를 수행한다.</li>
+                </ul>
+
+                <h4>2&#41; 사명의 완수</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 회사의 경영이념을 공유하고 회사가 추구하는 목표와 가치를 공감하여 각자에게 부여된 사명을 성실히 수행한다.</li>
+                  <li>임직원은 본인에게 주어진 권한과 책임에 따라 의사결정하고 행동하여야 한다.</li>
+                  <li>임직원은 적극적인 협조와 원활한 의사소통을 통해 업무의 효과를 극대화 한다.</li>
+                  <li>임직원은 직무와 관련한 법규, 내규, 윤리강령을 숙지하고 성실히 준수하여야 하며, 이를 위반한 경우 그에 대한 책임을 진다.</li>
+                </ul>
+
+                <h4>3&#41; 겸업 및 부업행위, 사적 업무행위의 금지</h4>
+                <ul class="bullet-type">
+                  <li>겸업 및 부업이란 회사에 소속되어 있으면서 별도의 사업을 영위하거나 외부에 용역을 제공하고 그 대가를 받는 행위를 말한다.</li>
+                  <li>임직원은 근무시간 중에 온전히 업무에 시간과 주의를 할애하여야 하며, 회사 업무에 지장을 줄 수 있거나 업무와 관계가 없는 겸엄 및 부업행위를 하여서는 안 된다.</li>
+                <li>외부 회사에서 임원 또는 이사 직책을 맡고 있는 경우 ㈜플레이디와의 이해관계 충돌 또는 독점 금지법 위반의 소지가 있으므로, 이러한 직책을 수행하여야 하는 경우 반드시 회사의 허가를 득하여야 한다.</li>
+                  <li>업무에 도움이 되거나 회사 이미지 제고 등의 효과가 있는 경우라도 회사의 사전승인을 득하여야 한다.</li>
+                </ul>
+
+                <h4>4&#41; 부당한 업무지시의 금지</h4>
+                <ul class="bullet-type">
+                  <li>상사의 직무유기, 위법, 부정, 비리 사실을 인지하는 경우에는 즉시 윤리경영 담당부서로 통보한다.</li>
+                  <li>상사의 부당한 업무지시는 거부해야 하며, 그로 인해 불이익을 당하는 경우에는 윤리경영 담당부서로 통보한다.</li>
+                  <li>상사의 직무상 부당한 업무지시를 따르거나 위법성을 알고도 통보하지 않은 자는 그 책임을 벗어날 수 없다.</li>
+                </ul>
+
+                <h4>5&#41; 근로환경 및 안전관리</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 안전하고 쾌적한 작업환경 유지를 위해 노력하여야 하며, 안전 및 건강 관련 법규 및 수칙을 준수히여 이를 예방할 책임과 의무를 진다.</li>
+                  <li>법으로 금지된 약물 복용을 금지하며, 처방 또는 일반 약품 및 여타 물질의 오남용을 하여서는 안 된다.</li>
+                  <li>회사 관련 행사 또는 기타 일정에서 심신의 해가 있을 정도의 과도한 주류 섭취를 하여서는 안 된다.</li>
+                  <li>관련법령에 따라 건강, 보건, 안전에 문제가 발생할 소지가 있는 경우 즉시 담당부서로 통보하여야 하며, 가능한 경우 업무 중단, 대피, 환경개선 등 안전에 관한 조치를 취해야 한다.</li>
+                </ul>
+
+                <h4>6&#41; 금품&#183;향응&#183;편의 수수의 금지</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 이해관계자로부터 직무상 공정성을 저해할 수 있는 금품, 향흥, 편의를 요구하거나 받아서는 안되며 이는 중개인, 대리인, 가족, 친인척 등을 통한 경우에도 동일하게 적용된다.</li>
+                  <li>사업적 특혜를 목적으로 국내 및 해외의 정부직원 또는 공무원에게 뇌물을 제공하는 행위는 더욱 엄격하게 금지한다.</li>
+                  <li>다만, 사회통념 상 과도하지 않은 것으로서 이해상층의 우려가 없는 다음의 사항은 예외로 한다.</li>
+
+                  <li class="bullet-type__indent">가. 업무 수행 과정 중 통상적인 관례의 범위에서 제공되는 식사 등의 경우</li>
+                  <li class="bullet-type__indent">나. 업무와 관련된 공식적인 행사에서 주최자가 참석자에게 일률적으로 제공하는 물품 등의 경우</li>
+                  <li class="bullet-type__indent">다. 불특정 다수인에게 배포하기 위한 기념품 또는 홍보용 물품</li>
+
+                  <li>상기에 제시된 통상적 범위에 벗어나는 금품&#183;향응&#183;편의를 불가피하게 수수한 경우 지체 없이 회사에 신고해야 하며, 제공받은 금품&#183;향응&#183;편의에 대해 아래와 같이 처리해야 한다.</li>
+
+                  <li class="bullet-type__indent">가. 통상적 범위 밖에 금품&#183;향응&#183;편의를 제공 받은 임직원은 즉시 이를 돌려주거나 정당한 대가를 지불하여야 한다.</li>
+                  <li class="bullet-type__indent">나. 다수에게 제공된 향응&#183;편의에 대해서는 제공받은 임직원 중 최상급자가 보고의 의무를 갖는다.</li>
+                  <li class="bullet-type__indent">다. 해당 부서장은 이해관계자에게 정중히 재발방지를 당부한다.</li>
+                  <li class="bullet-type__indent">라. 금품의 경우 즉시 되돌려 주는 것을 원칙으로 하되 부득이 돌려주지 못하는 경우에는 회사에 반납한다.</li>
+                  <li class="bullet-type__indent">마. 회사는 상기 내용에 따라 신고되거나 반납한 선물을 다음의 방법에 따라 처리할 수 있다.
+                    <p>- 부패&#183;변질 등으로 경제적 가치가 없는 경우에는 폐기처분</p>
+                    <p>- 부패&#183;변질 등으로 경제적 가치가 훼손될 우려가 있는 경우에는 지체 없이 사회복지시설 또는 공익단체 등에 기증</p>
+                    <p>- 그 외의 경우로서 다른 규정에 따로 정한 경우를 제외하고는 사회복지시설 또는 공익단체 등에 기증</p>
+                  </li>
+                </ul>
+
+                <h4>7&#41; 부당한 업무 처리 및 재산 유용의 금지</h4>
+                <ul class="bullet-type">
+                  <li>부적절한 기록, 변칙영업, 비위행위, 허위증빙 및 계정과목의 임의변경 등 개인의 이익을 우선시 하는 배임행위를 금지한다.</li>
+                  <li>업무수행은 관련법령, 사규, 윤리강령 등 회사방침 및 절차를 준수하여 처리하고, 내용이 모호한 경우 유관부서의 해석을 받아 처리해야 한다.</li>
+                  <li>아래와 같이 회사의 물적 자산이나 자금을 사적으로 유용하는 행위를 해서는 안 된다.</li>
+                  <li class="bullet-type__indent">가. 회사의 서비스, 비품, 사무용품 등을 사적으로 사용하는 행위</li>
+                  <li class="bullet-type__indent">나. 회사의 홍보용품을 사적으로 사용하는 행위</li>
+                  <li class="bullet-type__indent">다. 적절하지 않은 목적 등 법인카드를 사적으로 사용하는 행위</li>
+                  <li>회사의 통신설비를 본인 신원을 감추거나 음란물 및 공격적 자료를 엑세스, 유포, 저장 등에 사적으로 활용하여서는 안 된다.</li>
+                  <li>회사에서 제공하는 이메일 또는 음성사서함은 반드시 암호를 사용하여야 하며, 회사는 필요에 따라 회사 통신설비로서 지원하는 이메일, 메신저, 전화, 음성사서함 등의 활동을 점검&#183;기록&#183;조사할 수 있다.</li>
+                </ul>
+
+                <h4>8&#41; 회사 자산의 보호</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 회사의 자산을 보호하여야 하며, 개인적 이익을 목적으로 회사 자산을 사용하지 않는다.</li>
+                  <li>임직원은 자신에게 배정된 회사의 재산을 양호한 상태로 유지하고 적절하게 관리할 의무를 가진다.</li>
+                  <li>임직원은 퇴사 시 회사로부터 받은 모든 재산을 반환하여야 한다. (PC, 자동차, 휴대전화, 디지털 정보, 소프트웨어 등)</li>
+                </ul>
+
+                <h4>9&#41; 회사 정보 및 타인의 지적 자산 보호</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 회사와 고용관계 기간 또는 고용관계가 종료된 이후에도 회사에서 지득한 내부정보, 기밀정보를 제3자에게 유출하거나, 회사 업무 이외의 용도로 사용해서는 안 된다.</li>
+                  <li>아래와 같은 정보는 회사의 재산임을 인지하고 사내 및 사외의 인가되지 않은 사람에게 유출되지 않도록 해야 한다.</li>
+                  <li class="bullet-type__indent">가. 고객정보: 개인정보, 민감정보, 거래내역 등 고객관련 정보 일체</li>
+                  <li class="bullet-type__indent">나. 경영정보: 회사의 주요정책, 의사결정 사항, 경영계획, 실적, 재무관리, 회계, 임금 등</li>
+                  <li class="bullet-type__indent">다. 영업정보: 인사관련정보, 언론홍보 관련정보, 매출, 이익률 등 영업실적 정보, 서비스 및 협력회사 정보 등</li>
+                  <li class="bullet-type__indent">라. 기밀정보: 경쟁사보다 우위를 점하거나 그럴 기회를 제공하는 일체의 자료, 정보, 시스템, 기술 등</li>
+                  <li>회사의 기밀 등 보안이 요구되는 정보는 정당한 인가자만 제공받을 수 있으며, 절대 외부로 유출시키지 않는다.</li>
+                  <li>업무상 취득한 회사 비밀 및 정보를 승인 없이 사내 및 사외로 유출해서는 안 되며, 무단 유출 시에는 관련자가 아래의 법률에 의거 민형사상의 책임을 진다.</li>
+                  <li class="bullet-type__indent">가. 형법 329 조 (절도), 345 조 (업무상 횡령과 배임)</li>
+                  <li class="bullet-type__indent">나. 민법 740 조 (불법행위의 내용)</li>
+                  <li class="bullet-type__indent">다. 부정경쟁방지 및 영업 비밀번호에 관한 법률 18 조</li>
+                  <li>제3자의 지적재산권을 침해하는 행위 또는 불법소프트웨어를 복제, 설치, 사용, 배포해서는 안 된다.</li>
+                  <li>임직원은 회사의 허가 없이 회사 및 회사의 사업과 관련하여 언론 또는 매체행위와 접촉하여서는 안 되며, 이러한 경우 홍보 및 IR 담당부서의 책임자에게 보고하여 신속한 대응이 될 수 있도록 하여야 한다.</li>
+                </ul>
+
+                <h4>10&#41; 내부자거래 및 정보활용 금지</h4>
+                <ul class="bullet-type">
+                  <li>직무와 관련하여 얻은 정보를 무단으로 외부에 유출하거나 이를 활용하여 본인, 가족 또는 제3자 등의 경제적 이익을 도모하여서는 안 된다.</li>
+                  <li>임직원은 회사가 비공개 중요정보를 이용하여 회사가 발행한 채권, 증권 또는 해당 비공개 중요정보와 관련된 타 회사가 발행한 채권, 증권을 매매하거나, 가족 또는 제3자에게 정보를 제공하여 매매 하도록 하는 행위는 금지된다.</li>
+                  <li>업무상 지득한 타사의 비공개 주요 정보를 기반으로 해당 회사의 채권, 증권을 매매하는 행위 및 가족 또는 제3자에게 정보를 제공하여 주식을 매매하도록 하는 행위는 금지된다.</li>
+                </ul>
+                <br>
+                <h4>참고&#41; 불공정거래행위 내부자 거래 요약</h4>
+                <table class="table table--secondary">
+                  <colgroup>
+                    <col style="width: 15%">
+                    <col style="width: 42.5%">
+                    <col style="width: 42.5%">
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th class="privacy-box__table-title">구분</th>
+                      <th class="privacy-box__table-title">1. 미공개중요정보 이용행위 금지<br>(임직원 및 주요주주)</th>
+                      <th class="privacy-box__table-title">2. 내부자의 단기매매차익 반환</th>
+                    </tr>
+                    <tr>
+                      <td class="table__row-title">제도 의의</td>
+                      <td colspan="2">
+                        - 주권상장법인의 임직원과 주요주주등이 해당법인의 미공개정보를 해당 법인이 발행한 특정증권 등의
+                        매매거래에 이용하여 부당한 차익 취득하는 것을 예방하고, 정보의 형평성을 도모, 공정한 거래와 투자자 보호, 시장 신뢰성 유지
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table__row-title">규제<br>대상자</td>
+                      <td>
+                        - 내부자<br>
+                        1&#41; 상장법인<br>
+                        2&#41; 상장법인의 임직원 및 주요주주 (10%이상 보유)<br>
+                        3&#41; 상장법인 계열회사의 임직원 및 주요주주<br>
+                        - 준 내부자 (인허가, 지도 및 감독 권한자 등)<br>
+                        - 법인과 계약을 체결하고 있거나 체결을 교섭하고 있는 자<br>
+                        - 위의 어느 하나에 해당하는 자의 대리인(법인포함), 사용인, 그밖의 종업원<br>
+                        - 위의 내부자에 해당하지 아니하게 된 날부터 1년이 경과하지 아니한 자<br>
+                        - 정보 수령자: 내부자 및 준 내부자 등으로부터 정보를 전달 받은 자<br>
+                      </td>
+                      <td>
+                        - 상장법인의 임직원 (등기&#183;미등기 포함)<br>
+                        - 주요주주 (10% 이상 소유자/사실상 지배주주)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table__row-title">미공개<br>정보</td>
+                      <td>
+                        - 직무 등과 관련하여 알게 된 정보 (직무 관련성)<br>
+                        - 법정 공개매체를 통해 공개하기 전, 또는 정보가 공개된 후 일정한 기간이 경과하지 아니한 정보 (비공지성)<br>
+                        - 경영상의 중요한 정보 (중요성)<br>
+                        (*ex._유상증자, 신사업 진출, 회계법인의 감사의견 등 거래소 공시 규정상 회사의 주요 경영사항 공시대상 정보 등)
+                      </td>
+                      <td>
+                        - 미공개 내부정보의 이용여부 불문
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table__row-title">규제 행위</td>
+                      <td>
+                        - 미공개정보를 이용한 규제대상자의 매매 및 그 밖의 거래 (교환, 양도, 담보권 설정&#183;취득, 대차거래(공매도) 등을 포함)<br>
+                        - 내부자 및 준 내부자, 정보수령자가 제 3자에게 정보를 제공하여 거래 등을 하도록 하는 행위<br>
+                        (*이익여부 및 시기와 상관 없음)
+                      </td>
+                      <td>
+                        - 매수 후 6 개월 이내 매도 금지<br>
+                        - 매도 후 6 개월 이내 매수 금지<br>
+                        (*손실은 미감안, 이익만 산정하여 반환)
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h4>11&#41; 이해관계의 충돌 방지</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 회사의 최선의 이익을 위한 판단과 결정에 영향을 줄 수 있는 다음 각 호의 행위를 금지한다.</li>
+                  <li>임직원 및 그 직계 가족들은 이해 관계의 충돌 조항에서 금지하는 제3자 관련 행위를 하여서는 안 된다.</li>
+                  <li class="bullet-type__indent">가. 회사와 협력관계의 기업 또는 경쟁 관계에 있는 회사(경쟁 관계가 상대 회사의 주요 부분을 차지하는 경우 포함) 등의 지분
+                    5% 이상을 실질적으로 소유하는 행위</li>
+                  <li class="bullet-type__indent">나. 위와 같은 회사의 임원, 이사, 직원 또는 컨설턴트로 근무하는 행위</li>
+                  <li class="bullet-type__indent">다. 위와 같은 회사 또는 그와 관계된 사람으로부터 보상이나 금품을 받는 행위</li>
+                  <li class="bullet-type__indent">라. ㈜플레이디 고용기간 동안 확보한 것으로 간주되는 사업 기회를 회사 외부에서 추진하는 행위</li>
+                </ul>
+
+                <h4>12&#41; 재무/회계 및 보고의 도덕성</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 업무 영역 내에서 회사의 재무제표, 기록, 계정, 관련문서 등 거래 및 재무상태를 적절하게 기록하여야 하며, 해당 법적 및 회계 요구 사항과 보고 절차를 준수할 책임을
+                    진다.</li>
+                  <li>회사의 회계기록, 재무보고 등 관련문서들은 법률과 회계원칙에 따라 보관 및 제출되어야 하며, 회사의 자산, 부채, 수입 및 지출을 정확하고 공정하게 반영해야 한다.</li>
+                  <li>임직원은 문서나 의사 전달에 있어 타인을 오도하기 위한 중요 사실을 위조, 날조, 누락해서는 안 된다.</li>
+                  <li>임직원은 경영진, 내&#183;외부감사, 재무부서가 재무&#183;회계 관련 위험요소를 파악하는데 장애를 일으키는 행위를 하여서는 안 된다.</li>
+
+                  <li class="bullet-type__indent">* 대표이사 및 경영기획 임원의 의무</li>
+                  <li class="bullet-type__indent">가. ㈜플레이디의 대표이사(이하 "CEO")를 비롯, 경영기획 임원은 정기적으로 제출하는 제반 문서에 대해 항시 완벽성,
+                    공정성, 시의 적절성 및 명료성을 기하여 공개할 의무를 진다.</li>
+                  <li class="bullet-type__indent">나. CEO 및 각 경영기획 임원은 아래 사항에 대하여 감사기관에 신속히 보고한다.</li>
+                  <li class="bullet-type__indent">(1) 회사 재무 데이터를 기록, 처리, 요약 및 보고에 부정적인 영향을 줄 수 있는 내부 통제의 설계 또는 운영상의 심각한
+                    결함</li>
+                  <li class="bullet-type__indent">(2) 회사 재무 보고, 공개 및 내부통제에 있어 중요한 책임을 맡고 있는 경영진이나 기타 직원들이 관련된 부정행위 관련 정보
+                  </li>
+                  <li class="bullet-type__indent">(3) 회사 운영에 적용되는 보안 및 기타법률, 규칙이나 규정에 대한 중요한 위반 사항과 관련한 정보</li>
+                  <li class="bullet-type__indent">(4) 일반에 공개할 때 영향을 미칠 것으로 파악되는 중요한 정보다. CEO 및 각 재무 담당 임원은 재무제표를 오도할
+                    목적으로 회사 외부의 일반 감사자들에게 부당한 영향을 미치거나, 강요, 조작, 오도하기 위한 직&#183;간접적인 조치를 취해서는 안 된다.</li>
+                </ul>
+
+                <h4>13&#41; 임직원 상호간 선물 및 금전거래 제한</h4>
+                <ul class="bullet-type">
+                  <li>임직원 상호간의 금전거래 또는 보증을 서는 행위는 동료 관계 악화 및 회사 업무에 지장을 초래할 소지가 있으므로, 부득이 한 경우를 제외하고는 지양해야 한다.</li>
+                  <li>임직원 상호간 선물은 사회 통념상 인정되는 범위를 제외하고는 금지한다.</li>
+                  <li>건전한 동료관계를 해치는 일체의 행동 및 상습적 도박 및 사행성 행위는 엄격히 금지한다.</li>
+                </ul>
+
+                <h4>14&#41; 직장 내 괴롭힘 및 성희롱 방지</h4>
+                <ul class="bullet-type">
+                  <li>직장 내 괴롭힘 및 성희롱은 기본권 및 인격을 침해하는 위법 행위임을 인식하고, 괴롭힘 및 성희롱의 일체의 행위를 하지 않는다.</li>
+                  <li>임직원은 상호간 상대방을 존중하여 평등하고 인격적으로 대우하며 본인 또는 주변의 피해 사실을 인지한 즉시 상급자 또는 윤리경영 담당부서로 신고하여야 한다.</li>
+                  <li>임직원은 직장 내 괴롭힘 및 성희롱 근절을 위한 교육훈련에 적극적으로 참여하며, 예방과 실천에 적극 협조한다.</li>
+                </ul>
+
+                <h4>15&#41; 정치 헌금 및 대정부 관계</h4>
+                <ul class="bullet-type">
+                  <li>회사 내에서 정치 행사 참여 및 정치 헌금 기부에 대한 공지나 요청을 하려면 최고 경영자의 사전 승인을 받아야 한다.</li>
+                  <li>회사의 어느 누구도 직원에게 정치헌금을 요구하거나, 특정 당 혹은 후보를 지지 또는 반대할 것을 요구할 수 없다.</li>
+                  <li>임직원은 회사의 승인 없이 회사 명의로 정치 헌금을 해서는 안되며, 개인 명의의 헌금에 대해 회사에 환급을 요청할 수 없다.</li>
+                </ul>
+
+                <h4>16&#41; 위반사항 신고 및 보복행위 규제</h4>
+                <ul class="bullet-type">
+                  <li>임직원은 윤리강령 및 사규 위반 사실을 인지하는 경우 이를 지체 없이 상급자 및 윤리경영 담당부서에 신고할 의무를 지닌다.</li>
+                  <li>위반행위에 대해서 바로 외부적 지원을 요청하기 보다는, 내부적인 신고절차를 준수하여 문제를 해결하도록 노력하여야 한다.</li>
+                  <li>위반사항 신고는 최대한 자세한 설명과 가능한 경우 증빙 자료를 성실하게 제출하여 효율적인 사실 조사를 도모하여야 한다.</li>
+                  <li>신고사실 조사결과가 신고 내용과 다를 경우, 선의의 목적으로 신고한 직원에게는 책임을 묻지 않으며, 불공정한 조치가 취해지는 것을 엄격하게 금지한다. 다만 특정인을 음해하는 등
+                    악의적인 목적으로 신고하는 경우 회사는 적절한 조치를 취할 수 있다.</li>
+                  <li>회사는 모든 임직원들에게 주변의 의심스러운 부정행위를 인지하는 경우 아래의 관련 절차에 의하여 신고할 것을 장려한다.</li>
+                  <li class="bullet-type__indent">가. 신고대상: 본 윤리강령을 포함하여 사규 및 법규를 위반하는 모든 사항</li>
+                  <li class="bullet-type__indent">나. 신고 의무자: 회사의 임직원 및 파견 근무중인 모든 직원</li>
+                  <li class="bullet-type__indent">다. 신고처: 윤리경영 담당부서</li>
+                  <li class="bullet-type__indent">라. 신고방법: 윤리경영 제보채널(홈페이지), 유/무선 전화 또는 사내 이메일</li>
+                  <li class="bullet-type__indent">* 익명 신고 관련</li>
+                  <li class="bullet-type__indent">- 위반사항 신고는 익명으로도 가능하나 익명 신고의 경우 사실조사의 어려움과, 혹시 있을 잘못된 정보 또는 오해에 기반한
+                    신고의 경우 피신고인이 받을 감정적, 물리적 불이익 등으로 인하여 진행의 어려움이 있습니다.</li>
+                  <li class="bullet-type__indent">- 따라서, 위반사항을 신고하는 경우 타인에게 내용을 발설하지 말시고, 비밀리에 윤리경영 담당부서로 연락 주시어 본인의 신분과
+                    함께 신고해주시길 권장 드립니다.</li>
+                  <li class="bullet-type__indent">- 윤리경영 담당부서에서는 신고인에 대한 비밀유지 의무를 철저히 지키고, 신고로 인한 보복 또는 불공정한 대우를 받지 않도록
+                    적절한 조치를 취하도록 하겠습니다.</li>
+                </ul>
+
+                <h4>17&#41; 위반사항 징계조치</h4>
+                <ul class="bullet-type">
+                  <li>다음 각 호에 해당하는 경우 인사위원회(징계위원회)의 결정으로 징계조치 될 수 있음을 유의한다.</li>
+                  <li class="bullet-type__indent">가. 윤리강령 및 취업규칙 등 사규를 위반하는 행위를 한 자</li>
+                  <li class="bullet-type__indent">나. 윤리강령 및 취업규칙 등 사규를 위반 하도록 돕거나, 부추기는 행위를 한 자</li>
+                  <li class="bullet-type__indent">다. 위반사실을 알고도 신고하지 않은 자</li>
+                  <li class="bullet-type__indent">라. 위반사실을 신고한 신고인에 대해서 비난, 괴롭힘, 따돌림 및 불리한 인사조치 등의 보복조치를 가하는 자</li>
+                  <li>인사위원회는 사안의 심각성과 기타 제반 상황을 종합적으로 고려하여 징계 수위를 결정할 수 있으며, 회사는 불법행위가 확인되는 경우 공권력을 가진 외부 수사기관에 신고할 수
+                    있다.</li>
+                  <li>징계의 종류와 수위는 과거 유사한 사례를 근거로 하여 징계조치의 완화를 요구 또는 주장할 수 없다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sub-container [data-content="윤리 강령"] //-->
+
+      <div class="sub-container <?phpif($tab=='3'){?>sub-container--located<?php}?>" data-content="윤리경영 신고">
+        <div class="sub-list-category sub-list-category__default">
+          <div class="sub-list-category__wrap">
+            <div class="sub-list-category__box">
+              <p><a href="#" class="sub-list-category__item <?phpif($sub=='1'){?>sub-list-category__item--active<?php}?>">윤리신고 제도 안내</a></p>
+              <p><a href="#" class="sub-list-category__item <?phpif($sub=='2'){?>sub-list-category__item--active<?php}?>">신고하기</a></p>
+              <p><a href="#" class="sub-list-category__item <?phpif($sub=='3'){?>sub-list-category__item--active<?php}?>">나의 신고내역 확인</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-list-category-container <?phpif($sub=='1'){?>sub-list-category-container--located<?php}?>" data-content="윤리신고 제도 안내">
+          <div class="declaration-list">
+            <p class="declaration-list__description">IR 관련 사항은 담당 부서에 문의하여 주시기 바랍니다.<a href="ir.html" class="declaration-list__description--link">IR문의 바로 가기</a></p>
+            <div class="sub-content">
+              <p class="sub-content__title declaration-list__title">운영 방침</p>
+              <ul class="declaration-list__list">
+                <li>제보 내용은 최대한 빠른 시일 내에 처리되며, 처리결과는 별도 통보하지 않습니다.</li>
+                <li>안심하고 제보할 수 있도록 제보자 신분을 노출하거나 이를 암시하는 어떠한 정보도 공개하지 않습니다.</li>
+                <li>실명 접수 건 조사를 원칙으로 하고 있으나, 내용이 구체적이고 근거가 명확한 익명 접수 건도 조사를 실시합니다.</li>
+                <li>근거 없는 비방, 개인 사생활 관련 사항, 플레이디 임직원과 관련 없는 비위행위에 대한 답변은 생략될 수 있습니다.</li>
+              </ul>
+            </div>
+            <div class="sub-content">
+              <p class="sub-content__title declaration-list__title">제보자 보호 정책
+                <!-- <button type="button" class="open sub-content__title--link">자세히 보기</button> -->
+              </p>
+              <ul class="declaration-list__list">
+                <li>본인의 동의 없이 제보자 신분을 노출하거나 이를 암시하는 어떠한 정보도 공개하지 않습니다.</li>
+                <li>제보자는 신분보장 요구를 할 수 있으며, 회사는 불이익이 최소화 되도록 모든 조치를 취할 것입니다.</li>
+              </ul>
+              <div class="declaration__sub">
+                <p class="declaration-list__sub-title">보호 범위</p>
+                <ul class="declaration-list__sub-list">
+                  <li>제보자 및 조사 협조자의 신분</li>
+                  <li>제보자가 제시한 증거 또는 제보 관련 수집 정보</li>
+                  <li>대상자를 암시할 수 있는 사항</li>
+                  <li>제보 이후 결과에 대한 사후조치 등</li>
+                </ul>
+                <p class="declaration-list__sub-title">제보자 신분 누설 및 노출 금지</p>
+                <ul class="declaration-list__sub-list">
+                  <li>관련 내용은 회사의 대외비로 엄격히 보호되며, 제보 시스템은 안전한 보안체계로 운영됩니다.</li>
+                  <li>제보자 신분 누설, 제보자 색출 관련 일체의 행위는 엄격히 금지됩니다.</li>
+                  <li>제보 사건은 내부감사 매뉴얼에 따라 비밀준수를 엄수할 것을 서약한 제한된 인원에 의해 운영되고 있습니다.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub-content">
+              <p class="sub-content__title declaration-list__title">윤리위반 유형 예시</p>
+              <ul class="declaration-list__list declaration-list__list--row">
+                <li>임직원의 횡령/배임</li>
+                <li>금전, 금품 및 향응의 부당한 요구 및 제공</li>
+                <li>고객 및 회사 정보 유출</li>
+                <li>성희롱/직장 내 괴롭힘 행위 등</li>
+                <li>우월적 지위를 이용한 불공정거래행위</li>
+                <li>법 등 관계 법규 또는 내부통제제도 위반사항</li>
+                <li>기타 윤리강령에 위배되는 사항</li>
+                <li>임직원의 부당한 업무처리 또는 복무 위반 사항</li>
+                <li>회계정보를 허위로 작성하거나 회계정보를 위조, 변조, 훼손 또는 파기하는 행위 및 이를 지시하는 행위</li>
+              </ul>
+            </div>
+            <div class="sub-content">
+              <p class="sub-content__title declaration-list__title">신고보상 제도
+                <!-- <a href="#" data-button="goto" class="sub-content__title--link">보상기준 바로 가기</a> -->
+              </p>
+              <ul class="declaration-list__list">
+                <li>윤리문화 정착을 위하여 비윤리 행위를 신고한 제보자에 대하여 관련 규정에 따라 신고보상 제도를 시행합니다.</li>
+              </ul>
+              <div class="declaration__sub">
+                <ul class="declaration-list__sub-list">
+                  <li>금품 수수 행위 신고 시 수수 금액의 2배 / 최대 보상금액 5천만원</li>
+                </ul>
+              </div>
+              <div class="declaration-list__sub-box">
+                <p class="declaration-list__sub-title">제보 방법</p>
+                <ul class="declaration-list__list">
+                  <li>홈페이지 : 회사소개 > 윤리경영</li>
+                  <li>이메일 : <a href="mailto:clean@playd.com">clean@playd.com</a></li>
+                  <!-- <li>전화 : 031-696-7056</li> -->
+                  <li>서신 : 경기도 성남시 분당구 황새울로 359번길 11, 6층 윤리경영담당자</li>
+                </ul>
+                <div class="button__wrap">
+                  <!-- <a href="ethical.html?tab=3&sub=2" data-button="goto" type="button"
+                  class="button declaration-list__button button__large button__filled-black">윤리경영 신고</a> -->
+                  <a href="ethical.html?tab=3&sub=2" type="button"
+                    class="button declaration-list__button button__large button__filled-black">윤리경영 신고</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-list-category-container <?phpif($sub=='2'){?>sub-list-category-container--located<?php}?>"
+          data-content="신고하기">
+          <div class="sub-content">
+            <h3 class="sub-content__title">제보자 보호 정책
+              <!-- <button type="button" class="open sub-content__title--link">자세히 보기</button> -->
+            </h3>
+            <div class="word-box">
+              <p>플레이디 임직원의 직무와 관련한 비리행위를 제보하여 주시면 적극 조치하겠습니다. 플레이디에서는 정책에 따라 제보자 및 제보 내용에 대한 비밀을 철저히 보장해 드립니다.</p>
+            </div>
+          </div>
+          <input type="hidden" name="CSRFToken" id="CSRFToken" value="<?php echo $CSRFToken; ?>" />
+          <div class="sub-content">
+            <h3 class="sub-content__title">제보자 정보</h3>
+            <div class="input-box input-box--info">
+              <div class="form-field form-field--mixed">
+                <label for="user-name" class="input-box--info__label input-box--info__label--necessary">제보자 성명</label>
+                <div class="form-field__inner">
+                  <input type="text" id="user-name" class="input-box--info__input" name="" placeholder="이름을 입력해 주세요."
+                    maxlength="52">
+                  <div class="sub-radio">
+                    <div class="name-radio">
+                      <input type="radio" id="nameTrue" name="nameTrue" class="name-radio__input" checked=""
+                        onclick="javascript:nameFalseCheck(false);">
+                      <label for="nameTrue" class="name-radio__label"><span>실명</span></label>
+                    </div>
+                    <div class="name-radio">
+                      <input type="radio" id="nameFalse" name="nameTrue" class="name-radio__input"
+                        onclick="javascript:nameFalseCheck(true);">
+                      <label for="nameFalse" class="name-radio__label"><span>익명</span></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="user-contact" class="input-box--info__label">연락처</label>
+                <input type="text" id="user-contact" class="input-box--info__input" name="" placeholder="연락처를 입력해 주세요."
+                  maxlength="11" onkeyup="javascript:phoneNumberCheck(this.value);"
+                  onkeydown="javascript:phoneNumberCheck(this.value);">
+              </div>
+              <div class="form-field">
+                <label for="user-mail" class="input-box--info__label input-box--info__label--necessary">이메일</label>
+                <input type="text" id="user-mail" class="input-box--info__input" name="" placeholder="이메일을 입력해 주세요."
+                  maxlength="320">
+              </div>
+              <div class="form-field">
+                <label for="user-password" class="input-box--info__label input-box--info__label--necessary">비밀번호</label>
+                <input type="password" id="user-password" class="input-box--info__input" name=""
+                  placeholder="비밀번호를 설정해 주세요." maxlength="320" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="sub-content">
+            <h3 class="sub-content__title">제보 내용 입력</h3>
+            <div class="input-box input-box--info">
+              <div class="form-field form-field--wide">
+                <label for="user-title" class="input-box--info__label input-box--info__label--necessary">제목</label>
+                <input type="text" id="user-title" class="input-box--info__input" name="" placeholder="제목을 입력해 주세요."
+                  maxlength="52">
+              </div>
+              <div class="form-field">
+                <label for="user-where" class="input-box--info__label input-box--info__label--necessary">발생 장소</label>
+                <input type="text" id="user-where" class="input-box--info__input" name="" placeholder="발생 장소를 입력해 주세요."
+                  maxlength="52">
+              </div>
+              <div class="form-field">
+                <label for="user-when" class="input-box--info__label input-box--info__label--necessary">발생 시기</label>
+                <!-- <input type="text" id="user-when" class="input-box--info__input" name="" placeholder="YYYY.MM.DD ~ YYYY.MM.DD"> -->
+                <!-- 20220629 -->
+                <input type="text" id="user-when-from" class="input-box--info__input" name="" placeholder="YYYY.MM.DD">
+                <p class="user-date">~</p>
+                <input type="text" id="user-when-to" class="input-box--info__input" name="" placeholder="YYYY.MM.DD">
+
+                <input type="hidden" id="user-when" value="">
+              </div>
+              <div class="form-field form-field--wide">
+                <label for="user-who" class="input-box--info__label">제보 대상 및 제보 대상자와의 관계 (선택)</label>
+                <input type="text" id="user-who" class="input-box--info__input" name=""
+                  placeholder="예시 ) 대상 : 플레이디 OO팀 김XX (대상과의 관계 : 협력업체 영업담당자)" maxlength="52">
+              </div>
+            </div>
+            <div class="input-box input-box--file">
+              <label for="form-detail" class="input-box--info__label input-box--info__label--necessary">제보 내용</label>
+              <textarea id="form-detail"
+                placeholder="제보하시는 내용을 육하원칙(누가, 무엇을, 언제, 어디서, 왜, 어떻게)에 따라 작성하여 주시면 보다 신속하게 처리할 수 있습니다."
+                maxlength="520"></textarea>
+              <div class="input-file">
+                <input type="text" id="form-file-text" placeholder="파일 업로드(증빙자료, 메신저 캡처 등)" readonly>
+                <div><input type="file" id="form-file-button" name=""><label for="form-file-button">파일 업로드</label></div>
+              </div>
+              <p class="input-file__info">
+                * 첨부파일형식(jpg, gif, pdf), 용량제한 (5mb 이하)
+              </p>
+              <div class="input-file__box">
+                <div class="file-list" id="form-file-list">
+
+                  <!-- <div class="file-list__item">
+                    <div class="file-list__title">
+                      <p>플레이디내부제보증빙자료플레이디내부제보증빙자료.jpg</p>
+                    </div>
+                    <button type="button"></button>
+                  </div> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sub-content">
+            <h3 class="sub-content__title">추가정보 입력 (선택)</h3>
+            <p class="sub-content__description">아래 사항에 대해 추가 작성을 해주신다면, 보다 정확하고 신속한 조사 진행에 상당한 도움이 됩니다.</p>
+            <div class="input-box input-box--info">
+              <div class="form-field form-field--wide">
+                <label for="user-witness" class="input-box--info__label"><span class="numbering">01.</span>제보 내용을 알거나, 알 것으로 예상되는 직원이 있다면 기재해 주시기 바랍니다.</label>
+                <input type="text" id="user-witness" class="input-box--info__input" name="" placeholder="직원 성함을 입력해 주세요." maxlength="52">
+              </div>
+              <div class="form-field form-field--wide">
+                <label for="user-how" class="input-box--info__label"><span class="numbering">02.</span>제보하신 내용을 어떻게 알게 되셨는지요?</label>
+                <input type="text" id="user-how" class="input-box--info__input" name="" placeholder="예시) 나에게 일어난 일, 직접 목격함, 내부 직원에게 듣게 되었음, 외부인에게 듣게 되었음, 우연히 문서파일을 보게 되었음 등" maxlength="52">
+              </div>
+            </div>
+            <div class="input-box input-box--info">
+              <label for="form-etc" class="input-box--info__label"><span class="numbering">03.</span>문제를 확인하기 위한 가장 좋은 방법을 아신다면 기재해 주시기 바랍니다.</label>
+              <textarea id="form-etc" maxlength="520"></textarea>
+            </div>
+          </div>
+          <div class="sub-content">
+            <h3 class="sub-content__title">개인정보 수집 및 이용 동의</h3>
+            <div class="input-box">
+              <p>제보의 충실한 처리를 위해 필요 최소한의 범위 내에서 귀하의 개인정보를 수집, 이용합니다. 개인정보 수집, 이용을 원하지 않으실 경우에는 ‘익명’으로 제보하실 수 있습니다.</p>
+              <dl>
+                <dt><span class="numbering">01.</span>수집하는 개인정보의 항목</dt>
+                <dd>필수 정보 : 이름, 이메일, 제보대상, 제보자와의 관계, 발생일 등 게시물 작성 시 입력된 정보</dd>
+                <dd>선택 정보 : 연락처</dd>
+                <dt><span class="numbering">02.</span>개인정보 수집 및 이용목적</dt>
+                <dd>회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후, 해당 개인정보를 지체 없이 파기합니다. 단, 관계법령의 규정에 의하여
+                  보존할 필요가 있는 경우 회사는 관계법령이 정한 일정한 기간 동안 개인정보를 보관합니다. 그 밖의 사항은 개인정보 처리 방침을 준수합니다.</dd>
+              </dl>
+              <ol class="sub-checkboxs">
+                <li class="sub-checkbox__list">
+                  <label for="sub-checkbox--personal" class="sub-checkbox__label">
+                    <input type="checkbox" id="sub-checkbox--personal" name="" class="sub-checkbox__input">
+                    <span><i></i>개인정보 수집 및 이용에 동의합니다.</span>
+                  </label>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="sub-content">
+            <h3 class="sub-content__title">자동 입력 방지 문자</h3>
+            <div class="input-box verification">
+              <div class="image-block" >
+               <img style="" id="captcha_image" src="/securimage/securimage_show.php?<?php echo md5(uniqid(time)) ?>" alt="CAPTCHA Image" width="500" />
+               </div>
+              <div class="verification__inner">
+
+                <div id="captcha_image_audio_div">
+                  <audio id="captcha_image_audio" preload="none" style="display: none">
+                  <source id="captcha_image_source_wav" src="/securimage/securimage_play.php?id=1234" type="audio/wav">
+                  <object type="application/x-shockwave-flash" data="/securimage/securimage_play.swf?bgcol=%23ffffff&amp;icon_file=images%2Faudio_icon.png&amp;audio_file=securimage_play.php" height="32" width="32"><param name="movie" value="/securimage/securimage_play.swf?bgcol=%23ffffff&amp;icon_file=images%2Faudio_icon.png&amp;audio_file=securimage_play.php" /></object><br /></audio>
+                </div>
+
+                <div class="button__wrap"  id="captcha_image_audio_controls">
+                  <div class="button button__radius button__filled-grey"><a tabindex="-1" class="captcha_play_button" href="/securimage/securimage_play.php?id=1234" onclick="return false"><i style="background-image: url(../assets/images/w/common/icons/grey_icon__speaker.png)"></i>음성듣기</a></div>
+                  <div class="button button__radius button__filled-grey" onclick="if (typeof window.captcha_image_audioObj !== 'undefined') captcha_image_audioObj.refresh(); document.getElementById('captcha_image').src = '/securimage/securimage_show.php?' + Math.random(); this.blur(); return false"><i style="background-image: url(../assets/images/w/common/icons/grey_icon__refresh.png)"></i>새로고침</div>
+                </div>
+
+                <input type="text" placeholder="보안 문자 입력" name="ct_captcha" id="captcha_code" autocomplete="off" maxlength="6" />
+                <span class="verification__notification">보안 문자 이미지의 숫자를 보이는 대로 입력해 주세요.</span>
+
+                <script type="text/javascript" src="/securimage/securimage.js"></script>
+                <script type="text/javascript">var captcha_image_audioObj = new SecurimageAudio({ audioElement: 'captcha_image_audio', controlsElement: 'captcha_image_audio_controls' });</script>
+
+
+              </div>
+            </div>
+          </div>
+          <div class="button__wrap">
+            <input type="button" class="button button__large button__filled-black form-submit submit--active" value="윤리경영 제보" onclick="javascript:ethicalWriteProc();" />
+          </div>
+
+      </div>
+
+      <div class="sub-list-category-container  <?phpif($sub=='3'){?>sub-list-category-container--located<?php}?>" data-content="나의 신고내역 확인">
+        <!-- 미 로그인 시 -->
+        <form class="check-input" <?phpif($report_mail){?> style="display: none;" <?php}?>>
+          <div class="check-input__wrap">
+            <p class="check-input__title">이메일 / 비밀번호를 입력해 주세요.</p>
+            <input type="text" id="report_login_id" placeholder="이메일을 입력해 주세요." class="check-input__input">
+            <input type="password" id="report_login_pwd" placeholder="비밀번호를 입력해 주세요." class="check-input__input" autocomplete="off"> <!--230202-->
+          </div>
+          <button type="button" class="check-input__button" onclick="javascript:emailLogin();">접수 내용 확인</button>
+          <p class="check-input__description">제보 시 등록하셨던 이메일과 비밀번호를 입력하시면 접수 내용을 확인하실 수 있습니다. 비밀번호가 기억나지 않으실 경우 이메일<a href="mailto:clean@playd.com">(clean@playd.com)</a>로 문의하시기 바랍니다.</p>
+        </form>
+        <!--// 미 로그인 시 -->
+        <!-- 관리자 답변 됨 -->
+
+        <?phpfor ($i=0; $row=sql_fetch_array($itemList); $i++) {
+
+            $sql_co = " select *
+            from {$p1['t_comment_table']} a
+            where a.report_no = '{$row['A_SEQ']}' order by a.wdate asc  ";
+
+            $res_co = sql_query($sql_co);
+
+            $reply_cnt = 0;
+
+          ?>
+          <div class="check-content">
+          <p class="check-content__title"><?phpif($i==0){?>나의 제보 내용<?php}?></p>
+          <!-- <div class="check-content__modify">
+            <a href="/">수정</a>
+            <a href="/">삭제</a>
+          </div> -->
+          <div class="check-content__content">
+            <p class="check-content__sub-title">제보대상</p>
+            <p class="check-content__description"><?=Decrypt($row['A_NAME'])?></p>
+            <p class="check-content__sub-title">제보자와 관계</p>
+            <p class="check-content__description"><?=$row['A_RELATION']?></p>
+            <p class="check-content__sub-title">발생 장소</p>
+            <p class="check-content__description"><?=$row['A_PLACE']?></p>
+            <p class="check-content__sub-title">발생일</p>
+            <p class="check-content__description"><?=$row['A_PLACE_DT']?></p>
+            <p class="check-content__sub-title">제목</p>
+            <p class="check-content__description"><?=$row['A_TITLE']?></p>
+            <p class="check-content__sub-title">제보 내용</p>
+            <p class="check-content__description"><?=$row['A_CONT']?></p>
+            <p class="check-content__sub-title">첨부파일</p>
+            <p class="check-content__description check-content__description-image"><?phpif($row['A_SYSFILE1']){?><?=$row['A_SYSFILE1']?><?php}?></p>
+          </div>
+          <p class="check-content__title">답변 내용</p>
+          <?phpif($row['A_ANSWER']){?>
+          <div class="check-content__content">
+            <p class="check-content__sub-title">담당자 답변</p>
+            <p class="check-content__description"><?=nl2br($row['A_ANSWER'])?></p>
+
+            <div class="check-content__recomment">
+              <div class="check-content__wrap">
+              <?phpfor ($j=0; $row2=sql_fetch_array($res_co); $j++) {
+                $reply_cnt = $j;
+                ?>
+                  <div class="check-content__description <?phpif($row2['email'] == $report_mail){?>reple_comment<?php}?>" id="reply_list_<?=$row2['report_no']?>_<?=$row2['no']?>">
+                    <?phpif($row2['email'] == $report_mail){?>
+                      <div class="check-content__sub-title">제보자<i></i></div>
+                    <?php}else{?>
+                      <div class="check-content__sub-title">담당자<i></i></div>
+                    <?php}?>
+                    <div class="check-content__sub-text"><?=nl2br($row2['comment'])?></div>
+                  </div>
+                  <!-- <?phpif($row2['email'] == $report_mail){?>
+                  <div class="check-content__modify" style="position: relative;margin-top: 10px;bottom: 20px;width: 100%;">
+                    <a href="javascript:replyEdit('<?=$row2['report_no']?>','<?=$row2['no']?>');">수정</a>
+                    <a href="javascript:replyDeleteProc('<?=$row2['report_no']?>','<?=$row2['no']?>');">삭제</a>
+                  </div>
+                  <?php}?> -->
+                <?php}?>
+              </div>
+            </div>
+
+
+
+            <div class="check-content__comment">
+              <textarea name="" id="reply_content_<?=$row['A_SEQ']?>" placeholder="댓글을 남겨보세요." maxlength="520"></textarea>
+              <div class="button__wrap">
+                <a href="javascript:replyWriteProc('<?=$row['A_SEQ']?>');" role="button" class="button check-content__button" >등록</a>
+              </div>
+            </div>
+            <?php}?>
+          </div>
+
+
+          <?phpif($reply_cnt == 0){?>
+          <div class="check-content__process">
+            <p>아직 제보 내용을 확인 중에 있습니다.<br>빠른 확인 후 답변 드릴 수 있도록 하겠습니다.<br>감사합니다.</p>
+          </div>
+          <?php}?>
+
+
+        <?php}?>
+
+
+        </div>
+        <!--// 관리자 답변 됨 -->
+        <!-- 관리자 답변 이전 -->
+        <!-- <div class="check-content" style="display: none;">
+          <p class="check-content__title">나의 제보 내용</p>
+          <div class="check-content__modify">
+            <a href="/">수정</a>
+            <a href="/">삭제</a>
+          </div>
+          <div class="check-content__content">
+            <p class="check-content__sub-title">제보대상</p>
+            <p class="check-content__description">홍길동</p>
+            <p class="check-content__sub-title">제보자와 관계</p>
+            <p class="check-content__description">회사동료</p>
+            <p class="check-content__sub-title">발생 장소</p>
+            <p class="check-content__description">강남구 신사동 546-23 2층</p>
+            <p class="check-content__sub-title">발생일</p>
+            <p class="check-content__description">2022.04.19</p>
+            <p class="check-content__sub-title">제목</p>
+            <p class="check-content__description">옆팀에서 일하는 홍길동씨가 자꾸 괴롭히고 못살게 해서 회사 그만두고 싶어요.</p>
+            <p class="check-content__sub-title">제보 내용</p>
+            <p class="check-content__description">튼튼하며, 이상 사랑의 기관과 되려니와, 소담스러운 풀밭에 힘있다. 이것은 거친 그들의 가슴이 피다. 얼음과 사는가 미묘한 아름다우냐? 부패를 예가 같이, 얼마나 웅대한 않는 것이다. 살았으며, 이상 그러므로 인간에 이상의 피에 용기가 과실이 뿐이다. 인간은 그림자는 열락의 대고, 사막이다. 그들의 우리 거친 찬미를 이상의 오아이스도 힘있다. 풍부하게 열락의 끓는 따뜻한 든 뭇 소담스러운 쓸쓸하랴? 넣는 스며들어 피고, 얼마나 용기가 피에 역사를 커다란 이상을 철환하였는가? 인간이 그림자는 돋고, 불러 칼이다..</p>
+            <p class="check-content__sub-title">제보내용</p>
+            <p class="check-content__description check-content__description-image">PC playD final.jpg</p>
+          </div>
+          <p class="check-content__title">답변 내용</p>
+          <div class="check-content__process">
+            <p>아직 제보 내용을 확인 중에 있습니다.<br>빠른 확인 후 답변 드릴 수 있도록 하겠습니다.<br>감사합니다.</p>
+          </div>
+        </div> -->
+        <!--// 관리자 답변 이전 -->
+
+
+
+      </div>
+    </div>
+    <!-- sub-container [data-content="윤리경영 신고"] //-->
+	</div>
+</div>
+
+<div class="layer__body popup termAgreePrivacy" id="termAgreePrivacy" aria-hidden="true" role="dialog">
+  <div class="layer__wrap layer__wrap--wide">
+    <div class="layer__close">
+      <button class="close">close</button>
+    </div>
+    <div class="layer__inner">
+      <div class="layer__head">
+        <p class="content__title">제보자 보호 정책</p>
+      </div>
+      <div class="layer__content">
+        <div class="content__text">
+          <ul>
+            <li>본인의 동의 없이 제보자 신분을 노출하거나 이를 암시하는 어떠한 정보도 공개하지 않습니다.</li>
+            <li>제보자는 신분보장 요구를 할 수 있으며, 윤리경영실에서는 불이익이 최소화 되도록 모든 조치를 취할 것입니다.
+              <dl>
+                <dt>보호 범위</dt>
+                <dd>제보자 및 조사 협조자의 신분</dd>
+                <dd>제보자가 제시한 증거 또는 제보 관련 수집 정보</dd>
+                <dd>대상자를 암시할 수 있는 사항</dd>
+                <dd>제보 이후 결과에 대한 사후조치 등</dd>
+                <dt>제보자 신분 누설 및 노출 금지</dt>
+                <dd>관련 내용은 윤리경영 부서의 대외비로 엄격히 보호되며, 제보 시스템은 안전한 보안체계로 운영됩니다.</dd>
+                <dd>제보자 신분 누설, 제보자 색출 관련 일체의 행위는 엄격히 금지됩니다.</dd>
+                <dd>제보 사건은 내부감사 매뉴얼에 따라 비밀준수를 엄수할 것을 서약한 제한된 인원에 의해 운영되고 있습니다.</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        <div class="button__wrap">
+          <button class="button layer__button close">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<form id="frm" name="frm">
+
+</form>
+
+<script>
+
+var a_file1 = [];
+var a_sysfile1 = [];
+var g_no = '';
+
+$(document).ready(function(){
+  initFilepicker();
+
+  if (typeof window.captcha_one_audioObj !== 'undefined') {
+    //captcha_one_audioObj.refresh();
+    //document.getElementById('captcha').src = '/securimage/securimage_show.php?namespace=captcha&' + Math.random();
+
+  }
+
+});
+
+function ethicalWriteProc(){
+
+  var a_type_gubun2 = '';
+  var a_market_yn = 'N';
+
+
+  $("input[id^='input__checkbox02_']").each(function (i, el) {
+    if($(this).is(":checked") == true){
+      a_type_gubun2 += $(this).val() + ",";
+    }
+  });
+
+  $("input[id^='input__checkbox03_']").each(function (i, el) {
+    if($(this).is(":checked") == true){
+      a_type_gubun3 += $(this).val() + ",";
+    }
+  });
+
+
+
+	if($('#user-name').val()=='') {
+		alert('제보자 성명을 입력해 주세요.');
+		$('#user-name').focus();
+		return;
+	}
+	// if($('#user-contact').val()=='') {
+	// 	alert('연락처를 입력해 주세요.');
+	// 	$('#user-contact').focus();
+	// 	return;
+	// }
+
+  // if(validateNumber($('#user-contact').val())) {
+	// 	alert('연락처는 숫자만 입력해 주세요.');
+	// 	$('#user-contact').focus();
+	// 	return;
+	// }
+
+
+  if($('#user-mail').val()==''){
+		alert('이메일을 입력해 주세요.');
+		$('#user-mail').focus();
+		return;
+	}
+	if(!validateEmail($('#user-mail').val())){
+		alert('이메일을 다시 입력해 주세요.');
+		$('#user-mail').focus();
+		return;
+	}
+  if($('#user-password').val()=='') {
+		alert('비밀번호를 입력해 주세요.');
+		$('#user-password').focus();
+		return;
+	}
+
+  if($('#user-title').val()==''){
+		alert('제보 제목을 입력해 주세요.');
+		$('#user-title').focus();
+		return;
+	}
+
+  if($('#user-where').val()==''){
+		alert('발생장소를 입력해 주세요.');
+		$('#user-where').focus();
+		return;
+	}
+
+  if($('#user-when-from').val()=='' || $('#user-when-to').val()==''){
+		alert('발생시기를 입력해 주세요.');
+		$('#user-when').focus();
+		return;
+	}
+
+  var fromdate = $('#user-when-from').val().replace('.','').replace('.','');
+  var todate = $('#user-when-to').val().replace('.','').replace('.','');
+
+  if(fromdate > todate){
+    alert('발생시기 시작 일자가 종료일자 보다 이후 일자 입니다. 확인 후 재입력 바랍니다.');
+		$('#user-when').focus();
+    return;
+  }
+
+
+
+
+  $('#user-when').val($('#user-when-from').val() + ' ~ ' + $('#user-when-to').val());
+
+//   if($('#user-who').val()==''){
+// 		alert('제보대상 및 제보대상자와의 관계을 입력해 주세요.');
+// 		return;
+// 	}
+
+  if($('#form-detail').val()==''){
+		alert('제보 내용을 입력해 주세요.');
+		$('#form-detail').focus();
+		return;
+	}
+
+	if(!$("input:checkbox[id='sub-checkbox--personal']").is(":checked")){
+		alert('개인정보 수집/이용에 동의해주세요.');
+		return;
+	}
+
+	if(isLoading) return;
+	isLoading = true;
+
+  var captcha_code = $('#captcha_code').val();
+
+	$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_proc.php',
+                    data: {
+                        'a_name':$('#user-name').val(),
+                        'a_tel':$('#user-contact').val(),
+                        'a_mail':$('#user-mail').val(),
+                        'a_passwd':$('#user-password').val(),
+                        'a_title':$('#user-title').val(),
+                        'a_place':$('#user-where').val(),
+                        'a_place_dt':$('#user-when').val(),
+                        'a_relation':$('#user-who').val(),
+                        'a_cont':$('#form-detail').val(),
+                        'a_cont_add1':$('#user-witness').val(),
+                        'a_cont_add2':$('#user-how').val(),
+                        'a_cont_add3':$('#form-etc').val(),
+                        'a_sysfile1':JSON.stringify(a_sysfile1),
+                        'a_file1':JSON.stringify(a_file1),
+                        'ct_captcha':captcha_code,
+                        'CSRFToken':'<?=$CSRFToken?>',
+						            'cmd':'report_write',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                        alert('실패하였습니다. 관리자에게 문의해 주세요.');
+                        //document.location.reload();
+                    },
+                    success: function (json) {
+                      isLoading = false;
+                      console.log(json);
+                      if(json['success']){
+                        alert('제보 등록이 완료되었습니다.');
+                        document.location.href = 'ethical.html?tab=3&sub=2';
+                      } else {
+                        alert('자동입력방지문자를 다시 입력해 주세요.');
+                        // $('#captcha_code').val(' ');
+                        // document.location.reload();
+                      }
+                    }
+    });
+}
+
+
+
+function initFilepicker()
+{
+    var masterFileExt = 'jpg,jpeg,png,gif,pdf';
+    var masterFileSize = 1024*1024*5;
+    if(document.getElementById("form-file-button") != null){
+        document.getElementById("form-file-button").addEventListener("change", function(event) {
+            var files = event.target.files;
+            var html = '';
+            for (var i=0; i<files.length; i++) {
+                    var fileSize = files[i].size;
+                    var ext = getExtensionOfFilename(files[i].name);
+                    if(masterFileExt.indexOf(ext)==-1){
+                         alert('허용된 파일만 등록 가능합니다.');
+                        $('#form-file-button').val('');
+                        break;
+                    }
+
+                    if(parseInt(masterFileSize) > 0){
+                        if(fileSize > parseInt(masterFileSize)){
+                            alert('전송 가능한 파일 크기를 초과하였습니다.');
+                            break;
+                        }
+                    }
+                    //파일 갯수 체크
+                    if(a_file1.length >= 5){
+                      alert('파일 첨부는 최대 5개 까지 등록 가능합니다.');
+                      $('#form-file-button').val('');
+                      break;
+                    }
+
+
+                    //파일 업로드
+                    createToken();
+                    var formData = new FormData($('#frm')[0]);
+                        formData.append('file0', files[0]);
+
+                        jQuery.ajax({
+                                type: "POST",
+                                url: "/adm/page/post_file_insert.php",
+                                data: formData,
+                                dataType: 'json',
+                                timeout: 600000,
+                                contentType: false,
+                                processData: false,
+                                cache: false,
+                                crossDomain: false,
+                                error: function (request, error) {
+                                        console.log(error + '');
+                                },
+                                success: function(output){
+                                    a_file1.push(output.filename);
+                                    a_sysfile1.push(output.orgname);
+
+                                    var html = '<div class="file-list__item" id="file_list_'+(a_file1.length-1)+'">';
+                                    html+= '<div class="file-list__title">';
+                                    html+= '<p>'+output.orgname+'</p>';
+                                    html+= '</div>';
+                                    html+= '<button type="button" onclick="javascript:delFile('+(a_file1.length-1)+');"></button>';
+                                    html+= '</div>';
+
+                                    $('#form-file-list').append(html);
+                                    $('#form-file-button').val('');
+                                }
+                        });
+
+            };
+
+        }, false);
+    }
+}
+
+function delFile(idx){
+  a_file1.splice(idx, 1);
+  a_sysfile1.splice(idx, 1);
+  $('#file_list_' + idx).remove();
+}
+
+
+function nameFalseCheck(val){
+  if(val){
+    $('#user-name').val('익명');
+    $('#user-name').attr('readOnly', true);
+  } else {
+    $('#user-name').val('');
+    $('#user-name').attr('readOnly', false);
+  }
+}
+
+function emailLogin(){
+
+  if($('#report_login_id').val()==''){
+    alert('이메일을 입력해 주세요');
+    $('#report_login_id').focus();
+    return;
+  }
+  if($('#report_login_pwd').val()==''){
+    alert('비밀번호를 입력해 주세요');
+    $('#report_login_pwd').focus();
+    return;
+  }
+
+  $.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_proc.php',
+                    data: {
+                        'a_mail':$('#report_login_id').val(),
+                        'a_passwd':$('#report_login_pwd').val(),
+						            'cmd':'report_login',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                        alert('실패하였습니다. 관리자에게 문의해 주세요.');
+                        //document.location.reload();
+                    },
+                    success: function (json) {
+                      if(json['success']){
+                        document.location.href = 'ethical.html?tab=3&sub=3';
+                      } else {
+                        if (json['apasswdfail'] == 'X'){
+                          alert('5회 이상 비밀번호 오입력으로 접근이 제한되었습니다.\n관리자(clean@playd.com)에게 문의하시기 바랍니다.');
+                        } else {
+                          var apasswdfail = 0;
+                          apasswdfail = json['apasswdfail'];
+                          if ( apasswdfail == undefined) apasswdfail = 0;
+                          var message = '비밀번호가 올바르지 않습니다.\n5회 이상 오입력 시 접근이 차단됩니다.';
+                          if (apasswdfail!=''){
+                            message = message + ' ('+apasswdfail+'/5)';
+                          }
+                          alert(message);
+                        }
+                        $('#report_login_pwd').val('');
+                      } 
+                    }
+    });
+}
+
+function replyWriteProc(val){
+  if($('#reply_content_' + val).val() == ''){
+    alert('내용을 입력해 주세요.');
+    return;
+  }
+
+  $.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_proc.php',
+                    data: {
+                        'comment':$('#reply_content_' + val).val(),
+                        'report_no':val,
+                        'no':g_no,
+						            'cmd':'report_reply_write',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                        alert('실패하였습니다. 관리자에게 문의해 주세요.');
+                        //document.location.reload();
+                    },
+                    success: function (json) {
+                      if(json['success']){
+                        if(g_no!=''){
+                          alert('수정되었습니다.');
+                        } else {
+                          alert('등록되었습니다.');
+                        }
+
+                        document.location.href = 'ethical.html?tab=3&sub=3';
+                      } else {
+                        alert('실패하였습니다.');
+                      }
+                    }
+    });
+}
+
+function replyEdit(val1,val2){
+  g_no = val2;
+  var txt = $('#reply_list_'+val1+'_'+val2).find('.check-content__sub-text').text();
+  $('#reply_content_' + val1).val(txt);
+}
+
+function replyDeleteProc(val1,val2){
+  if(confirm('삭제하시겠습니까?')){
+
+    $.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_proc.php',
+                    data: {
+                        'report_no':val1,
+                        'no':val2,
+						            'cmd':'report_reply_delete',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                        alert('실패하였습니다. 관리자에게 문의해 주세요.');
+                        //document.location.reload();
+                    },
+                    success: function (json) {
+                      if(json['success']){
+                        alert('삭제되었습니다.');
+                        document.location.href = 'ethical.html?tab=3&sub=3';
+                      } else {
+                        alert('실패하였습니다.');
+                      }
+                    }
+    });
+
+  }
+}
+
+
+function phoneNumberCheck(value) {
+  if (!value) {
+    return "";
+  }
+  value = value.replace(/[^0-9]/g, "");
+  $('#user-contact').val(value);
+}
+
+</script>
+
+
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

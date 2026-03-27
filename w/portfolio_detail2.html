@@ -1,0 +1,212 @@
+<?php    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	// 1건 가져오기 
+	$b_seq = nvl($_GET['seq'], 2);
+	if(!$b_seq){
+		alert('잘못된 방식으로 접근하였습니다.','/');
+		exit;
+	}
+	$itemOne = select_board_one('playdportfolio', $b_seq);
+
+	// HITS 업데이트 
+	update_board_hits($b_seq);
+
+	if($itemOne['B_SEQ']){
+		$sql = " select * from T_BOARD_FILES where B_SEQ = ".$itemOne['B_SEQ']." AND FI_INDEX = '1' order by FI_SORT asc ";
+		$file_res1 = sql_query($sql);
+        $file_res2 = sql_query($sql);
+	}
+	
+    $first_image = '';
+    for ($i=0; $row=sql_fetch_array($file_res2); $i++) {
+        $first_image = $row['FI_NAME'];
+		break;
+    }
+?>
+<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+<link rel="stylesheet" href="../assets/css/w/ui_test.css">
+
+<body class="portfolio nav00">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+	<!-- //header -->
+
+
+	<div id="container" class="container">
+		<div class="fillContents">
+			<div class="pfDetail">
+				<div class="detail">
+					<div class="detail__left">
+						<div class="figure">
+							<div class="figure__figure">
+								<img class="bigImage" src="<?=$first_image?>" alt="" <?phpif($itemOne['B_TITLE1'] != 'none'){?> style="display:none" <?php}?> >
+								<video class="bigVideo" width="100%" height="100%" loop muted style="display: none;">
+									<source src="" type="video/mp4">
+								</video> 
+								<iframe class="bigYoutube" width="100%" height="100%" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: none;"></iframe>
+							</div>
+						</div>
+					</div>
+					<div class="detail__right">
+						<p class="pfDetail__category"><?=$itemOne['B_TYPE']?></p>
+						<p class="pfDetail__name"><?=$itemOne['B_EXT4']?></p>
+						<div class="pfDetail__info">
+							<div class="row">
+								<i></i>
+								<p><?phpif($itemOne['B_SITE']=='MULTI'){?><?=$itemOne['B_EXT5']?><?php}else{?><?=$itemOne['B_EXT6']?><?php}?></p>
+							</div>
+							<div class="row">
+								<i></i>
+								<p><?=$itemOne['B_EXT3']?></p>
+							</div>
+							<div class="row">
+								<i></i>
+								<div>
+									<p class="medium"><?=$itemOne['B_LINKURL']?></p>
+									<p class="demilight"><?=$itemOne['B_BRIEF']?></p>
+								</div>
+							</div>
+						</div>
+						<div class="hastag">
+							<?php								$tags = explode(",", $itemOne['B_CONT1']);
+								foreach($tags as $tsg) {
+							?>
+							<span># <?=$tsg?></span>
+							<?php}?>
+						</div>
+						<div class="button__wrap">
+							<a href="portfolio2.html?page=<?=$_GET['page']?>" class="button button__seemore">뒤로가기</a>
+						</div>
+					</div>
+				</div>
+				<div class="navigation">
+					<!-- 
+					동영상 인 경우
+
+					<a href="#" class="navigation__item navigation__item--actived" data-video="../assets/images/performance_data.mp4">
+						<img src="../assets/images/w/dummy/@detail01.jpg" alt="동영상 썸네일">
+					</a> -->
+					<!-- 유투브 인 경우 //-->
+					<!-- <a href="#" class="navigation__item navigation__item--actived" data-youtube="https://www.youtube.com/embed/nzMn-bK3bJg?si=q75BKW7hKvVOvyb9">
+						<img src="../assets/images/w/dummy/@detail01.jpg" alt="">
+					</a> -->
+                    <?phpif($itemOne['B_TITLE1']=='video' && $itemOne['B_FILE6']){?>
+                        <a href="javascript:;" class="navigation__item navigation__item--actived" data-video="<?=$itemOne['B_FILE6']?>">
+                            <img src="<?=$itemOne['B_FILE5']?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt="동영상 썸네일">
+                        </a>
+
+										<?php}else if($itemOne['B_TITLE1']=='server' && $itemOne['B_FILE4']){?>
+                        <a href="javascript:;" class="navigation__item navigation__item--actived" data-video="<?=$itemOne['B_FILE4']?>">
+                            <img src="<?=$first_image?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt="동영상 썸네일">
+                        </a>
+                    <?php}else if($itemOne['B_TITLE1']=='youtube' && $itemOne['B_FILE4']){?>
+                        <a href="javascript:;" class="navigation__item navigation__item--actived" data-youtube="https://www.youtube.com/embed/<?=$itemOne['B_FILE4']?>">
+													<div class="navigation__item--inner">
+														<iframe width="100%" height="100%" src="https://www.youtube.com/embed/<?=$itemOne['B_FILE4']?>?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+													</div>
+                            <!-- <img src="<?=$itemOne['B_FILE5']?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt=""> -->
+                        </a>
+                    <?php}?>
+
+										<?php											for ($i=0; $row=sql_fetch_array($file_res1); $i++) {
+												if( $itemOne['B_TITLE1']=='server') {
+													if($i == 0) continue;
+												}
+										?>
+                        <a href="javascript:;" class="navigation__item <?phpif($i==0 && ($itemOne['B_TITLE1'] == 'none')){?>navigation__item--actived <?php}?>" data-image="<?=$row['FI_NAME']?>">
+                            <img src="<?=$row['FI_NAME']?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt="">
+                        </a>
+										<?php}?>
+									
+					<!-- <a href="#" class="navigation__item" data-image="../assets/images/w/dummy/@detail01.jpg">
+						<img src="../assets/images/w/dummy/@detail01.jpg" alt="">
+					</a>
+					<a href="#" class="navigation__item" data-image="../assets/images/w/dummy/@detail02.jpg">
+						<img src="../assets/images/w/dummy/@detail02.jpg" alt="">
+					</a>
+					<a href="#" class="navigation__item" data-image="../assets/images/w/dummy/@detail03.jpg">
+						<img src="../assets/images/w/dummy/@detail03.jpg" alt="">
+					</a>
+					<a href="#" class="navigation__item" data-image="../assets/images/w/sub/@detail.png">
+						<img src="../assets/images/w/sub/@detail.png" alt="">
+					</a>
+					<a href="#" class="navigation__item" data-image="../assets/images/w/sub/@detail.png">
+						<img src="../assets/images/w/sub/@detail.png" alt="">
+					</a>
+					<a href="#" class="navigation__item" data-image="../assets/images/w/sub/@detail.png">
+						<img src="../assets/images/w/sub/@detail.png" alt="">
+					</a>
+					<a href="#" class="navigation__item" data-image="../assets/images/w/sub/@detail.png">
+						<img src="../assets/images/w/sub/@detail.png" alt="">
+					</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function() {
+			const firstItem = $('.navigation__item').first();
+			const firstItemVideoSrc = firstItem.data('video');
+			const firstItemYTSrc = firstItem.data('youtube');
+			
+			if (firstItemVideoSrc) {
+				$('.bigVideo source').attr('src', firstItemVideoSrc);
+				$('.bigVideo')[0].load();
+				$('.bigVideo').show();
+				$('.bigYoutube').hide();
+				$('.bigImage').hide();
+				$('.bigVideo')[0].play();
+			} 
+			if (firstItemYTSrc) {
+				$('.bigYoutube').attr('src', firstItemYTSrc);
+				$('.bigYoutube').show();
+				$('.bigVideo').hide();
+				$('.bigImage').hide();
+			}
+
+			$('.navigation__item').on('click', function(event) {
+				event.preventDefault();
+				
+				$('.navigation__item').removeClass('navigation__item--actived');
+				$(this).addClass('navigation__item--actived');
+				
+				const videoSrc = $(this).data('video');
+				const youtubeSrc = $(this).data('youtube');
+				const imageSrc = $(this).data('image');
+				
+				if (videoSrc) {
+					$('.bigVideo source').attr('src', videoSrc);
+					$('.bigVideo')[0].load();
+					$('.bigVideo').show();
+					$('.bigVideo')[0].play();
+					$('.bigImage').hide();
+					$('.bigYoutube').hide();
+				} else if (imageSrc) {
+					$('.bigImage').attr('src', imageSrc).show();
+					$('.bigVideo').hide();
+					$('.bigVideo')[0].pause();
+					$('.bigVideo')[0].currentTime = 0;
+					$('.bigYoutube').hide();
+				} else if (youtubeSrc) {
+					$('.bigYoutube').attr('src', youtubeSrc).show();
+					$('.bigImage').hide();
+					$('.bigVideo').hide();
+					$('.bigVideo')[0].pause();
+					$('.bigVideo')[0].currentTime = 0;
+				}
+			});
+    });
+</script>
+
+<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

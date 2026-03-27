@@ -1,0 +1,114 @@
+<?php include "../include/head.html"; ?>
+<script>
+    function email_chg(val) {
+        var email = $("input[name='email[]']");
+
+        if(val == "") {
+            email.eq(1).attr("readonly", false);
+            email.eq(1).val("");
+            email.eq(1).focus();
+        } else {
+            email.eq(1).val(val);
+            email.eq(1).attr("readonly", true);
+        }
+    }
+
+    function form_submit() {
+        if(form_check()) document.getElementById("mail_form").submit();
+    }
+
+    function form_check() {
+        if(!$("#agreedY").is(":checked")) {
+            alert("개인정보수집 이용에 동의해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='name']").eq(0).val()) == "") {
+            alert("이름을 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='email[]']").eq(0).val()) == "" || $.trim($("input[name='email[]']").eq(1).val()) == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='title']").eq(0).val()) == "") {
+            alert("제목을 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("textarea[name='content']").eq(0).val()) == "") {
+            alert("내용을 입력해주시기 바랍니다.");
+            return false;
+        }
+        return true;
+    }
+</script>
+<div id="container">
+    <div class="sub_top_section recruit_top04">
+        <h2 class="sub_page_tit">채용문의</h2>
+    </div>
+    <div id="subContent" class="recruit_cont">
+        <div class="inquiry_top_bar">
+            <div class="inner"><p class="txt">입사지원에 대한 문의사항을 남겨주시면 채용담당자가 신속하고, 성실하게 답변해 드립니다.</p></div>
+        </div>
+        <div class="inquiry_area">
+            <div class="inquiry_term_area">
+                <p class="desc">개인정보수집 및 이용에 동의를 해주세요.</p>
+                <div class="term_txt">
+                    <b>1. 개인정보의 수집 및 이용목적</b>
+                     ㈜플레이디(이하 “회사”라 합니다.)은 고객 문의 지원 업무를 위해 아래와 같은 개인정보를 수집하고 있으며, 고객 상담과 문의응대를 위해서만 해당 정보를 활용합니다.
+
+                    <b>2. 수집하는 개인정보 항목</b>
+                    - 필수 항목: 이름, 이메일
+
+                    <b>3. 회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후, 해당 개인정보를 지체 없이 파기합니다.</b>
+                    단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령이 정한 일정한 기간 동안 개인정보를 보관합니다.
+                    그 밖의 사항은 개인정보 취급방침을 준수합니다.
+                </div>
+                <div class="inquiry_agreed">
+                    <input type="checkbox" id="agreedY" />
+                    <label for="agreedY">개인정보수집 및 이용에 동의합니다.</label>
+                </div>
+            </div>
+            <form id="mail_form" method="post" action="inquiry_Prc.php" onsubmit="return form_check()">
+                <input type="hidden" name="code" value="nsmjobask" />
+                <div class="inquiry_form_area">
+                   <ul class="form_list">
+                       <li>
+                           <div class="col1">이름</div>
+                           <div class="col2"><input type="text" class="inp_half" name="name" /></div>
+                       </li>
+                       <li>
+                           <div class="col1">이메일 주소</div>
+                           <div class="col2">
+                               <input type="text" class="inp_short notkor" name="email[]" />
+                                <span class="cut">@</span>
+                                <input type="text" class="inp_short notkor" name="email[]" />
+                                <select class="inp_short m_full_inp" onchange="email_chg(this.value)">
+                                    <option value="">직접 입력</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="daum.net">daum.net</option>
+    								<option value="hanmail.net">hanmail.net</option>
+    								<option value="hotmail.com">hotmail.com</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="yahoo.com">yahoo.com</option>
+                                    <option value="dreamwiz.com">dreamwiz.com</option>
+                                    <option value="lycos.com">lycos.com</option>
+                                    <option value="korea.com">korea.com</option>
+                                </select>
+                           </div>
+                       </li>
+                       <li>
+                           <div class="col1">제목</div>
+                           <div class="col2"><input type="text" class="inp_full" name="title" /></div>
+                       </li>
+                       <li>
+                           <div class="col1">내용</div>
+                           <div class="col2"><textarea class="inp_full" name="content"></textarea></div>
+                       </li>
+                   </ul>
+                </div>
+                <div class="inquiry_btn">
+                    <a href="javascript:form_submit()" class="inquiry_submit">확인</a>
+                    <a href="javascript:history.back()" class="inquiry_cancel">취소</a>
+                </div>
+            </form>
+        </div>
+        <?php include "../../board/list_link_common.html"; ?>
+    </div>
+</div>
+<?php include "../include/tail.html"; ?>

@@ -1,0 +1,304 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+
+	$types = get_ad_types();
+
+	$totalCount = select_board_list_count('nsmexp');
+	
+	
+?>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+
+<script type="text/javascript">
+	window.addEventListener('load', () => {
+		alert("존재하지 않는 페이지 입니다.");
+		window.location.href = 'https://www.playd.com/';
+	});
+</script>
+
+<body class="column nav03" style="visibility:hidden">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php		include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+	?>
+	<!-- //header -->
+
+	<div id="container" class="container insight">
+
+    <div class="sub-header">
+      <h2 class="sub-header__title"><span class="sub-header__label">광고컬럼</span>플레이디 전문가들이 보유한 <br><strong>생각과 노하우</strong>를 공유합니다.</h2>
+    </div>
+		
+		<div class="sub-container">
+			<div class="search-form search-form--tower">
+				<div class="search-form__wrap">
+					<input type="search" id="insightLetter-search" name="" tabindex="0" maxlength="52" placeholder="검색어를 입력하세요." onkeyup="enterSelect()">
+					<button type="button" class="button button__icon-search" onclick="javascript:keywordSelect();"><div class="a11y">검색</div></button>
+				</div>
+				<div class="search-list">
+					<div class="search-item">
+					<button type="button" id="years_" class="sub-tabs__item sub-tabs__item--active"  onclick="javascript:yearSelect('','');" tabindex="0">전체</button>
+						<?php						$nCnt=0;
+						foreach ($types as $row) {
+							?>
+							<button type="button" id="years_<?=$nCnt?>" class="sub-tabs__item" onclick="javascript:yearSelect('<?=$row?>','<?=$nCnt?>');" tabindex="0"><?=$row?></button>
+						<?php						$nCnt++;
+					}?>
+					</div>
+				</div>
+			</div>
+
+			<div class="sub-content__head">
+				<p class="list-count">총 <span id="totalCount"><?=$totalCount?></span>건</p>
+				<div class="list-select drop-box">
+					<div class="list-select__title drop-box__title">
+						<p class="list-select__text drop-box__text">정렬기준</p>
+					</div>
+					<div class="list-select__wrap drop-box__wrap">
+							<div>
+							<p><a href="javascript:;" onclick="javascript:itemOrder('');">전체</a></p> 
+							<p><a href="javascript:;" onclick="javascript:itemOrder('hits');">인기순</a></p>
+							<p><a href="javascript:;" onclick="javascript:itemOrder('new');">최신순</a></p>
+							
+						</div>  
+					</div>
+				</div>
+			</div>
+
+			<div class="sub-content">
+				
+				
+				<!-- <div class="list-content list-content--long"><a href="./column-detail.html">
+					<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight1.png)"></div>
+					<div class="list-content__head">
+						<span class="list-content__sort">MEDIA</span>
+					</div>
+					<p class="list-content__title list-content__title--long">새로워진 카카오 키워드 광고 플랫폼, 카카오 Keyword 광고 파헤치기</p>
+					<p class="list-content__description">
+						많이 붙잡아 노래하며 피고 용감하고 위하여 풀밭에 눈이 소 담스러운 봄바람이다. 없으면, 이상의 같으며, 심장은 인생에 우리는 거선의 위하여서, 같이, 보라. 이상 얼음에 이 칼이다. 가치를 이것을 과실이 두기 피가 말이다. 어디 노년에게서 주 며, 돋고, 생의 때문이다.
+					</p>
+					<span class="list-content__meta">2022.03</span>
+				</a></div>
+				<div class="list-content list-content--long"><a href="./column-detail.html">
+					<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight1.png)"></div>
+					<div class="list-content__head">
+						<span class="list-content__sort">MEDIA</span>
+					</div>
+					<p class="list-content__title list-content__title--long">코로나 펜데믹 이후 대중 스포츠로 부상한 레저</p>
+					<p class="list-content__description">
+						많이 붙잡아 노래하며 피고 용감하고 위하여 풀밭에 눈이 소 담스러운 봄바람이다. 없으면, 이상의 같으며, 심장은 인생에 우리는 거선의 위하여서, 같이, 보라. 이상 얼음에 이 칼이다. 가치를 이것을 과실이 두기 피가 말이다. 어디 노년에게서 주 며, 돋고, 생의 때문이다.
+					</p>
+					<span class="list-content__meta">2022.03</span>
+				</a></div>
+				<div class="list-content list-content--long"><a href="./column-detail.html">
+					<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight1.png)"></div>
+					<div class="list-content__head">
+						<span class="list-content__sort">MEDIA</span>
+					</div>
+					<p class="list-content__title list-content__title--long">코로나 펜데믹 이후 대중 스포츠로 부상한 레저 새로워진 카카오 키워드 광고 플랫폼, 카카오 Keyword 광고 파헤치기</p>
+					<p class="list-content__description">
+						많이 붙잡아 노래하며 피고 용감하고 위하여 풀밭에 눈이 소 담스러운 봄바람이다. 없으면, 이상의 같으며, 심장은 인생에 우리는 거선의 위하여서, 같이, 보라. 이상 얼음에 이 칼이다. 가치를 이것을 과실이 두기 피가 말이다. 어디 노년에게서 주 며, 돋고, 생의 때문이다.
+					</p>
+					<span class="list-content__meta">2022.03</span>
+				</a></div>
+				<div class="list-content list-content--long"><a href="./column-detail.html">
+					<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight1.png)"></div>
+					<div class="list-content__head">
+						<span class="list-content__sort">MEDIA</span>
+					</div>
+					<p class="list-content__title list-content__title--long">코로나 펜데믹 이후 대중 스포츠로 부상한 레저</p>
+					<p class="list-content__description">
+						많이 붙잡아 노래하며 피고 용감하고 위하여 풀밭에 눈이 소 담스러운 봄바람이다. 없으면, 이상의 같으며, 심장은 인생에 우리는 거선의 위하여서, 같이, 보라. 이상 얼음에 이 칼이다. 가치를 이것을 과실이 두기 피가 말이다. 어디 노년에게서 주 며, 돋고, 생의 때문이다.
+					</p>
+					<span class="list-content__meta">2022.03</span>
+				</a></div>
+				<div class="list-content list-content--long"><a href="./column-detail.html">
+					<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight1.png)"></div>
+					<div class="list-content__head">
+						<span class="list-content__sort">MEDIA</span>
+					</div>
+					<p class="list-content__title list-content__title--long">코로나 펜데믹 이후 대중 스포츠로 부상한 레저</p>
+					<p class="list-content__description">
+						많이 붙잡아 노래하며 피고 용감하고 위하여 풀밭에 눈이 소 담스러운 봄바람이다. 없으면, 이상의 같으며, 심장은 인생에 우리는 거선의 위하여서, 같이, 보라. 이상 얼음에 이 칼이다. 가치를 이것을 과실이 두기 피가 말이다. 어디 노년에게서 주 며, 돋고, 생의 때문이다. 많이 붙잡아 노래하며 피고 용감하고 위하여 풀밭에 눈이 소 담스러운 봄바람이다. 없으면, 이상의 같으며, 심장은 인생에 우리는 거선의 위하여서, 같이, 보라. 이상 얼음에 이 칼이다. 가치를 이것을 과실이 두기 피가 말이다. 어디 노년에게서 주 며, 돋고, 생의 때문이다.
+					</p>
+					<span class="list-content__meta">2022.03</span>
+				</a></div>
+				<div class="list-content list-content--long"><a href="./column-detail.html">
+					<div class="list-content__image" style="background-image:url(../assets/images/w/common/dummy_default.jpg)"></div>
+					<div class="list-content__head">
+						<span class="list-content__sort">MEDIA</span>
+					</div>
+					<p class="list-content__title list-content__title--long">코로나 펜데믹 이후 대중 스포츠로 부상한 레저</p>
+					<p class="list-content__description">
+						많이 붙잡아 노래하며 피고 용감하고 위하여 풀밭에 눈이 소 담스러운 봄바람이다. 없으면, 이상의 같으며, 심장은 인생에 우리는 거선의 위하여서, 같이, 보라. 이상 얼음에 이 칼이다. 가치를 이것을 과실이 두기 피가 말이다. 어디 노년에게서 주 며, 돋고, 생의 때문이다.
+					</p>
+					<span class="list-content__meta">2022.03</span>
+				</a></div> -->
+
+			</div>
+
+			<div class="button__wrap">
+				<a href="javascript:itemMore();" class="button button__seemore">더 보기</a>
+			</div>
+
+			<div class="sub-content__warning" style="display: none">
+				<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+				<p class="sub-content__warning-text">검색결과가 없습니다.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+var g_page = 1;
+var g_listsize = 6;
+var g_type = '';
+var g_order = '';
+
+$(document).ready(function(){
+	
+	ajaxItemList();
+
+});
+
+function ajaxItemList(){
+	var keyword = $('#insightLetter-search').val();
+	if(isLoading) return;
+	isLoading = true;
+		$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_list.php',
+                    data: {
+                        'type':g_type,
+						'order':g_order,
+						'keyword':keyword,
+						'page':g_page,
+						'listsize':g_listsize,
+						'code':'nsmexp',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                    },
+                    success: function (json) {
+						isLoading = false;
+                        if(json){
+							if(g_listsize * g_page >= json['count']){
+								$('.button__seemore').hide();
+							} else {
+								$('.button__seemore').show();
+							}
+							$('#totalCount').html(json['count']);
+							fetchItemList(json['list'], json['count']);
+
+							if(json['count'] == 0){
+								$('.sub-content__warning').show();
+							} else {
+								$('.sub-content__warning').hide();
+							}
+							
+                        }
+                    }
+        });
+}
+
+function fetchItemList(json, count){
+		var html = '';
+		for(var i=0;i<json.length;i++){
+			var image = '';
+			var alt = '';
+			var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
+			var title = json[i]['B_BRIEF'].replace('<br/>','').replace('<br>','');
+			var cont = json[i]['B_CONT'].replace(/(<([^>]+)>)/gi, "").substring(0,120);
+			var datestr = '';
+
+			if(json[i]['B_SEND_DT']){
+				datestr = json[i]['B_REGDATE'].substring(0,4) + '.' + json[i]['B_REGDATE'].substring(5,7);
+			} else {
+				datestr = json[i]['B_REGDATE'].substring(0,4) + '.' + json[i]['B_REGDATE'].substring(5,7);
+			}
+			
+
+			<?phpif($is_mobile){?>
+			if(json[i]['B_FILE2']){
+				image = json[i]['B_FILE2'];
+			}
+			if(json[i]['B_EXT2']){
+				alt = json[i]['B_EXT2'];
+			}
+			<?php}else{?>
+			if(json[i]['B_FILE1']){
+				image = json[i]['B_FILE1'];
+			}
+			if(json[i]['B_EXT1']){
+				alt = json[i]['B_EXT1'];
+			}
+			<?php}?>
+
+
+			html+='<div class="list-content list-content--long"><a href="./column-detail.html?seq='+json[i]['B_SEQ']+'">';
+			html+='<div class="list-content__image" style="background-image:url('+image+')"></div>';
+			html+='<div class="list-content__head">';
+			html+='<span class="list-content__sort">'+nvl(json[i]['B_TYPE'])+'</span>';
+			html+='</div>';
+			html+='<p class="list-content__title list-content__title--long">'+title+'</p>';
+			html+='<p class="list-content__description" style="word-break:break-all;">'+cont+'</p>';
+			html+='<span class="list-content__meta">'+datestr+'</span>';
+			html+='</a></div>';
+
+		}
+
+		$('.sub-content').append(html);
+		
+}
+function itemMore(){
+	g_page = g_page + 1;
+	ajaxItemList();
+}
+function itemOrder(ord){
+	g_page = 1;
+	g_order = ord;
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function yearSelect(year, cnt){
+	g_page = 1;
+	g_type = year;
+	$("button[id^='years_']").each(function (i, el) {
+		$(this).removeClass('sub-tabs__item--active');
+	});
+	$('#years_' + cnt).addClass('sub-tabs__item--active');
+
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function keywordSelect(){
+	g_page = 1;
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function enterSelect(){
+	if (window.event.keyCode == 13) {
+		g_page = 1;
+		$('.sub-content').empty();
+		ajaxItemList();
+	}
+}
+
+
+</script>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

@@ -1,0 +1,239 @@
+<?php    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+    $types = get_portfolio_types();
+
+    sort($types);
+?>
+<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+<style>
+  .search-item #years_20 {
+    display: none;
+  }
+</style>
+
+<body class="portfolio nav00">
+  <div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+  <div class="wrap">
+
+    <!-- header -->
+    <?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+    <!-- //header -->
+
+    <div id="container" class="container">
+
+      <div class="sub-header">
+        <h2 class="sub-header__title"><span class="sub-header__label">포트폴리오</span>마케팅을 기반으로 성장한 <strong>다양한 업종의
+            고객</strong>이<br> 플레이디와 함께하였습니다.</h2>
+      </div>
+
+      <div class="sub-container">
+        <div class="search-list">
+          <div class="accordian toggle-accordian">
+            <div class="accordian__item">
+              <div class="accordian__title"><span class="a11y">펼쳐보기</span></div>
+              <div class="accordian__content">
+                <div class="search-item">
+                  <button type="button" id="years_" class="sub-tabs__item sub-tabs__item--active"
+                    onclick="javascript:yearSelect('','');">전체</button>
+                  <?php						$nCnt=0;
+						foreach ($types as $row) {
+              $sql = " select count(*) as cnt from T_BOARD where B_CODE='playdportfolio' AND B_TYPE = '".$row."' AND B_NOTI_YN ='Y'  ";
+              $row5 = sql_fetch($sql);
+              $total_count = $row5['cnt'];
+              if($total_count > 0 ){
+							?>
+                  <button type="button" id="years_<?=$nCnt?>" class="sub-tabs__item"
+                    onclick="javascript:yearSelect('<?=$row?>','<?=$nCnt?>');">
+                    <?=$row?>
+                  </button>
+                  <?php              $nCnt++;
+              }}?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-content">
+
+        </div>
+
+        <div class="button__wrap">
+          <a href="javascript:itemMore();" class="button button__seemore">더 보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+  var g_page = 1;
+  var g_listsize = 20;
+  var g_type = '';
+  var g_order = '';
+  var isLoading = false; // 로딩 상태 체크 변수
+
+    $(document).ready(function () {
+      ajaxItemList(); // 페이지 로딩 시 아이템 리스트 호출
+    });
+
+    function ajaxItemList() {
+      var keyword = $('#insightLetter-search').val();
+      if (isLoading) return; // 로딩 중이면 종료
+      isLoading = true;
+
+      $.ajax({
+        type: "POST",
+        url: '/ajax/ajax_board_list.php',
+        data: {
+          'type': g_type,
+          'order': g_order,
+          'keyword': keyword,
+          'page': g_page,
+          'listsize': g_listsize,
+          'code': 'playdportfolio',
+        },
+        dataType: 'json',
+        timeout: 60000,
+        cache: false,
+        crossDomain: false,
+        error: function (request, error) {
+          console.log(error + '');
+          isLoading = false; // 에러 발생 시 로딩 상태 초기화
+        },
+        success: function (json) {
+          isLoading = false; // 로딩 종료
+
+          if (json) {
+            if (g_listsize * g_page >= json['count']) {
+              $('.button__seemore').hide();
+            } else {
+              $('.button__seemore').show();
+            }
+            $('#totalCount').html(json['count']);
+            fetchItemList(json['list'], json['count']); // 데이터 처리 함수 호출
+          }
+        }
+      });
+    }
+
+      function fetchItemList(json, count) {
+          var html = '';
+
+          // "테스트 카테고리"를 제외하는 필터링을 JSON 데이터에서 한 번 더 수행
+          var filteredJson = json.filter(function (item) {
+            return item['B_TYPE'] !== '테스트 카테고리';
+          });
+
+          for (var i = 0; i < filteredJson.length; i++) {
+            var image = '';
+            var alt = '';
+            var title = filteredJson[i]['B_TITLE'].replace('<br/>', '').replace('<br>', '');
+            var datestr = '';
+
+            if (filteredJson[i]['B_SITE'] == 'MULTI') {
+              datestr = filteredJson[i]['B_EXT5'];
+            } else {
+              datestr = filteredJson[i]['B_EXT6'];
+              if (datestr) {
+                datestr = datestr.substring(0, datestr.length - 1);
+              }
+            }
+
+        <?phpif ($is_mobile) { ?>
+        if (filteredJson[i]['B_FILE2']) {
+                image = filteredJson[i]['B_FILE2'];
+              }
+              if (filteredJson[i]['B_EXT2']) {
+                alt = filteredJson[i]['B_EXT2'];
+              }
+        <?php } else { ?>
+        if (filteredJson[i]['B_FILE1']) {
+                image = filteredJson[i]['B_FILE1'];
+              }
+              if (filteredJson[i]['B_EXT1']) {
+                alt = filteredJson[i]['B_EXT1'];
+              }
+        <?php } ?>
+
+            html += '<div class="list-content"><a href="javascript:;">';
+            html += '<div class="list-content__cover">';
+            html += '<div class="list-content__image" style="background-image:url(' + image + ')" title="' + alt + '"></div>';
+            html += '<div class="list-content__info">';
+            html += '<p class="list-content__info--1"><span class="list-content__info--2">' + nvl(datestr) + '</span>' + nvl(filteredJson[i]['B_EXT4']) + '</p>';
+            html += '<p class="list-content__info--3">' + nvl(filteredJson[i]['B_BRIEF']) + '</p>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="list-content__head">';
+            html += '<span class="list-content__sort">' + nvl(filteredJson[i]['B_TYPE']) + '</span>';
+            html += '<span class="list-content__meta">' + nvl(filteredJson[i]['B_EXT3']) + '</span>';
+            html += '</div>';
+            html += '<p class="list-content__title">' + nvl(filteredJson[i]['B_TITLE']) + '</p>';
+            html += '</a></div>';
+          }
+
+          $('.sub-content').append(html);
+        }
+
+
+      // "더 보기" 버튼 클릭 시 페이지 증가 후 아이템 호출
+      function itemMore() {
+        console.log('===', g_page)
+        g_page = g_page + 1; // 페이지 증가
+        ajaxItemList(); // 새로운 페이지 아이템 호출
+      }
+
+
+
+    // 정렬 기능
+    function itemOrder(ord) {
+      g_page = 1; // 페이지 초기화
+      g_order = ord; // 정렬 방식 설정
+      $('.sub-content').empty(); // 콘텐츠 비우기
+      ajaxItemList(); // 아이템 리스트 호출
+    }
+
+    // 카테고리 선택 기능
+    function yearSelect(year, cnt) {
+      g_page = 1; // 페이지 초기화
+      g_type = year; // 카테고리 설정
+      $("button[id^='years_']").removeClass('sub-tabs__item--active'); // 활성화 클래스 제거
+      $('#years_' + cnt).addClass('sub-tabs__item--active'); // 선택된 카테고리 활성화
+
+      $('.sub-content').empty(); // 콘텐츠 비우기
+      ajaxItemList(); // 아이템 리스트 호출
+    }
+
+    // 키워드 검색 기능
+    function keywordSelect() {
+      g_page = 1; // 페이지 초기화
+      $('.sub-content').empty(); // 콘텐츠 비우기
+      ajaxItemList(); // 아이템 리스트 호출
+    }
+
+    // 엔터 키로 검색
+    function enterSelect() {
+      if (window.event.keyCode == 13) {
+        g_page = 1; // 페이지 초기화
+        $('.sub-content').empty(); // 콘텐츠 비우기
+        ajaxItemList(); // 아이템 리스트 호출
+      }
+    }
+
+  $(document).ready(function () {
+    // 페이지 로드 후 약간의 딜레이를 두고 itemMore()를 호출
+    setTimeout(function () {
+      g_page = 1;
+      itemMore();
+    }, 500); // 500ms 딜레이
+  });
+</script>
+
+
+
+  <?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

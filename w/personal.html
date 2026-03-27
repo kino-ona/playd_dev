@@ -1,0 +1,59 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+    // 1건 가져오기 
+	$b_seq = nvl($_GET['seq'],2);
+  if($b_seq){
+    $itemOne = select_board_one('playdprivate', $b_seq);
+  } else { 
+    $itemOne = select_board_max_one('playdprivate');
+  }
+
+  if($itemOne){
+    $itemNext = select_board_next_one('playdprivate', $itemOne['B_SEQ']);
+  }
+  
+?>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+<body class="personal">
+<link rel="stylesheet" href="../assets/css/w/personal_custom.css">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+	<!-- //header -->
+
+	<div id="container" class="container">
+
+    <div class="sub-header">
+      <h2 class="sub-header__title"><span class="sub-header__label">개인정보 처리방침</span>플레이디는 <strong>이용자 권익 보호</strong>에<br>최선을 다하고 있습니다.</h2>
+    </div>
+    <div class="sub-container">
+      <div class="sub-content">
+        <div class="private-term">
+          <!-- 에디터 출력영역 -->
+          <?=$itemOne['B_CONT']?>
+          <!--// 에디터 출력영역 -->
+
+          <!-- 가장 최신 개인정보처리방침일 경우 // -->
+          <?phpif($itemNext){?>
+            <div class="button__wrap">
+              <a href="personal.html?seq=<?=$itemNext['B_SEQ']?>" target="_blank" class="link_btn"><?=$itemNext['B_TITLE']?></a>
+            </div>
+          <?php}?>
+        </div>
+      </div>
+    </div>
+	</div>
+  
+</div>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

@@ -1,0 +1,114 @@
+<?php
+    $sub_sql = "";
+    $search = "";
+
+    if($s_year) $sub_sql .= "AND B_YEAR = '$s_year'";
+    if($s_con) $sub_sql .= "AND B_TITLE LIKE '%$s_con%'";
+
+    if(!$page) $page = 1;
+    if($s_year) $search .= "&s_year=".$s_year;
+    if($s_con) $search .= "&s_con=".$s_con;
+
+    $num_sql = "SELECT COUNT(*) FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' $sub_sql ORDER BY B_YEAR DESC, B_MONTH DESC";
+    $sql = "SELECT * FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' $sub_sql ORDER BY B_YEAR DESC, B_MONTH DESC";
+    $result = $func->listNpage(&$total, &$paging, $sql, $num_sql, $dbconn, $search, 12);
+?>
+<script>
+    function form_check() {
+        if(!$("input[name='newsletter_agreed']").is(":checked") || $("#agreedN").is(":checked")) {
+            alert("개인정보 수집에 동의해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='news_email[]']").eq(0).val() == "" || $("input[name='news_email[]']").eq(1).val() == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<div id="board">
+    <div class="board_list_top_bar newsletter_top">
+        <div class="inner">
+           <div class="board_search">
+                <form method="get" action="<?php echo $PHP_SELF; ?>">
+                    <input type="hidden" name="s_year" value="<?php echo $s_year; ?>" />
+                    <fieldset>
+                        <input type="text" name="s_con" placeholder="Search" value="<?php echo $s_con; ?>" />
+                        <button type="submit" class="bd_search_btn"><img src="../../images/board/search_ico.png" alt="검색" /></button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="board_cate">
+                <a href="<?php echo $PHP_SELF; ?>" class="<?php echo empty($s_year) ? "active" : ""; ?>">전체</a>
+                <a href="<?php echo $PHP_SELF; ?>?s_year=2018" class="<?php echo $s_year == "2018" ? "active" : ""; ?>">2018</a>
+				<a href="<?php echo $PHP_SELF; ?>?s_year=2017" class="<?php echo $s_year == "2017" ? "active" : ""; ?>">2017</a>
+                <a href="<?php echo $PHP_SELF; ?>?s_year=2016" class="<?php echo $s_year == "2016" ? "active" : ""; ?>">2016</a>
+                <a href="<?php echo $PHP_SELF; ?>?s_year=2015" class="<?php echo $s_year == "2015" ? "active" : ""; ?>">2015</a>
+                <a href="<?php echo $PHP_SELF; ?>?s_year=2014" class="<?php echo $s_year == "2014" ? "active" : ""; ?>">2014</a>
+                <a href="<?php echo $PHP_SELF; ?>?s_year=2013" class="<?php echo $s_year == "2013" ? "active" : ""; ?>">2013</a>
+            </div>
+
+<!-- 			***190806 뉴스레터 구독신청 수정*** -->
+<!--             <div class="letter_app"><a href="#">뉴스레터 구독신청</a></div> -->
+        </div>
+    </div>
+    <div class="board_newsletter_list_wrap">
+        <ul class="board_newsletter_list newsletter2017">
+            <?php
+                while($arr = mysql_fetch_array($result)) {
+                    if($arr[B_FILE2]) $thum = 'style="background-image: url(\'http://nsm.co.kr'.$arr[B_FILE2].'\')"';
+                    else $thum = "";
+            ?>
+            <li>
+                <a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $arr[B_SEQ].$search; ?>">
+                    <span class="thumb" <?php echo $thum; ?>></span>
+                    <div class="wrap">
+                        <span class="year"><?php echo $arr[B_YEAR]; ?></span>
+                        <span class="month"><?php echo $month_nm[$arr[B_MONTH]]; ?>.</span>
+                    </div>
+                </a>
+            </li>
+            <?php } ?>
+            <?php if($total[num] == 0) { ?>
+                <li class="no_data">게시글이 없습니다.</li>
+            <?php } ?>
+        </ul>
+    </div>
+    <?php if(!$s_year) echo $paging; ?>
+    <?php include "../../board/list_link_common.html"; ?>
+	
+<!-- 	***190806_우측 고정 배너 추가*** -->
+	<div class="newsletter_pop_fix">
+		<h2 class="newsletter_pop_fix_tit">PlayD 뉴스레터 구독하기</h2>
+		<span class="newsletter_pop_fix_txt">개인정보 처리방침 확인하기</span>
+		<span class="newsletter_pop_fix_alert">개인정보 수집에 동의합니다</span>
+		<div class="newsletter_pop_fix_mail">
+			 <input type="text" value="이메일 주소를 입력하세요" class="newsletter_pop_fix_mailadd" />
+			 <input type="submit" value="구독신청" class="newsletter_pop_fix_mail_submit" />
+		</div>
+	</div>
+
+<!--     <div class="newsletter_app_pop"> -->
+<!--         <div class="newsletter_pop_con"> -->
+<!--             <span class="tit">뉴스레터 구독 신청하기</span> -->
+<!--             <p class="desc_txt">뉴스레터 구독을 하시려면 개인정보 수집에 동의를 하셔야 합니다.</p> -->
+<!--             <div class="newsletter_agreed_inp"> -->
+<!--                 <div class="inpbx first"><input type="radio" id="agreedY" name="newsletter_agreed" value="Y" /><label for="agreedY">개인정보 수집 동의</label></div> -->
+<!--                 <div class="inpbx"><input type="radio" id="agreedN" name="newsletter_agreed" valye="N" /><label for="agreedN">개인정보 수집 거부</label></div> -->
+<!--             </div> -->
+<!--             <form method="post" action="../../board/newsletter_Prc.php" onsubmit="return form_check()"> -->
+<!--                 <div class="nl_recive_email"> -->
+<!--                     <span class="txt">이메일주소 입력</span> -->
+<!--                     <div class="inpbx"> -->
+<!--                         <input type="text" name="news_email[]" class="notkor" /> -->
+<!--                         <span class="cut">@</span> -->
+<!--                         <input type="text" name="news_email[]" class="notkor" /> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <button type="submit" class="newsletter_complete">확인</button> -->
+<!--             </form> -->
+<!--         </div> -->
+<!--         <button type="button" class="newsletter_pop_close"><img src="../../images/board/newsletter_pop_close.png" /></button> -->
+<!--     </div> -->
+    <div class="dim_bg"></div>
+</div>

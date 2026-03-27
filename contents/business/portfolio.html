@@ -1,0 +1,104 @@
+<?php include "../include/head.html"; ?>
+
+<?php
+	$list_sql = "SELECT * FROM T_BOARD WHERE B_CODE = 'playdportfolio' AND B_NOTI_YN='Y'";
+	$num_sql = "SELECT COUNT(*) FROM T_BOARD WHERE B_CODE = 'playdportfolio' AND B_NOTI_YN='Y'";
+	$search = "";
+	if($_GET[s_con]!="") {
+		$list_sql .= "AND B_TITLE LIKE '%{$_GET[s_con]}%' ";
+		$num_sql .= "AND B_TITLE LIKE '%{$_GET[s_con]}%' ";
+        $search .= "&s_con=".$s_con;
+	}
+
+	if($_GET[hash]!="") {
+		$hash_sql = "SELECT BR_B_SEQ FROM T_BOARD_RECOM WHERE BR_WORD='$_GET[hash]'";
+		$hash_result = mysql_query($hash_sql);
+		$list_sql .= "AND B_SEQ IN (";
+		$num_sql .= "AND B_SEQ IN (";
+		while ($row=mysql_fetch_array($hash_result)) {
+			$hash_in_list .= "'".$row[BR_B_SEQ]."',";
+		}
+		$hash_in_list = substr($hash_in_list, 0, -1);
+		$list_sql .= $hash_in_list;
+		$num_sql .= $hash_in_list;
+		$list_sql .= ")";
+		$num_sql .= ")";
+	}
+	$list_sql .= " ORDER BY B_SEQ DESC";
+
+	$list_result = $func->listNpage(&$total, &$paging, $list_sql, $num_sql, $dbconn, $search, 12);
+	//$list_result = mysql_query($list_sql);
+?>
+
+<div id="container">
+    <div class="sub_top_section business_top06">
+        <h2 class="sub_page_tit">포트폴리오</h2>
+    </div>
+	
+	<div id="board">
+		<div class="board_list_top_bar">
+			<div class="inner">
+			   <div class="board_search">
+					<form method="get" action="<?php echo $PHP_SELF; ?>">
+						<input type="hidden" name="s_year" value="<?php echo $s_year; ?>" />
+						<fieldset>
+							<input type="text" name="s_con" placeholder="Search" value="<?php echo $s_con; ?>" />
+							<button type="submit" class="bd_search_btn"><img src="../../images/board/search_ico.png" alt="검색" /></button>
+						</fieldset>
+					</form>
+				</div>
+				<div class="board_cate">
+					<a href="portfolio.html" class="active">전체</a>
+			   </div>
+			</div>
+		</div>
+		<div class="board_portpolio_wrap">
+			<ul class="board_portpolio_listcover">
+				<?php
+					while ($row_list=mysql_fetch_array($list_result)) {
+				?>
+				<li>
+					<a href="portfolio_view.html?B_SEQ=<?php echo $row_list[B_SEQ].$search;?>">
+						<!--div class="board_portpolio_list_click"></div-->
+						<div class=""></div>
+						<?php if($row_list[B_FILE2]!="") { ?>
+							<div style="width:100%;height:300px; float: left; background:url(<?php echo $row_list[B_FILE2];?>);position:relative;" class="bgcover">
+								<img src="<?php echo $row_list[B_FILE2];?>" width="300" height="300" alt="portfolio list logo"/>
+							</div>
+						<?php } else { ?>
+							<div class="board_portfolio_logo">
+								<img src="../../images/common/logo.png" alt="portfolio list logo" />
+							</div>
+							<?php } ?>
+
+						<div class="board_portpolio_list_tcover">
+							<p class="board_portpolio_list_tit">
+								<a href="portfolio_view.html?B_SEQ=<?php echo $row_list[B_SEQ];?>"><?php echo $row_list[B_TITLE];?></a>
+							</p>
+							<?php
+								$sql_hash_text = "SELECT BR_WORD FROM T_BOARD_RECOM WHERE BR_B_SEQ = '$row_list[B_SEQ]'";
+								$result_hash_text = mysql_query($sql_hash_text);
+								while ($row_hash_text=mysql_fetch_array($result_hash_text)) {
+							?>
+								#<a href="?hash=<?php echo $row_hash_text[BR_WORD];?>" class="board_portpolio_list_txt">
+									<?php echo $row_hash_text[BR_WORD];?>
+								</a>
+							<?php
+								}
+							?>
+						</div>
+					</a>
+				</li>
+				<?php
+					}
+				?>
+			</ul>
+			<div class="cl_b"></div>
+
+		</div>
+		<?php echo $paging; ?>
+
+	</div>
+</div>
+<?php include "../../board/list_link_common.html"; ?>
+<?php include "../include/tail.html"; ?>

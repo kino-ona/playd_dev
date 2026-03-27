@@ -1,0 +1,263 @@
+<?php include "../include/head.html"; ?>
+<script>
+    function form_check() {
+        var email = $("input[name='email[]']");
+
+        if(!$("#agreedChk").is(":checked")) {
+            alert("개인정보 수집 이용에 동의해주시기 바랍니다.");
+            return false;
+        } else if($.trim(email.eq(0).val()) == "" || $.trim(email.eq(1).val()) == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("textarea[name='content']").val()) == "") {
+            alert("제보 내용을 입력해주시기 바랍니다.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<div id="container">
+    <div class="sub_top_section company_top04">
+        <h2 class="sub_page_tit">윤리경영</h2>
+    </div>
+    <div id="subContent" class="company_cont">
+        <div class="ethical_sec01">
+            <div class="inner">
+                <p class="ethical_sec01_txt">1등 KT “신 윤리경영 원칙”</p>
+                <p class="ethical_sec01_desc">「우리는 글로벌 1등 기업으로 성장하기 위해 올바른 의사결정과 윤리적 판단으로 회사의 미래를 도모」 한다. <br>이를 위해 「고객최우선, 준법경영, 기본충실, 주인의식, 사회적책임」을 모든 KT인이 공유하고 <br>지켜야할 윤리경영 5대 행동원칙으로 삼고, 이를 적극 실천할 것을 다짐한다. </p>
+            </div>
+        </div>
+        <div class="ethical_sec02">
+            <div class="ethical_sec02_bx">
+                <ul class="row">
+                    <li class="col item01">
+                        <div class="wrap">
+                            <span class="tit">원칙 1. 고객을 최우선 가치로 삼는다.</span>
+                            <p class="txt">1-1. 고객의 가치와 정보를 존중하고 철저히 보호한다.</p>
+                            <p class="txt">1-2. 고객에게 도움이 되는 차별화된 가치를 끊임없이 창출한다.</p>
+                        </div>
+                    </li>
+                    <li class="col item02">
+                        <div class="wrap">
+                            <span class="tit">원칙 2. 각종 법규와 기준을 엄격히 준수한다.</span>
+                            <p class="txt">2-1. 법과 상도의에 따라 공정하고 깨끗하게 행동한다.</p>
+                            <p class="txt">2-2. 경영의 투명성을 확보·유지하며, 회사의 비밀은 철저히 보호한다.</p>
+                        </div>
+                    </li>
+                    <li class="col item03">
+                        <div class="wrap">
+                            <span class="tit">원칙 3. 기본과 원칙에 충실한다.</span>
+                            <p class="txt">3-1. 회사 전체 이익 관점에서 합리적, 객관적으로 판단하고, 책임 있게 행동한다.</p>
+                            <p class="txt">3-2. 공과 사를 엄격히 구분하며, 건전하고 깨끗한 조직문화 조성에 앞장선다.</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="row">
+                    <li class="col item04">
+                        <div class="wrap">
+                            <span class="tit">원칙 4. 회사와 내가 하나라는 주인의식을 가진다.</span>
+                            <p class="txt">4-1. 실패를 두려워하지 않고, 항상 최고에 도전한다.</p>
+                            <p class="txt">4-2. 자율과 임파워먼트를 통해 효율성 향상을 추구한다.</p>
+                        </div>
+                    </li>
+                    <li class="col item05">
+                        <div class="wrap">
+                            <span class="tit">원칙 5. 국민기업으로서 사회적 책임과 의무를 다한다.</span>
+                            <p class="txt">5-1. 주주의 권리와 이익을 보호하고, 임직원의 「삶의 질」 향상을 위해 노력한다.</p>
+                            <p class="txt">5-2. 환경·안전·인권을 중시하고 존중한다.</p>
+                            <p class="txt">5-3. 사회공헌 활동에 앞장서고, 사업 파트너와 동반성장의 관계를 구축한다.</p>
+                        </div>
+                    </li>
+                    <li class="col item06"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="ethical_sec03" id="ethical_sec03">
+            <div class="inner">
+                <p class="ethical_sec03_img"><img src="../../images/sub/company/ethical_sec03_img.jpg" alt=""></p>
+                <p class="ethical_sec03_desc">건조한 기업 풍토 조성을 위하여 <em>윤리 위반 신고 채널을 운영</em>하고 있습니다.<br> 임직원의 직무와 관련한 비리행위를 제보하여 주시면 적극 조치하겠으며, 제보자의 신원은 철저히 보장합니다.</p>
+            </div>
+        </div>
+        <div class="ethical_sec04">
+            <div class="inner">
+                <ul class="ethical_sec04_list">
+                    <li>
+                        <span class="tit">운영방침</span>
+                        <p class="txt">제보 내용은 최대한 빠른 시일 내에 처리되며, 처리 결과는 별도 통보하지 않습니다. </p>
+                        <p class="txt">안심하고 제보할 수 있도록 신분을 노출하거나 이를 암시하는 어떠한 정보도 공개하지 않습니다.</p>
+                        <p class="txt">사실에 근거하지 않은 비방, 개인 사생활과 관련한 사항은 민원으로 처리되지 않습니다.</p>
+                    </li>
+                    <li>
+                        <span class="tit">제보 대상</span>
+                        <p class="txt">임직원의 횡령/배임</p>
+                        <p class="txt">임직원의 부당한 업무 처리</p>
+                        <p class="txt">금전, 금품 및 향응의 부당한 요구 및 제공 사실</p>
+                        <p class="txt">우월적 지위를 이용한 불공정 거래 행위</p>
+                        <p class="txt">성희롱에 따른 풍기문란 행위</p>
+                        <p class="txt">고객 및 회사 정보 유출</p>
+                        <p class="txt">기타 윤리강령에 위배되는 사항</p>
+                    </li>
+                    <li>
+                        <span class="tit">신고 채널</span>
+                        <p class="txt">홈페이지 : Company > 윤리경영 > 제보하기</p>
+                        <p class="txt">e-mail : clean@playd.com</p>
+                        <p class="txt">전화 : 031-696-7128</p>
+                        <p class="txt">서신 : 경기도 성남시 분당구 황새울로359번길 11, 5층 윤리경영실(우.13590)</p>
+                    </li>
+                </ul>
+                <div class="ethical_sec04_btn_wrap">
+                    <a href="#" class="ethical_sec04_btn">제보하기</a>
+					<a href="#" class="ethical_sec04_btn01">접수 및 결과 확인</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form name="ethical_form1" method="post" action="ethical_Prc.php" enctype="multipart/form-data" onsubmit="return form_check()">
+         <div class="corp_join_pop" style="top: 64%;">
+           <div class="corp_join_pop_con">
+               <span class="tit">제보하기</span>
+                <p class="desc_txt">제보를 하시려면 개인정보수집 및 이용에 동의를 하셔야 합니다.</p>
+                <div class="join_pop_private_agreed">
+                    <div class="join_pop_term_txt">
+                        <b>수집하는 개인정보의 항목</b>
+                        필수 정보 : 이메일
+                        선택 정보 : 회사명, 이름, 연락처<br />
+                        <b>개인정보 수집 및 이용목적</b>
+                        접수 내용에 대한 처리를 위해 아래와 같은 개인정보를 수집하고 있으며 내용 확인을 위해서만 이용합니다.<br />
+                        <b>개인정보 보유 및 이용기간</b>
+                        회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후, 해당 개인정보를 지체없이 파기합니다.
+                        단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령이 정한 일정한 기간 동안 개인정보를 보관합니다.
+                        그 밖의 사항은 개인정보 취급방침을 준수합니다.
+                    </div>
+                    <div class="join_pop_agreed_chk">
+                        <input type="checkbox" id="agreedChk" />
+                        <label for="agreedChk">개인정보수집 및 이용에 동의합니다.</label>
+                    </div>
+                    <div class="join_pop_form">
+                        <!-- <span class="form_tit">접수번호</span>
+                        <div class="form_inp">
+                            <p><?php echo $receipt_no; ?></p>
+                            <p class="inp_txt">처리결과를 확인하기 위해서는 '접수번호'와 '비밀번호'가 필요합니다.</p>
+                        </div> -->
+                        <div class="form_inp tc">
+                            <label class="mr10"><input type="radio" name="receipt_type" value="name" onchange="receipt_chg(this.value)" checked /> 실명으로 제보하기</label>
+                            <label class="mr10"><input type="radio" name="receipt_type" value="no" onchange="receipt_chg(this.value)" /> 익명으로 제보하기</label>
+                        </div>
+                        <span class="form_tit">이름 <span class="required">*</span></span>
+                        <div class="form_inp">
+                            <input type="text" class="full_inp" name="name" />
+                        </div>
+                        <span class="form_tit">연락처</span>
+                        <div class="form_inp"><input type="text" class="full_inp onlynum" name="phone" maxlength="12" placeholder="'-' 없이 입력해주세요." /></div>
+                        <span class="form_tit">이메일 주소 <span class="required">*</span></span>
+                        <div class="form_inp w_email">
+                            <input type="text" class="notkor" name="email[]" />
+                            <span class="cut">@</span>
+                            <input type="text" class="notkor" name="email[]" />
+                        </div>
+                        <p class="inp_txt">연락처와 이메일을 기재해주시면 보다 빠르고 정확한 답변을 받으실 수 있습니다.</p>
+						<span class="form_tit">제목 <span class="required">*</span></span>
+                        <div class="form_inp">
+                            <input type="text" class="full_inp" name="subject" />
+                        </div>
+                        <span class="form_tit">제보 내용 <span class="required">*</span></span>
+                        <div class="form_inp">
+                            <textarea class="full_inp2" name="content"></textarea>
+                        </div>
+                        <span class="form_tit">비밀번호 <span class="required">*</span></span>
+                        <div class="form_inp">
+                            <input type="password" class="full_inp" name="passwd" placeholder="6 ~ 15자리" />
+                        </div>
+						<span class="form_tit">비밀번호 확인 <span class="required">*</span></span>
+                        <div class="form_inp">
+                            <input type="password" class="full_inp" name="passwd2" />
+                        </div>
+                        <span class="form_tit">파일 첨부</span>
+                        <div class="form_inp">
+                            <input type="file" class="full_inp" name="upload" />
+                        </div>
+                    </div>
+                    <button type="submit" class="join_pop_form_submit">확인</button>
+                </div>
+           </div>
+            <button type="button" class="corp_join_pop_close"><img src="../../images/board/newsletter_pop_close.png" /></button>
+        </div>
+    </form>
+	<form name="ethical_form2" method="post">
+        <input type="hidden" name="view_chk" value="0" />
+        <div class="corp_join_pop corp_join_pop01" style="top: 64%;">
+           <div class="corp_join_pop_con">
+               <span class="tit">접수결과 확인</span>
+               <p class="desc_txt">- 접수 내용에 대한 결과를 확인하실 수 있습니다.</p>
+               <p class="desc_txt">- 접수번호가 기억나지 않으실 경우 이메일(clean@playd.com)로 문의주시기 바랍니다.</p>
+                <div class="join_pop_private_agreed">
+                    <div class="join_pop_form">
+                        <div id="step1">
+    						<span class="form_tit">접수번호 <span class="required">*</span></span>
+                            <div class="form_inp">
+    							<input type="text" class="full_inp" name="receipt_no" />
+                            </div>
+    						<span class="form_tit">비밀번호 <span class="required">*</span></span>
+                            <div class="form_inp">
+                                <input type="password" class="full_inp" name="chk_passwd" />
+                            </div>
+                        </div>
+                        <div id="step2" class="dn" style="margin-bottom: 60px;">
+    						<span class="form_tit">제보 내용 <span class="required">*</span></span>
+    						<div class="report_area" style="margin-bottom: 30px;"><p></p></div>
+    						<span class="form_tit">답변 내용 <span class="required">*</span></span>
+    						<div class="reply_area"><p></p></div>
+							
+							<div class="reply_form">
+								<div class="bbs_reply_wrap">
+									<div class="bbs_reply_info">
+										<ul>
+											<li class="name"><span>이름</span><input type="text" id="" name=""></li>
+										</ul>
+									</div>
+									<textarea name="" id="" placeholder="댓글을 입력하세요."></textarea>
+									<!-- <span class="byte"><span class="emph_orange">0</span> / 1000 byte</span> -->
+									<div class="btn_wrap">
+										<button type="button" class="join_pop_form_write" onclick="">글쓰기</button>
+									</div>	
+								</div>
+
+								<div class="all_reply_wrap">
+									<ul>
+										<li>
+											<div class="re_cont">답변에 대한 질문입니다.</div>
+											<div class="data">
+												<p class="write-date">신정주 / 2017-03-21</p>
+											</div>
+										</li>
+										<li>
+											<div class="re_re_cont">신정주님 답변입니다.</div>
+											<div class="data">
+												<p class="write-date">playD / 2017-03-21</p>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="board_paging_wrap">
+									<a class="active">1</a>
+									<a href="#">2</a>
+									<a href="#">3</a>
+									<a href="#">4</a>
+									<a href="#">5</a>
+									<a href="#" class="next">&gt;</a>
+									<a href="#" class="nnext">&gt;&gt;</a>
+								</div>
+							</div>
+
+                        </div>
+                    </div>					
+                    <button type="button" class="join_pop_form_submit" onclick="find_receipt()">확인</button>
+                </div>
+           </div>
+            <button type="button" class="corp_join_pop_close"><img src="../../images/board/newsletter_pop_close.png" /></button>
+        </div>
+    </form>
+    <div class="dim_bg"></div>
+</div>
+<?php include "../include/tail.html"; ?>

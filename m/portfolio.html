@@ -1,0 +1,237 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	$sql = "select * from  T_POST_CATEGORY  where C_USE='Y' order by C_SORT asc ";
+    $cates = sql_query($sql);
+
+?>
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
+?>
+<body class="portfolio">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
+?>
+	<!-- //header -->
+
+    <div class="sub-header"><h2 class="sub-header__title">플레이디에서 <span>성과로 이어지는 마케팅</span>을 경험하세요.</h2>
+			<div class="sub-tabs">
+				<div class="sub-tabs__wrap">
+					<div class="sub-tabs__box">
+						<p><a href="javascript:;" id="years_"  onclick="javascript:yearSelect('','');" class="sub-tabs__item sub-tabs__item--active">전체</a></p>
+
+						<?php						$nCnt=0;
+						for ($i=0; $row=sql_fetch_array($cates); $i++) {
+							$sql = " select count(*) as cnt from T_BOARD where B_CODE='playdportfolio' AND B_TYPE = '".$row['C_NAME']."' AND B_NOTI_YN ='Y'  ";
+							$row5 = sql_fetch($sql);
+							$total_count = $row5['cnt'];
+							if($total_count > 0 ){
+							?>
+						<p><a href="javascript:;" class="sub-tabs__item" id="years_<?=$nCnt?>"
+								onclick="javascript:yearSelect('<?=$row['C_NAME']?>','<?=$nCnt?>');">
+								<?=$row['C_NAME']?>
+							</a></p>
+						<?php						$nCnt++;
+						}}?>
+
+					</div>
+				</div>
+			</div>
+    </div>
+
+		<!-- <div class="sub-content">
+		</div> -->
+
+		<div class="pfList">
+			<div class="pfList__list">
+			</div>
+		</div>
+
+		<div class="button__wrap button__wrap--seemore">
+			<a href="javascript:itemMore();" class="button button__seemore">더 보기</a>
+		</div>
+		
+		<div class="sub-content__warning" style="display: none">
+			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
+		</div>
+
+	</div>
+
+
+<script>
+var g_page = 1;
+var g_listsize = 6;
+var g_type = '';
+var g_order = '';
+
+$(document).ready(function(){
+
+	ajaxItemList();
+
+});
+
+function ajaxItemList(){
+	var keyword = '';//$('#insightLetter-search').val();
+	if(isLoading) return;
+	isLoading = true;
+		$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_list.php',
+                    data: {
+                        'type':g_type,
+                        'order':g_order,
+                        'keyword':keyword,
+                        'page':g_page,
+                        'listsize':g_listsize,
+                        'code':'playdportfolio',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                    },
+                    success: function (json) {
+						            isLoading = false;
+                        if(json){
+                          if(g_listsize * g_page >= json['count']){
+                            $('.button__wrap--seemore').hide();
+                          } else {
+                            $('.button__wrap--seemore').show();
+                          }
+                          $('#totalCount').html(json['count']);
+                          fetchItemList(json['list'], json['count']);
+
+													if (json['count'] == 0) {
+														$('.pfList__list__warning').show();
+													} else {
+														$('.pfList__list__warning').hide();
+													}
+												}
+                    }
+        });
+}
+
+function fetchItemList(json, count){
+		var html = '';
+		for(var i=0;i<json.length;i++){
+			var image = '';
+			var alt = '';
+			var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
+			var title = json[i]['B_TITLE'].replace('<br/>','').replace('<br>','');
+			var datestr = '';
+
+      if(json[i]['B_SITE'] == 'MULTI'){
+        datestr = json[i]['B_EXT5'];
+      } else {
+        datestr = json[i]['B_EXT6'];
+        if(datestr){
+          datestr = datestr.substring(0, datestr.length-1);
+        }
+      }
+
+			<?phpif($is_mobile){?>
+			if(json[i]['B_FILE2']){
+				image = json[i]['B_FILE2'];
+			}
+			if(json[i]['B_EXT2']){
+				alt = json[i]['B_EXT2'];
+			}
+			<?php}else{?>
+			if(json[i]['B_FILE1']){
+				image = json[i]['B_FILE1'];
+			}
+			if(json[i]['B_EXT1']){
+				alt = json[i]['B_EXT1'];
+			}
+			<?php}?>
+
+			var lock_str = '';
+		if (json[i]['B_NOTI_YN'] == 'L') {
+			html += '<a href="javascript:;" class="pfList__item pfList__item--locked">';
+		} else {
+			html += '<a href="portfolio_detail.html?seq=' + json[i]['B_SEQ'] + '&page=' + g_page + '" class="pfList__item">';
+		}
+
+
+		html += '<div class="pfList__inner" style="background-image: url(' + image + ');" title="' + alt + '">';
+		html += '<div class="group">';
+		html += '<p class="pfList__client">' + nvl(json[i]['B_EXT3']) + '</p>';
+		html += '<p class="pfList__name">' + nvl(json[i]['B_TITLE']) + '</p>';
+		html += '</div>';
+		html += '</div>';
+		html += '</a>';
+
+
+
+		// html+='<div class="list-content"><a href="javascript:;">';
+		// html+='<div class="list-content__cover">';
+		// html+='<div class="list-content__image" style="background-image:url('+image+')" title="'+alt+'"></div>';
+		// html+='<div class="list-content__info">';
+		// html+='<p class="list-content__info--1"><span class="list-content__info--2">'+nvl(datestr)+'</span>'+nvl(json[i]['B_EXT4'])+'</p>';
+		// html+='<p class="list-content__info--3">'+nvl(json[i]['B_BRIEF'])+'</p>';
+		// html+='</div>';
+		// html+='</div>';
+		// html+='<div class="list-content__head">';
+		// html+='<span class="list-content__sort">'+nvl(json[i]['B_TYPE'])+'</span>';
+		// html+='<span class="list-content__meta">'+nvl(json[i]['B_EXT3'])+'</span>';
+		// html+='</div>';
+		// html+='<p class="list-content__title">'+nvl(json[i]['B_TITLE'])+'</p>';
+		// html+='</a></div>';
+
+	}
+
+	$('.pfList__list').append(html);
+
+}
+function itemMore(){
+	g_page = g_page + 1;
+	ajaxItemList();
+}
+function itemOrder(ord){
+	g_page = 1;
+	g_order = ord;
+	$('.pfList__list').empty();
+	ajaxItemList();
+}
+function yearSelect(year, cnt){
+	g_page = 1;
+	g_type = year;
+	$("button[id^='years_']").each(function (i, el) {
+		$(this).removeClass('sub-tabs__item--active');
+	});
+	$('#years_' + cnt).addClass('sub-tabs__item--active');
+
+	$('.pfList__list').empty();
+	ajaxItemList();
+}
+function keywordSelect(){
+	g_page = 1;
+	$('.pfList__list').empty();
+	ajaxItemList();
+}
+function enterSelect(){
+	if (window.event.keyCode == 13) {
+		g_page = 1;
+		$('.pfList__list').empty();
+		ajaxItemList();
+	}
+}
+
+
+</script>
+
+
+
+	<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.m.php');
+?>

@@ -1,0 +1,274 @@
+<?php include"../include/head.html"; ?>
+
+<script  type="text/javascript">
+	function setCookie( name, value, expiredays ) {
+		var todayDate = new Date();
+		todayDate.setDate( todayDate.getDate() + expiredays );
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	}
+//<![CDATA[
+	/*var cookiedata = document.cookie;
+	if ( cookiedata.indexOf("maindiv1=done") < 0 ){
+		//document.all['divpop1'].style.visibility = "visible";
+	} else {
+		//document.all['divpop1'].style.visibility = "hidden";
+		$("#divpop1").hide();
+	}*/
+//]]>
+
+function closeWin1() {
+    if ( document.notice_form1.chkbox.checked ){
+        setCookie( "maindiv1", "done" , 1 );
+    }
+    //document.all['divpop1'].style.visibility = "hidden";
+	$("#divpop1").hide();
+}
+
+	$(document).ready(function() {
+		var cookiedata = document.cookie;
+		if ( cookiedata.indexOf("maindiv1=done") < 0 ){
+			//document.all['divpop1'].style.visibility = "visible";
+			$("#divpop1").show();
+		} else {
+			//document.all['divpop1'].style.visibility = "hidden";
+			$("#divpop1").hide();
+		}
+
+	});
+
+    function email_chg(val) {
+        var email = $("input[name='email[]']");
+
+        if(val == "") {
+            email.eq(1).attr("readonly", false);
+            email.eq(1).val("");
+            email.eq(1).focus();
+        } else {
+            email.eq(1).val(val);
+            email.eq(1).attr("readonly", true);
+        }
+    }
+
+    function form_submit() {
+        if(form_check()) $("#ad_form").submit();
+    }
+
+    function form_check() {
+        var email = $("input[name='email[]']");
+
+        if(!$("#agreedChk").is(":checked")) {
+            alert("개인정보 수집 이용에 동의해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='name']").val()) == "") {
+            alert("이름을 입력해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='phone']").val() == "") {
+            alert("연락처를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim(email.eq(0).val()) == "" || $.trim(email.eq(1).val()) == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='homepage']").val()) == "") {
+            alert("홈페이지 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("textarea[name='content']").val()) == "") {
+            alert("문의 내용을 입력해주시기 바랍니다.");
+            return false;
+        } else if($("#spam_code").val() == "") {
+			alert("자동입력방지 코드를 입력하세요");
+			$("#spam_code").focus();
+			return false;
+		}
+
+		var echo_code1 = $("#echo_code1").html();
+		var echo_code2 = $("#echo_code2").html();
+		var spam_code = $("#spam_code").val();
+
+		if((echo_code1 != spam_code) && (echo_code2 != spam_code)) {
+			alert("자동입력방지 코드를 잘못 입력하였습니다.");
+			$("#spam_code").focus();
+			return false;
+		}
+
+        return true;
+    }
+
+	
+</script>
+
+        <div id="container" class="main_location">
+
+		<!-- 레이어팝업 -->
+
+		<!--div id="divpop1">
+			<div class="popImg">
+				<a href="https://www.playd.com/contents/company/news.html?type=view&page=1&no=31443&exps=N" target="_blank">
+					<img src="../../images/popup/popup_201216_1.png" alt=""/>
+				</a>
+			</div>
+			<div class="formWrap">
+				<form name="notice_form1">
+					<div class="checkWrap">
+						<input type="checkbox" name="chkbox" id="chkbox_id" value="checkbox" />
+						<span><label for="chkbox_id">오늘 하루 이 창을 열지 않습니다.</label></span>
+						<span><a href="javascript:closeWin1();" class="close_btn"><img src="../../images/popup/close_btn.png" alt="닫기" border="0" /></a>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div-->
+
+	<div id="divpop1">
+			<!--div class="popImg"><a href="https://attendee.gotowebinar.com/rt/8741271784695964171?source=PlayD" target="_blank" onclick="gaBtnEvt3();"><img src="../../images/popup/popup_20210125.jpg" alt=""/></a></div-->
+			<!--div class="popImg"><a href="http://sense.techhub.co.kr?la_gc=TR9161705801&la_src=cmpn&la_cnfg=496141" target="_blank" onclick="gaBtnEvt3();"><img src="../../images/popup/popup_20210219.png" alt=""/></a></div-->
+			<!--<div class="popImg"><a href="https://www.playd.com/contents/company/news.html?type=view&page=1&no=32059&exps=N" target="_blank" onclick="gaBtnEvt3();"><img src="../../images/popup/popup_210524.jpg" alt=""/></a></div>-->
+	<div class="popImg"><a href=" https://www.playd.com/contents/business/globalcommerce.html?utm_source=playd.com&utm_medium=pop-up" target="_blank" onclick="gaBtnEvt3();"><img src="../../images/popup/popup_210607.jpg" alt=""/></a></div>
+			
+			<div class="formWrap">
+				<form name="notice_form1">
+					<div class="checkWrap">
+						<input type="checkbox" name="chkbox" id="chkbox_id" value="checkbox" />
+						<span><label for="chkbox_id">오늘 하루 이 창을 열지 않습니다.</label></span>
+						<span><a href="javascript:closeWin1();" class="close_btn"><img src="../../images/popup/close_btn.png" alt="닫기" border="0" /></a>
+						</span>
+					</div>
+				</form>
+			</div>
+	</div>
+
+<script>
+function gaBtnEvt3(){	 
+	gtag('event', 'click pop-up', {
+	  'event_category': "referral",
+	  'event_label': "enroll in Amazon webinar",
+	  'non_interaction': true
+	});
+    var console = window.console || {log:function(){}};
+	console.log("ok");	
+
+}
+</script>    
+
+
+		<!-- 레이어팝업 끝//-->
+
+            <div id="visualSection">
+                <ul class="visual_list">
+                    <li class="cur">
+                        <div class="bg"><img src="../../images/main/visual_img01_1.jpg" alt=""></div>
+                        <div class="visual_txt">
+							<p class="txt1">No.1 데이터 마케팅 컴퍼니<br><span>PlayD</span></p>
+							<div class="visual_btn">
+								<!--20210201--a href="../file/PLAYD_Company_Brief.pdf" target="_blank" class="down_btn" onclick="javascript:_LA.VP('https://abc.co.kr/a.html');_LA.BCT('556');">회사소개서 다운로드</a-->
+								<!--210402--a href="../file/PLAYD_Company_Brief_2021(kr).pdf" target="_blank" class="down_btn" onclick="javascript:_LA.VP('https://abc.co.kr/a.html');_LA.BCT('556');">회사소개서 다운로드</a-->
+								<a href="../file/PLAYD_Company_Brief_2021(kr).pdf" target="_blank" class="down_btn" onclick="javascript:_LA.VP('https://abc.co.kr/a.html');_LA.BCT('556');">회사소개서 다운로드</a>
+								<!--210219수정---a href="https://www.playd.com/contents/business/newsletter.html" class="news_btn">뉴스레터 신청</a-->
+								<a href="https://sensen.techhub.co.kr/apply/diagnosis" class="news_btn">무료 광고 진단 </a>
+								<a href="https://www.playd.com/contents/business/globalcommerce.html" class="amazon_btn">아마존 글로벌 셀링</a>
+							</div>
+                        </div>
+                    </li>
+            </div> <!-- End visualSection -->
+
+            <div id="mSection01">
+                <div class="inner">
+                    <h2 class="mSection_tit"><img src="../../images/main/mSection_img.jpg" alt="PLAY D"></h2>
+                    <p class="txt1">데이터를 기반으로 마케팅을 제안하고 서비스하는 데이터 마케팅 전문 기업</p>
+                    <p class="txt2">PlayD는 높은 매체 전문성을 바탕으로 다양한 광고 매체(검색광고, 디스플레이 광고, 네트워크 광고, 소셜 광고, 모바일 광고 등)를 집행하며,<br> 사이트 컨설팅 및 크리에이티브 디자인까지 온라인 광고에 필요한 모든 서비스를 지원하는 종합 온라인 광고 대행사입니다.</p>
+                </div>
+            </div>
+<!-- 삭제금지 180122 -->
+
+<!-- solution-->		
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=554"></script>
+<!-- AD SERVICE-->
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=555"></script>
+<!-- introduce-->
+<script async src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=556"></script>
+
+
+<img src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=556" height="1" width="1">
+<img src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=555" height="1" width="1">
+<img src="https://teralog.techhub.co.kr/imp?la_gc=CF3B42084418941&la_src=ib&la_cnfg=554" height="1" width="1">
+<!-- END -->
+
+            <div id="mSection02">
+                <ul class="m_link_list">
+                    <li class="link_item01"><a href="../business/AD_service.html" onclick="_LA.BCT('555');"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico01_2.png" alt=""></span>
+                            <span class="txt">Ad service</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item02"><a href="../business/portfolio.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico02_2.png" alt=""></span>
+                            <span class="txt">Portfolio</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item03"><a href="../business/AD_solution.html" onclick="_LA.BCT('554');"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico03_2.png" alt=""></span>
+                            <span class="txt">Solution</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item04"><a href="../business/newsletter.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico04_2.png" alt=""></span>
+                            <span class="txt">Newsletter</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item05"><a href="../company/social.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico05_2.png" alt=""></span>
+                            <span class="txt">CSR</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item06"><a href="../business/AD_column.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico06_2.png" alt=""></span>
+                            <span class="txt">Column</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item07"><a href="../recruit/join.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico07_2.png" alt=""></span>
+                            <span class="txt">Recruit</span>
+                        </div>
+                    </a></li>
+                    <li class="link_item08"><a href="../company/news.html"><span class="overlay"></span>
+                        <div class="wrap">
+                            <span class="ico"><img src="../../images/main/m_link_item_ico08_2.png" alt=""></span>
+                            <span class="txt">News</span>
+                        </div>
+                    </a></li>
+                </ul>
+            </div>
+			<div id="mSection03">
+				<ul class="board_shortcut_link">
+					<li class="link_item01">
+						<a href="../business/portfolio.html">
+						<span class="overay"></span>
+							<div class="wrap">
+								<span class="txt">온라인 광고 시장의 변화에 발 빠르게 대응하여<br>다양한 성공 사례를 만들어 내고 있습니다.</span>
+								<span class="sc_btn">Portfolio</span>
+							</div>
+						</a>
+						<span class="overay"></span>
+					</li>
+					<li class="link_item02">
+						<a href="../business/AD_solution.html">
+						<span class="overay"></span>
+							<div class="wrap">
+								<span class="txt">최신 기술과 노하우를 기반으로 한 솔루션을 통해<br>광고 전략 수립과 실행을 돕고 운영 효율을 높여 드립니다.</span>
+								<span class="sc_btn">Solution</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+            
+        </div> <!-- End container -->
+
+
+<?php include"../include/tail.html"; ?>

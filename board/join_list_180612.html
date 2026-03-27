@@ -1,0 +1,273 @@
+<?php
+    $sub_sql = "";
+    $search = "";
+
+    if($type == "pool") $table_nm = "T_POOL";
+    else $table_nm = "T_SUPPORT";
+
+    if($s_obj) $sub_sql .= "AND S_OBJ = '$s_obj'";
+    if($s_job) $sub_sql .= " AND S_JOB = '$s_job'";
+
+    if($s_obj) $search .= "&s_obj=".$s_obj;
+    if($s_job) $search .= "&s_job=".$s_job;
+    if(!$page) $page = 1;
+
+    $num_sql = "SELECT COUNT(*) FROM $table_nm WHERE S_NOTI_YN = 'Y' $sub_sql";
+    $sql = "SELECT * FROM $table_nm WHERE S_NOTI_YN = 'Y' $sub_sql ORDER BY S_DATE DESC";
+    $result = $func->listNpage(&$total, &$paging, $sql, $num_sql, $dbconn, $search);
+?>
+<script>
+    $(document).ready(function() {
+        var today = new Date();
+        var year = today.getFullYear();
+
+        for(var i=year; i>=1950; i--) {
+            $("select[name='birth[]']").eq(0).append('<option value="' + i + '">' + i + '년</option>');
+        }
+
+        for(var i=1; i<=12; i++) {
+            if(i < 10) var month = "0" + i;
+            else var month = i;
+
+            $("select[name='birth[]']").eq(1).append('<option value="' + month + '">' + i + '월</option>');
+        }
+
+        for(var i=1; i<=31; i++) {
+            if(i < 10) var day = "0" + i;
+            else var day = i;
+
+            $("select[name='birth[]']").eq(2).append('<option value="' + day + '">' + i + '일</option>');
+        }
+
+		$(document).on("click", function(e){
+			var con_id = $(".corp_join_pop");
+			if (con_id.css("display") != "none"){
+				if (con_id.has(e.target).length==0) {
+					$(".dim_bg").hide();
+					$(".corp_join_pop").hide();
+					return false;
+				}
+			}
+		});
+    });
+
+    function form_check() {
+        var year = $("select[name='birth[]']:eq(0) option:selected").val();
+        var month = $("select[name='birth[]']:eq(1) option:selected").val();
+        var day = $("select[name='birth[]']:eq(2) option:selected").val();
+
+        if(!$("#agreedChk").is(":checked")) {
+            alert("개인정보 수집 이용에 동의해주시기 바랍니다.");
+            return false;
+        } else if(!$("input[name='people']").is(":checked")) {
+            alert("내/외국인 구분을 선택해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='name']").val()) == "") {
+            alert("이름을 입력해주시기 바랍니다.");
+            return false;
+        } else if(year == "" || month == "" || day == "") {
+            alert("생년월일을 선택해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='email[]']:eq(0)").val()) == "" || $.trim($("input[name='email[]']:eq(1)").val()) == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='resume']").val() == "") {
+            alert("이력서를 첨부해주시기 바랍니다.");
+            return false;
+        }
+
+        return true;
+    }
+
+    function day_chg() {
+        var year = $("select[name='birth[]']:eq(0) option:selected").val();
+        var month = $("select[name='birth[]']:eq(1) option:selected").val();
+        var days = new Date(year, month, 0).getDate();
+
+        $("select[name='birth[]']").eq(2).html('<option value="">일</option>');
+
+        for(var i=1; i<=days; i++) {
+            if(i < 10) var day = "0" + i;
+            else var day = i;
+
+            $("select[name='birth[]']").eq(2).append('<option value="' + day + '">' + i + '일</option>');
+        }
+    }
+
+    function seq_inp(no) {
+        $("input[name='seq']").val(no);
+    }
+</script>
+<div id="board">
+    <div class="board_join_top_bar">
+        <div class="inner">
+            <div class="down_doc">
+				<?php if($type == "pool") { ?>
+	                <a href="download.php">입사지원서 다운받기</a>
+				<?php } ?>
+                <?php if($type != "pool") { ?>
+	                <a href="<?php echo $PHP_SELF; ?>?type=pool">인재풀에서 등록하기</a>
+                <?php } ?>
+            </div>
+            <form name="search_form" method="get" action="<?php echo $PHP_SELF; ?>">
+                <input type="hidden" name="type" value="<?php echo $type; ?>" />
+                <div class="bd_select_cate">
+                    <select name="s_obj" class="select01" onchange="document.search_form.submit()">
+                        <option value="" <?php echo !$s_obj ? "selected" : ""; ?>>대상 선택</option>
+                        <option value="무관" <?php echo $s_obj == "무관" ? "selected" : ""; ?>>무관</option>
+                        <option value="신입" <?php echo $s_obj == "신입" ? "selected" : ""; ?>>신입</option>
+                        <option value="경력" <?php echo $s_obj == "경력" ? "selected" : ""; ?>>경력</option>
+                    </select>
+                    <select name="s_job" class="select02" onchange="document.search_form.submit()">
+					<?php 
+						if($type != "pool") {
+					?>
+						<option value="" <?php echo !$s_job ? "selected" : ""; ?>>직군 선택</option>
+                        <option value="전체" <?php echo $s_job == "전체" ? "selected" : ""; ?>>전체</option>
+                        <option value="영업/마케팅" <?php echo $s_job == "영업/마케팅" ? "selected" : ""; ?>>영업/마케팅</option>
+                        <option value="미디어플래너" <?php echo $s_job == "미디어플래너" ? "selected" : ""; ?>>미디어플래너</option>
+                        <option value="솔루션" <?php echo $s_job == "솔루션" ? "selected" : ""; ?>>솔루션</option>
+                        <option value="영업지원" <?php echo $s_job == "영업지원" ? "selected" : ""; ?>>영업지원</option>
+                        <option value="경영지원" <?php echo $s_job == "경영지원" ? "selected" : ""; ?>>경영지원</option>
+
+					<?php
+						} else {
+					?>
+						<option value="" <?php echo !$s_job ? "selected" : ""; ?>>직군 선택</option>
+                        <option value="전체" <?php echo $s_job == "전체" ? "selected" : ""; ?>>전체</option>
+                        <option value="시스템운영" <?php echo $s_job == "시스템운영" ? "selected" : ""; ?>>시스템운영</option>
+                        <option value="마케팅,컨설팅" <?php echo $s_job == "마케팅,컨설팅" ? "selected" : ""; ?>>마케팅,컨설팅</option>
+                        <option value="개발" <?php echo $s_job == "개발" ? "selected" : ""; ?>>개발</option>
+                        <option value="경영지원" <?php echo $s_job == "경영지원" ? "selected" : ""; ?>>경영지원</option>
+                        <option value="고객상담" <?php echo $s_job == "고객상담" ? "selected" : ""; ?>>고객상담</option>
+
+					<?php
+						}
+					?>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="board_join_list_wrap">
+        <ul class="board_join_list">
+            <?php
+                $num = $total[num];
+
+                while($arr = mysql_fetch_array($result)) {
+            ?>
+            <li>
+                <div class="num"><span><?php echo $num--; ?></span></div>
+                <div class="post_info">
+                    <a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $arr[S_SEQ].$search; ?>" class="tit"><?php echo $arr[S_FIELD]; ?></a>
+                    <span class="cate"><?php echo $arr[S_OBJ]." / ".$arr[S_JOB]." / ".date("Y-m-d", strtotime($arr[S_ST_DATE]))." ~ ".date("Y-m-d", strtotime($arr[S_ET_DATE])); ?></span>
+                </div>
+				<?php if($type!="pool") { ?>
+
+					<?php if((int)$arr[S_SEQ].$search == 350) { ?>					
+						<?php if(date("Y-m-d", strtotime($arr[S_ET_DATE])) > date("Y-m-d")) { ?>
+							<a href="https://recruit.kt.com/apply/notifyView?seq=1378" class="jiwon" target="_blank">지원하기</a>
+						<?php } else { ?>
+							<div class="app_btn finish_btn">마감</div>
+						<?php } ?>
+					<?php } else if((int)$arr[S_SEQ].$search == 351) { ?>					
+						<?php if(date("Y-m-d", strtotime($arr[S_ET_DATE])) > date("Y-m-d")) { ?>
+							<a href="https://recruit.kt.com/apply/notifyView?seq=1379" class="jiwon" target="_blank">지원하기</a>
+						<?php } else { ?>
+							<div class="app_btn finish_btn">마감</div>
+						<?php } ?>
+					<?php } else if((int)$arr[S_SEQ].$search >= 352) { ?>					
+						<?php if(date("Y-m-d", strtotime($arr[S_ET_DATE])) > date("Y-m-d")) { ?>
+							<a href="https://recruit.kt.com/apply/notifyList" class="jiwon" target="_blank">지원하기</a>
+						<?php } else { ?>
+							<div class="app_btn finish_btn">마감</div>
+						<?php } ?>
+					<?php } else { ?>
+						<?php if(date("Y-m-d", strtotime($arr[S_ET_DATE])) > date("Y-m-d")) { ?>
+							<a href="#" class="app_btn" onclick="seq_inp(<?php echo $arr[S_SEQ]; ?>)">지원하기</a>
+						<?php } else { ?>
+							<div class="app_btn finish_btn">마감</div>
+						<?php } ?>			
+					<?php } ?>
+				<?php } else { ?>
+					<?php if(date("Y-m-d", strtotime($arr[S_ET_DATE])) > date("Y-m-d")) { ?>
+		                <a href="#" class="app_btn2" onclick="seq_inp(<?php echo $arr[S_SEQ]; ?>)">지원하기</a>
+					<?php } else { ?>
+						<div class="app_btn finish_btn">마감</div>
+					<?php } ?>
+				<?php } ?>
+            </li>
+            <?php } ?>
+            <?php if($total[num] == 0) { ?>
+                <li class="no_data">현재 진행 중인 채용 공고가 없습니다.</li>
+            <?php } ?>
+        </ul>
+    </div>
+    <?php echo $paging; ?>
+    <?php include "../../board/list_link_common.html"; ?>
+    <form method="post" action="join_Prc.php" enctype="multipart/form-data" onsubmit="return form_check()">
+		<input type="hidden" name="seq" value="" />
+		<input type="hidden" name="type" value="<?=$type?>" />
+        <div id="corp_join_pop_id" class="corp_join_pop">
+           <div class="corp_join_pop_con">
+               <span class="tit"><?=$type == "pool"?'인재풀등록':'입사지원하기'?></span>
+                <p class="desc_txt">입사지원을 하시려면 개인정보수집 및 이용에 동의를 하셔야 합니다.</p>
+                <div class="join_pop_private_agreed">
+                    <div class="join_pop_term_txt">
+                        <b>수집하는 개인정보의 항목</b>
+
+    성명, 주민등록번호, 외국인등록번호(외국인에 한함), 입사 지원 수정용 비밀번호, 이메일 주소, 지원 이력, 전화번호(유/무선), 생년월일, 사진, 주소, 국적, 거주국, 출신학교, 학력, 전공, 경력사항, 자격사항, 수상내역, 가족사항, 결혼여부, 병역 사항(미필의 경우 미필 사유), 보훈사항(보훈 대상의 경우 보훈번호 포함), 장애사항
+
+    <b>개인정보 수집 및 이용목적</b>
+
+    입사전형 진행, 입사 지원서 수정, 합격 여부 확인, 입사 지원자와의 원활한 의사소통, 채용 자격요건(학력,경력 등의 이력)확인
+
+    <b>개인정보 보유 및 이용기간</b>
+
+    입사지원자의 개인정보는 회사의 인력풀에 저장되어, 채용이 필요한 경우 해당 인력풀에서 상시채용을 위하여 이용됩니다. 입사지원자가 개인정보의 삭제를 원하는 경우 지체 없이 해당 정보를 삭제합니다
+                    </div>
+                    <div class="join_pop_agreed_chk">
+                        <input type="checkbox" id="agreedChk" />
+                        <label for="agreedChk">개인정보수집 및 이용에 동의합니다.</label>
+                    </div>
+                    <div class="join_pop_form">
+                        <span class="form_tit">내/외국인 구분</span>
+                        <div class="form_inp w1">
+                            <input type="radio" id="people1" name="people" value="내국인" /><label for="people1">내국인</label>
+                            <input type="radio" id="people2" name="people" value="외국인/재외교포" /><label for="people2">외국인/재외교포</label>
+                        </div>
+                        <span class="form_tit">이름</span>
+                        <div class="form_inp">
+                            <input type="text" class="full_inp" name="name" />
+                        </div>
+                        <span class="form_tit">생년월일</span>
+                        <div class="form_inp">
+                            <select name="birth[]" class="col3_select" onchange="day_chg()">
+                                <option value="">년도</option>
+                            </select>
+                            <select name="birth[]" class="col3_select" onchange="day_chg()">
+                                <option value="">월</option>
+                            </select>
+                            <select name="birth[]" class="col3_select">
+                                <option value="">일</option>
+                            </select>
+                        </div>
+                        <span class="form_tit">이메일 주소</span>
+                        <div class="form_inp w_email">
+                            <input type="text" class="notkor" name="email[]" />
+                            <span class="cut">@</span>
+                            <input type="text" class="notkor" name="email[]" />
+                        </div>
+                        <span class="form_tit">이력서 첨부</span>
+                        <div class="form_inp">
+                            <input type="file" class="full_inp" name="resume" />
+                        </div>
+                    </div>
+                    <button type="submit" class="join_pop_form_submit">확인</button>
+                </div>
+           </div>
+            <button type="button" class="corp_join_pop_close"><img src="../../images/board/newsletter_pop_close.png" alt=""></button>
+        </div>
+    </form>
+    <div class="dim_bg"></div>
+</div>

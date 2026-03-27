@@ -1,0 +1,208 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	// 1건 가져오기 
+	$b_seq = nvl($_GET['seq'], 2);
+	if(!$b_seq){
+		alert('잘못된 방식으로 접근하였습니다.','/');
+		exit;
+	}
+	$itemOne = select_board_one('nsmnw', $b_seq);
+
+	// HITS 업데이트 
+	update_board_hits($b_seq);
+	
+	// 관련 뉴스레터
+	$otherList = select_board_list('nsmnw', 3, $b_seq, 'other');
+?>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+<body class="article nav03"> 
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+	<!-- //header -->
+
+	<div id="container" class="container insight">
+		<div id="LetterDetil">
+			<div class="article-header">
+				<div class="sub-header">
+					<h2 class="sub-header__title"><?=$itemOne['B_TITLE']?></h2>
+					<!-- <h2 class="sub-header__title"><span class="sub-header__label">Vol. <span class="head_numbering"></span></span><?=$itemOne['B_TITLE']?></h2> -->
+					<!-- <h2 class="sub-header__title"><span class="sub-header__label">Vol. <?=$itemOne['B_SEQ']?></span><?=$itemOne['B_TITLE']?></h2> -->
+				</div>
+				<div class="article__head">
+					<div class="article__meta article__meta--view">
+						<span><?=$itemOne['B_YEAR']?>.<?=$itemOne['B_MONTH']?></span>
+					</div>
+					<ul class="sns-share">
+						<li><button type="button" class="button button__sns-share button__icon-kakao" onclick="javascript:kakaoShareLink();"><span class="a11y">카카오톡 공유하기</span></button></li>
+						<li><button type="button" class="button button__sns-share button__icon-facebook" onclick="javascript:facebookShare();"><span class="a11y">페이스북 공유하기</span></button></li>
+						<li><button type="button" class="button button__sns-share button__icon-twitter" onclick="javascript:twitterShare();"><span class="a11y">트위터 공유하기</span></button></li>
+						<li><button type="button" class="button button__sns-share button__icon-linkcopy" onclick="javascript:linkShare();"><span class="a11y">기사 링크 복사하기</span></button></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="article-container">
+				<div class="article-content">
+					<?=$itemOne['B_CONT']?>
+				</div>
+			</div>
+		</div>
+
+		<div class="sub-content recommended-contents">
+			<div class="sub-content__head">
+				<p class="sub-content__title">관련 뉴스레터</p>
+				<div class="list-select">목록<a href="letter.html" type="button"><i></i></a></div>
+			</div>
+			<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+				
+				$image = '';
+				$alt = '';
+				if($is_mobile){
+					if($row['B_FILE2']){
+						$image =$row['B_FILE2'];
+					}
+					if($row['B_EXT2']){
+						$alt = $row['B_EXT2'];
+					}
+				} else {
+					if($row['B_FILE1']){
+						$image = $row['B_FILE1'];
+					}
+					if($row['B_EXT1']){
+						$alt = $row['B_EXT1'];
+					}
+				}
+
+				?>
+			<div class="list-content"><a href="letter-detail.html?seq=<?=$row['B_SEQ']?>">
+				<div class="list-content__image" style="background-image:url('<?=$image?>')" title='<?=$alt?>'></div>
+				<!-- <div class="list-content__head">
+					<span class="numbering">Vol. <?=$row['B_SEQ']?></span>
+				</div> -->
+				<p class="list-content__title"><?=$row['B_TITLE']?></p>
+				<span class="list-content__meta"><?=$row['B_YEAR']?>.<?=$row['B_MONTH']?></span>
+			</a></div>
+			<?php}?>
+<!-- 			
+			<div class="list-content"><a href="#">
+				<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight3.png)"></div>
+				<div class="list-content__head">
+					<span class="numbering">Vol. 110</span>
+				</div>
+				<p class="list-content__title">플랫폼비즈니스팀 인터뷰</p>
+				<span class="list-content__meta">2022.04</span>
+			</a></div>
+			<div class="list-content"><a href="#">
+				<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight4.png)"></div>
+				<div class="list-content__head">
+					<span class="numbering">Vol. 110</span>
+				</div>
+				<p class="list-content__title">플랫폼비즈니스팀 인터뷰</p>
+				<span class="list-content__meta">2022.04</span>
+			</a></div> -->
+		</div>
+	</div>
+</div>
+
+
+
+<div class="form-submit"></div>
+<script>
+$(function () {
+	const vol = new URL(location.href).searchParams.get('vol');
+	$('.head_numbering').text(vol);
+});
+function letterWriteProc(){
+	
+	if($('#user-name').val()=='') {
+		alert('이름을 입력해 주세요.');
+		return;
+	}
+	if($('#user-profession').val()==''){
+		alert('직업을 입력해 주세요.');
+		return;
+	}
+	if($('#user-mail').val()==''){
+		alert('이메일을 입력해 주세요.');
+		return;
+	}
+	if(!validateEmail($('#user-mail').val())){
+		alert('이메일을 다시 입력해 주세요.');
+		return;
+	}
+	if($('#user-position').val()==''){
+		alert('직급을 입력해 주세요.');
+		return;
+	}
+	if($('#user-company').val()==''){
+		alert('회사명(소속)을 입력해 주세요.');
+		return;
+	}
+	if($('#user-team').val()==''){
+		alert('부서(팀명)을 입력해 주세요.');
+		return;
+	}
+	if(!$("input:checkbox[id='sub-checkbox--personal']").is(":checked")){
+		alert('개인정보 수집 및 이용에 동의해주세요.');
+		return;
+	}
+
+	if(isLoading) return;
+	isLoading = true;
+	
+	$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_proc.php',
+                    data: {
+                        'user_name':$('#user-name').val(),
+						'user_profession':$('#user-profession').val(),
+						'user_mail':$('#user-mail').val(),
+						'user_position':$('#user-position').val(),
+						'user_company':$('#user-company').val(),
+						'user_team':$('#user-team').val(),
+						'cmd':'letter_write',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                    },
+                    success: function (json) {
+						isLoading = false;
+						if(json['success']){
+							layerOpen('letterFormSubmitted');
+							$('#user-name').val('');
+							$('#user-profession').val('');
+							$('#user-mail').val('');
+							$('#user-position').val('');
+							$('#user-company').val('');
+							$('#user-team').val('');
+						}
+                    }
+    });
+}
+
+function kakaoShareLink(){
+
+	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
+	var desc = '<?=nvldesc($itemOne['B_TITLE'])?>';
+
+	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share2.jpg';
+	kakaoShare(title, desc, imageUrl);
+}
+
+</script>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

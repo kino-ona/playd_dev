@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AD SCREEN</title>
+	<link rel="stylesheet" href="./css/main.css"/>
+	<link rel="stylesheet" href="./css/reset.css"/>
+	<script src="./js/jquery-2.1.3.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+</head>
+
+    <body>
+
+		<nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-dark" style="display: inline;">
+            <div class="gnb">
+				<div class="top_logo">
+					<a class="navbar-brand anchor d-flex align-items-center" href="#" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;function&#39;, &#39;click.logo&#39;, &#39;tradingworks&#39;);">
+					   <img src="./img/ad_logo.png" alt="애드스크린">
+					</a>
+				</div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="true">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse hide top_menu" id="navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cont_About">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cont_Serv">Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cont_Value01">Value</a>
+                        </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="#cont_client02">Client</a>
+                        </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="#cont_contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-start" href="#">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+		<main id="main">
+			<div id="myCarousel" class="carousel slide adscreen_pc" data-ride="carousel"> 
+				<div class="carousel-inner">
+					<div class="item active">
+					<video id="video" playsinline="" preload="auto" autoplay="autoplay" loop="loop" muted="muted" volume="0" style="width:100%;" data-src="" alt="First slide">
+						<source src="./img/adscreen_pc.mp4"/>
+					</video>
+						<div class="container">
+							<div class="carousel-caption">
+								<p class="slide_tit01">AdScreen</p>
+								<p class="slide_tit02">Performance App Marketing Platform</p>
+								<p class="slide_sub">당신의 앱 퍼포먼스 마케팅 파트너</p>
+								<a href="#"><img class="btn01" src="./img/btn_learn.png" alt="Learn more"></a>
+							</div>
+						</div>
+					</div>
+					<div class="item"> 
+						<img src="./img/Main_ad_02.jpg" style="width:100%" data-src="" alt="Second slide">
+						<div class="container">
+							<div class="carousel-caption">
+								<p class="slide_tit01">Non-Incent CPI Platform<br/>Specialized in Fraud Prevention</p>
+								<p class="slide_sub">데이터기반 광고사기 방지 및 실시간 성과분석 비보상형 플랫폼</p>
+								<a href="#"><img class="btn01" src="./img/btn_learn.png" alt="Learn more"></a>
+							</div>
+						</div>
+					</div>
+				</div><!-- carousel-inner -->
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev"><img class="glyphicon-chevron-left" src="./img/btn_cont_slide_prev.png" alt="이전 버튼"/></a> 
+				<a class="right carousel-control" href="#myCarousel" data-slide="next"><img class="glyphicon-chevron-right" src="./img/btn_cont_slide_next.png" alt="다음 버튼"/></a> 
+			</div><!-- myCarousel -->
+		
+			<div id="myCarousel_t" class="carousel slide adscreen_t" data-ride="carousel"> 
+				<div class="carousel-inner ">
+					<div class="item active">
+					<video id="video" playsinline="" preload="auto" autoplay="autoplay" loop="loop" muted="muted" volume="0" style="width:100%;" data-src="" alt="First slide">
+						<source src="./img/adscreen_t.mp4"/>
+					</video>
+						<div class="container">
+							<div class="carousel-caption">
+								<p class="slide_tit01">AdScreen</p>
+								<p class="slide_tit02">Performance App Marketing Platform</p>
+								<p class="slide_sub">당신의 앱 퍼포먼스 마케팅 파트너</p>
+								<a href="#"><img class="btn01" src="./img/btn_learn.png" alt="Learn more"></a>
+							</div>
+						</div>
+					</div>
+					<div class="item"> 
+						<img src="./img/Main_ad_02_t.jpg" style="width:100%" data-src="" alt="Second slide">
+						<div class="container">
+							<div class="carousel-caption">
+								<p class="slide_tit01">Non-Incent CPI Platform<br/>Specialized<br/>in Fraud Prevention</p>
+								<p class="slide_sub">데이터기반 광고사기 방지 및 실시간 성과분석 비보상형 플랫폼</p>
+								<a href="#"><img class="btn01" src="./img/btn_learn.png" alt="Learn more"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#myCarousel_t" data-slide="prev"><img class="glyphicon-chevron-left" src="./img/btn_cont_slide_prev.png" alt="이전 버튼"/></a> 
+				<a class="right carousel-control" href="#myCarousel_t" data-slide="next"><img class="glyphicon-chevron-right" src="./img/btn_cont_slide_next.png" alt="다음 버튼"/></a> 
+			</div>
+		</main>
+
+			<div id="myCarousel_m" class="carousel slide adscreen_m" data-ride="carousel"> 
+				<div class="carousel-inner ">
+					<div class="item active">
+					<video id="video" playsinline="" preload="auto" autoplay="autoplay" loop="loop" muted="muted" volume="0" style="width:100%;" data-src="" alt="First slide">
+						<source src="./img/adscreen_m.mp4"/>
+					</video>
+						<div class="container">
+							<div class="carousel-caption">
+								<p class="slide_tit01">AdScreen</p>
+								<p class="slide_tit02">Performance App<br/> Marketing Platform</p>
+								<p class="slide_sub">당신의 앱 퍼포먼스<br/> 마케팅 파트너</p>
+								<a href="#"><img class="btn01" src="./img/btn_learn.png" alt="Learn more"></a>
+							</div>
+						</div>
+					</div>
+					<div class="item"> 
+						<img src="./img/Main_ad_02_m.jpg" style="width:100%" data-src="" alt="Second slide">
+						<div class="container">
+							<div class="carousel-caption">
+								<p class="slide_tit01">Non-Incent CPI<br/> Platform<br/>Specialized in Fraud<br/> Prevention</p>
+								<p class="slide_sub">데이터기반 광고사기 방지 및<br/> 실시간 성과분석 비보상형 플랫폼</p>
+								<a href="#"><img class="btn01" src="./img/btn_learn.png" alt="Learn more"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#myCarousel_m" data-slide="prev"><img class="glyphicon-chevron-left" src="./img/btn_cont_slide_prev.png" alt="이전 버튼"/></a> 
+				<a class="right carousel-control" href="#myCarousel_m" data-slide="next"><img class="glyphicon-chevron-right" src="./img/btn_cont_slide_next.png" alt="다음 버튼"/></a> 
+			</div>
+		</main>
+
+		<section id="cont_About" style="visibility: visible;  -webkit-transform: translateY(0) scale(1); opacity: 1;transform: translateY(0) scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s; transition: transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s;">
+            <div class="container">
+                <div>
+					<img class="cont_tit_img" src="./img/cont_tit_01.png" alt="About us"/>
+                </div>
+				<div class="row justify-content-center text-center">
+                    <div class="col section-title-sub">
+                        애드스크린은 국내외 매체의 어필레이트 트래픽을 선별 & 통합하여<br/>
+						모바일 광고주의 니즈에 적합한 앱 퍼포먼스의 성과를 제공합니다.
+                    </div>
+                </div>
+				<div class="justify-content-center">
+					<img class="cont_01_img01_p" src="./img/cont_01_img01.png" alt="About AdScreen"/>
+					<img class="cont_01_img01_t" src="./img/cont_01_img01_t.png" alt="About AdScreen"/>
+					<img class="cont_01_img01_m" src="./img/cont_01_img01_m.png" alt="About AdScreen"/>
+                </div>
+				<div class="row justify-content-center cont_About_btn">
+					<ul>
+						<li class="visual_btn01"><a href="#">AdScreen Media Kit<br/><span class="visual_btn01_small">(Korean Version)</span></a></li>
+						<li class="visual_btn01"><a href="#">AdScreen Media Kit<br/><span class="visual_btn01_small">(English Version)</span></a></li>
+					</ul>
+				</div>
+            </div>
+		</section>
+
+		<section id="cont_Serv" style="visibility: visible;  -webkit-transform: translateY(0) scale(1); opacity: 1;transform: translateY(0) scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s; transition: transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0.1s;">
+            <div class="container">
+                <div>
+					<img class="cont_tit_img" src="./img/cont_tit_02.png" alt="service"/>
+                </div>
+				<div class="row justify-content-center text-center">
+                    <div class="col section-title-sub">
+                        캠페인 초기 안정화부터 중장기의 정체/피로도 개선을 위한 트래픽 최적화
+                    </div>
+                </div>
+				<div class="justify-content-center">
+					<img class="cont_02_img01_p" src="./img/cont_02_img01.png" alt="sevice"/>
+					<img class="cont_02_img01_t" src="./img/cont_02_img01_t.png" alt="service"/>
+					<img class="cont_02_img01_m" src="./img/cont_02_img01_m.png" alt="service"/>
+                </div>
+            </div>
+		</section>
+
+		<section id="cont_Serv01">
+            <div class="container">
+                <div>
+					<img class="cont_tit_img" src="./img/cont_tit_03.png" alt="About us"/>
+                </div>
+				<div class="row justify-content-center text-center">
+                    <div class="col section-title-sub">
+                        쉽게 접할 수 없었던 국내외 트래픽, 타겟마켓, 업종을 포괄하는<br/>앱 마케팅 퍼포먼스의 경험 제공
+                    </div>
+                </div>
+				<div class="justify-content-center">
+					<img class="cont_03_img01_p" src="./img/cont_03_img01.png" alt="service"/>
+					<img class="cont_03_img01_t" src="./img/cont_03_img01_t.png" alt="service"/>
+					<img class="cont_03_img01_m" src="./img/cont_03_img01_m.png" alt="service"/>
+                </div>
+            </div>
+		</section>
+
+		<section id="cont_Serv02">
+            <div class="container">
+                <div>
+					<img class="cont_tit_img" src="./img/cont_tit_04.png" alt="About us"/>
+                </div>
+				<div class="row justify-content-center text-center">
+                    <div class="col section-title-sub">
+                        클릭부터 전환, 인앱액션까지 연결되는 유저(디바이스)의 성과분석을 통해<br/>앱인스톨 전/후의 광고사기 패턴 추적 및 대응
+                    </div>
+                </div>
+				<div class="justify-content-center">
+					<img class="cont_04_img01_p" src="./img/cont_04_img01.png" alt="About AdScreen"/>
+					<img class="cont_04_img01_t" src="./img/cont_04_img01_t.png" alt="About AdScreen"/>
+					<img class="cont_04_img01_m" src="./img/cont_04_img01_m.png" alt="About AdScreen"/>
+                </div>
+				<div class="row justify-content-center cont_value02">
+					<ul>
+						<li class="dash_left">
+							<p class="value02_text01">앱인스톨전 게재신청</p>
+							<p class="value02_text02">클릭.인스톨 사이의 소요시간<br/>& 기기정보 & 국가.언어 정보 분석</p>
+							<p class="value02_text03">ex : 지나치게 낮은 CVR(Click farming),<br/>앱인스톨 이후 발생하는 클릭유입(Click injection)</p>
+						</li>
+						<li class="dash_right">
+							<p class="value02_text01">앱인스톨후</p>
+							<p class="value02_text02">인스톨의 시간대별 유입 패턴 및<br/>인앱이벤트 효율 분석</p>
+							<p class="value02_text03">ex : 전일대비 급락하는 리텐션 패턴,<br/> 안정적인 리텐션율 대비<br/>불안정적인 인앱 이벤트 패턴</p>
+						</li>
+					</ul>
+				</div>
+            </div>
+		</section>
+
+		<section id="cont_Value01">
+            <div class="container">
+				<div class="client_lay">
+					<p class="client_text01">Satisfying Client and<br/>Traffic Needs</p>
+					<p class="client_text02">앱 광고사기를 지양하는 광고주의 니즈와 <br/>건강한 트래픽을 제공하는 미디어의 니즈가 일치하는 밸런스 전략 제공</p>
+				</div>
+				<div class="client_lay">
+					<ul>
+						<li class="client_text03">
+							<span class="client_text03_tit">for Client</span><br/>유저의 Click에서 In-App Action까지<br/>관철하는 최적화 로직으로 광고비의<br/><strong>누수 방지 및 ROAS개선</strong><br/><br/>광고주의 트래커에 연동된 다양한 성과<br/>트래픽의 통합구매 및 통합관리까지<br/><strong>One–Stop Service 제공</strong><br/><br/>
+							캠페인 집행기간의 장기화 및<br/>목표 시장내 신규다운로드 유저의<br/>감소에 대응하는 지속적인 <strong>트래픽 피로도</strong><br/><strong>관리 및 성과 지속안 제공</strong><br/><br/>
+						</li>
+						<li class="client_text03">
+							<span class="client_text03_tit">for Traffic</span><br/>퍼포먼스 캠페인의 안정적인 수급 및<br/>미디어 별 상세지면 단위에서의 성과관리로<br/><strong>중/장기적인 트래픽 소진의 기회 마련</strong><br/><br/>점점 고도화되는 효율목표 대비<br/>희소성이 높아지는 성과 트래픽 간의<br/><strong>KPI 밸런스 전략 제공</strong><br/><br/>
+							포스트백 데이터의 Server-to-Server<br/>공유로 끝나는 것이 아닌 최적화 적용이<br/>즉시 가능한 <strong>트래픽 분석 리포트 제공</strong><br/><br/>
+						</li>
+					</ul>
+				</div>           
+            </div>
+		</section>
+
+		<section id="cont_client02">
+            <div class="container">
+                <div class="row justify-content-center">
+					<span class="cont_tit_green">
+					Client
+					</div>
+                </div>
+				<div class="row justify-content-center text-center">
+                    <div class="col section-title-sub">
+                        국내/외 주요 빅게임 퍼블리셔와<br/>최소 3개월~최대 2년간 장기 지속한 다수의 성공캠페인 경험이 있습니다. 
+                    </div>
+                </div>
+				<div class="row mg_lr7">
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_01.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_02.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_04.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_05.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_06.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_07.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_08.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_09.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_10.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_11.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_12.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_13.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_14.png" alt="로고">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_15.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_16.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_17.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_18.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_19.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_20.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_21.png" alt="로고">
+                        </div>
+                    </div>
+					<div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_22.png" alt="로고">
+                        </div>
+                    </div>
+					<div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_23.png" alt="로고">
+                        </div>
+                    </div>
+					<div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/client_logo_24.png" alt="로고">
+                        </div>
+                    </div>
+                </div>
+            </div> 
+		</section>
+
+		<section id="cont_client03">
+            <div class="container">
+                <div class="row justify-content-center">
+					<span class="cont_tit_green">
+					Agency Partner
+					</div>
+                </div>
+				<div class="mg_lr7 row client03_agency">
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_01.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_02.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_03.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_04.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_05.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_06.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_07.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_08.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/agency_logo_09.png" alt="로고">
+                        </div>
+                    </div>
+                </div>
+            </div> 
+		</section>
+
+		<section id="cont_client04">
+            <div class="container">
+                <div class="row justify-content-center">
+					<span class="cont_tit_green">
+					Tracker
+					</div>
+                </div>
+				<div class="mg_lr7 row client03_agency">
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_01.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_02.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_03.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_04.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_05.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_06.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_07.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_08.png" alt="로고">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_09.png" alt="로고">
+                        </div>
+                    </div>
+					<div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_10.png" alt="로고">
+                        </div>
+                    </div>
+					<div class="col-6 col-md-3 col-lg-2">
+                        <div class="box">
+                            <img class="img-fluid mx-auto" src="./img/tracker_logo_11.png" alt="로고">
+                        </div>
+                    </div>
+                </div>
+            </div> 
+		</section>
+
+		<section id="cont_contact">
+            <div class="container">
+                <div class="row justify-content-center">
+					<div class="contact_box">
+						<div class="contact_box_top">
+							<p class="contact_box_text01">CONTACT US</p>
+							<p class="contact_box_text02">AdScreen 서비스 및 연동에 대한 문의를 남겨주세요</p>
+						</div>
+						<div class="contact_box_cont">
+							<div class="contact_box_cont_left">
+								<div class="contact_box_cont_left_t">13590 경기도 성남시 분당구<br/>황새울로 359번길 11, 6층<br/><br/>newbiz@mable-inc.com<br/><br/>031-696-7044</div>
+								<div class="contact_box_cont_left_t">
+									<ul>
+										<li><a href="#"><img src="./img/icon_01.png" alt="페이스북"/></a></li>
+										<li><a href="#"><img src="./img/icon_02.png" alt="인스타그램"/></a></li>
+										<li><a href="#"><img src="./img/icon_03.png" alt="트위터"/></a></li>
+									<ul>
+								</div>
+								<div class="contact_box_cont_left_t">
+									<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.0784369216662!2d127.12107401564717!3d37.38797727983172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b58023367f803%3A0xb46611b7698e78a3!2zKOyjvCntlIzroIjsnbTrlJQ!5e0!3m2!1sko!2skr!4v1522291520425" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+								</div>
+							</div><!-- contact_box_cont_left -->
+							<div class="contact_box_cont_right">
+								<div class="contact_box_line">
+									<div><input style="width:100%" type="text" name="Company" placeholder="Company" class="form_input" required=""></div>
+								</div>
+								<div class="contact_box_line">
+									<div><input style="width:100%" type="text" name="Name" placeholder="Name" class="form_input" required=""></div>
+								</div>
+								<div class="contact_box_line">
+									<div><input style="width:100%" type="text" name="Email" placeholder="Email" class="form_input" required=""></div>
+								</div>
+								<div class="contact_box_line">
+									<div><input style="width:100%" type="text" name="Traffic or Client" placeholder="Traffic or Client" class="form_input" required=""></div>
+								</div>
+								<div>
+									<div class="form_tit">Message</div>
+									<textarea name="content" class="form_control" placeholder="문의할 내용을 입력하세요." rows="6" required=""></textarea>
+								</div>
+								<div class="btn_Send"><a href="#">Send</a></div>
+								</div>
+							</div><!-- contact_box_cont_right -->
+						</div>
+					</div>
+                </div>
+            </div>
+		</section>
+			 
+        <footer id="footer">
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+						<div class="copyright">
+							<p>Copyright © PlayD Co. , Ltd. All Rights Reserved.</p>
+							<p>주식회사 플레이디 | 대표자:허욱헌 | 사업자등록번호:129-86-43885</p>
+							<p class="bottommenu_m"><a href="#" target="_blank">회사소개</a> | <a href="#" target="_blank">제휴제안</a> | <a href="#" target="_blank">이용약관</a> | <a href="#" target="_blank">개인정보처리방침</a></p>
+						</div>
+						<div class="bottommenu">
+							<ul>
+								<li>
+									<a href="#" target="_blank">회사소개</a>
+								</li>
+								<li>
+									<a href="#" target="_blank">제휴제안</a>
+								</li>
+								<li>
+									<a href="#" target="_blank">이용약관</a>
+								</li>
+								<li>
+									<a href="#" target="_blank">개인정보처리방침</a>
+								</li>
+							</ul>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </footer>    
+
+
+        <!-- 스크립트 사용 -->
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                var windowwidth = $(window).width();
+
+                $('.navbar-toggler').on('click', function(){
+						         
+                        if ($('#navbar-collapse').hasClass('show')){
+                            console.log("true");
+                            $('#navbar-collapse').addClass('hide');
+                            $('#navbar-collapse').removeClass('show');
+                            $('#navbar').removeClass('fix-dark');
+                            $('#navbar').css('height', "80px");
+                        } else {
+                            console.log("false");
+                            $('#navbar-collapse').addClass('show');
+                            $('#navbar-collapse').removeClass('hide');
+                            $('#navbar').addClass('fix-dark');
+                            $('#navbar').css('height', "460px");
+                        };
+                    });
+
+
+                $('.navbar-nav a, footer a').click(function(){
+                    $('html, body').stop().animate({
+                        scrollTop: $( $(this).attr('href') ).offset().top - 160
+                    }, 600);
+					if(window.innerWidth < 768) {
+                       $('.navbar-toggler').click();
+					 }
+                    return false;
+                });
+
+            });
+            
+            /* nav: 일반 */
+            $.scrollWindow = function() {
+                if ($(window).scrollTop() > 50) {
+                    $('#navbar').addClass('fix'),
+                    $('#navbar-top').addClass('up');
+                } else {
+                    $('#navbar').removeClass('fix'),
+                    $('#navbar-top').removeClass('up');
+                };
+            };
+            $.scrollWindow();
+            $(window).scroll(function() {
+                $.scrollWindow();
+            });
+            $(window).resize(function() {
+                $.scrollWindow();
+            });
+
+            $.fitsizer = function() {
+                var windowsize = $(window).height();
+                var sectionsize = $(".main").height();
+                if (windowsize < 768) {
+                    $('.main').css("min-height","350px");
+                } else {
+                    $('.main').css("min-height", windowsize - 300 + "px");
+                };
+            };
+            $.fitsizer();
+            $( window ).resize(function() {
+                $.fitsizer();
+            });
+
+
+            $(function (){
+                $('.dropdown-toggle').dropdown();
+            });
+
+            function scrollNav() {
+              $('.navbar-nav a, footer a').click(function(){
+                $('html, body').stop().animate({
+                    scrollTop: $( $(this).attr('href') ).offset().top - 160
+                }, 600);
+                return false;
+              });
+            }
+            scrollNav();
+        </script>
+</body>
+</html>

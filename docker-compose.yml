@@ -1,0 +1,45 @@
+# Docker Desktop 에서 프로젝트/스택 이름으로 "playd" 로 보이게 함
+name: playd
+
+services:
+  web:
+    container_name: playd-web
+    # 공식 이미지만 pull (커스텀 build 없음 → 레이어 받다 끊기는 EOF 오류 완화)
+    image: php:8.2-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/php/000-playd.conf:/etc/apache2/sites-available/000-default.conf:ro
+      - ./docker/php/playd-entrypoint.sh:/usr/local/bin/playd-entrypoint.sh:ro
+      - ./docker/php/99-short-open.ini:/usr/local/etc/php/conf.d/99-short-open.ini:ro
+    entrypoint: ["/bin/sh", "/usr/local/bin/playd-entrypoint.sh"]
+    environment:
+      PLAYD_DB_HOST: mysql
+      PLAYD_DB_USER: root
+      PLAYD_DB_PASSWORD: root
+      PLAYD_DB_NAME: playd
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    container_name: playd-mysql
+    image: mariadb:10.11
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: playd
+    # 호스트에 이미 MySQL/MariaDB(3306)가 있으면 충돌 → 맥에서는 3307로 접속
+    ports:
+      - "3307:3306"
+    volumes:
+      - playd_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -proot || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+
+volumes:
+  playd_mysql_data:

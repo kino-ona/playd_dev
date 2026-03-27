@@ -1,0 +1,304 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	$types = get_report_types();
+
+	$totalCount = select_board_list_count('report');
+	
+	$recommList = select_board_list('report', 1, 0, '');
+
+?>
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
+?>
+<body class="report"> 
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
+?>
+	<!-- //header -->
+
+    <div class="sub-header">
+      <h2 class="sub-header__title">플레이디 트렌드 리포트를 통해 <br><span>마케팅 인사이트</span>를 얻어 가세요.</h2>
+    </div>
+
+		<div class="search-form">
+			<div class="search-form__wrap">
+				<input type="text" id="insightLetter-search" name="" placeholder="검색어를 입력하세요." onkeyup="enterSelect()" maxlength="52">
+				<button type="button" onclick="javascript:keywordSelect();"><div class="a11y">검색</div></button>
+			</div>
+			<div class="sub-tabs">
+				<div class="sub-tabs__wrap">
+					<div class="sub-tabs__box">
+						<p><a href="javascript:;" id="years_"  onclick="javascript:yearSelect('','');"  class="sub-tabs__item sub-tabs__item--active">전체</a></p>
+
+						<?php						$nCnt=0;
+						foreach ($types as $row) {
+						?>
+						<p><a href="javascript:;" id="years_<?=$nCnt?>"  class="sub-tabs__item" onclick="javascript:yearSelect('<?=$row?>','<?=$nCnt?>');" ><?=$row?></a></p>
+							<?php								$nCnt++;
+							}?>
+						<!-- <p><a href="/" class="sub-tabs__item" >Trend Delivery</a></p>
+						<p><a href="/" class="sub-tabs__item">VOICE Trend</a></p>
+						<p><a href="/" class="sub-tabs__item">Trend Report</a></p> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sub-content__head">
+			<p class="list-count">총 <span id="totalCount"><?=$totalCount?></span>건</p>
+			<div class="search-item">
+				<div class="drop-box drop-box--type2">
+					<div class="drop-box__title">
+						<p>정렬 기준</p>
+					</div>
+					<div class="drop-box__wrap">
+						<div>
+							<p><a href="javascript:;" onclick="javascript:itemOrder('');">전체</a></p>
+							<p><a href="javascript:;" onclick="javascript:itemOrder('hits');">인기순</a></p>
+							<p><a href="javascript:;" onclick="javascript:itemOrder('new');">최신순</a></p>
+							
+						</div>  
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sub-content">
+			
+			<!-- <div class="list-content">
+				<a href="./report-detail.html">
+					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_report_1.png')"></p>
+					<p class="list-content__title"><span class="numbering">Trend Delivery</span> OTT 서비스 트렌드 리포트</p>
+					<p class="list-content__description">
+						2022.03
+					</p>	
+				</a>
+				<a href="#" class="download"><span>다운로드</span></a>
+			</div> -->
+			<!-- <div class="list-content">
+				<a href="./report-detail.html">
+					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_report_2.png')"></p>
+					<p class="list-content__title"><span class="numbering">VOICE Trend</span> 국내 기업의 해외 온라인 마케팅 지원 본격화</p>
+					<p class="list-content__description">
+						2022.03
+					</p>	
+				</a>
+				<a href="#" class="download"><span>다운로드</span></a>
+			</div>
+			<div class="list-content">
+				<a href="./report-detail.html">
+					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_report_3.png')"></p>
+					<p class="list-content__title"><span class="numbering">Trend Report</span> MZ세대 패션앱 트렌드 리포트 2022</p>
+					<p class="list-content__description">
+						2022.03
+					</p>	
+				</a>
+				<a href="#" class="download"><span>다운로드</span></a>
+			</div> -->
+		</div>
+
+		<div class="button__wrap button__wrap--seemore">
+			<a href="javascript:itemMore();"  class="button button__seemore">더 보기</a>
+		</div>
+	</div>
+
+		<div class="sub-content__warning" style="display: none">
+			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
+		</div>
+
+
+	</div>
+
+	<a href="./letter.html" class="footer-download">
+		<p class="footer-download__title">
+			P’letter로 트렌드 모니터링 5분 안에 끝내기
+		</p>
+		<p class="footer-download__text">
+			구독하기
+		</p>
+	</a>
+
+
+
+
+<script>
+var g_page = 1;
+var g_listsize = 6;
+var g_type = '';
+var g_order = '';
+var g_val = '';
+var g_url = '';
+var g_seq = '';
+
+$(document).ready(function(){
+	
+	ajaxItemList();
+
+});
+
+function ajaxItemList(){
+	var keyword = $('#insightLetter-search').val();
+	if(isLoading) return;
+	isLoading = true;
+		$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_list.php',
+                    data: {
+                        'type':g_type,
+						'order':g_order,
+						'keyword':keyword,
+						'page':g_page,
+						'listsize':g_listsize,
+						'code':'report',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                    },
+                    success: function (json) {
+						isLoading = false;
+                        if(json){
+							if(g_listsize * g_page >= json['count']){
+								$('.button__seemore').hide();
+								$('.button__wrap--seemore').css({
+									'border': 'none',
+									'margin': 0
+								});
+							} else {
+								$('.button__seemore').show();
+								$('.button__wrap--seemore').css({
+									'border': '1px solid #DDDDDD',
+									'margin': '40px auto 75px'
+								});
+							}
+							$('#totalCount').html(json['count']);
+							fetchItemList(json['list'], json['count']);
+
+							if(json['count'] == 0){
+								$('.sub-content__warning').show();
+							} else {
+								$('.sub-content__warning').hide();
+							}
+							
+                        }
+                    }
+        });
+}
+
+function fetchItemList(json, count){
+		var html = '';
+		for(var i=0;i<json.length;i++){
+			var image = '';
+			var alt = '';
+			var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
+			var title = json[i]['B_TITLE'].replace('<br/>','').replace('<br>','');
+
+			var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
+
+			<?phpif($is_mobile){?>
+			if(json[i]['B_FILE4']){
+				image = json[i]['B_FILE4'];
+			}
+			if(json[i]['B_EXT4']){
+				alt = json[i]['B_EXT4'];
+			}
+			<?php}else{?>
+			if(json[i]['B_FILE3']){
+				image = json[i]['B_FILE3'];
+			}
+			if(json[i]['B_EXT3']){
+				alt = json[i]['B_EXT3'];
+			}
+			<?php}?>
+
+
+			
+			html+='<div class="list-content">';
+			html+='<a href="javascript:;">';
+			html+='<div class="list-content__cover"><p class="list-content__image"  onclick="javascript:location.href=\'report-detail.html?seq='+json[i]['B_SEQ']+'\';fbq(\'track\', \'ViewContent\');" style="background-image:url('+image+')"></p></div>';
+			html+='<p class="list-content__title"><span class="numbering">'+nvl(json[i]['B_TYPE'])+'</span> '+title+'</p>';
+			html+='<p class="list-content__description" onclick="fbq(\'track\', \'ViewContent\');">'+datestr+'</p>	';
+			html+='</a>';
+			html+='<a href="javascript:download(\''+json[i]['FI_SEQ']+'\', \''+nvl(json[i]['B_LINKURL'])+'\', \''+nvl(json[i]['B_SEQ'])+'\');fbq(\'track\', \'SubmitApplication\');" class="download"><span>다운로드</span></a>';
+			html+='</div> ';
+
+
+			// html+='<div class="list-content">';
+			// html+='<a href="javascript:;" class="list-content__cover">';
+			// html+='<div class="list-content__image" onclick="javascript:location.href=\'report-detail.html?seq='+json[i]['B_SEQ']+'\'" style="background-image:url('+image+')"></div>';
+			// html+='<div class="button__wrap">';
+			// html+='<div class="open button button__icon-download"  onclick="javascript:download(\''+json[i]['FI_SEQ']+'\', \''+json[i]['B_LINKURL']+'\');"><span class="a11y">다운로드 받기</span></div>';
+			// html+='</div>';
+			// html+='</a>';
+			// html+='<div class="list-content__head">';
+			// html+='<span class="list-content__sort">'+nvl(json[i]['B_TYPE'])+'</span>';
+			// html+='</div>';
+			// html+='<a href="./report-detail.html?seq='+json[i]['B_SEQ']+'" class="list-content__title">'+title+'</a>';
+			// html+='<span class="list-content__meta">'+datestr+'</span>';
+			// html+='</div>';
+
+		}
+
+		$('.sub-content').append(html);
+		
+}
+function itemMore(){
+	g_page = g_page + 1;
+	ajaxItemList();
+}
+function itemOrder(ord){
+	g_page = 1;
+	g_order = ord;
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function yearSelect(year, cnt){
+	g_page = 1;
+	g_type = year;
+	$("a[id^='years_']").each(function (i, el) {
+		$(this).removeClass('sub-tabs__item--active');
+	});
+	$('#years_' + cnt).addClass('sub-tabs__item--active');
+
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function keywordSelect(){
+	g_page = 1;
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function enterSelect(){
+	if (window.event.keyCode == 13) {
+		g_page = 1;
+		$('.sub-content').empty();
+		ajaxItemList();
+	}
+}
+
+function download(val, url, seq){
+	g_val = val;
+	g_url = url;
+	g_seq = seq;
+
+	layerOpen('report');
+}
+</script>
+
+
+
+	<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.m.php');
+?>

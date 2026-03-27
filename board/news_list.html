@@ -1,0 +1,131 @@
+ <?php
+	$sub_sql = "";
+	$search = "";
+
+	if($s_con) $sub_sql .= "AND B_TITLE LIKE '%$s_con%'";
+	if($category) $search .= "&category=".$category;
+	if($s_con) $search .= "&s_con=".$s_con;
+	if(!$page) $page = 1;
+
+	//if($code == "news")  $sub_sql .=  "  and (B_SITE ='플레이디' or B_SITE = '' or B_SITE is null) ";
+	if($code == "news")  $sub_sql .=  "  and (B_SITE <> '메이블') ";
+	if($category) $sub_sql .= " and B_TYPE = '$category'";
+	$num_sql = "SELECT COUNT(*) FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' AND B_EXPS_YN = 'N' $sub_sql";
+	$sql = "SELECT * FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' AND B_EXPS_YN = 'N' $sub_sql ORDER BY B_REGDATE DESC";
+
+	if($_SERVER['REMOTE_ADDR']=="49.254.187.254") {
+		//echo $sql;
+	}
+	$result = $func->listNpage(&$total, &$paging, $sql, $num_sql, $dbconn, $search, 12);
+	$exps_sql = "SELECT * FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' AND B_EXPS_YN = 'Y' $sub_sql ORDER BY B_REGDATE DESC LIMIT 3";
+	$exps_result = mysql_query($exps_sql);
+?>
+	
+	<div class="board_list_top_bar">
+        <div class="inner m_bar">
+           <div class="board_search">
+                <form method="get" action="<?php echo $PHP_SELF; ?>">
+                    <input type="hidden" name="category" value="<?php echo $category; ?>" />
+                    <fieldset>
+                        <input type="text" name="s_con" placeholder="Search" value="<?php echo $s_con; ?>" />
+                        <button type="submit" class="bd_search_btn"><img src="../../images/board/search_ico.png" alt="검색"></button>
+                    </fieldset>
+                </form>
+            </div>
+
+<!--			<div class="board_cate">
+                <a href="<?php echo $PHP_SELF; ?>" class="<?php echo !$category ? "active" : ""; ?>">전체</a>
+                <!--a href="<?php echo $PHP_SELF; ?>?category=안내" class="<?php echo $category == "안내" ? "active" : ""; ?>">안내</a>
+                <a href="<?php echo $PHP_SELF; ?>?category=보도기사" class="<?php echo $category == "보도기사" ? "active" : ""; ?>">보도기사</a>
+                <a href="<?php echo $PHP_SELF; ?>?category=공지" class="<?php echo $category == "공지" ? "active" : ""; ?>">공지</a>
+           </div>
+-->
+
+		</div>
+	</div>
+	
+	<div class="news_wrap">
+		<ul class="news_list">
+            <?php
+				$i=0;
+				$j=0;
+                while($arr = mysql_fetch_array($result)) {
+                    if($arr[B_FILE2]) {
+						if(strpos($arr[B_FILE2], "https://scontent.cdninstagram.com") !== false) {
+							$thum = 'style="background-image: url(\''.$arr[B_FILE2].'\')"';		
+						} else {
+							$thum = 'style="background-image: url('.$arr[B_FILE2].')"';
+						}
+					} else {
+						$thum = "";
+					}
+
+					/*
+                    if($arr[B_FILE2]) {
+						if($arr[B_SITE]=="플레이디" || $arr[B_SITE]=="메이블") {
+							$thum = "style='background-image: url(".str_replace("http://nsm.co.kr","",$arr[B_FILE2]).")'";
+						} else if($arr[B_SITE]=="네이버블로그" || $arr[B_SITE]=="인스타그램" || $arr[B_SITE]=="페이스북") {
+							$thum = 'style="background-image: url(\''.$arr[B_FILE2].'\')"';						
+						}
+						//$thum = 'style="background-image: url('.$arr[B_FILE2].')"';
+					}
+                    else $thum = "";
+					*/
+            ?>
+			<?php if($arr[B_SITE]=="플레이디" || $arr[B_SITE]=="") { ?>
+				<a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $arr[B_SEQ].$search; ?>&exps=N">
+			<?php } else if($arr[B_SITE]=="네이버블로그" || $arr[B_SITE]=="페이스북" || $arr[B_SITE]=="인스타그램") { ?>
+				<a href="<?php echo $arr[B_LINKURL]; ?>" target="_blank">
+			<?php } ?>
+
+				<li class="newscover">
+					<div class="news_con 
+						<?php 
+							if($j%2==0) {
+								if($i%2==1) {
+									echo 'news_col';
+								}
+							} else {
+								if($i%2!=1) {
+									echo 'news_col';
+								}
+							}
+						?>
+					">
+						<div class="news_con_click" title='' <?php echo $thum;?>></div>	
+						<div class="news_text">
+							<!--div class="news_text_cate"><?php echo $arr[B_TYPE]; ?></div-->
+							<div class="news_text_tit"><?php echo $arr[B_TITLE]; ?></div>
+						</div>
+					</div>
+
+					<div class="news_icon">
+					<?php if($arr[B_SITE]=="플레이디" || $arr[B_SITE]=="") { ?>
+						<a href="#"><img src="../../images/board/news_sns_icon04_2.png" alt="플레이디이미지" class="news_icon_img" /></a>
+					<?php } else if($arr[B_SITE]=="네이버블로그") { ?>
+						<a href="#"><img src="../../images/board/news_sns_icon01_2.png" alt="네이버블로그이미지" class="news_icon_img" /></a>
+					<?php } else if($arr[B_SITE]=="페이스북") { ?>
+						<a href="#"><img src="../../images/board/news_sns_icon02_2.png" alt="페이스북이미지" class="news_icon_img" /></a>
+					<?php } else if($arr[B_SITE]=="인스타그램") { ?>
+						<a href="#"><img src="../../images/board/news_sns_icon03_2.png" alt="인스타그램이미지" class="news_icon_img" /></a>
+					<?php } ?>
+					</div>
+				</li>
+				</a>
+				<?php 
+						$i++;
+						if($i>3) {
+							$j++;
+							$i=0;
+						}
+					}
+				?>
+				<?php if($total[num] == 0) { ?>
+					<li class="no_data">
+						게시글이 없습니다.
+					</li>
+				<?php } ?>
+		</ul>
+		<div class="cl_b"></div>
+	    <?php echo $paging; ?>
+	</div>

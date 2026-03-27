@@ -1,0 +1,683 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	if(empty($_SESSION['CSRFToken'])){
+		$_SESSION['CSRFToken'] = bin2hex(random_bytes(32));
+	} 
+	$CSRFToken = $_SESSION['CSRFToken'];
+
+?>
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
+?>
+<body class="contact">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
+?>
+	<!-- //header -->
+
+  <div class="sub-header">
+    <h2 class="sub-header__title">플레이디와 함께<br><span>가능성</span>을 성장으로 실현하세요!</h2>
+  </div>
+	<div class="sub-container">
+		<form id="frm" name="frm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="CSRFToken" id="CSRFToken" value="<?php echo $CSRFToken; ?>" />
+
+			<div class="sub-content">
+				<h3 class="sub-content__title">도움이 필요하신 프로젝트 유형을 선택해 주세요.</h3>
+				<p class="description">* 중복 선택 가능</p>
+				<div class="sub-input sub-checkbox">
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_01" class="input__checkbox" value="통합마케팅"><label class="input__checkbox-label" for="input__checkbox01_01">통합 마케팅</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_02" class="input__checkbox" value="브랜딩"><label class="input__checkbox-label" for="input__checkbox01_02">브랜딩</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_03" class="input__checkbox" value="매체전략"><label class="input__checkbox-label" for="input__checkbox01_03">매체전략</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_04" class="input__checkbox" value="광고 솔루션"><label class="input__checkbox-label" for="input__checkbox01_04">광고 솔루션</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_05" class="input__checkbox" value="모바일 마케팅"><label class="input__checkbox-label" for="input__checkbox01_05">모바일 마케팅</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_06" class="input__checkbox" value="검색광고"><label class="input__checkbox-label" for="input__checkbox01_06">검색광고</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_07" class="input__checkbox" value="디스플레이광고"><label class="input__checkbox-label" for="input__checkbox01_07">디스플레이 광고</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_08" class="input__checkbox" value="동영상 마케팅"><label class="input__checkbox-label" for="input__checkbox01_08">동영상 마케팅</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_09" class="input__checkbox" value="옥외광고(OOH)"><label class="input__checkbox-label" for="input__checkbox01_09">옥외광고(OOH)</label>
+					</div>
+					<div class="sub-checkbox__item">
+						<input type="checkbox" id="input__checkbox01_10" class="input__checkbox" value="기타"><label class="input__checkbox-label" for="input__checkbox01_10">기타</label>
+					</div>
+				</div>
+			</div>
+			<div class="sub-content">
+				<h3 class="sub-content__title">진행하고자 하는 프로젝트 명을 알려주세요.</h3>
+				<div class="sub-input">
+					<div class="form-field">
+						<input type="text" id="form-title" name="" placeholder="ex) OO사 신규 회원 확보를 위한 OOO 캠페인 집행." maxlength="52">
+					</div>
+				</div>
+			</div>
+			<div class="sub-content">
+				<h3 class="sub-content__title">진행하려는 프로젝트 목적을 알려주세요.</h3>
+				<p class="description">* 중복 선택 가능</p>
+				<div class="sub-input sub-checkbox">
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox02_01" class="input__checkbox" value="브랜드 인지도 확대"><label class="input__checkbox-label" for="input__checkbox02_01">브랜드 인지도 확대</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox02_02" class="input__checkbox" value="전환 및 구매 증가"><label class="input__checkbox-label" for="input__checkbox02_02">전환 및 구매 증가</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox02_03" class="input__checkbox" value="광고 효율 증대"><label class="input__checkbox-label" for="input__checkbox02_03">광고 효율 증대</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox02_04" class="input__checkbox" value="고객 데이터 확보"><label class="input__checkbox-label" for="input__checkbox02_04">고객 데이터 확보</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox02_05" class="input__checkbox" value="기타"><label class="input__checkbox-label" for="input__checkbox02_05">기타</label>
+					</div>
+				</div>
+			</div>
+			<div class="sub-content">
+				<h3 class="sub-content__title">월 광고 예산을 알려주세요.</h3>
+				<p class="description">*월 단위 예산으로 선택해 주세요.</p>
+				<div class="drop-box">
+					<div class="drop-box__title">
+						<p class="drop-box__text">월 예산을 입력해 주세요</p>
+					</div>
+					<div class="drop-box__wrap">
+						<div>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('');">선택</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('500만 원 미만');">500만 원 미만</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('1000만 원 미만');">1000만 원 미만</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('1000만 원 ~ 3000만 원');">1000만 원 ~ 3000만 원</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('3000만 원 ~ 5000만 원');">3000만 원 ~ 5000만 원</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('5000만 원 ~ 1억 원');">5000만 원 ~ 1억 원</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('1억~2억');">1억~2억</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('2억~3억');">2억~3억</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('3억 이상');">3억 이상</a></p>
+						<p><a href="javascript:;" onclick="javascript:moneySelect('미정');">미정</a></p>
+						</div>  
+					</div>
+				</div>
+			</div>
+			<div class="sub-content">
+				<h3 class="sub-content__title">프로젝트 일정은 어떻게 되나요?</h3>
+				<div class="drop-box">
+					<div class="drop-box__title">
+						<p class="drop-box__text">프로젝트 기간을 선택해 주세요.</p>
+					</div>
+					<div class="drop-box__wrap">
+						<div>
+							<p><a href="javascript:;" onclick="javascript:dateSelect('');">선택</a></p>
+							<p><a href="javascript:;" onclick="javascript:dateSelect('3개월 이내');">3개월 이내</a></p>
+							<p><a href="javascript:;" onclick="javascript:dateSelect('6개월 이내');">6개월 이내</a></p>
+							<p><a href="javascript:;" onclick="javascript:dateSelect('1년 이내');">1년 이내</a></p>
+							<p><a href="javascript:;" onclick="javascript:dateSelect('1년 이상');">1년 이상</a></p>
+							<p><a href="javascript:;" onclick="javascript:dateSelect('미정');">미정</a></p>
+						</div>  
+					</div>
+				</div>
+			</div>
+			<div class="sub-content">
+				<h3 class="sub-content__title">무엇을 도와드리면 될까요?</h3>
+				<div class="input-box input-box--file">
+					<div class="form-detail-box">
+						<textarea id="form-detail" placeholder="프로젝트에 대한 상세 설명, 캠페인 타깃, 캠페인 진행상태, 고려 중인 매체 등 상세하게 기재해 주시면 내부에서 면밀히 검토 후 정확한 답변을 드릴 수 있습니다."  maxlength="520"></textarea>
+						<p class="form-warning">입력범위를 초과했습니다.</p>
+					</div>
+					<div class="input-file">
+						<input type="text" id="form-file-text" placeholder="파일 업로드(RFP 등)" readonly>
+						<div><input type="file" id="form-file-button" name=""><label for="form-file-button">찾아보기</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="sub-content">
+				<h3 class="sub-content__title">의뢰하시는 담당자 정보를 입력해 주세요.</h3>
+				<div class="input-box input-box-info">
+					<div class="form-field">
+						<label for="user-company" class="input-box-info__label input-box-info__label--necessary">회사명</label>
+						<input type="text" id="user-company" class="input-box-info__input" name="" placeholder="회사명을 입력해 주세요." maxlength="52">
+						<p class="form-warning">회사명을 입력해주세요</p>
+					</div>
+					<div class="form-field">
+						<label for="user-name" class="input-box-info__label input-box-info__label--necessary">담당자 이름</label>
+						<input type="text" id="user-name"  class="input-box-info__input" name="" placeholder="홍길동" maxlength="52">
+						<p class="form-warning">담당자 이름을 입력해주세요</p>
+					</div>
+					<div class="form-field">
+						<label for="user-position" class="input-box-info__label">직책</label>
+						<input type="text" id="user-position" class="input-box-info__input" name="" placeholder="직책을 입력해 주세요." maxlength="52">
+					</div>
+					<div class="form-field">
+						<label for="user-number" class="input-box-info__label input-box-info__label--necessary">연락처</label>
+						<input type="number" input type="number" pattern="\d*" id="user-number"  class="input-box-info__input" name="" placeholder="숫자만 입력해 주세요." maxlength="11">
+						<p class="form-warning">숫자만 입력해 주세요.</p>
+					</div>
+					<div class="form-field">
+						<label for="user-mail" class="input-box-info__label input-box-info__label--necessary">이메일</label>
+						<input type="text" id="user-mail"  class="input-box-info__input" name="" placeholder="이메일을 입력해 주세요." maxlength="320">
+						<p class="form-warning">이메일을 입력해주세요</p>
+					</div>
+					<div class="form-field">
+						<label for="user-url" class="input-box-info__label input-box-info__label--necessary">프로젝트 진행할 홈페이지 URL</label>
+						<input type="text" id="user-url"  class="input-box-info__input" name="" placeholder="프로젝트 홈페이지 URL 입력해 주세요." maxlength="200">
+						<p class="form-warning">URL을 입력해주세요</p>
+					</div>
+				</div>
+			</div>
+			<div class="sub-content">
+				<h3 class="sub-content__title">어떻게 플레이디를 알게 되었는지 알려주세요.</h3>
+				<div class="sub-input sub-checkbox sub-checkbox--route">
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox03_01" class="input__checkbox" value="포털 검색"><label class="input__checkbox-label" for="input__checkbox03_01">포털 검색</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox03_02" class="input__checkbox" value="플레이디 SNS 채널"><label class="input__checkbox-label" for="input__checkbox03_02">플레이디 SNS 채널</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox03_03" class="input__checkbox" value="뉴스레터"><label class="input__checkbox-label" for="input__checkbox03_03">뉴스레터</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox03_04" class="input__checkbox" value="기존 집행 경험"><label class="input__checkbox-label" for="input__checkbox03_04">기존 집행 경험</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox03_05" class="input__checkbox" value="지인 소개"><label class="input__checkbox-label" for="input__checkbox03_05">지인 소개</label>
+					</div>
+					<div class="sub-checkbox__item sub-checkbox__item--full">
+						<input type="checkbox" id="input__checkbox03_06" class="input__checkbox" value="기타"><label class="input__checkbox-label input__checkbox-label--etc" for="input__checkbox03_06">기타</label>
+					</div>
+				</div>
+				<div class="input-box input-box--textarea"><!--20230509-->
+					<textarea id="a_etc_memo" placeholder="30자 내로 작성해주세요" maxlength="30"></textarea>
+				</div>
+			</div>
+			<div class="sub-checkboxs" id="personal-checkbox">
+				<label for="sub-checkbox" class="sub-checkbox__label">
+					<input type="checkbox" id="sub-checkbox" name="" class="sub-checkbox__input"
+						onclick="javascript:allCheck(this.checked);">
+					<span>아래의 항목에 모두 동의합니다.</span>
+				</label>
+				<label for="sub-checkbox--personal" class="sub-checkbox__label">
+					<input type="checkbox" id="sub-checkbox--personal" name="" class="sub-checkbox__input" onclick="javascript:isCheckValue();">
+					<span>[필수] 개인정보 수집/이용에 동의합니다.</span>
+				</label>
+				<button class="showbutton--personal">보기</button> <!--20240417-->
+				<!-- <a href="./personal.html">전문 보기</a> -->
+				<label for="sub-checkbox--marketing" class="sub-checkbox__label">
+					<input type="checkbox" id="sub-checkbox--marketing" name="" class="sub-checkbox__input" onclick="javascript:isCheckValue();">
+					<span>[선택] 광고성 정보 수신에 동의합니다.</span>
+				</label>
+				<button class="showbutton--marketing">보기</button><!-- 20240417 -->
+			</div>
+			<input type="button" class="form-submit" value="프로젝트 문의 등록" onclick="javascript:contactWriteProc();">
+		
+		<div class="sub-info" id="playd">
+			<h3 class="sub-info__title">
+				플레이디는<br>
+				성장하고자 하는 모든<br>
+				비즈니스에 언제나 열려있습니다.
+			</h3>
+			<img src="../assets/images/m/sub/icon_position.png" class="icon" alt="아이콘">
+			<p class="sub-info__position">경기도 성남시 분당구 황새울로 359번길 11, 5~6층</p>
+			<a href="mailto:master@playd.com">master@playd.com</a>
+			<p class="sub-info__description">
+				매체 제휴 등 제휴 문의는 이메일로 전달해 주시면<br>
+				빠르게 답변드리겠습니다. 
+			</p>
+			<div class="map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d202887.48273228662!2d126.9925514!3d37.3870672!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b58023367f803%3A0xb46611b7698e78a3!2zKOyjvCntlIzroIjsnbTrlJQ!5e0!3m2!1sko!2skr!4v1515458614365" width="100%" height="180px" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+			</div>
+		</div>
+	
+		</form>
+	</div>
+	<div class="sub-footer">
+		<div class="sub-advertise">
+			<p class="sub-advertise__icon">
+				<img src="../assets/images/m/sub/icon_sensen.png" alt="sense 아이콘">
+			</p>
+			<p class="sub-advertise__title">
+				온라인 광고<br>
+				혼자 고민하고 계시나요?
+			</p>
+			<p class="sub-advertise__description">
+				매체 제휴 등 제휴 문의는 이메일로 전달주시면<br>
+				빠르게 답변드리겠습니다. 
+			</p>
+			<a href="https://sensen.techhub.co.kr/apply/diagnosis" class="sub-advertise__button" role="button" target="_blank">무료 광고 진단</a>
+		</div>
+	</div>
+	<div class="layer__body popup" id="form-popup" aria-hidden="true" role="dialog">
+    <div class="layer__wrap">
+      <div class="layer__inner">
+        <div class="layer__content form-popup">
+          <dl>
+            <dt class="layer__title">프로젝트 문의 등록이 완료되었습니다.</dt>
+            <dd class="layer__description">
+							내부에서 면밀히 검토 후 빠르고 정확하게<br>
+							연락드릴 예정입니다.
+						</dd>
+          </dl>
+					<button class="close_btn" type="button" onclick="procOk();_LA.EVT('5531');">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	<!-- 20240417 -->
+	<div class="layer__body popup personalTerms" id="personalTerms" aria-hidden="true" role="dialog">
+		<div class="layer__wrap">
+			<div class="layer__close">
+				<button class="close"><span>close</span></button>
+			</div>
+			<div class="layer__inner">
+				<div class="layer__head">
+					<p class="content__main-title">개인정보 수집 이용 동의</p>
+				</div>
+				<div class="layer__content">
+					<div class="content__text">
+						<div class="content__wrap">
+							<p>
+								<span>1.</span>
+								<span>
+									처리하는 개인정보의 항목<br>
+									- 회사명, 이름, 연락처, 이메일, 프로젝트 진행할 홈페이지 URL
+								</span>
+							</p>
+							<p>
+								<span>2.</span>
+								<span>
+									개인정보의 수집·이용 목적<br>
+									- PLAYD는 광고문의 및 상담을 목적으로 개인정보를 수집하여 처리하고 있습니다.
+								</span>
+							</p>
+							<p>
+								<span>3.</span>
+								<span>
+									개인정보의 보유 및 이용기간<br>
+									- 수집된 개인정보는 1년 간 보유하며, 1년 이후에는 지체없이 파기합니다.<br>
+									(단, 정보주체의 파기 요청이 있는 경우 즉시 파기합니다.)
+								</span>
+							</p>
+							<p>
+								<span>4.</span>
+								<span>
+									개인정보 수집 동의 거부<br>
+									- 개인정보 수집 동의를 거부할 수 있으며, 이 경우 광고문의 및 상담이 제한됩니다.
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="layer__footer">
+					<button type="button">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--// 20240417 -->
+	<!-- 20240417 -->
+	<div class="layer__body popup marketing" id="marketing" aria-hidden="true" role="dialog">
+		<div class="layer__wrap">
+			<div class="layer__close">
+				<button class="close"><span>close</span></button>
+			</div>
+			<div class="layer__inner">
+				<div class="layer__head">
+					<p class="content__main-title">
+						광고성 정보 수신 동의
+					</p>
+				</div>
+				<div class="layer__content">
+					<div class="content__text">
+						<div class="content__wrap">
+							<p>
+								<span>1.</span>
+								<span>
+									수집하는 항목<br>
+									- 이름, 연락처, 이메일
+								</span>
+							</p>
+							<p>
+								<span>2.</span>
+								<span>
+									수집·이용 목적<br>
+									- PlayD는 재영업을 목적으로 광고/마케팅 정보를 문자(SMS 또는 카카오톡 알림톡),
+									플레이디 뉴스레터, 이메일 등 다양한 전자적 전송 매체를 발송하는데 개인정보를 활용합니다.
+								</span>
+							</p>
+							<p>
+								<span>3.</span>
+								<span>
+									보유 및 이용기간<br>
+									- 수집된 정보는 2년간 보유하며, 2년마다 수신동의 여부를 확인합니다.<br>
+									- 별도의 수신거부 의사 표현이 있는 경우 보유한 정보를 파기합니다.
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="layer__footer">
+					<button type="button">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--// 20240417 -->
+</div>
+
+
+<script>
+
+var a_type_gubun1 = '';
+var a_project_dt = '';
+var a_file1 = '';
+var a_sysfile1 = '';
+var a_type_gubun3 = '';
+
+$(document).ready(function(){
+  initFilepicker();
+});
+
+
+
+function moneySelect(val){
+  a_type_gubun1 = val;
+}
+function dateSelect(val){
+  a_project_dt = val;
+}
+
+function contactWriteProc(){
+	var a_type = '';
+  var a_type_gubun2 = '';
+  var a_market_yn = 'N';
+	var a_market2_yn = 'N';
+
+  $("input[id^='input__checkbox01_']").each(function (i, el) {
+    if($(this).is(":checked") == true){
+      a_type += $(this).val() + ",";
+    }
+  });
+
+  $("input[id^='input__checkbox02_']").each(function (i, el) {
+    if($(this).is(":checked") == true){
+      a_type_gubun2 += $(this).val() + ",";
+    }
+  });
+
+  a_type_gubun3 = '';
+  $("input[id^='input__checkbox03_']").each(function (i, el) {
+    if($(this).is(":checked") == true){
+      a_type_gubun3 += $(this).val() + ",";
+    }
+  });
+
+  
+  if(a_type==''){
+    alert('도움이 필요하신 프로젝트 유형을 선택해주세요.');
+    return;
+  }
+
+	if($('#form-title').val()=='') {
+		alert('진행하고자 하는 프로젝트 명을 알려주세요.');
+		$('#form-title').focus();
+		return;
+	}
+
+  if(a_type_gubun2==''){
+    alert('진행하려는 프로젝트 목적을 알려주세요');
+    return;
+  }
+
+  if(a_type_gubun1==''){
+    alert('월 광고 예산을 알려주세요');
+    return;
+  }
+
+  if(a_project_dt==''){
+    alert('프로젝트 일정을 알려주세요');
+    return;
+  }
+
+	if($('#form-detail').val()==''){
+		alert('프로젝트에 대한 상세 설명을 입력해 주세요.');
+		$('#form-detail').focus();
+		return;
+	}
+
+
+  //의뢰하시는 담당자 정보
+
+	if($('#user-company').val()==''){
+		alert('회사명을 입력해 주세요.');
+		$('#user-company').focus();
+		return;
+	}
+  if($('#user-name').val()==''){
+		alert('담당자 이름을 입력해 주세요.');
+		$('#user-name').focus();
+		return;
+	}
+//   if($('#user-position').val()==''){
+// 		alert('직책을 입력해 주세요.');
+// 		$('#user-position').focus();
+// 		return;
+// 	}
+  if($('#user-number').val()==''){
+		alert('연락처를 입력해 주세요.');
+		$('#user-number').focus();
+		return;
+	}
+  if($('#user-mail').val()==''){
+		alert('이메일을 입력해 주세요.');
+		$('#user-mail').focus();
+		return;
+	}
+	if(!validateEmail($('#user-mail').val())){
+		alert('이메일을 다시 입력해 주세요.');
+		$('#user-mail').focus();
+		return;
+	}
+  if($('#user-url').val()==''){
+		alert('프로젝트 진행할 홈페이지 URL를 입력해 주세요.');
+		$('#user-url').focus();
+		return;
+	}
+	if (!$("input:checkbox[id='sub-checkbox--personal']").prop('checked')) {
+		alert('개인정보 수집/이용에 동의해주세요.');
+		return;
+	}
+	if ($("input:checkbox[id='sub-checkbox--personal']").prop('checked')) {
+		a_market_yn = 'Y';
+	}
+
+	if ($("input:checkbox[id='sub-checkbox--marketing']").prop('checked')) {
+		a_market2_yn = 'Y';
+	}
+function isCheckValue(){
+  if($("input:checkbox[id='sub-checkbox--personal']").prop('checked') == true && $("input:checkbox[id='sub-checkbox--marketing']").prop('checked') == true) {
+    $("input:checkbox[id='sub-checkbox']").prop('checked', true); 
+  } else if($("input:checkbox[id='sub-checkbox--personal']").prop('checked') == false && $("input:checkbox[id='sub-checkbox--marketing']").prop('checked') == false) {
+    $("input:checkbox[id='sub-checkbox']").prop('checked', false); 
+  } else if ($("input:checkbox[id='sub-checkbox--personal']").prop('checked') == false || $("input:checkbox[id='sub-checkbox--marketing']").prop('checked') == false) {
+		$("input:checkbox[id='sub-checkbox']").prop('checked', false);
+	}
+}
+
+
+_LA.EVT('5531');
+
+    if(window.wcs){
+    if(!wcs_add) var wcs_add = {};
+    wcs_add['wa'] = 's_68190443255';
+    var _conv = {};
+    	_conv.type = 'lead';
+    wcs.trans(_conv);
+    }
+	
+	if(isLoading) return;
+	isLoading = true;
+	
+	$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_proc.php',
+                    data: {
+                        'a_type':a_type,
+                        'a_type_gubun2':a_type_gubun2,
+                        'a_type_gubun1':a_type_gubun1,
+                        'a_type_gubun3':a_type_gubun3,
+                        'a_title':$('#form-title').val(),
+                        'a_cont':$('#form-detail').val(),
+                        'a_name':$('#user-name').val(),
+                        'a_mail':$('#user-mail').val(),
+                        'a_jik':$('#user-position').val(),
+                        'a_corp_name':$('#user-company').val(),
+                        'a_url':$('#user-url').val(),
+                        'a_tel':$('#user-number').val(),
+                        'a_market_yn':a_market_yn,
+											'a_market2_yn': a_market2_yn,
+                        'a_project_dt':a_project_dt,
+                        'a_sysfile1':a_sysfile1,
+                        'a_file1':a_file1,
+						'a_etc_memo':$('#a_etc_memo').val(),
+						'CSRFToken':'<?php echo $CSRFToken; ?>',
+						'cmd':'ask_write',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                        alert('실패하였습니다. 관리자에게 문의해 주세요.');
+                        //document.location.reload();
+                    },
+                    success: function (json) {
+					  isLoading = false;
+                      if(json['success']){
+                        layerOpen('form-popup');
+                        $('#form-project_name').val('');
+                        $('#form-detail').val('');
+                        $('#user-name').val('');
+                        $('#user-url').val('');
+                        $('#user-mail').val('');
+                        $('#user-position').val('');
+                        $('#user-company').val('');
+                        $('#user-number').val('');
+                      } else {
+						alert('실패하였습니다. 토큰 문제로 관리자에게 문의해 주세요.');
+					  }
+                    }
+    });
+
+}
+
+
+
+function initFilepicker()
+{
+    var masterFileExt = 'jpg,jpeg,png,gif,pdf,xls,xlsx,ppt,pptx,csv';
+	var masterFileSize = 1024*1024*2;
+
+    if(document.getElementById("form-file-button") != null){
+        document.getElementById("form-file-button").addEventListener("change", function(event) {
+            var files = event.target.files;
+            var html = '';
+            for (var i=0; i<files.length; i++) {
+                    var fileSize = files[i].size;
+                    var ext = getExtensionOfFilename(files[i].name);
+                    if(masterFileExt.indexOf(ext)==-1){
+                         alert('허용된 파일만 등록 가능합니다.');
+                        $('#form-file-button').val('');
+                        break;
+                    }
+
+					if(parseInt(masterFileSize) > 0){
+                        if(fileSize > parseInt(masterFileSize)){
+                            alert('전송 가능한 파일 크기를 초과하였습니다.');
+                            break;
+                        }
+                    }
+					
+                    
+                    //파일 업로드 
+                    createToken();
+                    var formData = new FormData($('#frm')[0]);
+                        formData.append('file0', files[0]); 
+
+                        jQuery.ajax({
+                                type: "POST",
+                                url: "/adm/page/post_file_insert.php",
+                                data: formData,
+                                dataType: 'json',
+                                timeout: 600000,
+                                contentType: false,
+                                processData: false,
+                                cache: false,
+                                crossDomain: false,
+                                error: function (request, error) {
+                                        console.log(error + '');
+                                },
+                                success: function(output){
+                                    a_file1 = output.filename;
+                                    a_sysfile1 = output.orgname;
+                                    $('#form-file-button').val('');
+                                }
+                        });
+
+            };
+
+        }, false);
+    }
+}
+
+function procOk(){
+	document.location.reload();
+}
+
+function allCheck(val) {
+	if (val) {
+		$("input:checkbox[id='sub-checkbox--personal']").prop('checked', true);
+		$("input:checkbox[id='sub-checkbox--marketing']").prop('checked', true);
+		const formSubmit = document.querySelector('.contact .form-submit');
+		formSubmit.classList.add('submit--active');
+	} else {
+		$("input:checkbox[id='sub-checkbox--personal']").prop('checked', false);
+		$("input:checkbox[id='sub-checkbox--marketing']").prop('checked', false);
+		const formSubmit = document.querySelector('.contact .form-submit');
+		formSubmit.classList.remove('submit--active');
+	}
+}
+function isCheckValue(){
+  if($("input:checkbox[id='sub-checkbox--personal']").prop('checked') == true && $("input:checkbox[id='sub-checkbox--marketing']").prop('checked') == true) {
+    $("input:checkbox[id='sub-checkbox']").prop('checked', true); 
+  } else if($("input:checkbox[id='sub-checkbox--personal']").prop('checked') == false && $("input:checkbox[id='sub-checkbox--marketing']").prop('checked') == false) {
+    $("input:checkbox[id='sub-checkbox']").prop('checked', false); 
+  } else if ($("input:checkbox[id='sub-checkbox--personal']").prop('checked') == false || $("input:checkbox[id='sub-checkbox--marketing']").prop('checked') == false) {
+		$("input:checkbox[id='sub-checkbox']").prop('checked', false);
+	}
+}
+
+</script>
+
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.m.php');
+?>

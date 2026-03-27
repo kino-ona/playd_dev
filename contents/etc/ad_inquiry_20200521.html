@@ -1,0 +1,151 @@
+<?php include "../include/head.html"; ?>
+<script>
+	/*
+	function email_chg(val) {
+        var email = $("input[name='email[]']");
+
+        if(val == "") {
+            email.eq(1).attr("readonly", false);
+            email.eq(1).val("");
+            email.eq(1).focus();
+        } else {
+            email.eq(1).val(val);
+            email.eq(1).attr("readonly", true);
+        }
+    }
+	*/
+
+    function form_submit() {
+        if(form_check()) $("#ad_form").submit();
+    }
+
+    function form_check() {
+        if(!$("#agreedChk").is(":checked")) {
+            alert("개인정보 수집 이용에 동의해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='name']").val()) == "") {
+            alert("이름을 입력해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='phone']").val() == "") {
+            alert("연락처를 입력해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='email']").val() == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='homepage']").val()) == "") {
+            alert("홈페이지 주소를 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("textarea[name='content']").val()) == "") {
+            alert("문의 내용을 입력해주시기 바랍니다.");
+            return false;
+        } 
+		
+		/*
+		else if($("#spam_code").val() == "") {
+			alert("자동입력방지 코드를 입력하세요");
+			$("#spam_code").focus();
+			return false;
+		}
+
+		var echo_code1 = $("#echo_code1").html();
+		var echo_code2 = $("#echo_code2").html();
+		var spam_code = $("#spam_code").val();
+
+		if((echo_code1 != spam_code) && (echo_code2 != spam_code)) {
+			alert("자동입력방지 코드를 잘못 입력하였습니다.");
+			$("#spam_code").focus();
+			return false;
+		}
+		*/
+		
+        return true;
+    }
+</script>
+<div id="container">
+    <div class="sub_top_section etc_top03">
+        <h2 class="sub_page_tit">광고문의</h2>
+    </div>
+
+		<div id="subContent" class="etc_cont">
+			<div class="inquiry_top_bar">
+				<div class="inner"><p class="txt">아래 양식을 작성해 주시면 신속하게 답변 드리겠습니다.</p></div>
+		</div>
+
+		<form id="ad_form" method="post" action="ask_Prc.php">
+            <input type="hidden" name="code" value="nsmad" />
+				<div class="inquiry_area">
+					<div class="inquiry_form_area">
+					   <ul class="form_list form_list2">
+							<li><input type="text" class="inp_half" name="name" maxlength="12" placeholder="이름(필수)"></li>
+							<li><input type="text" class="inp_half onlynum" name="phone" maxlength="12" placeholder="연락처(필수)"></li>
+							<li><input type="text" class="inp_half" name="email" maxlength="100" placeholder="이메일(필수)"></li>
+							<li><input type="text" class="inp_half" name="homepage" maxlength="100" placeholder="homepage(필수)"></li>
+							<li class="box_full"><textarea class="inp_full" name="content" placeholder="내용을 입력해주세요.(필수)&#13;&#10;※ 개인정보보호를 위해 문의 내용에는 개인정보 입력을 지양하여 주시기 바랍니다."></textarea></li>
+							<li class="box_full box_ad_product">
+								<p>관심상품(선택)</p>
+								<ul class="ad_product">
+									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="온라인 광고 전반" onclick="gaCk(1);"><span class="ad_checkbox_txt">온라인 광고 전반</span></li>
+									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="검색 광고" onclick="gaCk(2);"><span class="ad_checkbox_txt">검색 광고</span></li>
+									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="디스플레이 광고" onclick="gaCk(3);"><span class="ad_checkbox_txt">디스플레이 광고</span></li>
+									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="모바일 광고" onclick="gaCk(4);"><span class="ad_checkbox_txt">모바일 광고</span></li>
+									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="기타" onclick="gaCk(5);"><span class="ad_checkbox_txt">기타</span></li>
+<!-- 									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="SNS 광고"><span class="ad_checkbox_txt">SNS 광고</span></li> -->
+<!-- 									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="동영상 광고"><span class="ad_checkbox_txt">동영상 광고</span></li> -->
+<!-- 									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="네트워크 광고"><span class="ad_checkbox_txt">네트워크 광고</span></li> -->
+<!-- 									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="로컬 광고"><span class="ad_checkbox_txt">로컬 광고</span></li> -->
+<!-- 									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="쇼핑 광고"><span class="ad_checkbox_txt">쇼핑 광고</span></li> -->
+<!-- 									<li><input type="checkbox" class="ad_checkbox" name="product[]" value="해외 광고"><span class="ad_checkbox_txt">해외 광고</span></li> -->
+								</ul>
+							</li>
+					   </ul>
+					   <div class="inquiry_term_area">
+							<div id="pop_inquiry" class="inquiry_agreed">
+								<!--a href="#" class="inquiry_agreed_popup"-->
+									<input type="checkbox" id="agreedChk">
+									<label for="agreedChk">개인정보수집 및 이용에 동의합니다.</label>
+								<!--/a-->
+							</div>
+					   </div>
+					</div>
+					<div class="inquiry_btn">
+						<!--a href="prc_complete.html" class="inquiry_submit">확인</a-->
+						<a href="javascript:form_submit();" class="inquiry_submit">확인</a>
+						<a href="javascript:history.back()" class="inquiry_cancel">취소</a>
+					</div>
+				</div>
+			</form>
+			
+
+<!-- GA Ckeckbox event-->
+<script>
+function gaCk(id){
+ switch (id) {
+            case 1:  
+				gtag('event', 'ads_dimension', {'문의항목' : 'online'});
+                break;
+            case 2:
+				gtag('event', 'ads_dimension', {'문의항목' : 'search'});
+                break;
+            case 3:  
+				gtag('event', 'ads_dimension', {'문의항목' : 'display'});
+                break;
+            case 4:  
+				gtag('event', 'ads_dimension', {'문의항목' : 'mobile'});
+                break;
+            case 5:  
+				gtag('event', 'ads_dimension', {'문의항목' : 'etc'});
+                break;
+			default : 
+				break;
+}
+}
+</script>
+
+        
+
+		
+
+        <?php include "../../board/list_link_common.html"; ?>
+    </div>
+</div>
+<?php include "../include/tail.html"; ?>

@@ -1,0 +1,104 @@
+<?php
+    $sub_sql = "";
+    $search = "";
+
+    // if($category) $sub_sql .= "AND S_TYPE = '$category'";
+    if($category ) $sub_sql .= "AND S_TYPE = '$category'";
+    if($s_con) $sub_sql .= " AND S_TITLE LIKE '%$s_con%'";
+    if($category) $search .= "&category=".$category;
+    if($s_con) $search .= "&s_con=".$s_con;
+    if(!$page) $page = 1;
+	
+	$code_sub_sql  = "1=1";
+
+    $num_sql = "SELECT COUNT(*) FROM T_PDS WHERE $code_sub_sql AND S_NOTI_YN = 'Y' $sub_sql";
+    $sql = "SELECT * FROM T_PDS WHERE $code_sub_sql AND S_NOTI_YN = 'Y' $sub_sql ORDER BY S_DATE DESC";
+    $result = $func->listNpage(&$total, &$paging, $sql, $num_sql, $dbconn, $search);
+?>
+<div id="board">
+    <div class="board_list_top_bar">
+        <div class="inner">
+           <div class="board_search">
+                <form method="get" action="<?php echo $PHP_SELF; ?>">
+                    <input type="hidden" name="category" value="<?php echo $category; ?>" />
+                    <fieldset>
+                        <input type="text" name="s_con" placeholder="Search" value="<?php echo $s_con; ?>" />
+                        <button type="submit" class="bd_search_btn"><img src="../../images/board/search_ico.png" alt="검색"></button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="board_cate">
+				<a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>" class="<?php echo !$category ? "active" : ""; ?>">전체</a>
+				<?php
+				$sql1 = "select * from  T_PDS_CATEGORY where c_use='Y' ";
+				$result1 = mysql_query($sql1);
+				while($row1 = mysql_fetch_array($result1)) {
+				?>
+                <a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>&category=<?php echo $row1['C_NAME']; ?>" class="<?php echo $category == $row1['C_NAME'] ? "active" : ""; ?>"><?php echo $row1['C_NAME']; ?></a>
+				<?php
+				}
+				?>
+            </div>
+        </div>
+    </div>
+	<div class="board_join_list_wrap">
+        <ul class="board_join_list">
+		<?php while($arr = mysql_fetch_array($result)) { ?>
+			<li class="pdf_board_join_list">
+				<div class="num pdf_num">
+					<span>
+                        <?php
+                          echo $arr[S_TYPE];
+                        ?>
+                    </span>
+				</div>
+				<div class="post_info pdf_post_info">
+					<a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $arr[S_SEQ].$search; ?>" class="tit pdf_title"><?php echo $arr[S_TITLE]; ?></a>
+					<span class="cate"><?php echo substr($arr[S_DATE],0,10); ?></span>
+				</div>
+				<div class="app_btn finish_btn"><a href="../../board/download.php?seq=<?php echo $arr[S_SEQ]?>&type=pdf" target="_blank">다운로드</a></div>
+			</li>
+		<?php }?>
+        </ul>
+    </div>
+    
+
+	<!-- 	***190806_우측 고정 배너 추가*** -->
+	<form method="post" action="../../board/newsletter_Prc.php" onsubmit="return quick_form_check()" >
+		<div class="newsletter_pop_fix">
+			<h2 class="newsletter_pop_fix_tit">PlayD 뉴스레터 구독하기</h2>
+			<span class="newsletter_pop_fix_txt" id="pop_inquiry2" style="cursor:pointer">개인정보 처리방침 확인하기</span>
+			<span class="newsletter_pop_fix_alert"><input type="checkbox" id="agreedY" name="newsletter_agreed" value="Y" />개인정보 수집 및 이용에 동의합니다.</span>
+			<div class="newsletter_pop_fix_mail">
+				 <input type="text" placeholder="이메일 주소를 입력하세요" name="news_email" id="news_email" class="newsletter_pop_fix_mailadd" />
+				 <input type="submit" value="구독신청" class="newsletter_pop_fix_mail_submit" />
+			</div>
+		</div>
+	</form>
+
+    <?php echo $paging; ?>
+    <?php include "../../board/list_link_common.html"; ?>
+</div>
+
+<script>
+    function quick_form_check() {
+        if(!$('input:checkbox[id="agreedY"]').is(":checked")) {
+            alert("개인정보 수집에 동의해주시기 바랍니다.");
+            return false;
+        }
+		if($("input[name='news_email']").val() == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+        }
+
+		var emailVal = $("#news_email").val();
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		// 검증에 사용할 정규식 변수 regExp에 저장
+
+		if (emailVal.match(regExp) == null) {
+			alert("이메일 주소를 정확하게 입력해주시기 바랍니다.");
+            return false;
+		}
+        return true;
+    }
+</script>

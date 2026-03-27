@@ -1,0 +1,203 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+	$years = select_board_years();
+
+?>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+
+<!-- <script type="text/javascript">
+	window.addEventListener('load', () => {
+		alert("존재하지 않는 페이지 입니다.");
+		window.location.href = 'https://www.playd.com/';
+	});
+</script> -->
+
+<body class="letter nav03">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+	<!-- //header -->
+
+	<div id="container" class="container insight">
+
+    <div class="sub-header">
+      <h2 class="sub-header__title"><span class="sub-header__label">뉴스레터</span>하루 5분, 플레이디 뉴스레터로 <br><strong>트렌드</strong>를 빠르게 받아보세요.</h2>
+      <section class="visual">
+				<div class="visual__inner">
+					<h3 class="visual__slogan">광고·미디어에 특화된 업계 동향 및 <br>마케팅·트렌드 소식을 <br>월 2회 빠르게 전달해 드립니다.</h3>
+					<div class="button__wrap">
+						<a href="https://page.stibee.com/subscriptions/213340" target="_blank" class="button button__radius button__filled-red">뉴스레터 신청</a>
+            <!-- <button class="button open button__radius button__filled-red">뉴스레터 신청</button> -->
+          </div>
+				</div>
+        <div class="visual__image"><img class="image" src="../assets/images/w/visual/insight_0.png" /></div>
+      </section>
+    </div>
+
+		<div class="sub-container">
+			<div class="search-form search-form--tower">
+				<div class="search-form__wrap">
+					<input type="search" id="insightLetter-search" name="" tabindex="0" maxlength="52" placeholder="검색어를 입력하세요." onkeyup="enterSelect()">
+					<button type="button" class="button button__icon-search" onclick="javascript:keywordSelect();"><div class="a11y">검색</div></button>
+				</div>
+				<div class="search-list">
+					<div class="search-item">
+						<button type="button" id="years_" onclick="javascript:yearSelect('');" class="sub-tabs__item sub-tabs__item--active">전체</button>
+						<?phpfor ($i=0; $row=sql_fetch_array($years); $i++) {?>
+						<button type="button" id="years_<?=$row['B_YEAR']?>"  class="sub-tabs__item" onclick="javascript:yearSelect('<?=$row['B_YEAR']?>');"><?=$row['B_YEAR']?></button>
+						<?php}?>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="sub-content"></div>
+
+			<div class="sub-content__warning" style="display: none;">
+				<img src="../assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+				<p class="sub-content__warning-text">검색결과가 없습니다.</p>
+			</div>
+			
+			<div class="button__wrap">
+				<a href="javascript:itemMore();" class="button button__seemore">더 보기</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="form-submit"></div>
+<script>
+var g_page = 1;
+var g_listsize = 6;
+var g_year = '';
+
+$(document).ready(function(){
+	
+	ajaxItemList();
+
+});
+
+function ajaxItemList(){
+	var keyword = $('#insightLetter-search').val();
+	if(isLoading) return;
+	isLoading = true;
+		$.ajax({
+                    type: "POST",
+                    url: '/ajax/ajax_board_list.php',
+                    data: {
+                        'year':g_year,
+						'keyword':keyword,
+						'page':g_page,
+						'listsize':g_listsize,
+						'code':'nsmnw',
+                    },
+                    dataType: 'json',
+                    timeout: 60000,
+                    cache: false,
+                    crossDomain: false,
+                    error: function (request, error) {
+                        console.log(error + '');
+                    },
+                    success: function (json) {
+						isLoading = false;
+                        if(json){
+							console.log(g_listsize, g_page, json['count']);
+							if(g_listsize * g_page >= json['count']){
+								$('.button__seemore').hide();
+							} else {
+								$('.button__seemore').show();
+							}
+							fetchItemList(json['list'], json['count']);
+
+							if(json['count'] == 0){
+								$('.sub-content__warning').show();
+							} else {
+								$('.sub-content__warning').hide();
+							}
+
+                        }
+                    }
+        });
+}
+
+function fetchItemList(json, count){
+		var html = '';
+		for(var i=0;i<json.length;i++){
+			var image = '';
+			var alt = '';
+			//var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
+			var vol = count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
+
+			var datestr = json[i]['B_YEAR'] + '.' + json[i]['B_MONTH'];
+
+			<?phpif($is_mobile){?>
+			if(json[i]['B_FILE2']){
+				image = json[i]['B_FILE2'];
+			}
+			if(json[i]['B_EXT2']){
+				alt = json[i]['B_EXT2'];
+			}
+			<?php}else{?>
+			if(json[i]['B_FILE1']){
+				image = json[i]['B_FILE1'];
+			}
+			if(json[i]['B_EXT1']){
+				alt = json[i]['B_EXT1'];
+			}
+			<?php}?>
+			html+='<div class="list-content"><a href="./letter-detail.html?seq=' + json[i]['B_SEQ'] + '&vol=' + vol + '">';
+			html+='<div class="list-content__image" style="background-image:url('+image+')" title="'+alt+'"></div>';
+			html+='<div class="list-content__head">';
+			html+='<span class="numbering">Vol. '+vol+'</span>';
+			html+='</div>';
+			html+='<p class="list-content__title">'+json[i]['B_TITLE']+'</p>';
+			html+='<span class="list-content__meta">'+datestr+'</span>';
+			html+='</a></div>';
+			
+		}
+
+		$('.sub-content').append(html);
+		
+}
+function itemMore(){
+	g_page = g_page + 1;
+	ajaxItemList();
+}
+function yearSelect(year){
+	g_page = 1;
+	g_year = year;
+	$("button[id^='years_']").each(function (i, el) {
+		$(this).removeClass('sub-tabs__item--active');
+	});
+	$('#years_' + year).addClass('sub-tabs__item--active');
+
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function keywordSelect(){
+	g_page = 1;
+	$('.sub-content').empty();
+	ajaxItemList();
+}
+function enterSelect(){
+	if (window.event.keyCode == 13) {
+		g_page = 1;
+		$('.sub-content').empty();
+		ajaxItemList();
+	}
+}
+
+</script>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

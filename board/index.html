@@ -1,0 +1,103 @@
+<?php
+    if($code == "column") {
+		switch($type) {
+			case "list":
+				include  "../../board/column_list.html";
+			break;
+
+			case "view":
+				include "../../board/view.html";
+			break;
+
+			default:
+				include "../../board/column_list.html";
+			break;
+		}
+	} else if($code == "newsletter") {
+		switch($type) {
+			case "list":
+                include "../../board/newsletter_list.html";
+                break;
+
+            case "view":
+                include "../../board/view.html";
+                break;
+
+            default:
+                include "../../board/newsletter_list.html";
+                break;
+		}
+	} else if($code == "join") {
+		switch($type) {
+			case "list":
+                include "../../board/join_list.html";
+                break;
+
+            case "view":
+                include "../../board/view.html";
+                break;
+
+            default :
+                include "../../board/join_list.html";
+                break;
+        }
+
+	} else if($code == "news") {
+		switch($type) {
+			case "list":
+                include "../../board/news_list.html";
+                break;
+
+            case "view":
+                include "../../board/view.html";
+                break;
+
+            default :
+                include "../../board/news_list.html";
+                break;
+        }
+
+	} else if($code == "pdf") {
+		switch($type) {
+			case "list":
+                include "../../board/pdf_list.html";
+                break;
+
+            case "view":
+                include "../../board/view.html";
+                break;
+
+            default :
+                include "../../board/pdf_list.html";
+                break;
+        }
+    } else if($code == "ir_notice") {
+		switch($type) {
+			case "list":
+				include  "../../board/ir_notice_list.html";
+			break;
+
+			case "view":
+				include "../../board/view.html";
+			break;
+
+			default:
+				include "../../board/ir_notice_list.html";
+			break;
+		}
+	} else {
+		switch($type) {
+			case "list":
+                include "../../board/list.html";
+                break;
+
+            case "view":
+                include "../../board/view.html";
+                break;
+
+            default:
+                include "../../board/list.html";
+                break;
+		}
+	}
+?>

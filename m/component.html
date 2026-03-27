@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko_KR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="keywords" content=""/>
+  <meta name="description" content=""/>  
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" />
+  <meta property="og:keywords" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:site_name" content="PlayD" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:title" content="" />
+  <link rel="icon" href="" sizes="32x32" />
+  <link rel="icon" href="" sizes="192x192" />
+  <link rel="apple-touch-icon" href="" />
+
+	<title>PLAYD</title>
+	<link rel="stylesheet" href="../assets/css/m/ui.css">
+  <link rel="stylesheet" href="https://use.typekit.net/gjs0snj.css">
+	<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+</head>
+</head>
+<body class="component sub" style="background: #ffffff">
+  <header id="header" class="header header__default">
+	<button type="button" class="header__button">
+		<span class="burger-sticks"></span>
+		<span class="burger-sticks"></span>
+		<span class="burger-sticks"></span>
+	</button>
+	<div class="header__inner header__inner--full">
+		<h1 class="header__title">
+			<a href="./index.html" class="logo logo__default"><span class="a11y">플레이디</span></a>
+		</h1>
+		<nav class="gnb">
+			<p class="header__logo">
+				<a href="./index.html" class="logo logo__default"><span class="a11y">플레이디</span></a>
+			</p>
+			<div class="gnb__list">
+				<div class="gnb__item">
+					<a href="/" role="button" class="gnb__list--link font--bd">사업영역</a>
+					<div class="gnb__wrap">
+						<p><a href="/">캠페인전략</a></p>
+						<p><a href="/">미디어전략</a></p>
+						<p><a href="/">크리에이티브</a></p>
+						<p><a href="./portfolio.html">포트폴리오</a></p>
+						<p><a href="./awards.html">수상내역</a></p>
+					</div>
+				</div>
+				<div class="gnb__item">
+					<a href="/" role="button" class="gnb__list--link font--bd">솔루션</a>
+					<div class="gnb__wrap">
+						<p><a href="./techhub.html">Tech HUB</a></p>
+					</div>
+				</div>
+				<div class="gnb__item">
+					<a href="/" role="button" class="gnb__list--link font--bd">인사이트</a>
+					<div class="gnb__wrap">
+						<p><a href="./letter.html">뉴스레터</a></p>
+						<p><a href="./report.html">리포트</a></p>
+						<p><a href="./column.html">광고컬럼</a></p>
+					</div>
+				</div>
+				<div class="gnb__item">
+					<a href="/" role="button" class="gnb__list--link font--bd">플레이디</a>
+					<div class="gnb__wrap">
+						<p><a href="/">ABOUT</a></p>
+						<p><a href="./ir.html">IR</a></p>
+						<p><a href="./ethical.html">윤리경영</a></p>
+						<p><a href="/">ESG</a></p>
+					</div>
+				</div>
+				<div class="gnb__item">
+					<a href="/" role="button" class="gnb__list--link font--bd">인재채용</a>
+					<div class="gnb__wrap">
+						<p><a href="./recruit.html">채용</a></p>
+						<p><a href="./welfare.html">복리후생</a></p>
+					</div>
+				</div>
+			</div>
+			<p class="gnb__button"><a href="./contact.html" class="gnb__button--link font--bd">CONTACT</a></p>
+		</nav>
+	</div>
+</header>
+  <div style="padding-top: 100px"></div>
+  <input type="button" class="input__button input__square-button" value="통합마케팅">
+  <input type="button" class="input__button input__square-button input__button--active" value="브랜딩">
+
+  <input type="checkbox" id="input__checkbox" class="input__checkbox" value="통합마케팅"><label class="input__checkbox-label font--md" for="input__checkbox">통합마케팅</label>
+
+  <div class="drop-box">
+    <div class="drop-box__title">
+      <p>월 예산을 입력해 주세요</p>
+    </div>
+    <div class="drop-box__wrap">
+      <div>
+        <p><a href="/">100</a></p>
+        <p><a href="/">200</a></p>
+        <p><a href="/">300</a></p>
+        <p><a href="/">400</a></p>
+      </div>  
+    </div>
+  </div>
+
+  <div id="layer-popup">
+    <div class="button" onclick="layerOpen('layer_popup')">
+      <p><i></i>Layer Popup</p>
+    </div>
+  </div>
+
+  <div class="layer__body popup" id="layer_popup" aria-hidden="true" role="dialog">
+    <div class="layer__wrap">
+      <div class="layer__close">
+        <button onclick="layerClose('layer_popup')" class="close_btn">close</button>
+      </div>
+      <div class="layer__inner">
+        <div class="layer__content">
+          <dl>
+            <dt>title</dt>
+            <dd>contents</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-radio">
+    <div class="name-radio">
+      <input type="radio" id="name" name="name" class="name-radio__input" checked>
+      <label for="name" class="name-radio__label"><span>실명</span></label>
+    </div>
+    <div class="name-radio">
+      <input type="radio" id="name" name="name" class="name-radio__input">
+      <label for="name" class="name-radio__label"><span>익명</span></label>
+    </div>
+  </div>
+
+	<div class="sub-checkbox">
+		<label for="sub-checkbox--personal" class="sub-checkbox__label">
+			<input type="checkbox" id="sub-checkbox--personal" name="" class="sub-checkbox__input" checked>
+			<span>[필수] 개인정보보호정책에 동의합니다.</span>
+		</label>
+		<label for="sub-checkbox--marketing" class="sub-checkbox__label">
+			<input type="checkbox" id="sub-checkbox--marketing" name="" class="sub-checkbox__input">
+			<span>[선택] 플레이디 마케팅 수신에 동의합니다.</span>
+		</label>
+	</div>
+
+  <div class="sub-tabs">
+    <p><a href="/" class="sub-tabs__item sub-tabs__item--active">新 윤리경영 원칙</a></p>
+    <p><a href="/" class="sub-tabs__item">윤리경영 실전지침</a></p>
+    <p><a href="/" class="sub-tabs__item">윤리경영 신고</a></p>
+  </div>
+
+  <div class="sub-list-category">
+    <p><a href="/" class="sub-list-category__item sub-list-category__item--active">직무소개</a></p>
+    <p><a href="/" class="sub-list-category__item">채용 공고</a></p>
+    <p><a href="/" class="sub-list-category__item">채용 프로세스</a></p>
+  </div>
+
+  <div class="form-info">
+    <label for="form-company" class="form-info__label form-info__must-label">회사명</label>
+    <input type="text" id="form-company" name="form-company" class="form-info__input">
+  </div>
+
+  <div class="accordian">
+    <div class="accordian__item accordian__item--active">
+      <div class="accordian__title">
+        <a href="/">제 1장 총칙</a>
+      </div>
+      <div class="accordian__content">
+        <p>1장 총칙 내용입니다1장 총칙 내용입니다1장 총칙 내용입니다1장 총칙 내용입니다</p>
+      </div>
+    </div>
+    <div class="accordian__item">
+      <div class="accordian__title">
+        <a href="/">제 2장 총칙</a>
+      </div>
+      <div class="accordian__content">
+        <p>1장 총칙 내용입니다1장 총칙 내용입니다1장 총칙 내용입니다1장 총칙 내용입니다</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="drop-list">
+    <div class=""></div>
+  </div>
+
+  <form action="#" method="post" id="form">
+    <div class="form-field">
+      <label for="userid">이메일</label>
+      <input type="text" id="userid" name="userid" placeholder="crazybrain@naver.com">
+    </div>
+    <div class="form-field">
+      <label for="username">이름</label>
+      <input type="text" id="username" name="username" placeholder="kino">
+    </div>
+    <div class="form-field">
+      <label for="loginroot">로그인 정보</label>
+      <input type="text" id="loginroot" name="loginroot" placeholder="네이버">
+    </div>
+    <div class="form-field">
+      <label for="reg_date">가입일</label>
+      <input type="text" id="reg_date" name="reg_date" placeholder="2020-12-11">
+    </div>
+		<button type="submit" form="form" class="form-submit"><span>제출하기</span></button>
+  </form>
+
+
+
+  <script src="../assets/js/w/ui.js"></script>
+</body>
+
+<!-- footer -->
+<footer class="footer">
+ <section class="footer__banner banner">
+		<div class="banner__content">
+			<p class="banner__title font--md">플레이디와 함께 멈추지 않는 성장을 경험하세요.</p>
+			<div class="button__wrap">
+				<a href="#" class="button__square button__lined-white font--bd">프로젝트 문의</a>
+				<a href="#" class="button__square button__filled-white font--bd">회사소개서 다운로드</a>
+			</div>
+		</div>
+	</section>
+	<div class="footer-top">
+		<div class="footer-top__inner">
+			<p class="logo logo__footer">
+			<a href="#">
+				<img src="../assets/images/m/common/logo_color.png" alt="플레이디 로고">
+			</a>
+			</p>
+			<div class="footer__nav">
+				<div class="footer__wrap footer__wrap--line">
+					<p><a href="#">윤리신고</a></p>
+					<p><a href="#">뉴스레터</a></p>
+					<p><a href="#">오시는길</a></p>
+					<p class="footer__line--last"><a href="https://sensen.techhub.co.kr/" target="_blank">무료광고진단</a></p>
+				</div>
+				<div class="footer__wrap--line"><p class="footer__line--last"><a href="#" class="font--bd ">개인정보처리방침</a></p></div>
+			</ul>
+			<nav class="footer__nav--right">
+				<a href="#" class=""><img src="../assets/images/m/common/logo_naver.png" /><span class="a11y">네이버</span></a>
+				<a href="#" class=""><img src="../assets/images/m/common/logo_instagram.png" /><span class="a11y">인스타그램</span></a>
+				<a href="#" class=""><img src="../assets/images/m/common/logo_youtube.png" /><span class="a11y">유투브</span></a>
+				<a href="#" class=""><img src="../assets/images/m/common/logo_facebook.png" /><span class="a11y">페이스북</span></a>
+			</nav>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<ul class="footer__util">
+			<li>(주)플레이디</li>
+			<li>대표자 : 이준용 | 사업자등록번호 : 129-86-43885</li>
+			<li>주소 : 경기도 성남시 분당구 황새울로 359번길 11, 5층</li>
+			<li>이메일 : <a href="mailto:master@playd.com">master@playd.com</a></li>
+			<li class="copyright">Copyright &copy; PlayD.,Ltd, All rights reserved.</li>
+		</ul>
+		<nav class="footer__util--right">
+			<p class="information"><span class="information__title">대표전화</span><span class="footer__number numbering">1566-3265</span></p>
+			<ul class="information__desc">
+				<li>MON - FRI 09 : 00 - 18:00</li>
+				<li>주말, 공휴일 휴무</li>
+				<li>BREAK TIME : 12:30 - 13:30</li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="../assets/js/m/countUp.js"></script>
+<script src="../assets/js/m/swiper.min.js"></script>
+<script src="../assets/js/m/ui.js"></script>
+
+
+
+<script src="../assets/js/m/index.js"></script>
+<!-- //footer -->
+</body>
+</html>

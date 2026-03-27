@@ -1,0 +1,92 @@
+<?php
+if (!defined('_ADM_')) exit; // 개별 페이지 접근 불가
+?>
+<form name="frm" method="post" action="<?php echo P1_PAGE_URL ?>/qna_insert.php" onsubmit="return update();" enctype="multipart/form-data">
+<input type="hidden" name="m" value="<?php echo $m ?>">
+<input type="hidden" id="a_code" name="a_code" value="<?=($m == "u") ? $write['A_CODE'] : $bc_code?>">
+<?php if ($write['A_SEQ']) { ?>
+<input type="hidden" name="seq" value="<?=$write['A_SEQ']?>">
+<?php } ?>
+    <fieldset>
+    <legend class="hid1"><?=$p1['title']?> 등록 및 수정</legend>
+        <table class="colTable">
+            <colgroup>
+                <col width="139" />
+                <col width="206" />
+                <col width="139" />
+                <col width="207" />
+            </colgroup>
+            <tr>
+                <th>이름</th>
+                <td><?=$write['A_NAME']?></td>
+                <th>문의일</th>
+                <td><?=$write['A_DATE']?></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><?=$write['A_TEL']?></td>
+                <th>이메일</th>
+                <td><?=$write['A_MAIL']?></td>
+            </tr>
+            <tr>
+                <th>홈페이지주소</th>
+                <td colspan="3"><?=$write['A_URL']?></td>
+            </tr>
+            <tr>
+                <th>제휴제안내용</th>
+                <td colspan="3"><?=nl2br($write['A_CONT'])?></td>
+            </tr>
+            <tr>
+                <th>제안서 첨부</th>
+                <?php if ($write['A_FILE1']) { ?>
+                <td colspan="3"><a href="http://www.playd.com/upload/<?=$write['A_FILE1']?>" target="_blank"><?=$write['A_FILE1']?></a></td>
+                <?php } else { ?>
+                <td colspan="3">첨부파일 없음</td>
+                <?php } ?>
+            </tr>
+            <tr>
+                <th>확인여부</th>
+                <td colspan="3">
+                    <?php
+                    echo radio_selected("Y", $write['A_RE_YN'], "확인", "a_re_yn");
+                    echo radio_selected("N", $write['A_RE_YN'], "미확인", "a_re_yn");
+                    ?>
+                </td>
+            </tr>
+            <?php if ($write['A_RE_YN'] == "Y") { ?>
+            <tr>
+                <th>확인일</th>
+                <td colspan="3"><?=$write['A_RDATE']?></td>
+            </tr>
+            <?php } ?>
+        </table>
+        <!-- both button -->
+        <div class="bothButton">
+            <div class="fl">
+                <button class="btn btn-inverse" type="button" onclick="fnGoView('<?php echo $list_href ?>');">목록</button>
+            </div>
+            <div class="fr">
+                <input type="submit" class="btn btn-primary" value="확인">
+                <button class="btn btn-inverse" type="button" onclick="deletes('<?php echo $del_href ?>');">삭제</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<!-- 목록으로 돌아가기 -->
+<form name="golist" action="" method="post">
+    <input type="hidden" name="page" value="<?=$page?>">
+    <input type="hidden" name="bc_code" value="<?=$bc_code?>">
+    <input type="hidden" name="search_type" value="<?=$search_type?>">
+    <input type="hidden" name="search_txt" value="<?=$search_txt?>">
+    <input type="hidden" name="re_yn" value="<?=$re_yn?>">
+</form>
+<script type="text/javascript">
+function update() {
+    if($(':radio[name="a_re_yn"]:checked').val() == undefined){
+        alert("확인 여부를 선택하세요.");
+        return false;
+    }
+    
+    return;
+}
+</script>

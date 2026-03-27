@@ -1,0 +1,208 @@
+<?php
+    $sub_sql = "";
+    $search = "";
+
+	if($page) $search .= "&page=".$page;
+    if($s_con) $search .= "&s_con=".$s_con;
+    if($s_year) $search .= "&s_year=".$s_year;
+    if($category) $search .= "&category=".$category;
+    if($exps) $search .= "&exps=".$exps;
+    if($s_obj) $search .= "&s_obj=".$s_obj;
+    if($s_job) $search .= "&s_job=".$s_job;
+
+    if($code == "join") {
+        if($s_obj) $sub_sql .= " AND S_OBJ = '$s_obj'";
+        if($s_job) $sub_sql .= " AND S_JOB = '$s_job'";
+        
+        $sql = "SELECT * FROM T_SUPPORT WHERE S_SEQ = '$no'";
+        $result = mysql_query($sql);
+        $arr = mysql_fetch_array($result);
+
+        /* 이전 글 번호 */
+        $sql = " SELECT S_SEQ FROM T_SUPPORT WHERE S_NOTI_YN = 'Y' AND S_SEQ < '{$no}' {$sub_sql} ORDER BY S_SEQ DESC LIMIT 1 ";
+        $prev = $func->queryR($sql);
+
+        /* 다음 글 번호 */
+        $sql = " SELECT S_SEQ FROM T_SUPPORT WHERE S_NOTI_YN = 'Y' AND S_SEQ > '{$no}' {$sub_sql} ORDER BY S_SEQ LIMIT 1 ";
+        $next = $func->queryR($sql);
+	} else if($code == "pdf") {
+        $sub_sql = "";
+
+        $sql = "SELECT * FROM T_PDS WHERE S_SEQ = '$no'";
+        $result = mysql_query($sql);
+        $arr = mysql_fetch_array($result);
+
+        /* 이전 글 번호 */
+        $sql = " SELECT S_SEQ FROM T_PDS WHERE S_NOTI_YN = 'Y' AND S_SEQ < '{$no}' {$sub_sql} ORDER BY S_SEQ DESC LIMIT 1 ";
+        $prev = $func->queryR($sql);
+
+        /* 다음 글 번호 */
+        $sql = " SELECT S_SEQ FROM T_PDS WHERE S_NOTI_YN = 'Y' AND S_SEQ > '{$no}' {$sub_sql} ORDER BY S_SEQ LIMIT 1 ";
+        $next = $func->queryR($sql);
+    } else {
+        if($s_con) $sub_sql .= "AND B_TITLE LIKE '%$s_con%'";
+        if($s_year) $sub_sql .= " AND B_YEAR = '$s_year'";
+        if($exps) $sub_sql .= " AND B_EXPS_YN = '$exps'";
+        
+        if($code == "column") {
+            if($category == "성공사례") $code_sub_sql = "B_CODE = 'nsmext'";
+            else $code_sub_sql = " AND B_CODE IN ('nsmexp', 'nsmext') ";
+            $b_site = '';
+        } else {
+            $code_sub_sql = " AND B_CODE = '$menu_code[$code]' ";
+            $b_site = ($code == "newsletter") ? "" : " AND B_SITE <> '메이블' ";
+        }
+        
+        if ($category) {
+            $category_sql = " AND B_TYPE = '{$category}' ";
+        }
+
+        $sql = "SELECT * FROM T_BOARD WHERE B_SEQ = '$no'";
+        $result = mysql_query($sql);
+        $arr = mysql_fetch_array($result);
+
+		if($code!="news") {
+			/* 이전 글 번호 */
+			$sql = " SELECT B_SEQ FROM T_BOARD WHERE B_NOTI_YN='Y' and B_SEQ < '{$no}' {$sub_sql} {$code_sub_sql} {$b_site} {$category_sql} ORDER BY B_REGDATE desc LIMIT 1 ";
+			$prev = $func->queryR($sql);
+			
+			if ($_SERVER['REMOTE_ADDR'] == '49.254.187.254') {
+				//echo $sql;
+				//echo "<br/><br/>";
+			}
+
+			/* 다음 글 번호 */
+			$sql = " SELECT B_SEQ FROM T_BOARD WHERE B_NOTI_YN='Y' and B_SEQ > '{$no}' {$sub_sql} {$code_sub_sql} {$b_site} {$category_sql} ORDER BY B_REGDATE LIMIT 1 ";
+			$next = $func->queryR($sql);
+
+			if ($_SERVER['REMOTE_ADDR'] == '49.254.187.254') {
+				//echo $sql;
+				//echo "<br/><br/>";
+
+			}
+		} else {
+			$i=0;
+			$seq_array = array();
+			$seq_sql = "SELECT B_SEQ FROM T_BOARD WHERE B_CODE='nsmpr' AND B_NOTI_YN='Y' AND B_EXPS_YN='N' and (B_SITE<>'메이블') ORDER BY B_REGDATE DESC";
+			$seq_result = mysql_query($seq_sql);
+			while($seq_arr = mysql_fetch_array($seq_result)){
+				$seq_array[$i]=$seq_arr[B_SEQ];
+				$i++;
+			}
+			foreach($seq_array as $k=>$v) {
+				if($v == $no) {
+					$prev = $seq_array[$k+1];
+					$next = $seq_array[$k-1];
+				}
+			}
+			//echo $prev.", ".$no.", ".$next;
+
+		}
+    }
+?>
+<script>
+    function url_copy(url) {
+        var IE = (document.all) ? true : false;
+
+        if(IE) {
+            window.clipboardData.setData("Text", url);
+            alert("주소가 복사되었습니다.");
+        } else {
+			var tempElem = document.createElement('textarea');
+			tempElem.value = url;  
+			document.body.appendChild(tempElem);
+
+			tempElem.select();
+			document.execCommand("copy");
+			document.body.removeChild(tempElem);
+            alert("주소가 복사되었습니다.");
+        }
+    }
+</script>
+<div id="board">
+    <div class="board_view_top_bar">
+        <div class="inner">
+           <div class="bd_back_page">
+               <a href="<?php echo $PHP_SELF; ?>?type=list<?php echo $search; ?>">List Back</a>
+           </div>
+           <div class="bd_top_btn">
+              <div class="ultil_btn">
+                  <a href="javascript:url_copy('<?php echo $_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>')" class="url_copy">주소복사</a>
+              </div>
+               <div class="post_move">
+                   <?php if($prev) { ?>
+                   <a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $prev.$search; ?>" class="post_move_bt prev">
+                   <?php } else { ?>
+                   <a href="javascript:alert('이전 글이 없습니다.')" class="post_move_bt prev">
+                   <?php } ?>
+                       <img src="../../images/board/prev_post.png" alt="이전글 보기" />
+                   </a>
+                   <?php if($next) { ?>
+                  <a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $next.$search; ?>" class="post_move_bt next">
+                   <?php } else { ?>
+                   <a href="javascript:alert('다음 글이 없습니다.')" class="post_move_bt next">
+                   <?php } ?>
+                       <img src="../../images/board/next_post.png" alt="다음글 보기" />
+                   </a>
+               </div>
+           </div>
+        </div>
+    </div>
+    <div class="board_view_wrap">
+        <div class="view_post_info">
+            <?php if($code == "join") { ?>
+            <stron class="title"><?php echo $arr[S_FIELD]; ?></stron>
+            <span class="cate"><?php echo $menu[$code]; ?></span>
+            <span class="date"><?php echo date("Y-m-d", strtotime($arr[S_DATE])); ?></span>
+			<?php } else if($code == "pdf") { ?>
+            <stron class="title"><?php echo $arr[S_TITLE]; ?></stron>
+            <span class="cate"><?php echo $menu[$code]; ?></span>
+            <span class="date"><?php echo substr($arr[S_DATE],0,10); ?></span>
+			<a href="../../board/download.php?seq=<?php echo $arr[S_SEQ]?>&type=pdf" target="_blank" class="pdf_downBtn">다운로드</a>
+            <?php } else { ?>
+            <stron class="title"><?php echo $arr[B_TITLE]; ?></stron>
+            <span class="cate"><?php echo $menu[$code]; ?></span>
+            <span class="date"><?php echo date("Y-m-d", strtotime($arr[B_REGDATE])); ?></span>
+            <?php } ?>
+            <?php if($code == "ir_notice" && $arr['B_FILE2']) { ?>
+			<a href="<?php echo $arr['B_FILE2'];?>" target="_blank" class="pdf_downBtn">첨부파일 확인하기</a>
+            <? } ?>
+        </div>
+        <div class="view_post_con">
+            <p>
+                <?php
+					$domain = $_SERVER['HTTP_HOST'] ;
+					$b_cont = str_replace('http://nsm.co.kr','http://'.$domain,str_replace('nsm-corp.com', 'nsm.co.kr', $arr[B_CONT]));
+
+					if($code == "join") echo ($arr[S_CONT]);
+					else if($code == "pdf") echo ($arr[S_CONT]);
+                    else echo ($b_cont);
+
+					if($arr[B_SITE]=="인스타그램") {
+				?>
+						<img src="<?php echo $arr[B_FILE3];?>" alt="인스타그램" />
+				<?php
+					} else if($arr[B_SITE]=="페이스북") {
+				?>
+						<img src="<?php echo $arr[B_FILE2];?>" alt="페이스북" />
+				<?php
+					}
+                ?>
+				<?php
+					if($arr[B_SITE]=="인스타그램" || $arr[B_SITE]=="페이스북" || $arr[B_SITE]=="네이버블로그") {
+				?>
+						<span><a href="<?php echo $arr[B_LINKURL]; ?>" target="_blank">[더보러가기]</a></span>
+				<?php
+					}
+				?>
+
+			</p>
+        </div>
+    </div>
+    <div class="view_link_area">
+        <div class="in_box">
+            <p class="txt1"><a href="../etc/ad_inquiry.html">온라인 광고 문의하기 &gt;</a></p>
+            <p class="txt2">전화상담 1566-3265</p>
+        </div>
+    </div>
+</div>

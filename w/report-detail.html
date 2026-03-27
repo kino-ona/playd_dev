@@ -1,0 +1,164 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+
+	// 1건 가져오기 
+	$b_seq = nvl($_GET['seq'],2);
+	if(!$b_seq){
+		alert('잘못된 방식으로 접근하였습니다.','/');
+		exit;
+	}
+	$itemOne = select_board_one('report', $b_seq);
+
+	// HITS 업데이트 
+	update_board_hits($b_seq);
+	
+	$slideImage = '';
+	if($is_mobile){
+		$slideImage = $itemOne['B_FILE2'];
+	} else {
+		$slideImage = $itemOne['B_FILE1'];
+	}
+
+	// 관련 리스트
+	$otherList = select_board_list('report', 3, $b_seq, 'other');
+
+
+	$fileList = select_board_file_list($b_seq);
+	$fileCount = select_board_file_list_count($b_seq);
+	
+?>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+<body class="article nav03">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+	<!-- //header -->
+
+	<div id="container" class="container insight">
+		<div class="article-header">
+			<div class="sub-header">
+				<h2 class="sub-header__title"><span class="sub-header__label"><?=$itemOne['B_TYPE']?></span><?=$itemOne['B_TITLE']?></h2>
+			</div>
+			<div class="article__head">
+				<div class="article__meta article__meta--view">
+					<span><?=substr($itemOne['B_SEND_DT'],0,4)?>.<?=substr($itemOne['B_SEND_DT'],5,2)?></span>
+				</div>
+				<ul class="sns-share">
+					<li><button type="button" class="button button__sns-share button__icon-kakao" onclick="javascript:kakaoShareLink();"><span class="a11y">카카오톡 공유하기</span></button></li>
+					<li><button type="button" class="button button__sns-share button__icon-facebook" onclick="javascript:facebookShare();"><span class="a11y">페이스북 공유하기</span></button></li>
+					<li><button type="button" class="button button__sns-share button__icon-twitter" onclick="javascript:twitterShare();"><span class="a11y">트위터 공유하기</span></button></li>
+					<li><button type="button" class="button button__sns-share button__icon-linkcopy" onclick="javascript:linkShare();"><span class="a11y">기사 링크 복사하기</span></button></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="article-container">
+			<div class="article__content">
+				<?phpif($slideImage){?>
+				<div id="swiper" class="swiper-container swiper-container--single">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" style="background-image:url('<?=$slideImage?>')"></div>
+					</div>
+				</div>
+				<?php}?>
+				<?=$itemOne['B_CONT']?>
+				
+				<?phpif($itemOne['FI_SEQ2']){?>
+				<div class="button__wrap">
+					<div type="button" class="button downloadOpen button__large button__filled-black" onclick="javascript:download('<?=$itemOne['FI_SEQ2']?>','<?=$itemOne['B_LINKURL']?>','<?=$itemOne['B_SEQ']?>');">리포트 다운로드 <i></i> </div>
+				</div>
+				<?php}?>
+			</div>
+		</div>
+
+
+
+
+		<div class="sub-content recommended-contents">
+			<div class="sub-content__head">
+				<p class="sub-content__title">추천 리포트</p>
+				<div class="list-select">목록<a href="report.html" type="button"><i></i></a></div>
+			</div>
+
+			<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+				
+				$image = '';
+				$alt = '';
+				if($is_mobile){
+					if($row['B_FILE4']){
+						$image =$row['B_FILE4'];
+					}
+					if($row['B_EXT4']){
+						$alt = $row['B_EXT4'];
+					}
+				} else {
+					if($row['B_FILE3']){
+						$image = $row['B_FILE3'];
+					}
+					if($row['B_EXT3']){
+						$alt = $row['B_EXT3'];
+					}
+				}
+
+				?>
+
+			<div class="list-content">
+				<a href="report-detail.html?seq=<?=$row['B_SEQ']?>" class="list-content__cover">
+					<div class="list-content__image" style="background-image:url(<?=$image?>)" title="<?=$alt?>"></div>
+					<div class="button__wrap">
+						<div class="downloadOpen button button__icon-download"  onclick="javascript:download('<?=$row['FI_SEQ']?>','<?=$row['B_LINKURL']?>','<?=$row['B_SEQ']?>');"><span class="a11y">다운로드 받기</span></div>
+					</div>
+				</a>
+				<div class="list-content__head">
+					<span class="list-content__sort"><?=$row['B_TYPE']?></span>
+				</div>
+				<a href="report-detail.html?seq=<?=$row['B_SEQ']?>" class="list-content__title"><?=$row['B_TITLE']?></a>
+				<span class="list-content__meta"><?=substr($row['B_SEND_DT'],0,4)?>.<?=substr($row['B_SEND_DT'],5,2)?></span>
+			</div>
+
+			<?php}?>
+			
+		</div>
+	</div>
+</div>
+
+
+<script>
+var g_url = '';
+var g_val = '';
+var g_seq = '';
+
+function download(val, url, seq){
+	if(val !== '') {
+		g_url = url;
+		g_val = val;
+		g_seq = seq;
+		layerOpen('report');
+	}else {
+		alert('파일이 존재하지 않습니다.')
+	}
+
+}
+
+function kakaoShareLink(){
+	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
+	var desc = '<?=nvldesc($itemOne['B_BRIEF'])?>';
+
+	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share2.jpg';
+	kakaoShare(title, desc, imageUrl);
+}
+
+
+
+</script>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>

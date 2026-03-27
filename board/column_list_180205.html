@@ -1,0 +1,63 @@
+<?php
+    $sub_sql = "";
+    $search = "";
+
+    // if($category) $sub_sql .= "AND B_TYPE = '$category'";
+    if($category && $category != "성공사례") $sub_sql .= "AND B_TYPE = '$category'";
+    if($s_con) $sub_sql .= " AND B_TITLE LIKE '%$s_con%'";
+    if($category) $search .= "&category=".$category;
+    if($s_con) $search .= "&s_con=".$s_con;
+    if(!$page) $page = 1;
+
+    if(!$category) $code_sub_sql = "B_CODE IN ('nsmexp', 'nsmext')";
+    else if($category && $category != "성공사례") $code_sub_sql = "B_CODE = '$menu_code[$code]'";
+    else if($category == "성공사례") $code_sub_sql = "B_CODE = 'nsmext' AND B_TYPE IS NULL";
+
+    // $num_sql = "SELECT COUNT(*) FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' $sub_sql";
+    // $sql = "SELECT * FROM T_BOARD WHERE B_CODE = '$menu_code[$code]' AND B_NOTI_YN = 'Y' $sub_sql ORDER BY B_REGDATE DESC";
+    $num_sql = "SELECT COUNT(*) FROM T_BOARD WHERE $code_sub_sql AND B_NOTI_YN = 'Y' $sub_sql";
+    $sql = "SELECT * FROM T_BOARD WHERE $code_sub_sql AND B_NOTI_YN = 'Y' $sub_sql ORDER BY B_REGDATE DESC";
+    $result = $func->listNpage(&$total, &$paging, $sql, $num_sql, $dbconn, $search);
+?>
+<div id="board">
+    <div class="board_list_top_bar">
+        <div class="inner">
+           <div class="board_search">
+                <form method="get" action="<?php echo $PHP_SELF; ?>">
+                    <input type="hidden" name="category" value="<?php echo $category; ?>" />
+                    <fieldset>
+                        <input type="text" name="s_con" placeholder="Search" value="<?php echo $s_con; ?>" />
+                        <button type="submit" class="bd_search_btn"><img src="../../images/board/search_ico.png" alt="검색"></button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="board_cate">
+                <a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>" class="<?php echo !$category ? "active" : ""; ?>">전체</a>
+                <a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>&category=광고 트렌드" class="<?php echo $category == "광고 트렌드" ? "active" : ""; ?>">광고 트렌드</a>
+                <a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>&category=시스템활용" class="<?php echo $category == "시스템활용" ? "active" : ""; ?>">시스템활용</a>
+                <a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>&category=광고전략" class="<?php echo $category == "광고전략" ? "active" : ""; ?>">광고전략</a>
+                <a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>&category=광고운영TIP" class="<?php echo $category == "광고운영TIP" ? "active" : ""; ?>">광고운영TIP</a>
+                <a href="<?php echo $PHP_SELF; ?>?code=<?php echo $code; ?>&category=성공사례" class="<?php echo $category == "성공사례" ? "active" : ""; ?>">성공사례</a>
+            </div>
+        </div>
+    </div>
+    <div class="board_column_list_wrap">
+        <ul class="board_column_list">
+            <?php while($arr = mysql_fetch_array($result)) { ?>
+            <?php if(!$arr[B_TYPE]) $arr[B_TYPE] = "성공사례"; ?>
+            <li>
+                <div class="cate isNotice"><span><?php echo $arr[B_TYPE]; ?></span></div>
+                <div class="post_info">
+                    <a href="<?php echo $PHP_SELF; ?>?type=view&page=<?php echo $page; ?>&no=<?php echo $arr[B_SEQ].$search; ?>" class="tit"><?php echo $arr[B_TITLE]; ?></a>
+                    <span class="date"><?php echo date("Y-m-d", strtotime($arr[B_REGDATE])); ?></span>
+                </div>
+            </li>
+            <?php } ?>
+            <?php if($total[num] == 0) { ?>
+                <li class="no_data">게시글이 없습니다.</li>
+            <?php } ?>
+        </ul>
+    </div>
+    <?php echo $paging; ?>
+    <?php include "../../board/list_link_common.html"; ?>
+</div>

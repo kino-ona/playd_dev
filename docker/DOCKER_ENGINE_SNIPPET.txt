@@ -1,0 +1,7 @@
+Docker Desktop → Settings → Docker Engine 에서 기존 JSON에 아래 두 줄만 추가해 보세요.
+(불안정한 Wi‑Fi에서 레이어 받다 끊길 때 도움이 되는 경우가 있습니다. 쉼표 위치 주의.)
+
+  "max-concurrent-downloads": 1,
+  "max-concurrent-uploads": 1,
+
+Apply & Restart 후 다시 ./docker-pull-images.sh 실행.

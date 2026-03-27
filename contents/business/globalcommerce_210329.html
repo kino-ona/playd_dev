@@ -1,0 +1,382 @@
+<?php include"../include/head.html"; ?>
+
+<!-- 레이어팝업 -->
+<script>
+	function closeWin1() {
+		if ( document.notice_form1.chkbox.checked ){
+			setCookie( "maindiv1", "done" , 1 );
+		}
+		//document.all['divpop1'].style.visibility = "hidden";
+		$("#divpop1").hide();
+	}
+
+		$(document).ready(function() {
+			var cookiedata = document.cookie;
+			if ( cookiedata.indexOf("maindiv1=done") < 0 ){
+				//document.all['divpop1'].style.visibility = "visible";
+				$("#divpop1").show();
+			} else {
+				//document.all['divpop1'].style.visibility = "hidden";
+				$("#divpop1").hide();
+			}
+
+		});
+</script>
+
+	<!-- <div id="divpop1">
+			<div class="popImg">
+			<a href="https://services.amazon.co.kr/service-providers.html" target="_blank">
+			<img src="../../images/popup/popup_200916.jpg" alt=""/></div>
+			<div class="formWrap">
+				<form name="notice_form1">
+					<div class="checkWrap">
+						<input type="checkbox" name="chkbox" id="chkbox_id" value="checkbox" />
+						<span><label for="chkbox_id">오늘 하루 이 창을 열지 않습니다.</label></span>
+						<span><a href="javascript:closeWin1();" class="close_btn"><img src="../../images/popup/close_btn.png" alt="닫기" border="0" /></a>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div> -->
+
+
+        <div id="container">
+            
+            <div class="sub_top_section business_top07">
+                <h2 class="sub_page_tit">글로벌커머스</h2>
+            </div>
+ 
+<script>
+	/*
+	function email_chg(val) {
+        var email = $("input[name='email[]']");
+
+        if(val == "") {
+            email.eq(1).attr("readonly", false);
+            email.eq(1).val("");
+            email.eq(1).focus();
+        } else {
+            email.eq(1).val(val);
+            email.eq(1).attr("readonly", true);
+        }
+    }
+	*/
+
+    function form_submit() {
+        if(form_check()) $("#global_form").submit();
+    }
+
+    function form_check() {
+        if(!$("#agreedChk").is(":checked")) {
+            alert("개인정보 수집 이용에 동의해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='company']").val()) == "") {
+            alert("업체명을 입력해주시기 바랍니다.");
+            return false;
+        } else if($.trim($("input[name='name']").val()) == "") {
+            alert("담당자명을 입력해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='phone']").val() == "") {
+            alert("연락처를 입력해주시기 바랍니다.");
+            return false;
+        } else if($("input[name='email']").val() == "") {
+            alert("이메일 주소를 입력해주시기 바랍니다.");
+            return false;
+		} else if($("input:radio[name='gubun1[]']:checked").length == 0){
+			alert("판매자 입점여부를 선택주시기 바랍니다.");
+            return false;
+		} else if($("input:radio[name='gubun2[]']:checked").length == 0){
+			alert("판매국가를 선택주시기 바랍니다.");
+            return false;
+		} else if($("input:checkbox[name='gubun3[]']:checked").length == 0){
+			alert("제품 카테고리를 선택주시기 바랍니다.");
+            return false;
+        } 
+		/*
+		else if($("#spam_code").val() == "") {
+			alert("자동입력방지 코드를 입력하세요");
+			$("#spam_code").focus();
+			return false;
+		}
+
+		var echo_code1 = $("#echo_code1").html();
+		var echo_code2 = $("#echo_code2").html();
+		var spam_code = $("#spam_code").val();
+
+		if((echo_code1 != spam_code) && (echo_code2 != spam_code)) {
+			alert("자동입력방지 코드를 잘못 입력하였습니다.");
+			$("#spam_code").focus();
+			return false;
+		}
+		*/
+		
+        return true;
+    }
+</script>
+		  
+            <div id="subContent" class="business_cont">
+
+				<div class="business_sec global_sec01">
+                    <div class="inner">
+                        <ul class="global_01_list">
+                            <li class="text_box1">
+                                <span class="ico"><img src="../../images/sub/business/global_AmazonLogo1.jpg" alt=""></span>
+                            </li>
+                            <li class="text_box2">
+								<p class="business_desc4">전 세계 180여 개 국가, 3억 명 이상의 활성 고객이 있는 아마존!<br>플레이디가 아마존 진출과 비즈니스 성장을 도와드립니다.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+			<div class="business_sec global_sec01_1">
+				<div class="inner">
+					<div class="left">
+						<img src="../../images/sub/business/global_sec01_ico01-1.png" alt=" alt=""/>
+					</div>
+					<div class="right">
+					<h1>아마존 입점 온라인세미나</h1>
+						<ul>
+						<li class="tit">2021년 3월 매주 월요일(일자 선택) 오후 1:00~3:30</li>
+						<li	class="tit2">진행: 아마존 서비시즈코리아</li>
+						<li class="tit3">내용:</li>
+						<li>1) 아마존 안내 (아마존을 활용한 한국 기업의 성장 전략)</li>
+						<li>2) 한국 기업의 아마존 성공 사례</li>
+						<li>3) 간편한 아마존 입점 절차</li>
+						<li>4) Q&A</li>
+						<li	class="tit4">참가혜택:</li>
+						<li>1) 설문 작성에 한하여 전담 매니저의 컨설팅 제공</li>
+						<li>2) 아마존코리아의 실습세미나 우선 초대</li>
+						</ul>
+					</div>
+					</div>
+					
+				</div>		
+					<div class="business_sec global_sec01_2">
+						
+						<div class="box1">
+								<a href="https://attendee.gotowebinar.com/rt/7892982072009247504?source=PlayD" onclick="gaBtnEvt();" target="_blank"><p>신청하기</p></a>
+						</div>	
+					</div>
+
+<script>
+function gaBtnEvt(){	 
+	gtag('event', 'click button', {
+	  'event_category': "referral",
+	  'event_label': "enroll in Amazon webinar",
+	  'non_interaction': true
+	});
+    var console = window.console || {log:function(){}};
+	console.log("ok");	
+}
+</script>    
+
+
+
+
+				<div class="business_sec global_sec02">
+					<div class="inner">
+						<p class="business_tit_desc">고객사의 아마존 진출부터 매출 확대를 위한 광고 운영까지 <br>종합적인 아마존 마케팅 서비스를 제공해드립니다.</p>
+						<ul class="global_02_list">
+							<li class="global_02_list_txt">
+								<span class="ico"><img src="../../images/sub/business/global_sec02_ico01.png" alt="이미지01" /></span>
+								<div class="txt_wrap">
+									<span class="tit">아마존 글로벌셀링 기본 교육</span>
+									<p class="txt">아마존 마켓 및 플랫폼에 대한 이해를 도와드립니다.</p>
+									<ul class="txt_2">
+										  <li>- 아마존 마켓플레이스 개론</li>
+										  <li>- 이커머스의 변화와 기회</li>
+										  <li>- 아마존 글로벌셀링 Step by Step</li>
+										  <li>- 글로벌셀링 접근법과 마인드</li>
+									</ul>
+								</div>
+							</li>
+							<li class="global_02_list_txt">
+								<span class="ico"><img src="../../images/sub/business/global_sec02_ico02.png" alt="이미지02" /></span>
+								<div class="txt_wrap">
+									<span class="tit">아마존 시장 조사</span>
+									<p class="txt">아마존에서의 수요 및 경쟁 파악을 도와드립니다.</p>
+									<ul class="txt_2">
+										  <li>- 아마존 마켓플레이스 구매 데이터 기반의 정량적인 시장 조사</li>
+										  <li>- 고객사 제품의 Unique Selling Point 발굴과 마케팅 전략 제언</li>
+									</ul>
+								</div>
+							</li>
+							<li class="global_02_list_txt">
+								<span class="ico"><img src="../../images/sub/business/global_sec02_ico03.png" alt="이미지03" /></span>
+								<div class="txt_wrap">
+									<span class="tit">판매자 입점 안내</span>
+									<p class="txt">까다로운 입점 검토를 지원해 드립니다.</p>
+									<ul class="txt_2">
+										  <li>- 계정 생성 및 가상계좌서비스 가입에 대한 가이드 지원</li>
+										  <li>- 셀링 전략/일정에 부합하는 판매자 옵션 제안</li>
+									</ul>
+								</div>
+							</li>
+							<li class="global_02_list_txt">
+								<span class="ico"><img src="../../images/sub/business/global_sec02_ico04.png" alt="이미지04" /></span>
+								<div class="txt_wrap">
+									<span class="tit">제품 리스팅 최적화</span>
+									<p class="txt">고객의 니즈(검색)에 부합하는 리스팅을 만들어 드립니다.</p>
+									<ul class="txt_2">
+										  <li>- 아마존 고객의 검색 데이터에 기반한 리스팅 디스크립션 최적화</li>
+										  <li>- 아마존에서 권장하는 최적의 리스팅 이미지 베리에이션 지원</li>
+									</ul>
+								</div>
+							</li>
+							<li class="global_02_list_txt">
+								<span class="ico"><img src="../../images/sub/business/global_sec02_ico05.png" alt="이미지05" /></span>
+								<div class="txt_wrap">
+									<span class="tit">On/Off 아마존 광고 마케팅</span>
+									<p class="txt">최적의 잠재고객을 확보하고 제품 판매의 선순환을 만들어 드립니다.</p>
+									<ul class="txt_2">
+										  <li>- 목표 ACoS 달성을 위한 아마존 광고 캠페인 운영</li>
+										  <li>- 잠재고객 확보와 아마존 비즈니스 확장 전략 제시</li>
+									</ul>
+								</div>
+							</li>
+							<li class="global_02_list_txt">
+								<span class="ico"><img src="../../images/sub/business/global_sec02_ico06.png" alt="이미지06" /></span>
+								<div class="txt_wrap">
+									<span class="tit">브랜드 강화</span>
+									<p class="txt">공인된 브랜드만 가질 수 있는 브랜드 전략을 알려드립니다.</p>
+									<ul class="txt_2">
+										  <li>- 아마존 Brand Registry를 활용한 마케팅 전략 가이드</li>
+										  <li>- 포괄적인 브랜드 강화 전략 제시(위조 품목 대응, 마케팅 옵션 등)</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				
+				<div class="business_sec global_sec02_1">
+				<div class="inner">
+                        <ul class="global_01_list">
+                            
+                            <li class="text_box2">
+								<p class="business_desc4">플레이디는 아마존코리아의<br>마케팅 서비스 파트너사(SPN)입니다.</p>
+                            </li>
+
+							<li class="text_box1">
+                                <span class="ico"><img src="../../images/sub/business/amazon_spn_logo.jpg" alt=""></span>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+				
+				<div class="business_sec global_sec02_2">
+				<div class="ci_box">
+						<div class="ci_inner">
+							<div class="ci_img">
+								<img src="../../images/sub/company/playd-amazon-global-selling-logo.png" alt="">
+							</div>
+							<div class="right_box">
+								<p class="stit_desc">
+								플레이디의 아마존 통합 마케팅 솔루션!<br/>자세한 내용은 서비스 소개서를 통해 확인해주세요.</p>
+								<a href="../file/플레이디_아마존_글로벌셀링_서비스 소개서_(2020.12).pdf" target="_blank" class="down_btn" onclick="gaBtnEvt2();">DOWNLOAD</a>
+							</div>
+						</div>
+					</div>
+					</div>
+					
+<script>
+function gaBtnEvt2(){	 
+	gtag('event', 'click button', {
+	  'event_category': "service introduction",
+	  'event_label': "download file",
+	  'non_interaction': true
+	});
+    var console = window.console || {log:function(){}};
+	console.log("ok");	
+}
+</script> 
+					
+
+
+				<a href="https://www.playd.com/contents/business/AD_column.html?category=&s_con=%EC%95%84%EB%A7%88%EC%A1%B4"><div class="business_sec global_sec02_3">
+					<div class="text">
+						<p class="tit">아마존 글로벌셀링 칼럼 보러가기</p>
+						<p>아마존에 대한 다양한 소식을 안내드립니다.</p>
+					</div>
+				</div></a>
+				<div class="business_sec global_sec03">
+					<div class="inner">
+						<p class="business_tit_desc">아마존 글로벌셀링에 대한 문의를 남겨주시면 신속하게 안내 드리겠습니다.</p>
+
+							<form id="global_form" method="post" action="commerce_Prc.php">
+								<input type="hidden" name="code" value="nsmcommerce">
+									<div class="inquiry_area">
+										<div class="inquiry_form_area">
+										   <ul class="form_list form_list2">
+												<li><input type="text" class="inp_half" name="company" maxlength="12" placeholder="업체명*"></li>
+												<li><input type="text" class="inp_half" name="name" maxlength="12" placeholder="담당자명*"></li>
+												<li><input type="text" class="inp_half onlynum" name="phone" maxlength="12" placeholder="연락처*"></li>
+												<li><input type="text" class="inp_half" name="email" maxlength="100" placeholder="이메일*"></li>
+												<li class="box_full box_global_product">
+													<p class="global_product_title">판매자 입점여부<span class="global_product_must">*</span></p>
+													<ul class="global_product">
+														<li><input type="radio" class="global_checkbox" name="gubun1[]" value="입점완료"><span class="global_checkbox_txt">입점완료</span></li>
+														<li><input type="radio" class="global_checkbox" name="gubun1[]" value="미입점"><span class="global_checkbox_txt">미입점</span></li>
+													</ul>
+													<p class="global_product_title">판매 국가<span class="global_product_must">*</span></p>
+													<ul class="global_product">
+														<li><input type="radio" class="global_checkbox" name="gubun2[]" value="미국"><span class="global_checkbox_txt">미국</span></li>
+														<li><input type="radio" class="global_checkbox" name="gubun2[]" value="일본"><span class="global_checkbox_txt">일본</span></li>
+														<li><input type="radio" class="global_checkbox" name="gubun2[]" value="그 외 국가"><span class="global_checkbox_txt">그 외 국가</span></li>
+													</ul>
+													<p class="global_product_title">제품 카테고리(중복 선택 가능)<span class="global_product_must">*</span></p>
+													<ul class="global_product">
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="의류"><span class="global_checkbox_txt">의류</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="자동차용품"><span class="global_checkbox_txt">자동차용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="유아용품"><span class="global_checkbox_txt">유아용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="화장품"><span class="global_checkbox_txt">화장품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="도서"><span class="global_checkbox_txt">도서</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="전자제품"><span class="global_checkbox_txt">전자제품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="가구"><span class="global_checkbox_txt">가구</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="식품"><span class="global_checkbox_txt">식품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="건강 및 개인관리용품"><span class="global_checkbox_txt">건강 및 개인관리용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="가정용품"><span class="global_checkbox_txt">가정용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="귀금속"><span class="global_checkbox_txt">귀금속</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="주방용품"><span class="global_checkbox_txt">주방용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="여행용 가방"><span class="global_checkbox_txt">여행용 가방</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="악기"><span class="global_checkbox_txt">악기</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="사무용품"><span class="global_checkbox_txt">사무용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="컴퓨터"><span class="global_checkbox_txt">컴퓨터</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="애완용품"><span class="global_checkbox_txt">애완용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="신발"><span class="global_checkbox_txt">신발</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="스포츠용품"><span class="global_checkbox_txt">스포츠용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="장난감"><span class="global_checkbox_txt">장난감</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="휴대전화 및 무선용품"><span class="global_checkbox_txt">휴대전화 및 무선용품</span></li>
+														<li><input type="checkbox" class="global_checkbox" name="gubun3[]" value="그 외 제품"><span class="global_checkbox_txt">그 외 제품</span></li>
+													</ul>
+												</li>
+												<li class="box_full"><textarea class="inp_full_2" name="content" placeholder="글로벌셀링 관련문의 &#13;&#10;※개인정보보호를 위해 문의 내용에는 개인정보 입력을 지양하여 주시기 바랍니다."></textarea></li>
+										   </ul>
+										   <div class="inquiry_term_area">
+												<div id="pop_inquiry" class="inquiry_agreed">
+													<!--a href="#" class="inquiry_agreed_popup"-->
+														<input type="checkbox" id="agreedChk">
+														<label for="agreedChk">개인정보수집 및 이용에 동의합니다.</label>
+													<!--/a-->
+												</div>
+										   </div>
+										</div>
+										<div class="inquiry_btn">
+											<!--a href="globalcommerce_complete.html" class="inquiry_submit">확인</a-->
+											<a href="javascript:form_submit()" class="inquiry_submit">확인</a>
+											<a href="javascript:history.back()" class="inquiry_cancel">취소</a>
+										</div>
+									</div>
+								</form>
+
+					</div>
+				</div>
+
+            </div>
+            
+        </div> <!-- End container -->
+    
+<?php include"../include/tail.html"; ?>

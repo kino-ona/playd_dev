@@ -1,0 +1,147 @@
+<?php
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
+    include_once($_SERVER["DOCUMENT_ROOT"].'/include/_lib.php');
+
+
+
+	// 1건 가져오기 
+	$b_seq = nvl($_GET['seq']);
+	if(!$b_seq){
+		alert('잘못된 방식으로 접근하였습니다.','/');
+		exit;
+	}
+	$itemOne = select_board_one('nsmexp', $b_seq);
+	
+	// HITS 업데이트 
+	update_board_hits($b_seq);
+
+	$slideImage = '';
+	if($is_mobile){
+		$slideImage = $itemOne['B_FILE2'];
+	} else {
+		$slideImage = $itemOne['B_FILE1'];
+	}
+
+
+	// 관련 리스트
+	$otherList = select_board_list('nsmexp', 3, $b_seq, 'other');
+
+?>	
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.w.php');
+?>
+
+<script type="text/javascript">
+	window.addEventListener('load', () => {
+		alert("존재하지 않는 페이지 입니다.");
+		window.location.href = 'https://www.playd.com/';
+	});
+</script>
+
+<body class="article nav03" style="visibility:hidden">
+<div class="skipnavigation"><a href="#container">본문 바로가기</a></div>
+
+<div class="wrap">
+
+	<!-- header -->
+	<?php  include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.w.php');
+?>
+	<!-- //header -->
+
+	<div id="container" class="container insight">
+		<div class="article-header">
+			<div class="sub-header">
+				<h2 class="sub-header__title"><span class="sub-header__label"><?=$itemOne['B_TYPE']?></span><?=$itemOne['B_TITLE']?></h2>
+			</div>
+			<div class="article__head">
+				<div class="article__meta article__meta--view">
+					<span><?=substr($itemOne['B_REGDATE'],0,4)?>.<?=substr($itemOne['B_REGDATE'],5,2)?></span>
+				</div>
+				<ul class="sns-share">
+					<li><button type="button" class="button button__sns-share button__icon-kakao" onclick="javascript:kakaoShareLink();"><span class="a11y">카카오톡 공유하기</span></button></li>
+					<li><button type="button" class="button button__sns-share button__icon-facebook" onclick="javascript:facebookShare();"><span class="a11y">페이스북 공유하기</span></button></li>
+					<li><button type="button" class="button button__sns-share button__icon-twitter" onclick="javascript:twitterShare();"><span class="a11y">트위터 공유하기</span></button></li>
+					<li><button type="button" class="button button__sns-share button__icon-linkcopy" onclick="javascript:linkShare();"><span class="a11y">기사 링크 복사하기</span></button></li>
+				</ul>
+			</div>
+		</div>
+
+	
+
+		<div class="article-container">
+			<div class="article__content">
+				<!-- <div id="swiper" class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" style="background-image:url('<?=$slideImage?>')"></div>
+					</div>
+				</div> -->
+
+			  <?=$itemOne['B_CONT']?>
+			</div>
+        </div>
+		
+
+		<div class="sub-content recommended-contents">
+			<div class="sub-content__head">
+				<p class="sub-content__title">추천 광고컬럼</p>
+				<div class="list-select">목록<a href="column.html" type="button"><i></i></a></div>
+			</div>
+
+			<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+				
+				$image = '';
+				$alt = '';
+				if($is_mobile){
+					if($row['B_FILE2']){
+						$image =$row['B_FILE2'];
+					}
+					if($row['B_EXT2']){
+						$alt = $row['B_EXT2'];
+					}
+				} else {
+					if($row['B_FILE1']){
+						$image = $row['B_FILE1'];
+					}
+					if($row['B_EXT1']){
+						$alt = $row['B_EXT1'];
+					}
+				}
+
+		?>
+
+
+			<div class="list-content list-content--long"><a href="javascript:;">
+				<div class="list-content__image" style="background-image:url(<?=$image?>)" title="<?=$alt?>"></div>
+				<div class="list-content__head">
+					<span class="list-content__sort"><?=$row['B_TYPE']?></span>
+				</div>
+				<p class="list-content__title list-content__title--long"><?=$row['B_TITLE']?></p>
+				<div class="list-content__description"><?=strip_tags($row['B_CONT'])?></div>
+				<span class="list-content__meta"><?=substr($row['B_REGDATE'],0,4)?>.<?=substr($row['B_REGDATE'],5,2)?></span>
+				<!-- <span class="list-content__meta list-content__meta--view"><i><span class="a11y">조회수</span></i><?=number_format($row['B_HITS'])?></span> -->
+			</a></div>
+				<?php}?>
+
+		</div>
+	</div>
+</div>
+<style>
+.article .swiper-slide__text { min-height:auto; }
+</style>
+
+<script>
+
+function kakaoShareLink(){
+	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
+	var desc = '<?=nvldesc($itemOne['B_CONT'])?>';
+
+	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share2.jpg';
+	kakaoShare(title, desc, imageUrl);
+}
+
+
+
+</script>
+<?php
+  include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
+?>
