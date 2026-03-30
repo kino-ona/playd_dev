@@ -16,6 +16,7 @@ services:
     entrypoint: ["/bin/sh", "/usr/local/bin/playd-entrypoint.sh"]
     environment:
       PLAYD_DB_HOST: mysql
+      PLAYD_DB_PORT: "3306"
       PLAYD_DB_USER: root
       PLAYD_DB_PASSWORD: root
       PLAYD_DB_NAME: playd
@@ -34,6 +35,8 @@ services:
       - "3307:3306"
     volumes:
       - playd_mysql_data:/var/lib/mysql
+      # 최초 기동 시에만 실행됨(빈 데이터 볼륨일 때). 운영 DB 덤프를 쓰면 이 시드를 제거하거나 파일을 비우세요.
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -proot || exit 1"]
       interval: 5s

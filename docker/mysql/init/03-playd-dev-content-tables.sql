@@ -1,0 +1,332 @@
+-- 게시판·채용·문의·뉴스레터 등 adm 페이지가 참조하는 테이블 (로컬 빈 DB용)
+-- 기존 볼륨이면 수동 적용:
+--   docker compose exec -T mysql mysql -uroot -proot playd < docker/mysql/init/03-playd-dev-content-tables.sql
+
+SET NAMES utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `T_BOARD_CONFIG` (
+  `BC_SEQ` int NOT NULL AUTO_INCREMENT,
+  `BC_CODE` varchar(100) NOT NULL,
+  `BC_NAME` varchar(200) DEFAULT NULL,
+  `BC_UPLOAD_NM` varchar(200) DEFAULT NULL,
+  `BC_GROUP` varchar(10) DEFAULT NULL,
+  `BC_TYPE` varchar(20) DEFAULT NULL,
+  `BC_SKIN` varchar(50) DEFAULT NULL,
+  `BC_EDITOR` varchar(50) DEFAULT NULL,
+  `BC_ROWS` int DEFAULT 10,
+  `BC_PAGES_ROWS` int DEFAULT 10,
+  `BC_SITE_USE_YN` char(1) DEFAULT 'Y',
+  `BC_EXPS_USE_YN` char(1) DEFAULT 'N',
+  `BC_TYPE_USE_YN` char(1) DEFAULT 'N',
+  `BC_NOTI_USE_YN` char(1) DEFAULT 'Y',
+  `BC_DATE_USE_YN` char(1) DEFAULT 'N',
+  `BC_CORP_NAME_USE_YN` char(1) DEFAULT 'N',
+  `BC_NAME_USE_YN` char(1) DEFAULT 'N',
+  `BC_SHARE_USE_YN` char(1) DEFAULT 'N',
+  `BC_REG_DTTM` datetime DEFAULT NULL,
+  `BC_UPD_DTTM` datetime DEFAULT NULL,
+  `BC_USE_YN` char(1) DEFAULT '1',
+  PRIMARY KEY (`BC_SEQ`),
+  KEY `idx_bc_code` (`BC_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_BOARD` (
+  `B_SEQ` bigint NOT NULL AUTO_INCREMENT,
+  `B_CODE` varchar(100) DEFAULT NULL,
+  `B_TITLE` varchar(500) DEFAULT NULL,
+  `B_CONT` mediumtext,
+  `B_BRIEF` text,
+  `B_REGDATE` datetime DEFAULT NULL,
+  `B_UREGDATE` datetime DEFAULT NULL,
+  `B_WRITER` varchar(100) DEFAULT NULL,
+  `B_UWRITER` varchar(100) DEFAULT NULL,
+  `B_HITS` int DEFAULT 0,
+  `B_SITE` varchar(200) DEFAULT NULL,
+  `B_TYPE` varchar(200) DEFAULT NULL,
+  `B_EXPS_YN` char(1) DEFAULT 'N',
+  `B_NOTI_YN` char(1) DEFAULT 'Y',
+  `B_YEAR` varchar(10) DEFAULT NULL,
+  `B_MONTH` varchar(10) DEFAULT NULL,
+  `B_CORP_NAME` varchar(200) DEFAULT NULL,
+  `B_NAME` varchar(100) DEFAULT NULL,
+  `B_SHARE_SEQ` varchar(50) DEFAULT NULL,
+  `B_SNS_DEL_YN` char(1) DEFAULT NULL,
+  `B_LINKURL` varchar(500) DEFAULT NULL,
+  `B_SEND_DT` varchar(50) DEFAULT NULL,
+  `B_EXT1` varchar(500) DEFAULT NULL,
+  `B_EXT2` varchar(500) DEFAULT NULL,
+  `B_EXT3` varchar(500) DEFAULT NULL,
+  `B_EXT4` varchar(500) DEFAULT NULL,
+  `B_EXT5` varchar(500) DEFAULT NULL,
+  `B_EXT6` varchar(500) DEFAULT NULL,
+  `B_EXT7` varchar(500) DEFAULT NULL,
+  `B_TITLE1` varchar(500) DEFAULT NULL,
+  `B_CONT1` mediumtext,
+  `B_FILE1` varchar(500) DEFAULT NULL,
+  `B_FILE2` varchar(500) DEFAULT NULL,
+  `B_FILE3` varchar(500) DEFAULT NULL,
+  `B_FILE4` varchar(500) DEFAULT NULL,
+  `B_FILE5` varchar(500) DEFAULT NULL,
+  `B_FILE6` varchar(500) DEFAULT NULL,
+  `B_SYSFILE2` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`B_SEQ`),
+  KEY `idx_b_code` (`B_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_BOARD_FILES` (
+  `FI_SEQ` int NOT NULL AUTO_INCREMENT,
+  `B_SEQ` bigint NOT NULL,
+  `FI_NAME` varchar(500) DEFAULT NULL,
+  `FI_ORG` varchar(500) DEFAULT NULL,
+  `FI_SORT` int DEFAULT 0,
+  `FI_INDEX` varchar(10) DEFAULT NULL,
+  `FI_REGDATE` datetime DEFAULT NULL,
+  PRIMARY KEY (`FI_SEQ`),
+  KEY `idx_t_board_files_b_seq` (`B_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_BOARD_RECOM` (
+  `BR_SEQ` int NOT NULL AUTO_INCREMENT,
+  `BR_WORD` varchar(200) DEFAULT NULL,
+  `BR_B_SEQ` bigint DEFAULT NULL,
+  `BR_REG_DTTM` datetime DEFAULT NULL,
+  PRIMARY KEY (`BR_SEQ`),
+  KEY `idx_t_board_recom_b_seq` (`BR_B_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_POST_CATEGORY` (
+  `C_SEQ` int NOT NULL AUTO_INCREMENT,
+  `C_NAME` varchar(100) DEFAULT NULL COMMENT '카테고리명',
+  `C_USE` char(1) DEFAULT '1' COMMENT 'Y:사용/N:미사용',
+  `C_DATE` datetime DEFAULT NULL,
+  `C_SORT` int DEFAULT 0,
+  PRIMARY KEY (`C_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_ASK` (
+  `A_SEQ` int NOT NULL AUTO_INCREMENT,
+  `A_CODE` varchar(100) DEFAULT NULL,
+  `A_TITLE` varchar(500) DEFAULT NULL,
+  `A_CONT` mediumtext,
+  `A_NAME` varchar(100) DEFAULT NULL,
+  `A_DATE` datetime DEFAULT NULL,
+  `A_RE_YN` char(1) DEFAULT 'N',
+  `A_RCONT` mediumtext,
+  `A_RDATE` datetime DEFAULT NULL,
+  `A_RWRITER` varchar(100) DEFAULT NULL,
+  `A_UWRITER` varchar(100) DEFAULT NULL,
+  `A_UREGDATE` datetime DEFAULT NULL,
+  `A_ADMIN_READ` int DEFAULT 0,
+  PRIMARY KEY (`A_SEQ`),
+  KEY `idx_t_ask_code` (`A_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_REPORT` (
+  `A_SEQ` int NOT NULL AUTO_INCREMENT,
+  `A_NAME` varchar(100) DEFAULT NULL,
+  `A_DATE` datetime DEFAULT NULL,
+  `A_TEL` varchar(50) DEFAULT NULL,
+  `A_MAIL` varchar(200) DEFAULT NULL,
+  `A_CONT` mediumtext,
+  `A_RE_YN` char(1) DEFAULT 'N',
+  `A_RDATE` datetime DEFAULT NULL,
+  `A_ANSWER` mediumtext,
+  `A_RWRITER` varchar(100) DEFAULT NULL,
+  `A_UWRITER` varchar(100) DEFAULT NULL,
+  `A_UREGDATE` datetime DEFAULT NULL,
+  `A_PASSWD_FAIL` int DEFAULT 0,
+  PRIMARY KEY (`A_SEQ`),
+  KEY `idx_t_report_mail` (`A_MAIL`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_COMMENT` (
+  `NO` int NOT NULL AUTO_INCREMENT,
+  `REPORT_NO` int NOT NULL,
+  `WRITER` varchar(100) DEFAULT NULL,
+  `COMMENT` text,
+  `WDATE` datetime DEFAULT NULL,
+  `IP` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`NO`),
+  KEY `idx_t_comment_report_no` (`REPORT_NO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_NEWSLETTER` (
+  `NS_SEQ` int NOT NULL AUTO_INCREMENT,
+  `NS_NAME` varchar(200) DEFAULT NULL,
+  `NS_MAIL` varchar(200) DEFAULT NULL,
+  `NS_JIKUP` varchar(200) DEFAULT NULL,
+  `NS_JIKLV` varchar(200) DEFAULT NULL,
+  `NS_COMPANY` varchar(200) DEFAULT NULL,
+  `NS_DIV` varchar(200) DEFAULT NULL,
+  `NS_REGDATE` datetime DEFAULT NULL,
+  PRIMARY KEY (`NS_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_NEWSREPORT` (
+  `NS_SEQ` int NOT NULL AUTO_INCREMENT,
+  `NS_NAME` varchar(200) DEFAULT NULL,
+  `NS_MAIL` varchar(200) DEFAULT NULL,
+  `NS_COMPANY` varchar(200) DEFAULT NULL,
+  `NS_JIKUP` varchar(200) DEFAULT NULL,
+  `NS_JIKLV` varchar(200) DEFAULT NULL,
+  `NS_DIV` varchar(200) DEFAULT NULL,
+  `NS_MARKETING` char(1) DEFAULT 'N',
+  `NS_REGDATE` datetime DEFAULT NULL,
+  `NS_B_SEQ` bigint DEFAULT NULL,
+  PRIMARY KEY (`NS_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_SUPPORT` (
+  `S_SEQ` int NOT NULL AUTO_INCREMENT,
+  `S_FIELD` varchar(500) DEFAULT NULL,
+  `S_OBJ` varchar(100) DEFAULT NULL,
+  `S_JOB` varchar(200) DEFAULT NULL,
+  `S_CONT` mediumtext,
+  `S_ST_DATE` date DEFAULT NULL,
+  `S_ET_DATE` date DEFAULT NULL,
+  `S_EXPS_YN` char(1) DEFAULT 'N',
+  `S_NOTI_YN` char(1) DEFAULT 'Y',
+  `S_EXT1` varchar(200) DEFAULT NULL,
+  `S_EXT2` varchar(200) DEFAULT NULL,
+  `S_EXT3` varchar(200) DEFAULT NULL,
+  `S_TYPE` varchar(50) DEFAULT NULL,
+  `S_DATE` datetime DEFAULT NULL,
+  `S_WRITER` varchar(100) DEFAULT NULL,
+  `S_UWRITER` varchar(100) DEFAULT NULL,
+  `S_UDATE` datetime DEFAULT NULL,
+  PRIMARY KEY (`S_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_SUPPORT_VIEW` (
+  `SV_SEQ` int NOT NULL AUTO_INCREMENT,
+  `SV_CODE` int NOT NULL,
+  `SV_NAME` varchar(200) DEFAULT NULL,
+  `SV_STATE` varchar(50) DEFAULT NULL,
+  `SV_MAIL` varchar(200) DEFAULT NULL,
+  `SV_BIRTH` varchar(50) DEFAULT NULL,
+  `SV_SYSFILE1` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`SV_SEQ`),
+  KEY `idx_t_support_view_code` (`SV_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_POOL` (
+  `S_SEQ` int NOT NULL AUTO_INCREMENT,
+  `S_FIELD` varchar(500) DEFAULT NULL,
+  `S_OBJ` varchar(100) DEFAULT NULL,
+  `S_JOB` varchar(200) DEFAULT NULL,
+  `S_CONT` mediumtext,
+  `S_ST_DATE` date DEFAULT NULL,
+  `S_ET_DATE` date DEFAULT NULL,
+  `S_EXPS_YN` char(1) DEFAULT 'N',
+  `S_NOTI_YN` char(1) DEFAULT 'Y',
+  `S_DATE` datetime DEFAULT NULL,
+  `S_WRITER` varchar(100) DEFAULT NULL,
+  `S_UWRITER` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`S_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_POOL_VIEW` (
+  `SV_SEQ` int NOT NULL AUTO_INCREMENT,
+  `SV_CODE` int NOT NULL,
+  `SV_NAME` varchar(200) DEFAULT NULL,
+  `SV_STATE` varchar(50) DEFAULT NULL,
+  `SV_MAIL` varchar(200) DEFAULT NULL,
+  `SV_BIRTH` varchar(50) DEFAULT NULL,
+  `SV_SYSFILE1` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`SV_SEQ`),
+  KEY `idx_t_pool_view_code` (`SV_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `mable_T_SUPPORT` (
+  `S_SEQ` int NOT NULL AUTO_INCREMENT,
+  `S_FIELD` varchar(500) DEFAULT NULL,
+  `S_OBJ` varchar(100) DEFAULT NULL,
+  `S_JOB` varchar(200) DEFAULT NULL,
+  `S_CONT` mediumtext,
+  `S_ST_DATE` date DEFAULT NULL,
+  `S_ET_DATE` date DEFAULT NULL,
+  `S_EXPS_YN` char(1) DEFAULT 'N',
+  `S_NOTI_YN` char(1) DEFAULT 'Y',
+  `S_DATE` datetime DEFAULT NULL,
+  `S_WRITER` varchar(100) DEFAULT NULL,
+  `S_UWRITER` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`S_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `mable_T_SUPPORT_VIEW` (
+  `SV_SEQ` int NOT NULL AUTO_INCREMENT,
+  `SV_CODE` int NOT NULL,
+  `SV_NAME` varchar(200) DEFAULT NULL,
+  `SV_STATE` varchar(50) DEFAULT NULL,
+  `SV_MAIL` varchar(200) DEFAULT NULL,
+  `SV_BIRTH` varchar(50) DEFAULT NULL,
+  `SV_SYSFILE1` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`SV_SEQ`),
+  KEY `idx_mable_support_view_code` (`SV_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_PDS` (
+  `S_SEQ` int NOT NULL AUTO_INCREMENT,
+  `S_HITS` int DEFAULT 0,
+  `S_DATE` datetime DEFAULT NULL,
+  `S_WRITER` varchar(100) DEFAULT NULL,
+  `S_UWRITER` varchar(100) DEFAULT NULL,
+  `S_UDATE` datetime DEFAULT NULL,
+  `S_FIELD` varchar(500) DEFAULT NULL,
+  `S_OBJ` varchar(100) DEFAULT NULL,
+  `S_JOB` varchar(200) DEFAULT NULL,
+  `S_TYPE` varchar(50) DEFAULT NULL,
+  `S_TITLE` varchar(500) DEFAULT NULL,
+  `S_CONT` mediumtext,
+  `S_BRIEF` text,
+  `S_NOTI_YN` char(1) DEFAULT 'Y',
+  `S_EXPS_YN` char(1) DEFAULT 'N',
+  `S_FILE1` varchar(500) DEFAULT NULL,
+  `S_FILE2` varchar(500) DEFAULT NULL,
+  `S_FILE2_NM` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`S_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_PDS_CATEGORY` (
+  `C_SEQ` int NOT NULL AUTO_INCREMENT,
+  `C_NAME` varchar(200) DEFAULT NULL,
+  `C_USE` char(1) DEFAULT 'Y',
+  PRIMARY KEY (`C_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_MENU_CONFIG` (
+  `MN_SEQ` int NOT NULL AUTO_INCREMENT,
+  `MN_CODE` varchar(20) NOT NULL,
+  `MN_NAME` varchar(200) DEFAULT NULL,
+  `MN_LINK` varchar(500) DEFAULT NULL,
+  `MN_TARGET` varchar(20) DEFAULT NULL,
+  `MN_ORDER` int DEFAULT 0,
+  `MN_USE` char(1) DEFAULT 'Y',
+  PRIMARY KEY (`MN_SEQ`),
+  KEY `idx_t_menu_config_code` (`MN_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_IMAGE` (
+  `I_SEQ` int NOT NULL AUTO_INCREMENT,
+  `I_FILE` varchar(500) DEFAULT NULL,
+  `I_FOLDER` varchar(50) DEFAULT NULL,
+  `I_WRITER` varchar(100) DEFAULT NULL,
+  `I_UWRITER` varchar(100) DEFAULT NULL,
+  `I_REGDATE` datetime DEFAULT NULL,
+  `I_UREGDATE` datetime DEFAULT NULL,
+  `I_DEL_YN` char(1) DEFAULT 'N',
+  PRIMARY KEY (`I_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `T_IP` (
+  `SEQ` int NOT NULL AUTO_INCREMENT,
+  `IP` varchar(45) NOT NULL,
+  `REG_NAME` varchar(200) DEFAULT NULL,
+  `REG_DT` datetime DEFAULT NULL,
+  PRIMARY KEY (`SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 예전 스크립트로 만든 T_PDS에 검색 컬럼이 없을 때 보강
+ALTER TABLE `T_PDS` ADD COLUMN IF NOT EXISTS `S_FIELD` varchar(500) DEFAULT NULL AFTER `S_UDATE`;
+ALTER TABLE `T_PDS` ADD COLUMN IF NOT EXISTS `S_OBJ` varchar(100) DEFAULT NULL AFTER `S_FIELD`;
+ALTER TABLE `T_PDS` ADD COLUMN IF NOT EXISTS `S_JOB` varchar(200) DEFAULT NULL AFTER `S_OBJ`;

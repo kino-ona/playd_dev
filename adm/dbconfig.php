@@ -11,6 +11,8 @@ define('P1_MYSQL_HOST', $__playd_dbenv('PLAYD_DB_HOST', '127.0.0.1'));
 define('P1_MYSQL_USER', $__playd_dbenv('PLAYD_DB_USER', 'root'));
 define('P1_MYSQL_PASSWORD', $__playd_dbenv('PLAYD_DB_PASSWORD', ''));
 define('P1_MYSQL_DB', $__playd_dbenv('PLAYD_DB_NAME', 'playd'));
+// 호스트에서 Docker MySQL(3307:3306) 등 비표준 포트: PLAYD_DB_PORT=3307
+define('P1_MYSQL_PORT', (int) $__playd_dbenv('PLAYD_DB_PORT', '3306'));
 define('P1_MYSQL_SET_MODE', false);
 unset($__playd_dbenv);
 

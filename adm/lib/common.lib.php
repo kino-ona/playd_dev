@@ -799,7 +799,8 @@ function sql_connect($host, $user, $pass, $db=P1_MYSQL_DB)
     global $p1;
 
     if(function_exists('mysqli_connect') && P1_MYSQLI_USE) {
-        $link = mysqli_connect($host, $user, $pass, $db);
+        $port = (defined('P1_MYSQL_PORT') && P1_MYSQL_PORT > 0) ? (int) P1_MYSQL_PORT : 3306;
+        $link = mysqli_connect($host, $user, $pass, $db, $port);
 
         // 연결 오류 발생 시 스크립트 종료
         if (mysqli_connect_errno()) {
@@ -888,6 +889,25 @@ function sql_fetch($sql, $error=P1_DISPLAY_SQL_ERROR, $link=null)
     return $row;
 }
 
+// mysqli_fetch_assoc 이 컬럼명을 소문자로 주는 환경(MariaDB 등)에서도 기대 키로 접근
+function playd_row_col(mixed $row, string $name): mixed
+{
+    if (!is_array($row)) {
+        return null;
+    }
+    if (array_key_exists($name, $row)) {
+        return $row[$name];
+    }
+    $want = strtolower($name);
+    foreach ($row as $k => $v) {
+        if (is_string($k) && strtolower($k) === $want) {
+            return $v;
+        }
+    }
+
+    return null;
+}
+
 // 결과값에서 한행 연관배열(이름으로)로 얻는다.
 function sql_fetch_array($result)
 {
@@ -914,9 +934,9 @@ function sql_password($value)
 {
     // mysql 4.0x 이하 버전에서는 password() 함수의 결과가 16bytes
     // mysql 4.1x 이상 버전에서는 password() 함수의 결과가 41bytes
-    $row = sql_fetch(" select password('$value') as pass ");
+    $row = sql_fetch(" select password('".sql_escape_string($value)."') as pass ");
 
-    return $row['pass'];
+    return playd_row_col($row, 'pass');
 }
 
 function sql_insert_id($link=null)
@@ -1938,13 +1958,31 @@ function get_encrypt_string($str)
     return $encrypt;
 }
 
+// MySQL/MariaDB mysql_native_password (* + 40 hex). PHP만으로 검증 (sql_password 와 동일 알고리즘)
+function playd_mysql_native_password_hash(string $password): string
+{
+    $s1 = sha1($password, true);
+    $s2 = sha1($s1, true);
+
+    return '*'.strtoupper(bin2hex($s2));
+}
+
 // 비밀번호 비교
 function check_password($pass, $hash)
 {
+    if ($hash === null || $hash === '') {
+        return false;
+    }
+    $hash = is_string($hash) ? trim($hash) : '';
+
+    // DB에 PASSWORD()/시드로 넣은 *xxxxxxxx 형태
+    if (strlen($hash) === 41 && $hash[0] === '*') {
+        return hash_equals($hash, playd_mysql_native_password_hash($pass));
+    }
+
     $password = get_encrypt_string($pass);
 
-    // return ($pass === $hash);
-    return ($password === $hash);
+    return is_string($password) && hash_equals($password, $hash);
 }
 
 // 동일한 host url 인지

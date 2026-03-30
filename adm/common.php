@@ -436,10 +436,16 @@ if ($_SESSION['ss_m_seq']) { // 로그인중이라면
     }
 }
 
-// 게시판 관련
+// 게시판 관련 (mysqli 연관배열 키가 소문자인 환경에서도 BC_* 접근 유지)
+$board = array();
 if ($bc_code) {
-    $board = sql_fetch(" select * from {$p1['t_board_config_table']} where bc_code = '$bc_code' ");
-    if ($board['BC_CODE']) {
+    $_bo = sql_fetch(" select * from {$p1['t_board_config_table']} where bc_code = '$bc_code' ");
+    if (is_array($_bo)) {
+        foreach ($_bo as $k => $v) {
+            $board[is_string($k) ? strtoupper($k) : $k] = $v;
+        }
+    }
+    if (!empty($board['BC_CODE'])) {
         set_cookie("ck_bc_code", $board['BC_CODE'], 86400 * 1);
 
         if ($board['BC_TYPE'] == "qna") {
@@ -461,7 +467,7 @@ if ($bc_code) {
 }
 
 // 에디터 선언
-if ($board['BC_EDITOR'])
+if (!empty($board['BC_EDITOR']))
     define('P1_EDITOR_LIB', P1_EDITOR_PATH."/{$board['BC_EDITOR']}/editor.lib.php");
 else
     define('P1_EDITOR_LIB', P1_LIB_PATH."/editor.lib.php");
