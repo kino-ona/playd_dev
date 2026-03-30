@@ -1,7 +1,7 @@
-	<header id="header" class="header header__transparent">
+	<header id="header" class="header header__sticked">
 	<div class="header__inner">
 		<h1 class="header__title">
-			<a href="./index.html" class="logo logo__default"><span class="a11y">플레이디</span></a>
+			<a href="./index.html" class="logo logo__filled"><span class="a11y">플레이디</span></a>
 		</h1>
 		<nav class="nav">
       <div class="nav__link"><a href="./portfolio.html">포트폴리오</a></div>
@@ -76,6 +76,6 @@
 		</ul>
 	</div>
 	<div class="pletter-button">
-		<a href="https://pletter.stibee.com/" target="_blank"><img src="../assets/images/w/common/logo_pletter.png" alt="플레터 바로가기"><span class="a11y">플레터 바로가기</span></a>
+		<a href="https://pletter.stibee.com/" target="_blank"><img src="/assets/images/w/common/logo_pletter.png" alt="플레터 바로가기"><span class="a11y">플레터 바로가기</span></a>
 	</div>
 </div>

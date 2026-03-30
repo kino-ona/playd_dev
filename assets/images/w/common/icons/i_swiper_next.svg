@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #ea2126;
+      }
+
+      .cls-2 {
+        stroke-width: 1.5px;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="_btn" data-name="# btn" transform="translate(-376 -10201)">
+    <g id="타원_129" data-name="타원 129" class="cls-1" transform="translate(376 10201)">
+      <circle class="cls-3" cx="25" cy="25" r="25"/>
+      <circle class="cls-4" cx="25" cy="25" r="24.5"/>
+    </g>
+    <path id="패스_1" data-name="패스 1" class="cls-2" d="M4392.381,6403h22.809l-6.542-7.644" transform="translate(-4002.881 3824.144)"/>
+  </g>
+</svg>

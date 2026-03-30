@@ -44,7 +44,19 @@
 		</nav>
 	</div>
 </footer>
-<script src="../assets/js/jquery-3.4.1.min.js"></script>
-<script src="../assets/js/ui.js"></script>
+<div class="top-button">
+	<a href="./index.html"><span class="a11y">위로가기</span></a>
+</div>
+<script src="/assets/js/w/swiper.min.js"></script>
+<script src="/assets/js/w/ui.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="/assets/js/jquery-ui-1.13.1.js"></script>
+<script src="/assets/js/datepicker.js"></script>
+<?php
+$__playd_uri = (string) (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
+if ($__playd_uri === '/w/index.html') {
+    echo '<script src="/assets/js/w/index.js"></script>'."\n";
+}
+?>
 </body>
 </html>

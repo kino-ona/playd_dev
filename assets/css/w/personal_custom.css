@@ -1,1 +1,6 @@
-/* 개인정보처리방침 페이지 보조 스타일 (원본 없을 때 비워 둠) */
+.sub-list__link {
+	font-size: 24px;
+}
+.sub-list__description{
+	font-size:18px;
+}

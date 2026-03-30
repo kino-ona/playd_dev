@@ -51,7 +51,7 @@
 	</div>
 </footer>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="../assets/js/jquery-3.4.1.min.js"></script>
-<script src="../assets/js/ui.js"></script>
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/ui.js"></script>
 </body>
 </html>

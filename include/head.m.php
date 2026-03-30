@@ -7,7 +7,7 @@
 <meta name="keywords" content="플레이디, PLAYD"/>
 <meta name="description" content="플레이디 모바일"/>
 <title>PLAYD | 플레이디</title>
-<link rel="stylesheet" href="../assets/css/ui.css">
-<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/ui.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="https://use.typekit.net/gjs0snj.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
