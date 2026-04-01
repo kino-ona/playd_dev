@@ -411,6 +411,9 @@ if($write['B_SEQ']){
 <script type="text/javascript">
 //등록 & 수정
 function send() {
+    if (window._playdPortfolioSubmitting) {
+        return false;
+    }
 
     $('#filelist1').val(appendFileListJson('1'));
 
@@ -563,6 +566,9 @@ function send() {
         }
         
       
+
+        window._playdPortfolioSubmitting = true;
+        $('form[name="frm"] input[type="submit"]').prop('disabled', true);
 
         return true;
     }

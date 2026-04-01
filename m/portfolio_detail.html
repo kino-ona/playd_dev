@@ -58,7 +58,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 		</div>
 		<div class="navigation">
 			<div class="detail">
-				<img class="bigImage" src="<?=$first_image?>" alt="" <?phpif($itemOne['B_TITLE1'] != 'none'){?> style="display:none" <?php}?> >
+				<img class="bigImage" src="<?=$first_image?>" alt="" <?php if ($itemOne['B_TITLE1'] != 'none'){?> style="display:none" <?php } ?> >
 				<video class="bigVideo" width="100%" loop muted style="display: none;">
 					<source src="" type="video/mp4">
 				</video>
@@ -70,69 +70,69 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 					동영상 인 경우
 
 					<div class="swiper-slide navigation__item navigation__item--actived">
-						<div class="figure" data-video="../assets/images/performance_data.mp4">
+						<div class="figure" data-video="/assets/images/performance_data.mp4">
 							<video width="100%" loop muted > 
-								<source src="../assets/images/performance_data.mp4" type="video/mp4">
+								<source src="/assets/images/performance_data.mp4" type="video/mp4">
 							</video>
 						</div>
 					</div> -->
 					<!-- 유투브 인 경우 //-->
 					<!-- <div class="swiper-slide navigation__item navigation__item--actived">
 						<div class="figure" data-youtube="https://www.youtube.com/embed/nzMn-bK3bJg?si=q75BKW7hKvVOvyb9">
-							<img src="../assets/images/w/dummy/@detail01.jpg" alt="유투브 썸네일">
+							<img src="/assets/images/w/dummy/@detail01.jpg" alt="유투브 썸네일">
 						</div>
 					</div>
 					<div class="swiper-slide navigation__item">
-						<div class="figure" data-image="../assets/images/w/dummy/@detail01.jpg">
-							<img src="../assets/images/w/dummy/@detail01.jpg" alt="">
+						<div class="figure" data-image="/assets/images/w/dummy/@detail01.jpg">
+							<img src="/assets/images/w/dummy/@detail01.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide navigation__item">
-						<div class="figure" data-image="../assets/images/w/dummy/@detail02.jpg">
-							<img src="../assets/images/w/dummy/@detail02.jpg" alt="">
+						<div class="figure" data-image="/assets/images/w/dummy/@detail02.jpg">
+							<img src="/assets/images/w/dummy/@detail02.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide navigation__item">
-						<div class="figure" data-image="../assets/images/w/dummy/@detail03.jpg">
-							<img src="../assets/images/w/dummy/@detail03.jpg" alt="">
+						<div class="figure" data-image="/assets/images/w/dummy/@detail03.jpg">
+							<img src="/assets/images/w/dummy/@detail03.jpg" alt="">
 						</div>
 					</div> -->
 
 
-					<?phpif($itemOne['B_TITLE1']=='video' && $itemOne['B_FILE6']){?>
+					<?php if ($itemOne['B_TITLE1']=='video' && $itemOne['B_FILE6']){?>
 						<div class="swiper-slide navigation__item navigation__item--actived">
 							<div class="figure" data-video="<?=$itemOne['B_FILE6']?>">
-								<img src="<?=$itemOne['B_FILE5']?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt="동영상 썸네일">
+								<img src="<?=$itemOne['B_FILE5']?>" onerror="this.src='/assets/images/w/common/dummy_default.jpg';" alt="동영상 썸네일">
 							</div>
 						</div>
-						<?php}else if($itemOne['B_TITLE1']=='server' && $itemOne['B_FILE4']){?>
+						<?php } else if ($itemOne['B_TITLE1']=='server' && $itemOne['B_FILE4']){?>
 						<div class="swiper-slide navigation__item navigation__item--actived">
 							<div class="figure" data-video="<?=$itemOne['B_FILE4']?>">
-								<img src="<?=$itemOne['B_FILE5']?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt="동영상 썸네일">
+								<img src="<?=$itemOne['B_FILE5']?>" onerror="this.src='/assets/images/w/common/dummy_default.jpg';" alt="동영상 썸네일">
 							</div>
 						</div>
-						<?php}else if($itemOne['B_TITLE1']=='youtube' && $itemOne['B_FILE4']){?>
+						<?php } else if ($itemOne['B_TITLE1']=='youtube' && $itemOne['B_FILE4']){?>
 						<div class="swiper-slide navigation__item navigation__item--actived">
 							<div class="figure" data-youtube="https://www.youtube.com/embed/<?=$itemOne['B_FILE4']?>">
 								<div class="figure_inner">
 									<iframe width="100%" height="100%" src="https://www.youtube.com/embed/<?=$itemOne['B_FILE4']?>?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 								</div>
-								<!-- <img src="<?=$first_image?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt=""> -->
+								<!-- <img src="<?=$first_image?>" onerror="this.src='/assets/images/w/common/dummy_default.jpg';" alt=""> -->
 							</div>
 						</div>
-                    <?php}?>
+                    <?php } ?>
 
 					<?php						for ($i=0; $row=sql_fetch_array($file_res1); $i++) {
 							if($itemOne['B_TITLE1']=='server') {
 								if($i == 0) continue;
 							}
 					?>
-					<div class="swiper-slide navigation__item <?phpif($i==0 && ($itemOne['B_TITLE1'] == 'none')){?>navigation__item--actived <?php}?>">
+					<div class="swiper-slide navigation__item <?php if ($i==0 && ($itemOne['B_TITLE1'] == 'none')){?>navigation__item--actived <?php } ?>">
 							<div class="figure" data-image="<?=$row['FI_NAME']?>">
-									<img src="<?=$row['FI_NAME']?>" onerror="this.src='../assets/images/w/common/dummy_default.jpg';" alt="">
+									<img src="<?=$row['FI_NAME']?>" onerror="this.src='/assets/images/w/common/dummy_default.jpg';" alt="">
 						</div>
 					</div>
-					<?php}?>
+					<?php } ?>
 
 				</div>
 				<div class="swiper-pagination"></div>
@@ -141,7 +141,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 		<div class="pfDetail__info">
 			<div class="row">
 				<i></i>
-				<p><?phpif($itemOne['B_SITE']=='MULTI'){?><?=$itemOne['B_EXT5']?><?php}else{?><?=$itemOne['B_EXT6']?><?php}?></p>
+				<p><?php if ($itemOne['B_SITE']=='MULTI'){?><?=$itemOne['B_EXT5']?><?php } else { ?><?=$itemOne['B_EXT6']?><?php } ?></p>
 			</div>
 			<div class="row">
 				<i></i>
@@ -160,7 +160,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 								foreach($tags as $tsg) {
 							?>
 							<span># <?=$tsg?></span>
-							<?php}?>
+							<?php } ?>
 		</div>
 		<div class="button__wrap button__wrap--seemore">
 			<a href="portfolio.html?page=<?=$_GET['page']?>" class="button button__seemore">뒤로가기</a>

@@ -20,3 +20,6 @@ $p1_path = array(
 );
 
 require_once $p1_path['path'].'/common.php';
+
+// 템플릿에서 $is_mobile 사용 (미정의 시 경고 HTML이 <script> 안에 섞여 JS 파싱 오류 유발)
+$is_mobile = function_exists('is_mobile') ? (bool) is_mobile() : false;

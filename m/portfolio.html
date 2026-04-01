@@ -59,7 +59,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 		</div>
 		
 		<div class="sub-content__warning" style="display: none">
-			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<img src="/assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 		</div>
 
@@ -68,9 +68,10 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 
 <script>
 var g_page = 1;
-var g_listsize = 6;
+var g_listsize = 8;
 var g_type = '';
 var g_order = '';
+var isLoading = false;
 
 $(document).ready(function(){
 
@@ -98,78 +99,87 @@ function ajaxItemList(){
                     cache: false,
                     crossDomain: false,
                     error: function (request, error) {
+                        isLoading = false;
                         console.log(error + '');
                     },
                     success: function (json) {
-						            isLoading = false;
-                        if(json){
-                          if(g_listsize * g_page >= json['count']){
+                        isLoading = false;
+                        if (!json || !$.isArray(json.list)) {
+                            return;
+                        }
+                        if (g_listsize * g_page >= json['count']) {
                             $('.button__wrap--seemore').hide();
-                          } else {
+                        } else {
                             $('.button__wrap--seemore').show();
-                          }
-                          $('#totalCount').html(json['count']);
-                          fetchItemList(json['list'], json['count']);
-
-													if (json['count'] == 0) {
-														$('.pfList__list__warning').show();
-													} else {
-														$('.pfList__list__warning').hide();
-													}
-												}
+                        }
+                        if ($('#totalCount').length) {
+                            $('#totalCount').html(json['count']);
+                        }
+                        fetchItemList(json.list, json.count);
+                        if (json.count === 0) {
+                            $('.sub-content__warning').show();
+                        } else {
+                            $('.sub-content__warning').hide();
+                        }
                     }
         });
 }
 
 function fetchItemList(json, count){
 		var html = '';
-		for(var i=0;i<json.length;i++){
+		for (var i = 0; i < json.length; i++) {
 			var image = '';
 			var alt = '';
-			var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
-			var title = json[i]['B_TITLE'].replace('<br/>','').replace('<br>','');
+			var title = (json[i]['B_TITLE'] || '').replace(/<br\s*\/?>/gi, '');
 			var datestr = '';
 
-      if(json[i]['B_SITE'] == 'MULTI'){
-        datestr = json[i]['B_EXT5'];
-      } else {
-        datestr = json[i]['B_EXT6'];
-        if(datestr){
-          datestr = datestr.substring(0, datestr.length-1);
-        }
-      }
+			var tags_txt = '';
+			if (json[i]['B_CONT1'] != null && json[i]['B_CONT1'] !== '') {
+				var tags_arr = String(json[i]['B_CONT1']).split(',');
+				for (var k = 0; k < tags_arr.length; k++) {
+					if (tags_arr[k].replace(/\s/g, '') !== '') {
+						tags_txt += '<span># ' + tags_arr[k].trim() + '</span>';
+					}
+				}
+			}
 
-			<?phpif($is_mobile){?>
-			if(json[i]['B_FILE2']){
+			if (json[i]['B_SITE'] == 'MULTI') {
+				datestr = json[i]['B_EXT5'];
+			} else {
+				datestr = json[i]['B_EXT6'];
+				if (datestr) {
+					datestr = datestr.substring(0, datestr.length - 1);
+				}
+			}
+
+			/* /m/ 페이지: PC 브라우저로 열어도 썸네일 나오게 B_FILE2 우선, 없으면 B_FILE1 */
+			if (json[i]['B_FILE2']) {
 				image = json[i]['B_FILE2'];
-			}
-			if(json[i]['B_EXT2']){
-				alt = json[i]['B_EXT2'];
-			}
-			<?php}else{?>
-			if(json[i]['B_FILE1']){
+			} else if (json[i]['B_FILE1']) {
 				image = json[i]['B_FILE1'];
 			}
-			if(json[i]['B_EXT1']){
+			if (json[i]['B_EXT2']) {
+				alt = json[i]['B_EXT2'];
+			} else if (json[i]['B_EXT1']) {
 				alt = json[i]['B_EXT1'];
 			}
-			<?php}?>
 
 			var lock_str = '';
-		if (json[i]['B_NOTI_YN'] == 'L') {
-			html += '<a href="javascript:;" class="pfList__item pfList__item--locked">';
-		} else {
-			html += '<a href="portfolio_detail.html?seq=' + json[i]['B_SEQ'] + '&page=' + g_page + '" class="pfList__item">';
-		}
+			if (json[i]['B_NOTI_YN'] == 'L') {
+				html += '<a href="javascript:;" class="pfList__item pfList__item--locked">';
+			} else {
+				html += '<a href="portfolio_detail.html?seq=' + json[i]['B_SEQ'] + '&page=' + g_page + '" class="pfList__item">';
+			}
 
-
-		html += '<div class="pfList__inner" style="background-image: url(' + image + ');" title="' + alt + '">';
-		html += '<div class="group">';
-		html += '<p class="pfList__client">' + nvl(json[i]['B_EXT3']) + '</p>';
-		html += '<p class="pfList__name">' + nvl(json[i]['B_TITLE']) + '</p>';
-		html += '</div>';
-		html += '</div>';
-		html += '</a>';
+			var imgCss = image ? "background-image: url('" + String(image).replace(/'/g, "\\'") + "');" : '';
+			html += '<div class="pfList__inner" style="' + imgCss + '" title="' + String(alt).replace(/"/g, '&quot;') + '">';
+			html += '<div class="group">';
+			html += '<p class="pfList__client">' + nvl(json[i]['B_EXT3']) + '</p>';
+			html += '<p class="pfList__name">' + nvl(json[i]['B_TITLE']) + '</p>';
+			html += '<div class="hastag">' + tags_txt + '</div>';
+			html += '</div>';
+			html += '</div>';
+			html += '</a>';
 
 
 
@@ -206,9 +216,7 @@ function itemOrder(ord){
 function yearSelect(year, cnt){
 	g_page = 1;
 	g_type = year;
-	$("button[id^='years_']").each(function (i, el) {
-		$(this).removeClass('sub-tabs__item--active');
-	});
+	$('.sub-tabs__box .sub-tabs__item').removeClass('sub-tabs__item--active');
 	$('#years_' + cnt).addClass('sub-tabs__item--active');
 
 	$('.pfList__list').empty();

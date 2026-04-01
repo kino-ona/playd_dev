@@ -40,23 +40,23 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 			<div class="sub-tabs">
 				<div class="sub-tabs__wrap">
 					<div class="sub-tabs__box">
-						<!-- <p><a href="javascript:;" onclick="javascript:location.href='recruit.html?tab=1'" class="sub-tabs__item <?phpif($tab=='1'){?>sub-tabs__item--active<?php}?>" data-content="always-recruit">상시채용</a></p> -->
-						<p><a href="javascript:;" onclick="javascript:location.href='recruit.html?tab=2'" class="sub-tabs__item <?phpif($tab=='2'){?>sub-tabs__item--active<?php}?>" data-content="recruit-list">채용 공고</a></p>
-						<p><a href="javascript:;" onclick="javascript:location.href='recruit.html?tab=3'" class="sub-tabs__item <?phpif($tab=='3'){?>sub-tabs__item--active<?php}?>" data-content="recruit-process">채용 프로세스</a></p>
+						<!-- <p><a href="javascript:;" onclick="javascript:location.href='recruit.html?tab=1'" class="sub-tabs__item <?php if ($tab=='1'){?>sub-tabs__item--active<?php } ?>" data-content="always-recruit">상시채용</a></p> -->
+						<p><a href="javascript:;" onclick="javascript:location.href='recruit.html?tab=2'" class="sub-tabs__item <?php if ($tab=='2'){?>sub-tabs__item--active<?php } ?>" data-content="recruit-list">채용 공고</a></p>
+						<p><a href="javascript:;" onclick="javascript:location.href='recruit.html?tab=3'" class="sub-tabs__item <?php if ($tab=='3'){?>sub-tabs__item--active<?php } ?>" data-content="recruit-process">채용 프로세스</a></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <div class="sub-container sub-container--always-recruit <?phpif($tab=='1'){?>content--active<?php}?>">
+		<!-- <div class="sub-container sub-container--always-recruit <?php if ($tab=='1'){?>content--active<?php } ?>">
 			<div class="sub-content">
 				<div class="recruit-ordinary">
-					<?phpfor ($i=0; $row=sql_fetch_array($itemList); $i++) { ?>
+					<?php for  ($i=0; $row=sql_fetch_array($itemList); $i++) { ?>
 					<p class="recruit-ordinary__item"><a href="javascript:;" onclick="javascript:getItem('<?=$row['S_SEQ']?>', '<?=$row['S_EXT1']?>');" class="recruit-ordinary__link"><?=$row['S_FIELD']?></a></p>
-					<?php}?>
+					<?php } ?>
 				</div>
 			</div>
 		</div> -->
-		<div class="sub-container sub-container--recruit-list <?phpif($tab=='2'){?>content--active<?php}?>">
+		<div class="sub-container sub-container--recruit-list <?php if ($tab=='2'){?>content--active<?php } ?>">
 			<div class="sub-content">
 				<div class="search-form">
 					<div class="search-form__wrap">
@@ -67,8 +67,8 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 						<div class="search-item">
 							<div class="drop-box">
 								<div class="drop-box__title">
-									<?phpif($job){?><p><?=$job?></p><?php}else{?>
-									<p>전체직군</p><?php}?>
+									<?php if ($job){?><p><?=$job?></p><?php } else { ?>
+									<p>전체직군</p><?php } ?>
 								</div>
 								<div class="drop-box__wrap">
 									<div>
@@ -86,7 +86,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 						<div class="search-item">
 							<div class="drop-box">
 								<div class="drop-box__title">
-									<p><?phpif($obj){?><?=$obj?><?php}else{?>경력사항<?php}?></p>
+									<p><?php if ($obj){?><?=$obj?><?php } else { ?>경력사항<?php } ?></p>
 								</div>
 								<div class="drop-box__wrap">
 									<div>
@@ -111,7 +111,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 						</div>
 					</div>
 				</div>
-				<?phpfor ($i=0; $row=sql_fetch_array($itemList2); $i++) { 
+				<?php for  ($i=0; $row=sql_fetch_array($itemList2); $i++) { 
         
         $nDate = date("Y-m-d",time());
         $valDate = substr($row['S_ET_DATE'],0,10);
@@ -119,20 +119,20 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 
 
         ?>
-					<div class="relate-content <?phpif($leftDate<0){?>relate-content--end<?php}?>">
+					<div class="relate-content <?php if ($leftDate<0){?>relate-content--end<?php } ?>">
 					<a href="javascript:;" onclick="javascript:window.open('<?=$row['S_EXT1']?>');" target="_blank">
 						<p class="relate-content__title">
 							<div class="relate-content__wrap">
 							<?=$row['S_FIELD']?>
-								<?phpif($leftDate<0){?>
+								<?php if ($leftDate<0){?>
 								<div class="relate-content__date">
 									<p>END</p>
 								</div>
-								<?php}else{?>
+								<?php } else { ?>
 								<div class="relate-content__date">
 									<p>D-<span><?=$leftDate?></span></p>
 								</div>
-								<?php}?>
+								<?php } ?>
 							</div>
 							<div class="relate-content__type">
 								<span><?=$row['S_JOB']?></span>
@@ -143,7 +143,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 					</a>
 				</div>
 
-				<?php}?>
+				<?php } ?>
 				<!-- 
 				<div class="relate-content relate-content--end">
 					<p class="relate-content__title">
@@ -163,12 +163,12 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 			</div>
 			<!-- 20220629 -->
 			
-			 <div class="sub-content__warning" <?phpif($total_count==0 && ($tab=='2')){?> <?php}else{?> style="display: none" <?php}?>>
-				<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			 <div class="sub-content__warning" <?php if ($total_count==0 && ($tab=='2')){?> <?php } else { ?> style="display: none" <?php } ?>>
+				<img src="/assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 				<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 			</div>
 		</div>
-		<div class="sub-container sub-container--recruit-process  <?phpif($tab=='3'){?>content--active<?php}?>">
+		<div class="sub-container sub-container--recruit-process  <?php if ($tab=='3'){?>content--active<?php } ?>">
 			<div class="process-list">
 				<div class="process-list__item">
 					<p class="process-list__title">신입</p>

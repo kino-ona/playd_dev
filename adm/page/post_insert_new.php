@@ -237,27 +237,37 @@ if($m=='u'){
 }
 
 
-    if($filelist1){
+    if ($filelist1 !== '') {
         $filelist1 = json_decode($filelist1, true);
-        $nCnt = 0;
-        foreach ($filelist1 as $row) {
-            sql_query(" insert into T_BOARD_FILES (FI_NAME,FI_ORG, B_SEQ, FI_SORT, FI_INDEX, FI_REGDATE) values ('".$row['filename']."', '".$row['orgname']."', '".$b_seq."', '".$nCnt."', '1',  now()) ");
-            $nCnt++;
+        if (is_array($filelist1)) {
+            $nCnt = 0;
+            foreach ($filelist1 as $row) {
+                if (!is_array($row) || !isset($row['filename'], $row['orgname'])) {
+                    continue;
+                }
+                sql_query(" insert into T_BOARD_FILES (FI_NAME,FI_ORG, B_SEQ, FI_SORT, FI_INDEX, FI_REGDATE) values ('".$row['filename']."', '".$row['orgname']."', '".$b_seq."', '".$nCnt."', '1',  now()) ");
+                $nCnt++;
+            }
         }
     }
-    if($filelist2){
+    if ($filelist2 !== '') {
         $filelist2 = json_decode($filelist2, true);
-        $nCnt = 0;
-        foreach ($filelist2 as $row) {
-            sql_query(" insert into T_BOARD_FILES (FI_NAME,FI_ORG, B_SEQ, FI_SORT, FI_INDEX, FI_REGDATE) values ('".$row['filename']."', '".$row['orgname']."', '".$b_seq."', '".$nCnt."', '2',  now()) ");
-            $nCnt++;
+        if (is_array($filelist2)) {
+            $nCnt = 0;
+            foreach ($filelist2 as $row) {
+                if (!is_array($row) || !isset($row['filename'], $row['orgname'])) {
+                    continue;
+                }
+                sql_query(" insert into T_BOARD_FILES (FI_NAME,FI_ORG, B_SEQ, FI_SORT, FI_INDEX, FI_REGDATE) values ('".$row['filename']."', '".$row['orgname']."', '".$b_seq."', '".$nCnt."', '2',  now()) ");
+                $nCnt++;
+            }
         }
     }
     
 
 
 // 해시태그 update
-if(count($_POST['br_word'] > 0)) {
+if (!empty($_POST['br_word']) && is_array($_POST['br_word']) && count($_POST['br_word']) > 0) {
     // 해당 게시글 해시태그 전체 삭제
     $sql_del = " delete
                    from {$p1['t_board_recom_table']}

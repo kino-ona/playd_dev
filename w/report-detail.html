@@ -62,20 +62,20 @@
 
 		<div class="article-container">
 			<div class="article__content">
-				<?phpif($slideImage){?>
+				<?php if ($slideImage){?>
 				<div id="swiper" class="swiper-container swiper-container--single">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" style="background-image:url('<?=$slideImage?>')"></div>
 					</div>
 				</div>
-				<?php}?>
+				<?php } ?>
 				<?=$itemOne['B_CONT']?>
 				
-				<?phpif($itemOne['FI_SEQ2']){?>
+				<?php if ($itemOne['FI_SEQ2']){?>
 				<div class="button__wrap">
 					<div type="button" class="button downloadOpen button__large button__filled-black" onclick="javascript:download('<?=$itemOne['FI_SEQ2']?>','<?=$itemOne['B_LINKURL']?>','<?=$itemOne['B_SEQ']?>');">리포트 다운로드 <i></i> </div>
 				</div>
-				<?php}?>
+				<?php } ?>
 			</div>
 		</div>
 
@@ -88,7 +88,7 @@
 				<div class="list-select">목록<a href="report.html" type="button"><i></i></a></div>
 			</div>
 
-			<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+			<?php for  ($i=0; $row=sql_fetch_array($otherList); $i++) {
 				
 				$image = '';
 				$alt = '';
@@ -124,7 +124,7 @@
 				<span class="list-content__meta"><?=substr($row['B_SEND_DT'],0,4)?>.<?=substr($row['B_SEND_DT'],5,2)?></span>
 			</div>
 
-			<?php}?>
+			<?php } ?>
 			
 		</div>
 	</div>

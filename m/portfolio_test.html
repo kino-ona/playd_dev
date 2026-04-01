@@ -53,7 +53,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 		</div>
 
 		<div class="sub-content__warning" style="display: none">
-			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<img src="/assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 		</div>
 
@@ -65,6 +65,7 @@ var g_page = 1;
 var g_listsize = 6;
 var g_type = '';
 var g_order = '';
+var isLoading = false;
 
 $(document).ready(function(){
 
@@ -137,21 +138,21 @@ function fetchItemList(json, count){
         }
       }
 
-			<?phpif($is_mobile){?>
+			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE2']){
 				image = json[i]['B_FILE2'];
 			}
 			if(json[i]['B_EXT2']){
 				alt = json[i]['B_EXT2'];
 			}
-			<?php}else{?>
+			<?php } else { ?>
 			if(json[i]['B_FILE1']){
 				image = json[i]['B_FILE1'];
 			}
 			if(json[i]['B_EXT1']){
 				alt = json[i]['B_EXT1'];
 			}
-			<?php}?>
+			<?php } ?>
 
 
 			html+='<div class="list-content"><a href="javascript:;">';

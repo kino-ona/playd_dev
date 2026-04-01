@@ -87,7 +87,7 @@
 				<div class="list-select">목록<a href="column.html" type="button"><i></i></a></div>
 			</div>
 
-			<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+			<?php for  ($i=0; $row=sql_fetch_array($otherList); $i++) {
 				
 				$image = '';
 				$alt = '';
@@ -120,7 +120,7 @@
 				<span class="list-content__meta"><?=substr($row['B_REGDATE'],0,4)?>.<?=substr($row['B_REGDATE'],5,2)?></span>
 				<!-- <span class="list-content__meta list-content__meta--view"><i><span class="a11y">조회수</span></i><?=number_format($row['B_HITS'])?></span> -->
 			</a></div>
-				<?php}?>
+				<?php } ?>
 
 		</div>
 	</div>

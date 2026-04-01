@@ -9,10 +9,10 @@ $__playd_dbenv = static function (string $key, string $default): string {
 };
 define('P1_MYSQL_HOST', $__playd_dbenv('PLAYD_DB_HOST', '127.0.0.1'));
 define('P1_MYSQL_USER', $__playd_dbenv('PLAYD_DB_USER', 'root'));
-define('P1_MYSQL_PASSWORD', $__playd_dbenv('PLAYD_DB_PASSWORD', ''));
+// docker-compose.yml MYSQL_ROOT_PASSWORD 와 호스트 포트(3307)에 맞춘 로컬 기본값. 웹 컨테이너는 PLAYD_DB_* 로 3306 등이 설정됨.
+define('P1_MYSQL_PASSWORD', $__playd_dbenv('PLAYD_DB_PASSWORD', 'root'));
 define('P1_MYSQL_DB', $__playd_dbenv('PLAYD_DB_NAME', 'playd'));
-// 호스트에서 Docker MySQL(3307:3306) 등 비표준 포트: PLAYD_DB_PORT=3307
-define('P1_MYSQL_PORT', (int) $__playd_dbenv('PLAYD_DB_PORT', '3306'));
+define('P1_MYSQL_PORT', (int) $__playd_dbenv('PLAYD_DB_PORT', '3307'));
 define('P1_MYSQL_SET_MODE', false);
 unset($__playd_dbenv);
 

@@ -72,7 +72,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 					<div class="swiper-wrapper">
 
 
-					<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+					<?php for  ($i=0; $row=sql_fetch_array($otherList); $i++) {
 				
 				$image = '';
 				$alt = '';
@@ -104,11 +104,11 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 							<a href="javascript:download('<?=$row['FI_SEQ']?>','<?=$row['B_LINKURL']?>','<?=$row['B_SEQ']?>');" class="slide__download"><span>download</span></a>
 							
 						</div>
-					<?php}?>
+					<?php } ?>
 						
 						<!-- <div class="slide__item swiper-slide">
 							<a href="/">
-								<p><span class="slide__image" style="background-image:url('../assets/images/m/sub/img_report_3.png')"></span></p>
+								<p><span class="slide__image" style="background-image:url('/assets/images/w/visual/block_003.jpg')"></span></p>
 								<p class="slide__type">Trend Delivery</p>
 								<h3 class="slide__title">OTT 서비스 트렌드 리포트</h3>
 								<span class="slide__date">2022.04</span>
@@ -117,7 +117,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 						</div>
 						<div class="slide__item swiper-slide">
 							<a href="/">
-								<p><span class="slide__image" style="background-image:url('../assets/images/m/sub/img_report_2.png')"></span></p>
+								<p><span class="slide__image" style="background-image:url('/assets/images/w/visual/block_002.jpg')"></span></p>
 								<p class="slide__type">Trend Delivery</p>
 								<h3 class="slide__title">OTT 서비스 트렌드 리포트</h3>
 								<span class="slide__date">2022.04</span>
@@ -126,7 +126,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 						</div>
 						<div class="slide__item swiper-slide">
 							<a href="/">
-								<p><span class="slide__image" style="background-image:url('../assets/images/m/sub/img_report_3.png')"></span></p>
+								<p><span class="slide__image" style="background-image:url('/assets/images/w/visual/block_003.jpg')"></span></p>
 								<p class="slide__type">Trend Delivery</p>
 								<h3 class="slide__title">OTT 서비스 트렌드 리포트</h3>
 								<span class="slide__date">2022.04</span>
@@ -158,7 +158,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 						<ul>
 							<li class="kakao">
 								<a href="javascript:kakaoShareLink();">
-									<img src="../assets/images/m/sub/icon_share_kakao.png" alt="카카오톡 아이콘">
+									<img src="/assets/images/w/common/icons/article_sns-kakao.png" alt="카카오톡 아이콘">
 									<span>
 										카카오톡
 									</span>
@@ -166,7 +166,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 							</li>
 							<li class="twitter">
 								<a href="javascript:twitterShare()">
-									<img src="../assets/images/m/sub/icon_share_twitter.png" alt="트위터 아이콘">
+									<img src="/assets/images/w/common/icons/article_sns-twitter.png" alt="트위터 아이콘">
 									<span>
 										트위터
 									</span>
@@ -174,7 +174,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 							</li>
 							<li class="facebook">
 								<a href="javascript:facebookShare()">
-									<img src="../assets/images/m/sub/icon_share_facebook.png" alt="페이스북 아이콘">
+									<img src="/assets/images/w/common/icons/article_sns-facebook.png" alt="페이스북 아이콘">
 									<span>
 										페이스북
 									</span>
@@ -182,7 +182,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 							</li>
 							<li class="url">
 								<a href="javascript:linkShare()">
-									<img src="../assets/images/m/sub/icon_share_url.png" alt="URL 아이콘">
+									<img src="/assets/images/w/common/icons/article_sns-linkcopy.png" alt="URL 아이콘">
 									<span>
 										URL 복사
 									</span>

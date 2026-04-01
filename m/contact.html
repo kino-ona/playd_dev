@@ -18,8 +18,8 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
 
 	<!-- header -->
 	<?php
-include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
-?>
+	include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
+	?>
 	<!-- //header -->
 
   <div class="sub-header">
@@ -234,7 +234,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 				성장하고자 하는 모든<br>
 				비즈니스에 언제나 열려있습니다.
 			</h3>
-			<img src="../assets/images/m/sub/icon_position.png" class="icon" alt="아이콘">
+			<img src="/assets/images/w/common/icons/i_map.png" class="icon" alt="아이콘">
 			<p class="sub-info__position">경기도 성남시 분당구 황새울로 359번길 11, 5~6층</p>
 			<a href="mailto:master@playd.com">master@playd.com</a>
 			<p class="sub-info__description">
@@ -251,7 +251,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 	<div class="sub-footer">
 		<div class="sub-advertise">
 			<p class="sub-advertise__icon">
-				<img src="../assets/images/m/sub/icon_sensen.png" alt="sense 아이콘">
+				<img src="/assets/images/w/sub/icon_techhub--sensen.png" alt="sense 아이콘">
 			</p>
 			<p class="sub-advertise__title">
 				온라인 광고<br>
@@ -391,6 +391,7 @@ var a_project_dt = '';
 var a_file1 = '';
 var a_sysfile1 = '';
 var a_type_gubun3 = '';
+var isLoading = false;
 
 $(document).ready(function(){
   initFilepicker();

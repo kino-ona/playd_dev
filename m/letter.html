@@ -30,7 +30,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
             <!-- <a href="#" class="button button__radius button__filled-black">뉴스레터 신청</a> -->
           </div>
 				</div>
-        <div class="visual__image" style="background-image: url('../assets/images/m/sub/img_letter_1.png')"></div>
+        <div class="visual__image" style="background-image: url('/assets/images/w/visual/insight_0.png')"></div>
       </section>
     </div>
 
@@ -45,9 +45,9 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 						<p>
 							<button type="button" id="years_" onclick="javascript:yearSelect('');" class="sub-tabs__item sub-tabs__item--active">전체</button>
 						</p>
-						<?phpfor ($i=0; $row=sql_fetch_array($years); $i++) {?>
+						<?php for  ($i=0; $row=sql_fetch_array($years); $i++) {?>
 						<p><button type="button" id="years_<?=$row['B_YEAR']?>"  class="sub-tabs__item" onclick="javascript:yearSelect('<?=$row['B_YEAR']?>');"><?=$row['B_YEAR']?></button></p>
-						<?php}?>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 		<div class="sub-content">
 			<!-- <div class="list-content">
 				<a href="./letter-detail.html">
-					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_letter_2.png')"></p>
+					<p class="list-content__image" style="background-image: url('/assets/images/w/visual/insight_1.png')"></p>
 					<p class="list-content__title"><span class="numbering">Vol. 112</span> 국내 기업의 해외 온라인 마케팅 지원 본격화</p>
 					<p class="list-content__description">
 						2022.03
@@ -66,7 +66,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 		</div>
 
 		<div class="sub-content__warning" style="display: none">
-			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<img src="/assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 		</div>
 
@@ -80,6 +80,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 var g_page = 1;
 var g_listsize = 6;
 var g_year = '';
+var isLoading = false;
 
 $(document).ready(function(){
 	
@@ -138,21 +139,21 @@ function fetchItemList(json, count){
 
 			var datestr = json[i]['B_YEAR'] + '.' + json[i]['B_MONTH'];
 
-			<?phpif($is_mobile){?>
+			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE2']){
 				image = json[i]['B_FILE2'];
 			}
 			if(json[i]['B_EXT2']){
 				alt = json[i]['B_EXT2'];
 			}
-			<?php}else{?>
+			<?php } else { ?>
 			if(json[i]['B_FILE1']){
 				image = json[i]['B_FILE1'];
 			}
 			if(json[i]['B_EXT1']){
 				alt = json[i]['B_EXT1'];
 			}
-			<?php}?>
+			<?php } ?>
 
 			html+='<div class="list-content"><a href="./letter-detail.html?seq=' + json[i]['B_SEQ'] + '&vol=' + vol + '">';
 			html+='<div class="list-content__cover"><p class="list-content__image" style="background-image:url('+image+')" title="'+alt+'"></p></div>';

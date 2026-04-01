@@ -52,9 +52,9 @@
 				<div class="search-list">
 					<div class="search-item">
 						<button type="button" id="years_" onclick="javascript:yearSelect('');" class="sub-tabs__item sub-tabs__item--active">전체</button>
-						<?phpfor ($i=0; $row=sql_fetch_array($years); $i++) {?>
+						<?php for  ($i=0; $row=sql_fetch_array($years); $i++) {?>
 						<button type="button" id="years_<?=$row['B_YEAR']?>"  class="sub-tabs__item" onclick="javascript:yearSelect('<?=$row['B_YEAR']?>');"><?=$row['B_YEAR']?></button>
-						<?php}?>
+						<?php } ?>
 
 					</div>
 				</div>
@@ -140,21 +140,21 @@ function fetchItemList(json, count){
 
 			var datestr = json[i]['B_YEAR'] + '.' + json[i]['B_MONTH'];
 
-			<?phpif($is_mobile){?>
+			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE2']){
 				image = json[i]['B_FILE2'];
 			}
 			if(json[i]['B_EXT2']){
 				alt = json[i]['B_EXT2'];
 			}
-			<?php}else{?>
+			<?php } else { ?>
 			if(json[i]['B_FILE1']){
 				image = json[i]['B_FILE1'];
 			}
 			if(json[i]['B_EXT1']){
 				alt = json[i]['B_EXT1'];
 			}
-			<?php}?>
+			<?php } ?>
 			html+='<div class="list-content"><a href="./letter-detail.html?seq=' + json[i]['B_SEQ'] + '&vol=' + vol + '">';
 			html+='<div class="list-content__image" style="background-image:url('+image+')" title="'+alt+'"></div>';
 			html+='<div class="list-content__head">';

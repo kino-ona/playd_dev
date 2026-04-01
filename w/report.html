@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<?phpfor ($i=0; $row=sql_fetch_array($recommList); $i++) {
+			<?php for  ($i=0; $row=sql_fetch_array($recommList); $i++) {
 				$b_send_year = substr($row['B_SEND_DT'],0,4);
 				$b_send_month = substr($row['B_SEND_DT'],5,2);
 				
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 			</section>
-			<?php}?>
+			<?php } ?>
 
 
 			<div class="sub-content__head">
@@ -177,7 +177,7 @@
 
 			<!-- 20220630 -->
 			<div class="sub-content__warning" style="display: none">
-				<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+				<img src="../assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 				<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 			</div>
 		</div>	
@@ -262,21 +262,21 @@ function fetchItemList(json, count){
 
 			var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
 
-			<?phpif($is_mobile){?>
+			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE4']){
 				image = json[i]['B_FILE4'];
 			}
 			if(json[i]['B_EXT4']){
 				alt = json[i]['B_EXT4'];
 			}
-			<?php}else{?>
+			<?php } else { ?>
 			if(json[i]['B_FILE3']){
 				image = json[i]['B_FILE3'];
 			}
 			if(json[i]['B_EXT3']){
 				alt = json[i]['B_EXT3'];
 			}
-			<?php}?>
+			<?php } ?>
 
 			html+='<div class="list-content">';
 			html+='<a href="javascript:;" class="list-content__cover">';
