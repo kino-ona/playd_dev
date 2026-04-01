@@ -74,7 +74,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 				<div class="slide-swiper swiper">
 					<div class="swiper-wrapper">
 
-					<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+					<?php for  ($i=0; $row=sql_fetch_array($otherList); $i++) {
 				
 				$image = '';
 				$alt = '';
@@ -105,7 +105,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 								<!-- <a href="/" class="slide__download"><span>download</span></a> -->
 							</a>
 						</div>
-<?php}?>
+<?php } ?>
 					</div>
 					<div class="swiper-pagination"></div>
 				</div>
@@ -126,19 +126,19 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 					<div class="share-list">
 						<ul>
 							<li class="kakao" onclick="javascript:kakaoShareLink();">
-								<img src="../assets/images/m/sub/icon_share_kakao.png" alt="카카오톡 아이콘">
+								<img src="/assets/images/w/common/icons/article_sns-kakao.png" alt="카카오톡 아이콘">
 								<span>카카오톡</span>
 							</li>
 							<li class="facebook"  onclick="javascript:facebookShare();">
-								<img src="../assets/images/m/sub/icon_share_facebook.png" alt="페이스북 아이콘">
+								<img src="/assets/images/w/common/icons/article_sns-facebook.png" alt="페이스북 아이콘">
 								<span>페이스북</span>
 							</li>
 							<li class="twitter"  onclick="javascript:twitterShare();">
-								<img src="../assets/images/m/sub/icon_share_twitter.png" alt="트위터 아이콘">
+								<img src="/assets/images/w/common/icons/article_sns-twitter.png" alt="트위터 아이콘">
 								<span>트위터</span>
 							</li>
 							<li class="url"  onclick="javascript:linkShare();">
-								<img src="../assets/images/m/sub/icon_share_url.png" alt="URL 아이콘">
+								<img src="/assets/images/w/common/icons/article_sns-linkcopy.png" alt="URL 아이콘">
 								<span>URL 복사</span>
 							</li>
 						</ul>

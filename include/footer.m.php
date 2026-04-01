@@ -51,7 +51,31 @@
 	</div>
 </footer>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="/assets/js/jquery-3.4.1.min.js"></script>
 <script src="/assets/js/ui.js"></script>
+<script>
+(function () {
+	if (typeof window.nvl === 'function') return;
+	window.nvl = function (val) {
+		if (val === undefined || val === null || val === 'undefined') return '';
+		return val;
+	};
+})();
+</script>
+<script>
+(function () {
+	if (typeof jQuery === 'undefined') return;
+	$(function () {
+		var $body = $('body');
+		$(document).on('click', '.header__button', function () {
+			$body.toggleClass('open-gnb');
+			$(this).attr('aria-expanded', $body.hasClass('open-gnb'));
+		});
+		$(document).on('click', '.header.header__default .gnb__list--link[role="button"]', function (e) {
+			e.preventDefault();
+			$(this).closest('.gnb__item').toggleClass('gnb__item--active').siblings('.gnb__item').removeClass('gnb__item--active');
+		});
+	});
+})();
+</script>
 </body>
 </html>

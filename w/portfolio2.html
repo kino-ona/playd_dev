@@ -146,21 +146,21 @@ function fetchItemList(json, count){
         }
       }
 
-			<?phpif($is_mobile){?>
+			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE2']){
 				image = json[i]['B_FILE2'];
 			}
 			if(json[i]['B_EXT2']){
 				alt = json[i]['B_EXT2'];
 			}
-			<?php}else{?>
+			<?php } else { ?>
 			if(json[i]['B_FILE1']){
 				image = json[i]['B_FILE1'];
 			}
 			if(json[i]['B_EXT1']){
 				alt = json[i]['B_EXT1'];
 			}
-			<?php}?>
+			<?php } ?>
 
       
       var lock_str = '';

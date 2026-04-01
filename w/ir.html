@@ -76,20 +76,20 @@
       </div>
     </div>
 
-		<div class="sub-container <?php if($tab=='1'){?>sub-container--located<?php}?>" data-content="전자공고">
+		<div class="sub-container <?php if($tab=='1'){?>sub-container--located<?php } ?>" data-content="전자공고">
 			<div class="search-form">
 				<div class="search-list">
 					<div class="search-item">
 						<div class="drop-box">
 							<div class="drop-box__title">
 
-								<?phpif($keytype=='title'){?>
+								<?php if ($keytype=='title'){?>
 									<p class="drop-box__text"><a href="javascript:enterKey('title');">제목</a></p>
-								<?php}else if($keytype=='cont'){?>
+								<?php } else if ($keytype=='cont'){?>
 									<p class="drop-box__text"><a href="javascript:enterKey('cont');">내용</a></p>
-								<?php}else{?>
+								<?php } else { ?>
 									<p class="drop-box__text"><a href="javascript:enterKey('');">전체</a></p>
-								<?php}?>
+								<?php } ?>
 								
 
 								
@@ -132,26 +132,26 @@
 					<a href="./ir-detail.html?seq=<?=$row['B_SEQ']?>&tab=<?=$tab?>&num=<?=$list_num?>" class="notice-list__link">
 						<p class="notice-list__number numbering"><?=$list_num?></p>
 						<div class="notice-list__wrap">
-							<p class="notice-list__title notice-list__title--file-attach"><?phpif($fileCount > 0){?><i></i><?php}?>
+							<p class="notice-list__title notice-list__title--file-attach"><?php if ($fileCount > 0){?><i></i><?php } ?>
 								<?=$row['B_TITLE']?>
 							</p>
 							<span class="notice-list__date"><?=$datestr?></span>
 						</div>
 					</a>
-					<?php}}?>
+					<?php } } ?>
 
 				</div>
-				<?phpif($total_count>0){?>
+				<?php if ($total_count>0){?>
 				<div class="arrow-number">
 					<div class="arrow-number__wrap">
 						<?=select_paging($page_rows, $page, $total_page, basename($_SERVER["PHP_SELF"])."?tab=".$tab."&keytype=".$keytype."&keyword=".$keyword)?>
 					</div>
 				</div>
-				<?php}?>
+				<?php } ?>
 			</div>
 		</div>
 
-		<div class="sub-container <?php if($tab=='2'){?>sub-container--located<?php}?>" data-content="재무정보">
+		<div class="sub-container <?php if($tab=='2'){?>sub-container--located<?php } ?>" data-content="재무정보">
 			<div class="sub-content">
 				<div class="table-item table-item--full">
 					<div class="table-content">
@@ -253,7 +253,7 @@
 			</div>
 		</div>
 
-		<div class="sub-container <?php if($tab=='3'){?>sub-container--located<?php}?>" data-content="공시정보">
+		<div class="sub-container <?php if($tab=='3'){?>sub-container--located<?php } ?>" data-content="공시정보">
 			<a href="/" class="sub-link">공시정보 관리규정</a>
 
 			<div class="search-form">
@@ -261,13 +261,13 @@
 					<div class="search-item">
 						<div class="drop-box">
 							<div class="drop-box__title">
-								<?phpif($keytype=='title'){?>
+								<?php if ($keytype=='title'){?>
 									<p class="drop-box__text"><a href="javascript:enterKey('title');">제목</a></p>
-								<?php}else if($keytype=='cont'){?>
+								<?php } else if ($keytype=='cont'){?>
 									<p class="drop-box__text"><a href="javascript:enterKey('cont');">내용</a></p>
-								<?php}else{?>
+								<?php } else { ?>
 									<p class="drop-box__text"><a href="javascript:enterKey('');">전체</a></p>
-								<?php}?>
+								<?php } ?>
 							</div>
 							<div class="drop-box__wrap">
 								<div>
@@ -304,19 +304,19 @@
 							<span class="notice-list__date"><?=$datestr?></span>
 						</div>
 					</a>
-					<?php}}?>
+					<?php } } ?>
 				</div>
-				<?phpif($total_count>0){?>
+				<?php if ($total_count>0){?>
 				<div class="arrow-number">
 					<div class="arrow-number__wrap">
 						<?=select_paging($page_rows, $page, $total_page, basename($_SERVER["PHP_SELF"])."?tab=".$tab."&keytype=".$keytype."&keyword=".$keyword)?>
 					</div>
 				</div>
-				<?php}?>
+				<?php } ?>
 			</div>
 		</div>
 
-		<div class="sub-container <?php if($tab=='4'){?>sub-container--located<?php}?>" data-content="IR Contact">
+		<div class="sub-container <?php if($tab=='4'){?>sub-container--located<?php } ?>" data-content="IR Contact">
 			<div class="sub-content">
 				<div class="contact">
 					<div class="image-block"><img src="../assets/images/w/sub/icon_ir.png" alt="ir메일 icon"></div>
@@ -332,8 +332,8 @@
 			</div>
 		</div>
 		
-		<div class="sub-content__warning" <?phpif($total_count==0 && ($tab=='1' || $tab=='3')){?> <?php}else{?> style="display: none" <?php}?>>
-			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+		<div class="sub-content__warning" <?php if ($total_count==0 && ($tab=='1' || $tab=='3')){?> <?php } else { ?> style="display: none" <?php } ?>>
+			<img src="../assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 		</div>
 
@@ -817,11 +817,11 @@ function enterKey(val){
 function enterSelect(){
 	if (window.event.keyCode == 13) {
 		var keyword = '';
-		<?phpif($tab=='3'){?>
+		<?php if ($tab=='3'){?>
 		 keyword = $('#ir-search3').val();
-		 <?php} else {?>
+		 <?php } else { ?>
 		 keyword = $('#ir-search').val();
-		<?php}?>
+		<?php } ?>
 		var keytype = g_keytype;
 		document.location.href = 'ir.html?tab=<?=$tab?>&page=1&keytype='+keytype+'&keyword='+keyword;
 	}

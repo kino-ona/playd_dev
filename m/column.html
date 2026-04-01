@@ -80,7 +80,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 			
 			<!-- <div class="list-content">
 				<a href="./column-detail.html">
-					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_column_1.png')"></p>
+					<p class="list-content__image" style="background-image: url('/assets/images/w/visual/block4.png')"></p>
 					<p class="list-content__title"><span class="numbering">MEDIA</span> 새로워진 카카오 키워드 광고 플랫폼, 카카오 Keyword 광고 파헤치기</p>
 					<p class="list-content__text">새로운 로그인 방식부터 광고 구조까지 변화한 카카오 키워드 광고 플랫폼을 A~Z 모두 살펴보았습니다. </p>
 					<p class="list-content__description">
@@ -97,7 +97,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 	</div>
 
 		<div class="sub-content__warning" style="display: none">
-			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<img src="/assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 		</div>
 
@@ -181,6 +181,7 @@ var g_page = 1;
 var g_listsize = 6;
 var g_type = '';
 var g_order = '';
+var isLoading = false;
 
 $(document).ready(function(){
 	
@@ -256,21 +257,21 @@ function fetchItemList(json, count){
 			}
 			
 
-			<?phpif($is_mobile){?>
+			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE2']){
 				image = json[i]['B_FILE2'];
 			}
 			if(json[i]['B_EXT2']){
 				alt = json[i]['B_EXT2'];
 			}
-			<?php}else{?>
+			<?php } else { ?>
 			if(json[i]['B_FILE1']){
 				image = json[i]['B_FILE1'];
 			}
 			if(json[i]['B_EXT1']){
 				alt = json[i]['B_EXT1'];
 			}
-			<?php}?>
+			<?php } ?>
 
 
 			html+='<div class="list-content">';

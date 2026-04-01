@@ -75,7 +75,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 			
 			<!-- <div class="list-content">
 				<a href="./report-detail.html">
-					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_report_1.png')"></p>
+					<p class="list-content__image" style="background-image: url('/assets/images/w/visual/block_001.jpg')"></p>
 					<p class="list-content__title"><span class="numbering">Trend Delivery</span> OTT 서비스 트렌드 리포트</p>
 					<p class="list-content__description">
 						2022.03
@@ -85,7 +85,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 			</div> -->
 			<!-- <div class="list-content">
 				<a href="./report-detail.html">
-					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_report_2.png')"></p>
+					<p class="list-content__image" style="background-image: url('/assets/images/w/visual/block_002.jpg')"></p>
 					<p class="list-content__title"><span class="numbering">VOICE Trend</span> 국내 기업의 해외 온라인 마케팅 지원 본격화</p>
 					<p class="list-content__description">
 						2022.03
@@ -95,7 +95,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 			</div>
 			<div class="list-content">
 				<a href="./report-detail.html">
-					<p class="list-content__image" style="background-image: url('../assets/images/m/sub/img_report_3.png')"></p>
+					<p class="list-content__image" style="background-image: url('/assets/images/w/visual/block_003.jpg')"></p>
 					<p class="list-content__title"><span class="numbering">Trend Report</span> MZ세대 패션앱 트렌드 리포트 2022</p>
 					<p class="list-content__description">
 						2022.03
@@ -111,7 +111,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 	</div>
 
 		<div class="sub-content__warning" style="display: none">
-			<img src="../assets/images/m/common/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
+			<img src="/assets/images/w/common/icons/icon_warning.png" alt="경고 아이콘" class="sub-content__warning-icon">
 			<p class="sub-content__warning-text">검색결과가 없습니다.</p>
 		</div>
 
@@ -138,6 +138,7 @@ var g_order = '';
 var g_val = '';
 var g_url = '';
 var g_seq = '';
+var isLoading = false;
 
 $(document).ready(function(){
 	
@@ -207,21 +208,21 @@ function fetchItemList(json, count){
 
 			var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
 
-			<?phpif($is_mobile){?>
+			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE4']){
 				image = json[i]['B_FILE4'];
 			}
 			if(json[i]['B_EXT4']){
 				alt = json[i]['B_EXT4'];
 			}
-			<?php}else{?>
+			<?php } else { ?>
 			if(json[i]['B_FILE3']){
 				image = json[i]['B_FILE3'];
 			}
 			if(json[i]['B_EXT3']){
 				alt = json[i]['B_EXT3'];
 			}
-			<?php}?>
+			<?php } ?>
 
 
 			

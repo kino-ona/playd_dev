@@ -62,7 +62,7 @@
 				<p class="sub-content__title">관련 뉴스레터</p>
 				<div class="list-select">목록<a href="letter.html" type="button"><i></i></a></div>
 			</div>
-			<?phpfor ($i=0; $row=sql_fetch_array($otherList); $i++) {
+			<?php for  ($i=0; $row=sql_fetch_array($otherList); $i++) {
 				
 				$image = '';
 				$alt = '';
@@ -91,7 +91,7 @@
 				<p class="list-content__title"><?=$row['B_TITLE']?></p>
 				<span class="list-content__meta"><?=$row['B_YEAR']?>.<?=$row['B_MONTH']?></span>
 			</a></div>
-			<?php}?>
+			<?php } ?>
 <!-- 			
 			<div class="list-content"><a href="#">
 				<div class="list-content__image" style="background-image:url(../assets/images/w/dummy/@insight3.png)"></div>

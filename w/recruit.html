@@ -39,15 +39,15 @@
     <div class="sub-header">
       <h2 class="sub-header__title"><span class="sub-header__label">인재채용 > 채용</span>디지털 마케팅 시장에서 <br>함께 <strong>성장할 플레이어</strong>를 기다립니다.</h2>
       <div class="sub-tabs">
-        <!-- <a href="javascript:;" class="sub-tabs__item <?phpif($tab=='1'){?>sub-tabs__item--active<?php}?>" onclick="javascript:location.href='recruit.html?tab=1';">상시채용</a> -->
-        <a href="javascript:;" class="sub-tabs__item <?phpif($tab=='2'){?>sub-tabs__item--active<?php}?>" onclick="javascript:location.href='recruit.html?tab=2';">채용공고</a>
-        <a href="javascript:;" class="sub-tabs__item <?phpif($tab=='3'){?>sub-tabs__item--active<?php}?>" onclick="javascript:location.href='recruit.html?tab=3';">채용프로세스</a>
+        <!-- <a href="javascript:;" class="sub-tabs__item <?php if ($tab=='1'){?>sub-tabs__item--active<?php } ?>" onclick="javascript:location.href='recruit.html?tab=1';">상시채용</a> -->
+        <a href="javascript:;" class="sub-tabs__item <?php if ($tab=='2'){?>sub-tabs__item--active<?php } ?>" onclick="javascript:location.href='recruit.html?tab=2';">채용공고</a>
+        <a href="javascript:;" class="sub-tabs__item <?php if ($tab=='3'){?>sub-tabs__item--active<?php } ?>" onclick="javascript:location.href='recruit.html?tab=3';">채용프로세스</a>
       </div>
     </div>
 
-    <!-- <div class="sub-container <?phpif($tab=='1'){?>sub-container--located<?php}?>" data-content="상시채용">
+    <!-- <div class="sub-container <?php if ($tab=='1'){?>sub-container--located<?php } ?>" data-content="상시채용">
       <div class="accordian">
-        <?phpfor ($i=0; $row=sql_fetch_array($itemList); $i++) { ?>
+        <?php for  ($i=0; $row=sql_fetch_array($itemList); $i++) { ?>
         <div class="accordian__item">
           <div class="accordian__title"><a href="#"><?=$row['S_FIELD']?></a></div>
           <div class="accordian__content">
@@ -57,12 +57,12 @@
             </div>
           </div>
         </div>
-        <?php}?>
+        <?php } ?>
         
       </div>
     </div> -->
 
-    <div class="sub-container  <?phpif($tab=='2'){?>sub-container--located<?php}?>" data-content="채용공고">
+    <div class="sub-container  <?php if ($tab=='2'){?>sub-container--located<?php } ?>" data-content="채용공고">
       <div class="search-form">
         <div class="search-form__wrap">
           <input type="search" id="recruit-search" name="" placeholder="직무 검색하기" onkeyup="enterSelect()" value="<?=$keyword?>">
@@ -72,8 +72,8 @@
           <div class="search-item">
             <div class="drop-box">
                <div class="drop-box__title">
-                <p class="drop-box__text"><?phpif($job){?><?=$job?><?php}else{?>
-									전체직군<?php}?></p> <!-- 20220623 //-->
+                <p class="drop-box__text"><?php if ($job){?><?=$job?><?php } else { ?>
+									전체직군<?php } ?></p> <!-- 20220623 //-->
               </div>
               <div class="drop-box__wrap">
                 <div>
@@ -91,7 +91,7 @@
           <div class="search-item">
             <div class="drop-box">
               <div class="drop-box__title">
-                <p class="drop-box__text"><?phpif($obj){?><?=$obj?><?php}else{?>경력사항<?php}?></p> <!-- 20220623 //-->
+                <p class="drop-box__text"><?php if ($obj){?><?=$obj?><?php } else { ?>경력사항<?php } ?></p> <!-- 20220623 //-->
               </div>
               <div class="drop-box__wrap">
                 <div>
@@ -106,7 +106,7 @@
           <div class="search-item">
           <div class="drop-box">
             <div class="drop-box__title">
-                <p class="drop-box__text"><?phpif($ext2){?><?=$ext2?><?php}else{?>고용 형태<?php}?></p> <!-- 20220623 //-->
+                <p class="drop-box__text"><?php if ($ext2){?><?=$ext2?><?php } else { ?>고용 형태<?php } ?></p> <!-- 20220623 //-->
               </div>
               <div class="drop-box__wrap">
                 <div>
@@ -119,7 +119,7 @@
           </div>
         </div>
       </div>
-      <?phpfor ($i=0; $row=sql_fetch_array($itemList2); $i++) { 
+      <?php for  ($i=0; $row=sql_fetch_array($itemList2); $i++) { 
         
         $nDate = date("Y-m-d",time());
         $valDate = substr($row['S_ET_DATE'],0,10);
@@ -132,15 +132,15 @@
           <div class="relate-content__title">
             <div class="relate-content__wrap">
               <?=$row['S_FIELD']?>
-              <?phpif($leftDate<0){?>
+              <?php if ($leftDate<0){?>
               <div class="relate-content__date relate-content__date--end">
                 <p>END</p>
               </div>
-              <?php}else{?>
+              <?php } else { ?>
               <div class="relate-content__date">
                 <p>D-<span><?=$leftDate?></span></p>
               </div>
-              <?php}?>
+              <?php } ?>
             </div>
             <div class="relate-content__type">
               <span><?=$row['S_JOB']?></span>
@@ -150,10 +150,10 @@
           </div>
         </a>
       </div>
-      <?php}?>
+      <?php } ?>
     </div>
 
-    <div class="sub-container  <?phpif($tab=='3'){?>sub-container--located<?php}?>" data-content="채용프로세스">
+    <div class="sub-container  <?php if ($tab=='3'){?>sub-container--located<?php } ?>" data-content="채용프로세스">
       <div class="diagram">
         <p class="diagram__title">신입</p>
         <ol class="diagram__list">

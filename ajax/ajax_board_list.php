@@ -1,4 +1,4 @@
-<?
+<?php
     include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
 
     $year = nvl($_POST['year'],2);
