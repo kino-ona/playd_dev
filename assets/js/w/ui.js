@@ -85,7 +85,7 @@ window.addEventListener("load", () => {
     // mouseenter 시 메뉴 표시 (mouseenter로 변경하여 성능 최적화)
     item.addEventListener("mouseenter", () => {
       // 로딩 체크 로직 제거 - 항상 동작하도록 수정
-      if (itemIdx > 5 || itemIdx === 1) {
+      if (itemIdx > 4 || itemIdx === 1) {
         navmenu.style.top = 0;
       } else {
         targetNavLink.classList.add("located");

@@ -3077,8 +3077,8 @@ html {
 	padding-top: 30px;
 	padding-left: 30px;
 	padding-bottom: 30px;
-	background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.4)), color-stop(45%), to(rgba(0, 0, 0, 0)));
-	background: linear-gradient(to top, rgba(0, 0, 0, 0.4), 45%, rgba(0, 0, 0, 0));
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.6)), color-stop(45%), to(rgba(0, 0, 0, 0)));
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.6), 45%, rgba(0, 0, 0, 0));
 	border-radius: 12px;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -3214,10 +3214,10 @@ html {
 .main .card-box__item:nth-child(2) {
 	margin-top: 15px;
 	margin-bottom: 15px;
-	background-image: url("/assets/images/w/sub/icon_growth_3_1.png");
+	background-image: url("/assets/images/m/index/icon_customer.png");
 }
 .main .card-box__item:nth-child(3) {
-	background-image: url("/assets/images/w/sub/icon_growth_5_1.png");
+	background-image: url("/assets/images/m/index/icon_project.png");
 }
 .main .card-box__title {
 	padding-left: 37px;
@@ -7518,6 +7518,9 @@ html {
 }
 .awards .list-content__description {
 	margin-top: 15px;
+}
+.awards .list-content__description + .list-content__title {
+	margin-top: 30px;
 }
 .awards .list-content__notop {
 	padding: 5px 25px 25px;
