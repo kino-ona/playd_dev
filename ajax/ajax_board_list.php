@@ -1,16 +1,15 @@
 <?php
     include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
 
+    header('Content-Type: application/json; charset=UTF-8');
+
     $year = nvl($_POST['year'],2);
     $type = nvl($_POST['type']);
     $order = nvl($_POST['order']);
     $keyword = nvl($_POST['keyword']);
     $b_code = nvl($_POST['code']);
-    $page = $_POST['page']?$_POST['page']:1;
-    $listsize = $_POST['listsize']?$_POST['listsize']:10; 
-    if ( !$_POST['page']){
-        exit;
-    }
+    $page = isset($_POST['page']) && $_POST['page'] !== '' ? (int) $_POST['page'] : 1;
+    $listsize = isset($_POST['listsize']) && $_POST['listsize'] !== '' ? (int) $_POST['listsize'] : 10;
     if ($page < 1) $page = 1;
     $start = ($page - 1) * $listsize;
 
@@ -70,6 +69,5 @@
     }
 
     $postData = array('list' => $result_array, 'count' => $totalCount);
-    echo json_encode($postData);
+    echo json_encode($postData, JSON_UNESCAPED_UNICODE);
 
-?>
