@@ -521,7 +521,9 @@ function contactWriteProc(){
 	if(isLoading) return;
 	isLoading = true;
 	
-	_LA.EVT('5530');
+	if (typeof _LA !== 'undefined' && _LA && typeof _LA.EVT === 'function') {
+		_LA.EVT('5530');
+	}
 	
 	if(window.wcs){
     if(!wcs_add) var wcs_add = {};
@@ -561,6 +563,7 @@ function contactWriteProc(){
                     cache: false,
                     crossDomain: false,
                     error: function (request, error) {
+                        isLoading = false;
                         console.log(error + '');
                         alert('실패하였습니다. 관리자에게 문의해 주세요.');
                         //document.location.reload();

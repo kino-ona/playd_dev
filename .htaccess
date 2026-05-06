@@ -1,0 +1,24 @@
+# Apache(Web Station)용 — 로컬 `php -S ... router.php` 와 같은 라우팅
+# 사용 조건: AllowOverride FileInfo(또는 All) 이 켜진 가상 호스트
+#
+# 서브디렉터리에 올린 경우(예: https://nas/site/playd/):
+#   RewriteBase /playd/  로 바꾸고, 아래 규칙은 그대로 두면 됩니다.
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+
+	# 실제 파일이 있고, 순수 정적 자원 → Apache가 그대로 전달
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteRule \.(css|js|mjs|png|jpe?g|gif|webp|svg|ico|woff2?|ttf|eot|mp4|webm|pdf|xml|txt|map|json|htm)(\?.*)?$ - [L]
+
+	# 실제 PHP 파일 (ajax/*.php, adm, securimage 등) → PHP가 직접 실행
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteRule \.php(\?.*)?$ - [L]
+
+	# 그 외 전부( /m/*.html 등 PHP가 들어 있는 HTML 포함 ) → router.php
+	RewriteRule ^ router.php [L]
+</IfModule>
+
+# (선택) 목록 보기 끄기
+Options -Indexes

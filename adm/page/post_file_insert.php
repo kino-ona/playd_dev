@@ -1,16 +1,18 @@
 <?php
 include_once('./_common.php');
 
+header('Content-Type: application/json; charset=UTF-8');
+
 //check_admin_token();
 
 $msg = '';
 $act = '';
 
-$img_file    = $_FILES['file0'];
+$img_file = isset($_FILES['file0']) ? $_FILES['file0'] : null;
 $img_url = '';
 $org_name = '';
 
- if (is_uploaded_file($img_file['tmp_name'])) {
+if ($img_file && is_uploaded_file($img_file['tmp_name'])) {
         
         $year = date('Y');
         
@@ -45,8 +47,9 @@ $org_name = '';
         // $fname = abs(ip2long($_SERVER['REMOTE_ADDR'])).'_'.substr($shuffle,0,8).'_'.replace_filename($fname);
 
         // 업로드가 안된다면 에러메세지 출력하고 die
-        if(!move_uploaded_file($fname_tmp, $data_dir.'/'.$fname)) {
-            alert("file upload error");
+        if (!move_uploaded_file($fname_tmp, $data_dir.'/'.$fname)) {
+            echo json_encode(array('filename' => '', 'orgname' => '', 'error' => 'upload_failed'), JSON_UNESCAPED_UNICODE);
+            exit;
         }
         
         // 이미지
@@ -54,6 +57,4 @@ $org_name = '';
     }
  
 $postData = array('filename' => $img_url, 'orgname' => $org_name);
-echo json_encode($postData);
-
-?>
+echo json_encode($postData, JSON_UNESCAPED_UNICODE);

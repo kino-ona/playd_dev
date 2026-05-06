@@ -275,7 +275,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/head.m.php');
 							연락드릴 예정입니다.
 						</dd>
           </dl>
-					<button class="close_btn" type="button" onclick="procOk();_LA.EVT('5531');">확인</button>
+					<button class="close_btn" type="button" onclick="procOk(); if(typeof _LA!=='undefined'&&_LA&&typeof _LA.EVT==='function'){_LA.EVT('5531');}">확인</button>
         </div>
       </div>
     </div>
@@ -523,8 +523,9 @@ function isCheckValue(){
 	}
 }
 
-
-_LA.EVT('5531');
+	if (typeof _LA !== 'undefined' && _LA && typeof _LA.EVT === 'function') {
+		_LA.EVT('5531');
+	}
 
     if(window.wcs){
     if(!wcs_add) var wcs_add = {};
@@ -567,6 +568,7 @@ _LA.EVT('5531');
                     cache: false,
                     crossDomain: false,
                     error: function (request, error) {
+                        isLoading = false;
                         console.log(error + '');
                         alert('실패하였습니다. 관리자에게 문의해 주세요.');
                         //document.location.reload();

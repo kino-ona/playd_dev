@@ -11,3 +11,13 @@
 <link rel="stylesheet" href="/assets/css/w/ui.css">
 <script src="/static/js/jquery-1.12.4.min.js"></script>
 <script src="/static/js/app.js"></script>
+<script>
+(function () {
+	if (typeof window._LA === 'undefined') {
+		window._LA = { EVT: function () {}, BCT: function () {} };
+	} else {
+		if (typeof window._LA.EVT !== 'function') window._LA.EVT = function () {};
+		if (typeof window._LA.BCT !== 'function') window._LA.BCT = function () {};
+	}
+})();
+</script>

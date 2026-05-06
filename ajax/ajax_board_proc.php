@@ -1,18 +1,20 @@
-<?
+<?php
     include_once($_SERVER["DOCUMENT_ROOT"].'/include/_common.php');
 
+    header('Content-Type: application/json; charset=UTF-8');
 
     $cmd = nvl($_POST['cmd']);
     $CSRFToken = nvl($_POST['CSRFToken']);
     $CSRFToken2 = nvl($_POST['CSRFToken2']);
-    if(!$_POST['cmd']){
+    if (!isset($_POST['cmd']) || $_POST['cmd'] === '') {
+        echo json_encode(array('success' => false, 'error' => 'cmd'), JSON_UNESCAPED_UNICODE);
         exit;
     }
     if($cmd=='letter_write'){
 
         // if($CSRFToken2 != $_SESSION['CSRFToken2']){
         //     $postData = array('success' => false, 'err_token' => $_SESSION['CSRFToken2']);
-        //     echo json_encode($postData);
+        //     echo json_encode($postData, JSON_UNESCAPED_UNICODE);
         //     exit;
         // }
         // $_SESSION['CSRFToken2'] = '';
@@ -31,7 +33,7 @@
 
         // if($CSRFToken2 != $_SESSION['CSRFToken2']){
         //     $postData = array('success' => false, 'err_token' => $_SESSION['CSRFToken2']);
-        //     echo json_encode($postData);
+        //     echo json_encode($postData, JSON_UNESCAPED_UNICODE);
         //     exit;
         // }
         // $_SESSION['CSRFToken2'] = '';
@@ -51,7 +53,7 @@
     } else if($cmd=='ask_write'){
         // if($CSRFToken != $_SESSION['CSRFToken']){
         //     $postData = array('success' => false, 'err_token' => $_SESSION['CSRFToken']);
-        //     echo json_encode($postData);
+        //     echo json_encode($postData, JSON_UNESCAPED_UNICODE);
         //     exit;
         // }
         //$_SESSION['CSRFToken'] = '';
@@ -79,6 +81,7 @@
         $a_sysfile1 = nvl($_POST['a_sysfile1']);
         $a_file1 = nvl($_POST['a_file1']);
         $a_etc_memo = nvl($_POST['a_etc_memo']);
+        $a_connet = nvl($_POST['a_connet'] ?? '');
 
         if($a_corp_name) {
             $a_corp_name = Encrypt($a_corp_name);
@@ -111,7 +114,7 @@
 
         // if($CSRFToken != $_SESSION['CSRFToken']){
         //     $postData = array('success' => false, 'err_token' => $_SESSION['CSRFToken']);
-        //     echo json_encode($postData);
+        //     echo json_encode($postData, JSON_UNESCAPED_UNICODE);
         //     exit;
         // }
 
@@ -119,7 +122,7 @@
         $securimage = new Securimage();
         if ($securimage->check($_POST['ct_captcha']) == false) {
             $postData = array('success' => false, 'errcode' => $securimage->check($_POST['ct_captcha']));
-            echo json_encode($postData);
+            echo json_encode($postData, JSON_UNESCAPED_UNICODE);
             exit;
         }
 
@@ -190,7 +193,7 @@
         $passwdCheck = sql_fetch(" select A_PASSWD_FAIL from T_REPORT where A_MAIL='".$a_mail."' limit 1 ");
         if($passwdCheck['A_PASSWD_FAIL'] >= 5){
             $postData = array('success' => false, 'apasswdfail' => 'X');
-            echo json_encode($postData);
+            echo json_encode($postData, JSON_UNESCAPED_UNICODE);
             exit;
         }
 
@@ -208,7 +211,7 @@
              sql_query(" update T_REPORT set A_PASSWD_FAIL = 0  where A_MAIL='".$a_mail."' ");
 
             $postData = array('success' => true);
-            echo json_encode($postData);
+            echo json_encode($postData, JSON_UNESCAPED_UNICODE);
         } else {
             // 비번 실패 횟수 업데이트
             sql_query(" update T_REPORT set A_PASSWD_FAIL = A_PASSWD_FAIL + 1 where A_MAIL='".$a_mail."' ");
@@ -219,7 +222,7 @@
             }
 
             $postData = array('success' => false, 'apasswdfail' => $apasswdfail);
-            echo json_encode($postData);
+            echo json_encode($postData, JSON_UNESCAPED_UNICODE);
         }
 
         exit;
@@ -233,7 +236,7 @@
         $report_name = get_session('report_name');
         if(!$report_mail){
             $postData = array('success' => false);
-            echo json_encode($postData);
+            echo json_encode($postData, JSON_UNESCAPED_UNICODE);
             exit;
         }
 
@@ -260,6 +263,4 @@
 
 
     $postData = array('success' => true);
-    echo json_encode($postData);
-
-?>
+    echo json_encode($postData, JSON_UNESCAPED_UNICODE);
