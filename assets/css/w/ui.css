@@ -7207,7 +7207,7 @@ html .ui-button.ui-state-disabled:active {
 	font-family: "NS BD", "Malgun Gothic", Dotum, "돋움", AppleGothicNeoSD, "Apple SD 산돌고딕 Neo", "굴림", arial, sans-serif !important;
 }
 .awards .list-content__description {
-	min-height: 98px;
+	min-height: 100px;
 }
 .awards .sub-top {
 	border-top: 16px solid #ffffff;
