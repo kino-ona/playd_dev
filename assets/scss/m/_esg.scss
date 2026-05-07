@@ -1,0 +1,456 @@
+.esg {
+  background: #ffffff;
+
+	.more {
+		display: inline-block;
+		border-bottom: 1px solid #000;
+		font-size: 14px;
+		font-family: "NS MD", "Malgun Gothic", Dotum, "돋움", AppleGothicNeoSD, "Apple SD 산돌고딕 Neo", "굴림", arial, sans-serif !important;
+	}
+
+  .sub-header-description {
+    margin: 40px 25px 0; 
+
+    h3 {
+      margin-bottom: 30px;
+      font-size: 16px;
+      line-height: 1;
+      @include FontBD;
+    }
+
+    &__item {
+      display: flex;
+    }
+
+    &__wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 20px;
+    }
+
+    &__title {
+      font-size: 16px;
+      line-height: 1;
+      @include FontBD;
+    }
+
+    &__title  span {
+      display: inline-block;
+      color: #EA2126;
+      margin-top: -4px;
+    }
+
+    &__text {
+      font-size: 14px;
+      @include FontRG;
+    }
+
+    img {
+      width: 55px;
+      height: 55px;
+    }
+
+    .sub-header-description__item + .sub-header-description__item {
+      margin-top: 25px;
+    }
+  }
+
+  .accordian {
+    width: calc(100% - 50px);
+    margin: 0 25px;
+
+    &__title {
+      font-size: 16px;
+      @include FontRG;
+    }
+
+    &__title:before {
+      width: 6px;
+      height: 6px;
+      margin-top: 6px;
+      border-right: 2px solid #000000;
+      border-bottom: 2px solid #000000;
+    }
+
+    &__sub-title {
+      font-size: 14px;
+      @include FontRG;
+    }
+
+    &__text {
+      margin-top: 15px;
+      margin-bottom: 30px;
+      color: #666666;
+      font-size: 14px;
+      @include FontDL; 
+    }
+
+    img {
+      margin-bottom: 20px;
+      border-radius: 6px;
+    }
+  }
+
+  .accordian__item--active {
+    .accordian__content {
+      border-bottom: 1px solid #DDDDDD;
+      border-top: none;
+    }
+    .accordian__title {
+      @include FontBD;
+    }
+
+    .button__wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-direction: column;
+      gap: 10px 0;
+
+      .button {
+        display: block;
+        width: 99%;
+        padding: 10px 0;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+  }
+
+  .sub-content {
+    &__label {
+      position: relative;
+      margin: 0 25px 40px; 
+      padding: 10px 15px;
+      background-color: #EA2126;
+      color: #ffffff;
+      text-align: center;
+      border-radius: 50px;
+			&.label-first {
+				max-width: 100px;
+				margin-left: auto;
+				margin-right: auto
+			}
+			&.label-second {
+				max-width: 240px;
+				margin-left: auto;
+				margin-right: auto
+			}
+    }
+
+    &__label::before {
+      display: inline-block;
+      position: absolute;
+      left: 50%;
+      bottom: -40px;
+      width: 1px;
+      height: 40px;
+      background-image:repeating-linear-gradient(0, #DDDDDD, #DDDDDD 4px, transparent 4px, transparent 6px, #DDDDDD 6px);
+      background-size: 1px 100%, 100% 1px, 1px 100% , 100% 1px;
+      background-position: 0 0, 0 0, 100% 0, 0 100%;
+      background-repeat: no-repeat;
+      content: '';
+    }
+		&__label.label-nodot::after {
+			display: none;
+		}
+
+    &__label p {
+      display: inline-block;
+      @include FontBD;
+    }
+
+    &__label p > span {
+      display: inline-block;
+      @include FontMD; 
+    }
+
+    &__label p .sub-content__mail {
+      display: inline-block;
+      @include FontDL;
+    }
+
+    h3 {
+			display: flex;
+			justify-content: space-between;
+      font-size: 16px;
+      @include FontBD;
+    }
+
+    &__item {
+      margin-top: 5px;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    &__item::before {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin-top: -3px;
+      margin-right: 7px;
+      vertical-align: middle;
+      border-radius: 50%;
+      background-color: #666666;
+      content: '';
+    }
+
+    &__table {
+      margin-bottom: 50px;
+      border-top: 1px solid #000000;
+			&.etc_bottom {
+				margin-bottom: 10px;
+				padding-bottom: 50px;
+				& + .etc_bottom {
+					margin-top: -10px;
+				}
+			}
+    }
+		&__table--desc {
+			font-size: 14px;
+			color: #666666;
+			text-align: right;
+		}
+
+    .table__container {
+      margin: 0 25px;
+
+      tr {
+        padding: 15px 20px;
+        display: flex;
+        justify-content: flex-start;
+        border-bottom: 1px solid #DDDDDD;
+        
+        th {
+          text-align: left;
+          flex: 1;
+          font-size: 14px;
+        }
+
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+
+          td {
+            font-weight: 600;
+          }
+        }
+      }
+
+      td {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .sub-content--group {
+    margin-top: 50px;
+    margin-bottom: 80px;
+    padding-bottom: 50px;
+    background-color: #FAFAFA;
+
+    h3 {
+      margin: 0 25px;
+      padding-top: 50px;
+      padding-bottom: 30px;
+    }
+
+    .sub-content__box {
+      margin: 0 25px;
+      padding: 25px;
+      background-color: #ffffff;
+      border-radius: 6px;
+      border-left: 5px solid #EA2126;
+    }
+
+    .sub-content__box + .sub-content__box {
+      margin-top: 15px;
+    }
+
+    .sub-content__box p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      @include FontBD;
+    }
+
+    .sub-content__box p span {
+      margin-left: 5px;
+      @include FontRG;
+    }
+  }
+
+  .list-head {
+    padding: 50px 25px 0;
+    padding-bottom: 20px;
+
+    &__title {
+      margin-bottom: 10px;
+      font-size: 16px;
+      @include FontBD;
+    }
+
+    &__description {
+      font-size: 14px;
+      @include FontDL;
+    }
+  }
+
+  .list-head--more {
+    background-color: #FAFAFA;
+  }
+
+  .list-container {
+    margin: 0 25px;
+    border-top: 1px solid #000000;
+    padding-bottom: 50px;
+  }
+
+  .list-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #DDDDDD;
+
+    &__item {
+      margin-top: 3px;
+      font-size: 14px;
+      @include FontRG;
+    }
+
+
+    &__item--type {
+      margin-bottom: 13px;
+    }
+
+    &__title {
+      display: inline-block;
+      position: absolute;
+      left: 25px;
+      width: 90px;
+      font-size: 14px;
+      @include FontMD; 
+    }
+
+    &__sub-title {
+      position: absolute;
+      left: 25px;
+      width: 90px;
+      color: #666666;
+      font-size: 14px;
+       @include FontDL;
+    }
+
+    &__text {
+      padding-left: 90px;
+    }
+  }
+
+  .list-container--more {
+    margin: 0;
+    padding: 0 25px 75px;
+    border-top: none;
+    background-color: #FAFAFA;
+
+    .list-content__title {
+			display: flex;
+			justify-content: space-between;
+      position: inherit;
+      width: auto;
+      color: #000000;
+      margin-bottom: 15px;
+      @include FontBD;
+			.more {
+				font-size: 13px;
+			}
+    } 
+
+    .list-content {
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 6px;
+      border-bottom: none;
+    }
+
+    .list-content + .list-content {
+      margin-top: 10px; 
+    }
+
+    .list-content__sub-title {
+      left: 45px;
+      font-size: 12px;
+    }
+
+    .list-content__text {
+      font-size: 12px;
+      @include FontDL;
+    }
+  }
+}
+
+.esgPopup {
+	.layer__wrap {
+		max-width: calc(100% - 100px);
+		max-height: 75vh;
+		overflow: hidden;
+		padding: 25px;
+	}
+	.layer__inner {
+    height: 70vh;
+		overflow: hidden;
+	}
+	.layer__content {
+		padding-left: 0;
+		padding-right: 0;
+		max-width: 100%;
+	}
+	.content__title {
+		font-size: 16px;
+		font-family: "NS BD" !important;
+	}
+	.content__text {
+		margin-bottom: 40px;
+    padding: 20px;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    color: #666666;
+		font-size: 13px;
+		height: calc(100% - 140px);
+		overflow-y: scroll;
+		> p {
+			margin-bottom: 20px;
+			font-family: "NS BD";
+			color: #000;
+		}
+		dl {
+			& + dl {
+				margin-top: 20px;
+			}
+			& + p {
+				margin-top: 40px;
+			}
+			dt {
+				margin-bottom: 10px;
+				font-family: "NS BD";
+			}
+			dd {
+				line-height: 1.7;
+				& + dt {
+					margin-top: 20px;
+				}
+				& + dd {
+					margin-top: 5px;
+				}
+				p {
+					& + p {
+						margin-top: 10px;
+					}
+				}
+				span {
+					display: block;
+					padding-left: 10px;
+				}
+			}
+		}
+	}
+}

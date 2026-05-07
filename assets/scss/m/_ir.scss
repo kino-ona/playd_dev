@@ -1,0 +1,604 @@
+.ir {
+  background: #ffffff;
+
+  .wrap {
+    min-height: 700px;
+  }
+
+  .sub-header {
+    &__description {
+      padding-top: 9px;
+    }
+  }
+
+  .sub-inputs {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .drop-box {
+    &__title {
+      width: 90px;
+      line-height: 25px;
+    }
+  }
+
+  .sub-inputs {
+    margin: 30px 25px 63px;
+  }
+
+  .search-form {
+    &__wrap {
+      width: calc(100% - 98px);
+      margin-left: 8px;
+      padding-right: 20px;
+      margin-top: 0;
+      border: 1px solid #EEEEEE;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+  }
+
+  .drop-box p {
+    color: #888888;
+  }
+
+  .notice-list {
+    margin: -30px 25px 40px;
+    border-top: 1px solid #000000;
+
+    &__link {
+      display: flex;
+      padding: 15px 0;
+      border-bottom: 1px solid #DDDDDD;
+    }
+
+    &__title {
+      position: relative;
+      width: 90%;
+      padding-right: 10%;
+      font-size: 14px;
+      @include FontMD;
+    }
+
+    &__link--file-attach::after {
+      display: inline-block;
+      position: absolute;
+      right: 25px;
+      width: 20px;
+      height: 20px;
+      background: url('../../images/m/sub/icon_attchment.png') center center no-repeat;
+      background-size: contain;
+      content: '';
+    }
+
+    &__date {
+      display: inline-block;
+      margin-top: 4px;
+      color: #888888;
+      font-size: 12px;
+      @include FontDL;
+    }
+
+    &__wrap {
+      width: calc(100% - 50px);
+      vertical-align: middle;
+    }
+
+    .numbering {
+      display: flex;
+      width: 50px;
+      height: auto;
+      font-size: 15px;
+      font-weight: bold;
+      align-items: center;
+    }
+
+    &__type {
+      display: inline-block;
+      margin-top: 4px;
+      margin-right: 10px;
+      color: #888888;
+      font-size: 12px;
+    }
+   
+  }
+
+  .sub-container {
+    display: none;
+  }
+
+  .sub-container--disclosure .notice-list{
+    margin: 0 25px 40px
+  }
+
+  .content--active {
+    display: block;
+  }
+
+  .contact {
+    text-align: center;
+
+    img {
+      margin-top: 75px;
+      width: 100px;
+    }
+
+    &__title {
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      line-height: 24px;
+      @include FontMD; 
+    }
+    &__sub-title {
+      font-size: 14px;
+      @include FontMD; 
+    }
+
+    &__text {
+      font-size: 14px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 14px;
+      border-bottom: 1px solid #055BFF;
+      color: #055BFF;
+    }
+  }
+
+  .mail {
+    margin: 0 25px 75px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color : #FAFAFA;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .table-tab li {
+    float: left;
+  }
+
+  .table-tab::after{
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+  table caption {
+    display: none;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  table tbody .total td {
+    color: #000000;
+    background: #FAFAFA;
+    @include FontMD;
+  }
+
+  table + table {
+    margin-top: 50px;
+  }
+
+  .table-item {
+    margin: 0 25px 75px;
+
+    thead th {
+      padding: 15px 0;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #000000;
+      border-top: 1px solid #000000;
+      @include FontBD;
+    }
+
+    tbody td {
+      padding: 15px 0;
+      color: #666666;
+      font-size: 14px;
+      text-align: center;
+      border-bottom: 1px solid #DDDDDD;
+    }
+  }
+
+  .table-tab {
+    margin: 30px 0;
+
+    ul li {
+      position: relative;
+      color: #666666;
+      font-size: 14px;
+    }
+    ul li+li {
+      margin-left: 26px;
+    }
+
+    ul li+li::before {
+      display: inline-block;
+      position: absolute;
+      top: 5px;
+      left: -13px;
+      width: 1px;
+      height: 12px;
+      background: #DDDDDD;
+      content: '';
+
+    }
+
+    .tab--active {
+      color: #000000;
+      border-bottom: 2px solid #000000;
+      @include FontMD;
+    }
+  }
+
+  .table-item--full {
+    margin-top: 30px;
+    
+    thead th {
+      width: 25%;
+      font-size: 14px;
+      @include FontDL;
+    }
+  }
+
+  .sub-content {
+    position: relative;
+  }
+
+  .sub-link {
+    position: absolute;
+    right: 25px;
+    top: 80px;
+    font-size: 14px;
+    border-bottom: 1px solid #000000;
+  }
+
+  .layer__content {
+    padding: 0 25px 0;
+  }
+
+  .layer__wrap {
+    font-size: 14px;
+
+    h3 {
+      font-size: 15px;
+      padding-bottom: 10px;
+      line-height: 1.2;
+      @include FontBD;
+    }
+
+    h4 {
+      padding-bottom: 6.5px;
+      @include FontMD;
+    }
+
+    .content__title {
+      font-size: 16px;
+    }
+
+    p {
+      padding-bottom: 10px;
+    }
+
+    ul > li > ul > li {
+      padding-bottom: 3px;
+      padding-left: 12px;
+    }
+
+    .rule-content {
+      margin-bottom: 20px;
+    }
+
+    .rule {
+      margin-bottom: 20px;
+    }
+  }
+
+  .layer__content {
+    overflow: scroll;
+    height: 280px;
+  }
+
+  .layer__head {
+    padding: 31px 25px 18px;
+  }
+
+  .layer__button {
+    width: calc(100% - 50px);
+    height: 40px;
+    margin: 20px 25px;
+    line-height: 40px;
+    border-radius: 4px;
+    background-color: #EA2126;
+    color: #ffffff;
+    font-size: 14px;
+  }
+
+}
+
+.ir-detail { 
+  background-color: #ffffff;
+
+  .sub-content {
+    &__head {
+      padding-top: 95px;
+      margin: 0 25px;
+    }
+
+    &__type {
+      color:#EA2126;
+      font-size: 16px;
+      @include FontBasicSans;
+    }
+
+    &__title {
+      font-size: 20px;
+      @include FontBD;
+    }
+
+    &__date {
+      display: inline-block;
+      color: #888888;
+      font-size: 14px;
+      @include FontDL;
+    }
+
+    &__viewer {
+      padding-left: 5px;
+      color: #888888;
+      font-size: 14px;
+      @include FontDL;
+    }
+  
+    &__viewer::before {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: url('../../../assets/images/m/sub/icon_eyes.png') center center no-repeat;
+      background-size: 20px;
+      vertical-align: inherit;
+      content: '';
+    }
+
+    &__share::before{
+      display: inline-block;
+      position: absolute;
+      right: 25px;
+      width: 20px;
+      height: 20px;
+      background: url('../../../assets/images/m/sub/icon_share.png') center center no-repeat;
+      background-size: 20px;
+      content:'';
+    }
+  }
+
+  .list-content {
+    margin-top: 20px;
+    // margin-bottom: 30px;
+    padding-bottom: 50px;
+    padding-right: 25px;
+    background: #FAFAFA;
+    padding-left: 25px;
+
+    &__image {
+      display: block;
+      height: 175px;
+      margin-right: 10px;
+      background-size: cover;
+      background-position: center center;
+      border-radius: 6px;
+    }
+
+    &__slide {
+      padding-top: 50px;
+      padding-bottom: 30px;
+
+      .swiper-slide:last-child {
+        margin-right: 25px;
+      }
+
+      .swiper-pagination {
+        position: absolute;
+        left: 10px;
+        top: 195px;
+        bottom: 0;
+        color: #ffffff;
+        text-align: left;
+        @include FontBasicSans;
+      }
+    }
+
+    &__description {
+      margin-top: 15px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+		.inner {
+			min-height: 200px;
+			padding: 25px 0;
+		}
+  }
+
+  .download {
+    display: block;
+    margin-right: 25px;
+    padding: 12.5px 0; 
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 4px;
+    @include FontBD; 
+
+    &::after {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      margin-left: 10px;
+      background: url('../../../assets/images/m/sub/icon_download_line.png') center center no-repeat;
+      background-size: contain;
+      vertical-align: bottom;
+      content: '';
+    }
+  }
+  .file__download__wrap {
+    padding-top: 20.5px;
+    border-top: 1px solid #dddddd;
+  }
+
+  .file__download {
+    display: flex;
+    margin-bottom: 13px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+    }
+
+    a {
+      max-width: 355px;
+      font-size: 14px;
+      padding-left: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .slide {
+    &__type {
+      margin-top: 15px;
+      color: #EA2126;
+      font-size: 14px;
+      @include FontBD; 
+    }
+
+    &__title {
+      margin-bottom: 7.5px;
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+
+    &__text {
+      margin-bottom: 10px;
+      color: #666666;
+      font-size: 14px;
+
+    }
+
+    &__viewer {
+      padding-left: 5px;
+      color: #888888;
+      font-size: 14px;
+      @include FontDL;
+    }
+  
+    &__viewer::before {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: url('../../../assets/images/m/sub/icon_eyes.png') center center no-repeat;
+      background-size: 20px;
+      vertical-align: inherit;
+      content: '';
+    }
+
+    &__date {
+      position: absolute;
+      top: 190px;
+      right: 20px;
+      color: #888888;
+      font-size: 14px;
+    }
+
+    &__image {
+      display: block;
+      height: 175px;
+      margin-right: 10px;
+      background-size: cover;
+      background-position: center center;
+      border-radius: 6px;
+    }
+
+    &__sub-title {
+      font-size: 16px;
+      line-height: 30px;
+      @include FontBD;
+    }
+
+    &__wrap {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 25px 20px;
+    }
+
+    .slide-swiper {
+      margin-left: 25px;
+      margin-bottom: 75px;
+    }
+
+    &__back {
+      font-size: 14px;
+      @include FontMD;
+    }
+
+    &__back::after {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-left: 5px;
+      background: url('../../../assets/images/m/sub/icon_list.png') center center no-repeat;
+      background-size: 20px;
+      vertical-align: middle;
+      content: '';
+    }
+
+    &__download {
+      display: inline-block;
+      position: absolute;
+      right: 20px;
+      top: 125px;
+      width: 40px;
+      height: 40px;
+      background: url(../../../assets/images/m/sub/icon_download.png) center center no-repeat;
+      background-size: 40px;
+      vertical-align: inherit;
+      content: "";
+    }
+
+    &__download span {
+      display: none;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  .layer {
+    &__head {
+      padding: 25px;
+    }
+
+    &__content {
+      padding: 0 25px 50px;
+    }
+  }
+
+  .close {
+    right: 25px;
+    top: 25px;
+  }
+
+}
+

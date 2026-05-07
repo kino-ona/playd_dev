@@ -1,0 +1,187 @@
+@charset "utf-8";
+@import "./mixins";
+
+/* font family */
+@font-face {
+	font-family:'NS DL';
+	src:url('../../fonts/NotoSans-DemiLight.woff') format('woff'),
+		 url('../../fonts/NotoSansKR-DemiLight.woff2') format('woff2'),
+		 url('../../fonts/NotoSans-DemiLight.otf') format('opentype');
+	font-weight:300;
+	font-style:normal;
+}
+@font-face {
+	font-family:'NS RG';
+	src:url('../../fonts/NotoSans-Regular.woff') format('woff'),
+		 url('../../fonts/NotoSansKR-Regular.woff2') format('woff2'),
+		 url('../../fonts/NotoSans-Regular.otf') format('opentype');
+	font-weight:400;
+	font-style:normal;
+}
+@font-face {
+	font-family:'NS MD';
+	src:url('../../fonts/NotoSans-Medium.woff') format('woff'),
+		 url('../../fonts/NotoSansKR-Medium.woff2') format('woff2'),
+		 url('../../fonts/NotoSans-Medium.otf') format('opentype');
+	font-weight:500;
+	font-style:normal;
+}
+@font-face {
+	font-family:'NS BD';
+	src:url('../../fonts/NotoSans-Bold.woff') format('woff'),
+		 url('../../fonts/NotoSansKR-Bold.woff2') format('woff2'),
+		 url('../../fonts/NotoSans-Bold.otf') format('opentype');
+	font-weight:700;
+	font-style:normal;
+}
+.font--dl { @include FontDL; }
+.font--rg { @include FontRG; }
+.font--md { @include FontMD; }
+.font--bd { @include FontBD; }
+.font--basicsans { @include FontBasicSans; }
+
+/** RESET **/
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, 
+big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center, 
+dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td, 
+article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, 
+ruby, section, summary,time, mark, audio, video {
+	margin: 0;padding: 0; vertical-align: top; word-break:keep-all;
+	text-decoration:none; -webkit-tap-highlight-color:transparent;
+	color: inherit; font-weight: normal; line-height: 1.6;letter-spacing: -0.03em;
+}
+fieldset, img, textarea {border: 0;outline: 0;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main {display: block;}
+img {max-width:100%;}
+html, body {
+	-webkit-text-size-adjust:none;
+	-webkit-text-size-adjust: 100%;
+	font-family: 'NS DL','Malgun Gothic',Dotum,'돋움',AppleGothicNeoSD,'Apple SD 산돌고딕 Neo','굴림',arial,sans-serif;
+	-ms-word-wrap:break-word;word-wrap:break-word;
+	font-size:16px;
+	letter-spacing: -0.03em;
+	color:$txtBlack; 
+}
+ol, ul {list-style: none;}
+address,em {font-style: normal}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width:100%;
+}
+iframe {overflow: hidden; border: 0;}
+input:focus { outline: none; }
+input, button { background: none; border: none; cursor: pointer;}
+input:focus, input:active, button:focus, button:active { outline: none; box-shadow: none; }
+input[readonly] { cursor: default; }
+label {cursor: pointer;}
+textarea {
+	display:block;
+	width:100%;
+	padding:10px;
+	min-height:120px;
+	background-color:$bgWhite;
+	border:1px solid $bdGray;
+	-webkit-appearance: none;
+	font-size:16px;
+	resize: none;
+	color: #000;
+	font-family:'NS MD','Malgun Gothic',Dotum,'돋움',AppleGothicNeoSD,'Apple SD 산돌고딕 Neo','굴림',arial,sans-serif;
+	&:not([readonly]):not([disabled]):not([aria-invalid="true"]) {
+		&:focus {
+			border-color:#2CBBB6;
+		}
+	}
+	&[readonly] {
+		background-color: #F7F7F7;
+		color:$txtLightGray;
+	}
+	&[aria-invalid="true"] {
+		position:relative;
+		padding-right:60px;
+		border-color:$error;
+	}
+	&:disabled {
+		background-color: #F7F7F7;
+		color:$txtLightGray;
+	}
+	::-webkit-input-placeholder {
+		font-size:16px;
+		color: $txtLightGray;
+		@include FontDL;
+	}
+	::-moz-placeholder {
+		font-size:16px;
+		color: $txtLightGray;
+		@include FontDL;
+	}
+	::-moz-placeholder {
+		font-size:16px;
+		color:$txtLightGray;
+		@include FontDL;
+	}
+}
+input::-ms-clear {
+	display: none;
+}
+::-webkit-input-placeholder {
+	font-size:16px;
+	color:$txtLightGray;
+	@include FontDL;
+}
+::-moz-placeholder {
+	font-size:16px;
+	color:$txtLightGray;
+	@include FontDL;
+}
+::-moz-placeholder {
+	font-size:16px;
+	color:$txtLightGray;
+	@include FontDL;
+}
+.noscroll {
+	overflow: hidden!important;
+	height: 100%;
+
+	.wrap {
+		overflow: hidden;
+	}
+}
+.a11y {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+.skipnavigation {
+	position: relative;
+	a {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 0;
+		z-index: 1;
+		display: block;
+		font-size: 0;
+		background-color: #FFF;
+		text-align: center;
+		&:focus {	
+			height: 30px;
+			padding: 4px 0;
+			visibility: visible;
+			font-size: 1em;
+		}
+	}
+}
+
+p {
+	b {
+		font-weight: 700 !important;
+	}
+}

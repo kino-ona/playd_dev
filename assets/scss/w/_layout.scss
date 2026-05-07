@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/* 임시 스타일링 */
+
+.layout {
+  .section {
+    border: 3px solid blue;
+    &__inner {
+      border: 1px dotted blue;
+    }
+    &__content {
+      border: 1px dotted blue;
+    }
+  }
+  .visual {
+    border: 3px solid violet;
+    &__image {
+      border: 3px solid violet;
+    }
+  }
+  .box {
+    border: 3px solid blue;
+    &-item {
+      min-height: 1080px;
+    }
+    &__content {
+      text-align: center;
+      padding-top: 500px;
+      border: 3px solid red;
+      background-color: rgba(90, 90, 90, 0.4);
+      transition: all 0.8s;
+    }
+  }
+  .banner {
+    border: 3px solid #6DCA7B;
+    &-- {
+      &belt {
+        padding: 25px 0;
+        background-color: grey !important;
+      }
+    }
+    &__content {
+      border: 1px dotted #6DCA7B;
+    }
+  }
+  .image-block {
+    border: 1px dotted violet;
+  }
+  .header {
+    border: 3px solid red;
+    &__inner {
+      border: 3px solid red;
+    }
+  }
+  .footer {
+    border: 3px solid green;
+    &__inner {
+      border: 3px solid green;
+    }
+  }
+}

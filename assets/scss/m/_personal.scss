@@ -1,0 +1,142 @@
+.personal {
+  background: #ffffff;
+
+  .sub-header {
+    &__description {
+      padding-top: 9px;
+    }
+  }
+
+  .private-term {
+    margin: 0 25px;
+    padding: 30px 0 75px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  .private-term .term_list br {display: none;}
+  .private-term .term_list > li {
+    padding: 20px 0;
+    border-top: 1px solid #EAEAEA;
+  }
+
+  .private-term .term_list h4.term_tit {
+    color: #000;
+    margin-bottom: 15px;
+    @include FontMD;
+  }
+  .private-term .term_list .term-anchor li {
+    display: flex;
+    width: 50%;
+    float: left;
+    height: 77px;
+    border: 1px solid #fff;
+    background: #EAEAEA;
+    padding: 4px 4px 4px 15px;
+    font-size: 13px;
+    letter-spacing: -1px;
+    box-sizing: border-box;
+    align-items: center;
+  }
+  .private-term .term_list .term-anchor::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    clear: both;
+  }
+
+  .private-term .term_list .term-anchor li a {
+    letter-spacing: -1px;
+  }
+
+  .private-term .term_list h3.term_tit {
+    font-size: 15px;
+    color: #EA2126;
+    margin-bottom: 15px;
+    @include FontBD;
+  }
+
+  .private-term .term_list dl dt {
+    margin-bottom: 10px;
+    @include FontMD;
+  }
+
+  .private-term .term_list dl dd {
+    padding-left: 12px;
+    margin-bottom: 5px
+  }
+
+  .private-term .term_list .term_box {
+    background: #EAEAEA;
+    padding: 10px;
+  }
+
+  .private-term .term_list .term_txt {
+    margin-bottom: 10px;
+  }
+
+  .private-term .term_list dl dd {
+    padding-left: 12px;
+    margin-bottom: 10px;
+  }
+
+  .private-term .term_list .term-tbl-tit {
+    font-size: 14px;
+    margin-bottom: 7.5px;
+    @include FontMD;
+  }
+
+  .private-term .term_list table {
+    width: 100%;
+    border-top: 1.5px solid #EA2126;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .private-term .term_list table tr {
+    border-bottom: 1px solid #dedede;
+  }
+
+  .private-term .term_list table th {
+    width: 20%;
+    min-width: 50px;
+    background: #f6f6f6;
+    border-right: 1px solid #dedede;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .private-term .term_list table th, .private-term .term_list table td {
+    padding: 4px 0;
+  }
+
+  .private-term .term_list table td {
+    width: 80%;
+    padding-left: 15px;
+  }
+
+  .private-term .button__wrap {
+    display: block;
+
+  }
+
+  .private-term .button__wrap + .button__wrap {
+    margin-top: 15px;
+  }
+
+  .private-term .link_btn {
+    display: block;
+    width: 100%;
+    padding: 13px 5px;
+    background: #000000;
+    text-align: center;
+    color: #fff;
+    box-sizing: border-box;
+  }
+
+  .private-term .link_btn strong {
+    display: block;
+    
+  }
+}

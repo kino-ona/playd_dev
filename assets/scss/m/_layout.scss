@@ -1,0 +1,71 @@
+.layout {
+  .section {
+    border: 3px solid violet;
+  
+    &__head {
+      border: 1px solid red;
+    }
+  
+    &__content--row {
+      border: 1px solid red;
+    }
+  
+    &__content--row {
+      height: 330px;
+    }
+  }
+  
+  .header {
+    background-color: violet;
+  
+    &__title a {
+      border: 1px solid red;
+    }
+
+    &__button { 
+      border: 1px solid red;
+      background-color: none;
+    }
+  }
+  
+  .gnb {
+    background-color: aquamarine;
+  }
+  
+  .card-box {
+    &__item {
+      border: 1px solid rebeccapurple;
+    }
+  }
+  
+  .box-item {
+    height:  225px;
+    border: 3px solid green
+  }
+
+  
+  .image-block {
+    border: 1px solid red;
+  }
+  
+  .banner {
+    border: 3px solid violet;
+    
+    &__content {
+      border: 1px solid #EA2126;
+    }
+  }
+  
+  .footer {
+    border: 4px solid #000000;
+  }
+  
+  .footer-top {
+    border: 1px solid red;
+  }
+  
+  .footer-bottom {
+    border: 1px solid red;
+  }
+
+}
