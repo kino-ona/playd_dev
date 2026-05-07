@@ -68,8 +68,17 @@ $elemT: 150px;
       position: relative;
 			width: 100%;
       height: inherit;
-      height: 85vh;
+      height: 98vh;
 			background-color: #D33E38;
+      @media screen and (max-width: 1920px) {
+        height: 85vh;
+      }
+      @media screen and (max-width: 1660px) {
+        height: 75vh;
+      }
+      @media screen and (max-width: 1440px) {
+        height: 65vh;
+      }
 			video {
 				position: absolute;
 				top: 0;
