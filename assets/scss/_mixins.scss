@@ -1,0 +1,177 @@
+@charset "utf-8";
+
+// transform
+@use "sass:math";
+
+@mixin transform($transforms) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}
+@mixin rotate($deg) {// Rotate
+	@include transform(rotate(#{$deg}deg));
+}
+@mixin scale($scale) {// Scale
+	@include transform(scale($scale));
+}
+@mixin translate ($x, $y) {// Translate
+	@include transform(translate($x, $y));
+}
+@mixin pushEasing($speed) {
+	transition-duration: #{$speed}ms;
+	-webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+	-moz-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+	-o-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+	transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+	transition-delay: 0ms;
+}
+
+// clear floating
+%clearer {
+	content: "";
+	display: block;
+	clear: both;
+}
+@mixin clearer_mixin {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+//ellipse
+@mixin ellipse($line) {
+	@if ($line > 1) {
+		white-space:normal;
+		word-wrap:break-word;
+		display:-webkit-box;
+		-webkit-line-clamp:$line;
+		-webkit-box-orient:vertical;
+	} @else {
+		white-space:normal;
+		word-wrap:break-word;
+		display:-webkit-box;
+		-webkit-line-clamp:$line;
+		-webkit-box-orient:vertical;
+	}
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+// icons
+// Mixin Icons via http://wit.nts-corp.com/2017/10/31/4972
+$sqrt_2: 1.41421356237;
+// bullet icon SCSS mixin
+@mixin iconAngle($direction: 'up', $width: 50px, $height: 25px, $thick: 1px, $color: #fff, $display: inline-block, $position: relative){
+	position: $position;
+	display: $display;
+	width: $width;
+	height: $height;
+	overflow: hidden;
+
+	@if ($direction == 'up' or $direction == 'down') {
+		$size: floor(math.div($width, $sqrt_2) - 2*$thick);
+		$rate: math.div(2*$height, $width);
+		$margin-top : round(math.div($rate*$size, 2*$sqrt_2));
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: $size;
+			height: $size;
+			@if ($rate == 1) {
+				@include transform(translate(-50%, -50%) rotate(45deg));
+			} @else {
+				@include transform(translate(-50%, -50%) scale(1, $rate) rotate(45deg));
+			}
+
+			@if ($direction == 'up') {
+				margin-top: $margin-top;
+				border-top: $thick solid $color;
+				border-left: $thick solid $color;
+				border-right: 0;
+				border-bottom: 0;
+			} @else if ($direction == 'down') {
+				margin-top: - $margin-top;
+				border-right: $thick solid $color;
+				border-bottom: $thick solid $color;
+			}
+		}
+	}  @else if ($direction == 'left' or $direction == 'right') {
+		$size: floor(math.div($height, $sqrt_2) - 2*$thick);
+		$rate: math.div(2*$width, $height);
+		$margin-left : round(math.div($rate*$size, 2*$sqrt_2));
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: $size;
+			height: $size;
+
+			@if ($rate == 1) {
+				@include transform(translate(-50%, -50%) rotate(45deg));
+			} @else {
+				@include transform(translate(-50%, -50%) scale($rate, 1) rotate(45deg));
+			}
+
+			@if ($direction == 'left') {
+				margin-left: $margin-left;
+				border-left: $thick solid $color;
+				border-bottom: $thick solid $color;
+			}  @else if ($direction == 'right') {
+				margin-left: - $margin-left;
+				border-top: $thick solid $color;
+				border-right: $thick solid $color;
+			}
+		}
+	}
+}
+
+// font set
+@mixin FontDL {
+	font-family: 'NS DL','Malgun Gothic',Dotum,'돋움',AppleGothicNeoSD,'Apple SD 산돌고딕 Neo','굴림',arial,sans-serif !important;
+}
+@mixin FontRG {
+	font-family: 'NS RG','Malgun Gothic',Dotum,'돋움',AppleGothicNeoSD,'Apple SD 산돌고딕 Neo','굴림',arial,sans-serif !important;
+}
+@mixin FontMD {
+	font-family: 'NS MD','Malgun Gothic',Dotum,'돋움',AppleGothicNeoSD,'Apple SD 산돌고딕 Neo','굴림',arial,sans-serif !important;
+}
+@mixin FontBD {
+	font-family: 'NS BD','Malgun Gothic',Dotum,'돋움',AppleGothicNeoSD,'Apple SD 산돌고딕 Neo','굴림',arial,sans-serif !important;
+}
+@mixin FontBasicSans {
+	font-family: 'basic-sans', sans-serif, 'Malgun Gothic', Dotum, '돋움', AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo','굴림',arial,sans-serif !important;
+}
+
+@mixin FontInherit { color: inherit; font-family: inherit; font-size: inherit; font-weight: inherit; line-height: inherit; letter-spacing: inherit; }
+
+// text color
+$txtBlack: #000;
+$txtWhite: #fff;
+$txtGray: #777;
+$txtLightGray: #CBCBCB;
+
+// point color
+$ptCyan: #2cbbb6;
+$ptDarkGray: #2a2a2a;
+
+// border color
+$bdGray: #E0E0E0;
+$bdBlack: #000;
+
+// etc color 
+$etcBlack: #000;
+$etcWhite: #fff;
+
+// bg color
+$bgWhite: #fff;
+$bgGray: #777;
+
+// error color
+$error: #FF0000;

@@ -1,0 +1,16 @@
+@charset "utf-8";
+@import "../global";
+@import "../mixins";
+@import "../swiper";
+@import "component";
+@import "datepicker.min";
+@import "reponsive";
+@import "sub";
+
+// new
+.partner-desc {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666666;
+  text-align: right;
+}

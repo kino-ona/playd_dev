@@ -1,0 +1,161 @@
+.creative {
+  background: #ffffff;
+
+  .sub-header-description {
+    margin-top: 40px;
+    margin-left: 25px;
+    margin-bottom: 32px;
+
+    &__title {
+      font-size: 16px;
+      line-height: 1;
+      @include FontBD;
+    }
+
+    &__text {
+      margin-top: 5px;
+      font-size: 14px;
+      line-height: 20px;
+      @include FontDL;
+    }
+
+
+  }
+
+  .sub-head-slide {
+    &__item  {
+      height: 190px;
+      margin-top: 30px;
+      background-color: #FAFAFA;
+      border-radius: 6px;
+    }
+
+    &__image {
+      display: block;
+      position: absolute;
+      top: -30px;
+      left: 20px;
+      width: 100px;
+      height: 100px;
+      background-position: center center;
+      background-size: contain;
+    }
+
+    &__wrap {
+      margin-top: 100px;
+      padding-left: 20px;
+    }
+
+    &__title {
+      font-size: 14px;
+      @include FontBD;
+    }
+
+    &__description {
+      font-size: 14px;
+      @include FontDL;
+    }
+
+    .swiper-slide:first-child {
+      margin-left: 25px;
+    }
+  }
+
+  .list-content {
+    margin: -50px 25px 185px; 
+
+    div:nth-child(4) {
+      margin-top: 130px;
+    }
+
+    &__item {
+      width: 100%;
+      height: 190px;
+      margin-top: 110px;
+      margin-bottom: 10px;
+      background-position: center center;
+      background-size: cover;
+      border-radius: 6px;
+    }
+
+    &__title {
+      padding: 20px 0 0 25px;
+      color: #ffffff;
+      font-size: 14px;
+      @include FontBD;
+    }
+
+    &__title--black {
+      color: #000000;
+    }
+
+    &__description {
+      padding-top: 160px;
+      font-size: 14px;
+      @include FontDL;
+    }
+  }
+}
+
+.creative {
+	.creative_inner {
+		padding: 0 25px;
+	}
+	.creative_list {
+		width: 100%;
+		&-item {
+			margin-bottom: 50px;
+			.swiper-container {
+				position: relative;
+				width: 100%;
+				margin-bottom: 15px;
+				overflow: hidden;
+				.swiper-slide {
+					padding-top: 100%;
+					background: {
+						size: cover;
+						position: center center;
+						repeat: no-repeat;
+					}
+					border-radius: 10px;
+				}
+			}
+			.swiper-pagination-bullet-active {
+				background-color: #EA2126;
+			}
+		}
+
+		.creative_item {
+			&-title {
+				margin-bottom: 11px;
+				font-size: 15px;
+				font-family: "NS BD", "Malgun Gothic", Dotum, "돋움", AppleGothicNeoSD, "Apple SD 산돌고딕 Neo", "굴림", arial, sans-serif;
+			}
+			&-desc {
+				margin-bottom: 12px;
+				font-size: 14px;
+			}
+			&-tag {
+				display: inline;
+				font-family: "NS DL";
+				font-size: 14px;
+				color: #666666;
+				vertical-align: middle;
+				.__tag {
+					display: inline-flex;
+					width: fit-content;
+					height: 30px;
+					padding: 0 10px;
+					margin-right: 5px;
+					margin-bottom: 5px;
+					align-items: center;
+					justify-content: center;
+					border: 1px solid #DDDDDD;
+					border-radius: 14px;
+					font-family: "NS DL";
+					color: #666666;
+				}
+			}
+		}
+	}
+}

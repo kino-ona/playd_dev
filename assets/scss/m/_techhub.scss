@@ -1,0 +1,169 @@
+.techhub {
+  background-color: #ffffff;
+
+  .sub-container {
+    display: none;
+  }
+
+  .content--active {
+    display: block;
+  }
+
+  .sub-content {
+    margin: 0 25px;
+
+    &__inner {
+      padding-bottom: 75px;
+    }
+
+    &__title {
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    &__title p {
+      font-size: 16px;
+      @include FontBD;
+    }
+
+    &__icon--voice {
+      img {
+        max-width: 111px;
+      }
+    }
+
+    &__icon--voices {
+      img {
+        max-width: 111px;
+      }
+    }
+
+    &__icon--voicem {
+      img {
+        max-width: 111px;
+      }
+    }
+
+    &__icon--asquare {
+      img {
+        max-width: 131px;
+      }
+    }
+
+    &__icon--gaus {
+      img {
+        max-width: 97px;
+      }
+    }
+
+    &__icon--tera {
+      img {
+        max-width: 101px;
+      }
+    }
+
+    &__icon--tube {
+      img {
+        max-width: 85px;
+      }
+    }
+
+    &__icon--adscreen {
+      img {
+        max-width: 80px;
+      }
+    }
+
+    &__icon--sensen {
+      img {
+        max-width: 102px;
+      }
+    }
+
+    dl {
+      margin-bottom: 40px;
+    }
+
+    dt {
+      margin-top: 20px;
+      margin-bottom: 7.5px;
+      font-size: 14px;
+      @include FontMD;
+    }
+    dd {
+      position: relative;
+      padding-left: 7.5px;
+      font-size: 14px;
+      @include FontDL;
+    }
+
+    dd::before {
+      display: inline-block;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #000000;
+      content: '';
+    }
+
+    .button__wrap {
+      width: 100%;
+      padding-top: 30px;
+    }
+
+    .button__lined-black {
+      display: inline-block;
+      width: calc(50% - 5px);
+      height: 40px;
+      font-size: 14px;
+      line-height: 40px;
+      border-radius: 4px;
+      text-align: center;
+      @include FontBD;
+    }
+  }
+
+  .list-content {
+    margin-top: 10px;
+    padding: 25px;
+    background-color: #FAFAFA;
+    border-radius: 6px;
+    box-sizing: border-box;
+
+    &__icon {
+      max-width: 35px;
+    }
+
+    &__title {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      letter-spacing: -1px;
+      @include FontBD;
+    }
+
+    &__description {
+      color: #666666;
+      font-size: 14px;
+      letter-spacing: -.04em;
+    }
+  }
+
+  .list-content--half {
+    display: inline-block;
+    width: calc(50% - 7px);
+  }
+
+  .list-content--half + .list-content--half {
+    margin-left: 10px;
+  }
+
+  .sub-video {
+    margin-top: 25px;
+  }
+
+ 
+}
