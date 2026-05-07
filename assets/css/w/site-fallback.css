@@ -1,9 +1,0 @@
-/*
- * 원본 w 전용 JS/CSS 번들이 없을 때:
- * header.w.php 의 #sitemap · .navmenu 가 문서 흐름에 펼쳐져 링크만 길게 보이는 현상 방지.
- * 운영 번들을 넣은 뒤에는 이 파일과 head.w.php 의 link 한 줄을 제거해도 됨.
- */
-#sitemap.sitemap,
-header .navmenu {
-  display: none !important;
-}
