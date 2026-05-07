@@ -37,7 +37,7 @@ $elemT: 150px;
 
   .visual {
     position: relative;
-    height: 100vh;
+    height: inherit !important;
     z-index: 1;
     width: 100%;
     min-width: 1200px;
@@ -68,7 +68,7 @@ $elemT: 150px;
       position: relative;
 			width: 100%;
       height: inherit;
-      height: 88vh;
+      height: 85vh;
 			background-color: #D33E38;
 			video {
 				position: absolute;
@@ -76,7 +76,7 @@ $elemT: 150px;
 				left: 0;
 				width: 100%;
 				height: 100%;
-				object-fit: fill;
+				object-fit: cover;
 			}
 		}
   }
