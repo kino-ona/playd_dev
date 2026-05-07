@@ -1,0 +1,14 @@
+{
+  "name": "playd-dev",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "sass:watch": "sass --watch --no-source-map --quiet-deps assets/scss/m:assets/css/m assets/scss/w:assets/css/w",
+    "sass:build": "sass --no-source-map --quiet-deps assets/scss/m:assets/css/m assets/scss/w:assets/css/w",
+    "sass:watch:map": "sass --watch --quiet-deps assets/scss/m:assets/css/m assets/scss/w:assets/css/w",
+    "sass:build:map": "sass --quiet-deps assets/scss/m:assets/css/m assets/scss/w:assets/css/w"
+  },
+  "devDependencies": {
+    "sass": "^1.89.0"
+  }
+}

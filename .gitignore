@@ -3,4 +3,8 @@
 adm/data/session/
 **.mp4
 **.pdf
+nsm_/**/node_modules
+node_modules
+package-lock.json
 nsm_/**/
+**.css.map
