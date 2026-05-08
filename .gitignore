@@ -9,3 +9,4 @@ package-lock.json
 nsm_/**/
 **.css.map
 **.css
+dist/*
