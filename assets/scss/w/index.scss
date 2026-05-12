@@ -78,14 +78,14 @@ $elemT: 150px;
         top: 0;
 				display: block;
 				width: 100%;
-				height: calc(100vh + 120px);
+        height: 100%;
         object-fit: cover;
 			}
       .pointt {
         position: absolute;
-        right: 30px;
-        bottom: 30px;
-        font-size: 20px;
+        right: 50px;
+        bottom: 50px;
+        font-size: 22px;
         font-weight: bold;
         color: #ffffff;
       }
