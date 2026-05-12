@@ -188,7 +188,7 @@ minHeights = () => {
     window.addEventListener("resize", () => {
       wdH = window.innerHeight;
 
-      kv.style.height = wdH + "px";
+      // kv.style.height = wdH + "px";
       area1.style.height = innerH * 0.5 + "px";
 
       for (i = 0; i < area2Inner.length; i++) {
