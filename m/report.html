@@ -206,7 +206,8 @@ function fetchItemList(json, count){
 			var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
 			var title = json[i]['B_TITLE'].replace('<br/>','').replace('<br>','');
 
-			var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
+			// var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
+			var datestr = json[i]['B_SEND_DT'] ? json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7) : '';
 
 			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE4']){
