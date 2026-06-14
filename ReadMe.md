@@ -99,7 +99,33 @@ docker compose logs -f web # 웹서버 로그 확인
 ```
 
 
-ssh admin@192.168.0.40
-password: ohna!@#1004
+---
 
-cd volume1/web/sungho/vacation-scheduler/
+## NAS (운영 서버)
+
+### SSH 접속
+
+```bash
+ssh admin@192.168.0.40
+# password: ohna!@#1004
+```
+
+- 사이트: `https://playd.helloona.synology.me`
+- 관리자: `https://playd.helloona.synology.me/adm/page/login.php`
+
+### NAS DB 접속
+
+Docker가 아닌 **Synology 패키지 센터**로 설치된 MariaDB 10  
+(`mysql` 명령어 없음 → 아래 전체 경로로 접속)
+
+```bash
+/usr/local/mariadb10/bin/mysql -uroot -p playd
+```
+
+| 항목 | 값 |
+|------|----|
+| DB | `playd` |
+| User | `root` |
+| MariaDB 경로 | `/usr/local/mariadb10/bin/mysql` |
+
+
