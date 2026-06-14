@@ -97,3 +97,9 @@ docker compose down        # 서버 종료
 docker compose down -v     # 종료 + DB 볼륨 삭제 (초기화)
 docker compose logs -f web # 웹서버 로그 확인
 ```
+
+
+ssh admin@192.168.0.40
+password: ohna!@#1004
+
+cd volume1/web/sungho/vacation-scheduler/

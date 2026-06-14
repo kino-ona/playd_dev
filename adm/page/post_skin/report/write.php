@@ -42,10 +42,8 @@ if($write['B_SEQ']){
                     
                     <select name="b_type" id="b_type">
                         <option value="">선택</option>
-                        <option value="Trend Delivery" <?=$write['B_TYPE']=='Trend Delivery'?'selected':''?>>Trend Delivery</option>
-                        <option value="VOICE Trend" <?=$write['B_TYPE']=='VOICE Trend'?'selected':''?>>VOICE Trend</option>
-                        <option value="Trend Overview" <?=$write['B_TYPE']=='Trend Overview'?'selected':''?>>Trend Overview</option>
-                        
+                        <option value="Trend Report" <?=$write['B_TYPE']=='Trend Report'?'selected':''?>>Trend Report</option>
+                        <option value="News" <?=$write['B_TYPE']=='News'?'selected':''?>>News</option>
                     </select>
 
                 </td>

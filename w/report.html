@@ -24,7 +24,7 @@
 	<div id="container" class="container insight">
 
     <div class="sub-header">
-      <h2 class="sub-header__title"><span class="sub-header__label">리포트</span>플레이디 트렌드 리포트를 통해 <br><strong>마케팅 인사이트</strong>를 얻어 가세요.</h2>
+      <h2 class="sub-header__title"><span class="sub-header__label">NEWSROOM</span>플레이디 트렌드 리포트를 통해 <br><strong>마케팅 인사이트</strong>를 얻어 가세요.</h2>
     </div>
 
 		<div class="sub-container">
@@ -334,12 +334,16 @@ function enterSelect(){
 
 
 
-function download(val, url,seq){
-	g_val = val;
-	g_url = url;
-	g_seq = seq;
-
-	layerOpen('report');
+function download(val, url, seq){
+	// 개인정보 수집 팝업 미사용 - 직접 다운로드 처리
+	// g_val = val; g_url = url; g_seq = seq; layerOpen('report');
+	if (url && url !== 'null') {
+		window.open(url);
+	} else if (val) {
+		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	} else {
+		alert('파일이 존재하지 않습니다.');
+	}
 }
 
 

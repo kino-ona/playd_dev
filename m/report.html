@@ -291,11 +291,15 @@ function enterSelect(){
 }
 
 function download(val, url, seq){
-	g_val = val;
-	g_url = url;
-	g_seq = seq;
-
-	layerOpen('report');
+	// 개인정보 수집 팝업 미사용 - 직접 다운로드 처리
+	// g_val = val; g_url = url; g_seq = seq; layerOpen('report');
+	if (url && url !== 'null') {
+		window.open(url);
+	} else if (val) {
+		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	} else {
+		alert('파일이 존재하지 않습니다.');
+	}
 }
 </script>
 

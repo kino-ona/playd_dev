@@ -621,7 +621,7 @@ function get_check_admin_auth($member){
 
 //리포트 types 가져오기
 function get_report_types(){
-    $stack = array('Trend Delivery', 'VOICE Trend', 'Trend Overview');
+    $stack = array('Trend Report', 'News');
     return $stack;
 }
 
