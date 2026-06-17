@@ -38,7 +38,7 @@
 					<a href="./report.html" role="button" class="gnb__list--link font--bd">인사이트</a>
 					<div class="gnb__wrap">	
 						<p><a href="./letter.html">뉴스레터</a></p>
-						<p><a href="./report.html">NEWSROOM</a></p>
+						<p><a href="./report.html">NEWS</a></p>
 						<!-- <p><a href="./column.html">광고컬럼</a></p> -->
 					</div>
 				</div>

@@ -117,7 +117,7 @@ if($member['M_AUTH_TP']!=1){
                     <li <?=get_admin_menu_active('c2', $my_menus)?> class="<?= get_admin_page_active(
                         'post',
                         'report'
-                    ) ?>"><a href="/adm/page/post.php?bc_code=report">리포트</a></li>
+                    ) ?>"><a href="/adm/page/post.php?bc_code=report">News</a></li>
                     <li <?=get_admin_menu_active('c3', $my_menus)?> class="<?= get_admin_page_active(
                         'post',
                         'nsmexp'

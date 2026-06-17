@@ -89,6 +89,8 @@ adm/             # 관리자 페이지
 ---
 
 ## 자주 쓰는 명령어
+kill 59228 # 서버 강제 종료
+
 
 ```bash
 docker compose up          # 서버 시작

@@ -621,7 +621,7 @@ function get_check_admin_auth($member){
 
 //리포트 types 가져오기
 function get_report_types(){
-    $stack = array('Trend Report', 'News');
+    $stack = array('Awards', 'Work', 'Finance', 'Report');
     return $stack;
 }
 
@@ -739,7 +739,7 @@ function get_code_str($code){
     if($code == 'nsmnw'){
         return '뉴스레터';
     }else if($code == 'report'){
-        return '리포트';
+        return 'News';
     }else if($code == 'nsmexp'){
         return '광고컬럼';
     }else if($code == 'playdportfolio'){

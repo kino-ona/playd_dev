@@ -42,8 +42,10 @@ if($write['B_SEQ']){
                     
                     <select name="b_type" id="b_type">
                         <option value="">선택</option>
-                        <option value="Trend Report" <?=$write['B_TYPE']=='Trend Report'?'selected':''?>>Trend Report</option>
-                        <option value="News" <?=$write['B_TYPE']=='News'?'selected':''?>>News</option>
+                        <option value="Awards" <?=$write['B_TYPE']=='Awards'?'selected':''?>>Awards</option>
+                        <option value="Work" <?=$write['B_TYPE']=='Work'?'selected':''?>>Work</option>
+                        <option value="Finance" <?=$write['B_TYPE']=='Finance'?'selected':''?>>Finance</option>
+                        <option value="Report" <?=$write['B_TYPE']=='Report'?'selected':''?>>Report</option>
                     </select>
 
                 </td>
