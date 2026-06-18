@@ -113,24 +113,20 @@
 </div>
 
 <script>
-
-
 function download(val){
 	if(val!=''){
 		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
 	}
-	
 }
-
+</script>
+<script>
 function kakaoShareLink(){
-	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
-	var desc = '<?=nvldesc($itemOne['B_TITLE'])?>';
+	var title = <?=json_encode(nvldesc($itemOne['B_TITLE']))?>;
+	var desc = <?=json_encode(nvldesc($itemOne['B_TITLE']))?>;
 
 	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share.jpg';
 	kakaoShare(title, desc, imageUrl);
 }
-
-
 </script>
 <?php
   include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');

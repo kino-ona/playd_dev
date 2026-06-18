@@ -147,17 +147,15 @@ function download(val, url, seq){
 		alert('파일이 존재하지 않습니다.');
 	}
 }
-
+</script>
+<script>
 function kakaoShareLink(){
-	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
-	var desc = '<?=nvldesc($itemOne['B_BRIEF'])?>';
+	var title = <?=json_encode(nvldesc($itemOne['B_TITLE']))?>;
+	var desc = <?=json_encode(nvldesc($itemOne['B_BRIEF']))?>;
 
 	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share2.jpg';
 	kakaoShare(title, desc, imageUrl);
 }
-
-
-
 </script>
 <?php
   include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');
