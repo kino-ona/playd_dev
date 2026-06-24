@@ -47,4 +47,24 @@ sql_query($query);
 
 
 
+// 리포트 > News 2026-06-17
+// 게시판명변경 : '리포트' → 'News'
+$query  = " UPDATE `T_BOARD_CONFIG` SET `BC_NAME` = 'News' WHERE `BC_CODE` = 'report' AND `BC_NAME` = '리포트' ";
+sql_query($query);
+
+// 마이그레이션
+// 기존 데이터는 일단 'Report' 로 일괄 변경
+// 최종신규 : Awards / Work / Finance / Report
+$query  = " UPDATE `T_BOARD` ";
+$query .= " SET `B_TYPE` = 'Report' ";
+$query .= " WHERE `B_CODE` = 'report' ";
+$query .= " AND `B_TYPE` IN ('Trend Delivery', 'VOICE Trend', 'Trend Overview', 'Trend Report') ";
+sql_query($query);
+
+
+// $query  = " UPDATE `T_BOARD` SET `B_TYPE` = 'Report' WHERE `B_CODE` = 'report' AND `B_TYPE` = 'News' ";
+// sql_query($query);
+
+
+
 ?>
