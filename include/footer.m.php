@@ -7,83 +7,83 @@ if (empty($_SESSION['CSRFToken2'])) {
 $CSRFToken2 = $_SESSION['CSRFToken2'];
 ?>
 <div class="layer__body popup newsLetter" id="newsLetter" aria-hidden="true" role="dialog">
-		<div class="layer__wrap layer__wrap--wide">
-			<div class="layer__close">
-				<button class="close" onclick="javascript:clearLetter();"><span>close</span></button>
+	<div class="layer__wrap layer__wrap--wide">
+		<div class="layer__close">
+			<button class="close" onclick="javascript:clearLetter();"><span>close</span></button>
+		</div>
+		<div class="layer__inner">
+			<div class="layer__head">
+				<p class="content__title">PlayD 뉴스레터 신청</p>
+				<p class="content__description">광고·마케팅과 관련한 최근 미디어 이슈부터, 트렌드,<br>
+					인사이트 리포트까지 뉴스레터로 손쉽게 받아보세요.</p>
 			</div>
-			<div class="layer__inner">
-				<div class="layer__head">
-					<p class="content__title">PlayD 뉴스레터 신청</p>
-					<p class="content__description">광고·마케팅과 관련한 최근 미디어 이슈부터, 트렌드,<br>
-						인사이트 리포트까지 뉴스레터로 손쉽게 받아보세요.</p>
+			<div class="layer__content">
+				<div class="content__text">
+					
+						<input type="hidden" name="CSRFToken2" id="CSRFToken2" value="<?php echo $CSRFToken2; ?>" />
+						<legend>플레이디 뉴스레터 신청폼</legend>
+						<div class="form-field">
+							<label for="user-name" class="input-box-info__label input-box-info__label--necessary">이름</label>
+							<input type="text" id="user-name"  class="input-box-info__input" name="" placeholder="이름을 입력해 주세요." maxlength="52">
+							<p class="form-warning"></p>
+						</div>
+						<div class="form-field">
+							<label for="user-profession" class="input-box-info__label input-box-info__label--necessary">직업</label>
+							<input type="text" id="user-profession" class="input-box-info__input" name="" placeholder="직업을 입력해 주세요." maxlength="52">
+							<p class="form-warning"></p>
+						</div>
+						<div class="form-field">
+							<label for="user-mail" class="input-box-info__label input-box-info__label--necessary">이메일 주소</label>
+							<input type="text" id="user-mail"  class="input-box-info__input" name="" placeholder="이메일 주소를 입력해 주세요." maxlength="320">
+							<p class="form-warning"></p>
+						</div>
+						<div class="form-field">
+							<label for="user-position" class="input-box-info__label">직급</label>
+							<input type="text" id="user-position" class="input-box-info__input" name="" placeholder="직급을 입력해 주세요." maxlength="52">
+						</div>
+						<div class="form-field">
+							<label for="user-company" class="input-box-info__label">회사명(소속)</label>
+							<input type="text" id="user-company" class="input-box-info__input" name="" placeholder="회사명을 입력해 주세요." maxlength="520">
+						</div>
+						<div class="form-field">
+							<label for="user-team" class="input-box-info__label">부서(팀명)</label>
+							<input type="text" id="user-team" class="input-box-info__input" name="" placeholder="부서를 입력해 주세요." maxlength="52">
+						</div>
+						<div class="sub-checkboxs">
+							<label for="sub-checkbox--personal" class="sub-checkbox__label">
+								<input type="checkbox" id="sub-checkbox--personal" name="" class="sub-checkbox__input" >
+								<span>개인정보 수집 및 이용동의</span>
+							</label>
+						</div>
+						<p class="form-description">
+							입력하신 이름, 직업, 이메일 주소, 직급, 회사명
+							(소속), 부서(팀명)은 뉴스레터 발송을 위해 정보주체로부터 개인정보를 수집시에 동의 받은 개인정보 
+							보유,이용기간 동안 보관 및 이용됩니다.
+						</p>
+					
 				</div>
-				<div class="layer__content">
-					<div class="content__text">
-						
-							<input type="hidden" name="CSRFToken2" id="CSRFToken2" value="<?php echo $CSRFToken2; ?>" />
-							<legend>플레이디 뉴스레터 신청폼</legend>
-							<div class="form-field">
-								<label for="user-name" class="input-box-info__label input-box-info__label--necessary">이름</label>
-								<input type="text" id="user-name"  class="input-box-info__input" name="" placeholder="이름을 입력해 주세요." maxlength="52">
-								<p class="form-warning"></p>
-							</div>
-							<div class="form-field">
-								<label for="user-profession" class="input-box-info__label input-box-info__label--necessary">직업</label>
-								<input type="text" id="user-profession" class="input-box-info__input" name="" placeholder="직업을 입력해 주세요." maxlength="52">
-								<p class="form-warning"></p>
-							</div>
-							<div class="form-field">
-								<label for="user-mail" class="input-box-info__label input-box-info__label--necessary">이메일 주소</label>
-								<input type="text" id="user-mail"  class="input-box-info__input" name="" placeholder="이메일 주소를 입력해 주세요." maxlength="320">
-								<p class="form-warning"></p>
-							</div>
-							<div class="form-field">
-								<label for="user-position" class="input-box-info__label">직급</label>
-								<input type="text" id="user-position" class="input-box-info__input" name="" placeholder="직급을 입력해 주세요." maxlength="52">
-							</div>
-							<div class="form-field">
-								<label for="user-company" class="input-box-info__label">회사명(소속)</label>
-								<input type="text" id="user-company" class="input-box-info__input" name="" placeholder="회사명을 입력해 주세요." maxlength="520">
-							</div>
-							<div class="form-field">
-								<label for="user-team" class="input-box-info__label">부서(팀명)</label>
-								<input type="text" id="user-team" class="input-box-info__input" name="" placeholder="부서를 입력해 주세요." maxlength="52">
-							</div>
-							<div class="sub-checkboxs">
-								<label for="sub-checkbox--personal" class="sub-checkbox__label">
-									<input type="checkbox" id="sub-checkbox--personal" name="" class="sub-checkbox__input" >
-									<span>개인정보 수집 및 이용동의</span>
-								</label>
-							</div>
-							<p class="form-description">
-								입력하신 이름, 직업, 이메일 주소, 직급, 회사명
-								(소속), 부서(팀명)은 뉴스레터 발송을 위해 정보주체로부터 개인정보를 수집시에 동의 받은 개인정보 
-								보유,이용기간 동안 보관 및 이용됩니다.
-							</p>
-						
-					</div>
-					<button type="button" class="button layer__button form-submit--wide" onclick="letterWriteProc();">뉴스레터 신청하기</button>
-				</div>
+				<button type="button" class="button layer__button form-submit--wide" onclick="letterWriteProc();">뉴스레터 신청하기</button>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="layer__body popup" id="form-popup" aria-hidden="true" role="dialog">
-    <div class="layer__wrap">
-      <div class="layer__inner">
-        <div class="layer__content form-popup">
-          <dl>
-            <dt class="layer__title">뉴스레터 신청이 완료되었습니다.</dt>
-            <dd class="layer__description">
-							플레이디 뉴스레터를 구독해주셔서<br>
-							감사합니다.
-						</dd>
-          </dl>
-					<button class="close_btn" type="button" onclick="letterOk();">확인</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="layer__body popup" id="form-popup" aria-hidden="true" role="dialog">
+	<div class="layer__wrap">
+		<div class="layer__inner">
+			<div class="layer__content form-popup">
+				<dl>
+					<dt class="layer__title">뉴스레터 신청이 완료되었습니다.</dt>
+					<dd class="layer__description">
+						플레이디 뉴스레터를 구독해주셔서<br>
+						감사합니다.
+					</dd>
+				</dl>
+				<button class="close_btn" type="button" onclick="letterOk();">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <!-- 220617 s : 리포트 다운로드 개인정보 수집 팝업 - 미사용 처리 -->
