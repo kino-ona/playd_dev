@@ -1,16 +1,35 @@
 <?php
 include_once('./_common.php');
 
-// 포트폴리오 카테고리 테이블 만들기
-$query = "CREATE TABLE `T_POST_CATEGORY` ( ";
-$query .= "  `C_SEQ` int NOT NULL AUTO_INCREMENT, ";
-$query .= "   `C_NAME` varchar(100) DEFAULT NULL COMMENT '카테고리명', ";
-$query .= "    `C_USE` char(1) DEFAULT '1' COMMENT 'Y:사용/N:미사용', ";
-$query .= "    `C_DATE` datetime DEFAULT NULL, ";
-$query .= "    `C_SORT` int DEFAULT 0, ";
-$query .= "    PRIMARY KEY (`C_SEQ`) USING BTREE ";
-$query .= "  ) ";
+
+// 리포트 > News 2026-06-17
+// 게시판명변경 : '리포트' → 'News'
+$query  = " UPDATE `T_BOARD_CONFIG` SET `BC_NAME` = 'News' WHERE `BC_CODE` = 'report' AND `BC_NAME` = '리포트' ";
 sql_query($query);
+
+// 마이그레이션
+// 기존 데이터는 일단 'Report' 로 일괄 변경
+// 최종신규 : Awards / Work / Finance / Report
+$query  = " UPDATE `T_BOARD` ";
+$query .= " SET `B_TYPE` = 'Report' ";
+$query .= " WHERE `B_CODE` = 'report' ";
+$query .= " AND `B_TYPE` IN ('Trend Delivery', 'VOICE Trend', 'Trend Overview', 'Trend Report') ";
+sql_query($query);
+
+
+// $query  = " UPDATE `T_BOARD` SET `B_TYPE` = 'Report' WHERE `B_CODE` = 'report' AND `B_TYPE` = 'News' ";
+// sql_query($query);
+
+// 포트폴리오 카테고리 테이블 만들기
+// $query = "CREATE TABLE `T_POST_CATEGORY` ( ";
+// $query .= "  `C_SEQ` int NOT NULL AUTO_INCREMENT, ";
+// $query .= "   `C_NAME` varchar(100) DEFAULT NULL COMMENT '카테고리명', ";
+// $query .= "    `C_USE` char(1) DEFAULT '1' COMMENT 'Y:사용/N:미사용', ";
+// $query .= "    `C_DATE` datetime DEFAULT NULL, ";
+// $query .= "    `C_SORT` int DEFAULT 0, ";
+// $query .= "    PRIMARY KEY (`C_SEQ`) USING BTREE ";
+// $query .= "  ) ";
+// sql_query($query);
 
 
 // $query = " INSERT INTO `` (`C_SEQ`,`C_NAME`,`C_USE`,`C_DATE`,`C_SORT`) VALUES ('IT/통신','Y',NULL,21); ";
@@ -39,31 +58,12 @@ sql_query($query);
 // sql_query($query);
 
 
-$query  = " ALTER TABLE `T_BOARD` ADD COLUMN `B_EXT7` VARCHAR(200) NULL ";
-sql_query($query);
-
-$query  = " ALTER TABLE `T_BOARD` ADD COLUMN `B_FILE6` VARCHAR(100) NULL ";
-sql_query($query);
-
-
-
-// 리포트 > News 2026-06-17
-// 게시판명변경 : '리포트' → 'News'
-$query  = " UPDATE `T_BOARD_CONFIG` SET `BC_NAME` = 'News' WHERE `BC_CODE` = 'report' AND `BC_NAME` = '리포트' ";
-sql_query($query);
-
-// 마이그레이션
-// 기존 데이터는 일단 'Report' 로 일괄 변경
-// 최종신규 : Awards / Work / Finance / Report
-$query  = " UPDATE `T_BOARD` ";
-$query .= " SET `B_TYPE` = 'Report' ";
-$query .= " WHERE `B_CODE` = 'report' ";
-$query .= " AND `B_TYPE` IN ('Trend Delivery', 'VOICE Trend', 'Trend Overview', 'Trend Report') ";
-sql_query($query);
-
-
-// $query  = " UPDATE `T_BOARD` SET `B_TYPE` = 'Report' WHERE `B_CODE` = 'report' AND `B_TYPE` = 'News' ";
+// $query  = " ALTER TABLE `T_BOARD` ADD COLUMN `B_EXT7` VARCHAR(200) NULL ";
 // sql_query($query);
+
+// $query  = " ALTER TABLE `T_BOARD` ADD COLUMN `B_FILE6` VARCHAR(100) NULL ";
+// sql_query($query);
+
 
 
 
