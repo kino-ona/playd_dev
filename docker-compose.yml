@@ -7,7 +7,7 @@ services:
     # 공식 이미지만 pull (커스텀 build 없음 → 레이어 받다 끊기는 EOF 오류 완화)
     image: php:8.2-apache
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - .:/var/www/html
       - ./docker/php/000-playd.conf:/etc/apache2/sites-available/000-default.conf:ro
