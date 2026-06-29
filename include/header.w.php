@@ -9,6 +9,7 @@
       <div class="nav__link"><a href="./techhub.html">솔루션</a></div>
       <!-- <div class="nav__link"><a href="./report.html">인사이트</a></div> -->
       <div class="nav__link"><a href="./about.html">플레이디</a></div>
+			<div class="nav__link"><a href="./letter.html">NEWS</a></div>
       <div class="nav__link"><a href="./contact.html">CONTACT</a></div>
       <div class="nav__gnb"><a href="#" type="button"><i></i></a></div>
 		</nav>
@@ -35,6 +36,10 @@
 			<div class="navmenu__link"><a href="./ir.html">IR</a></div>
 			<div class="navmenu__link"><a href="./ethical.html">윤리경영</a></div>
 			<div class="navmenu__link"><a href="./esg.html">ESG</a></div>
+		</div>
+		<div class="navmenu__list">
+			<div class="navmenu__link"><a href="./letter.html">P'letter</a></div>
+			<div class="navmenu__link"><a href="./report.html">PRESS</a></div>
 		</div>
 		<div class="navmenu__list" style="display:none;" tabindex="-1"></div>
 	</div>
@@ -63,9 +68,9 @@
 			<li class="menu__link"><a href="./techhub.html"><span>techHUB</span></a></li>
 		</ul>
 		<ul class="menu">
-			<li class="menu__title"><span>인사이트</span></li>
-			<li class="menu__link"><a href="./letter.html"><span>뉴스레터</span></a></li>
-			<li class="menu__link"><a href="./report.html"><span>NEWS</span></a></li>
+			<li class="menu__title"><span>NEWS</span></li>
+			<li class="menu__link"><a href="./letter.html"><span>P'letter</span></a></li>
+			<li class="menu__link"><a href="./report.html"><span>PRESS</span></a></li>
 			<!-- <li class="menu__link"><a href="./column.html"><span>광고컬럼</span></a></li> -->
 		</ul>
 		<ul class="menu">

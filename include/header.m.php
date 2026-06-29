@@ -35,10 +35,10 @@
 					</div>
 				</div>
 				<div class="gnb__item">
-					<a href="./report.html" role="button" class="gnb__list--link font--bd">인사이트</a>
+					<a href="./report.html" role="button" class="gnb__list--link font--bd">NEWS</a>
 					<div class="gnb__wrap">	
-						<p><a href="./letter.html">뉴스레터</a></p>
-						<p><a href="./report.html">NEWS</a></p>
+						<p><a href="./letter.html">P'letter</a></p>
+						<p><a href="./report.html">PRESS</a></p>
 						<!-- <p><a href="./column.html">광고컬럼</a></p> -->
 					</div>
 				</div>
