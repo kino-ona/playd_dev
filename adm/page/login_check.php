@@ -20,7 +20,7 @@ if (!$m_id || !$m_pw) {
 // $row2 = sql_fetch($sql);
 // $total_count = $row2['cnt'];
 // if($total_count == 0 && date("Ymd") >= 20220916) {
-//     alert('로그인 정보가 올바르지 않습니다.');
+//     alert('로그인 정보가 올바르지 않습니다.['.$_SERVER['REMOTE_ADDR'].']');
 //     exit;
 // }
 
@@ -35,37 +35,6 @@ if (!$m_uid) {
     exit;
 }
 
-$m_upw = playd_row_col($user, 'M_PW');
-if (!check_password($m_pw, $m_upw)) {
-
-    //비번 틀리면 FAIL_COUNT 업데이트
-    sql_query(" UPDATE T_MGR SET PASSWD_FAIL_CNT = IFNULL(PASSWD_FAIL_CNT,0) + 1 WHERE M_ID = '".$m_id_sql."' ");
-
-
-    //FAIL COUNT 검사
-    $sql = " select IFNULL(PASSWD_FAIL_CNT,0) as cnt FROM T_MGR where M_ID = '".$m_id_sql."' ";
-    $row2 = sql_fetch($sql);
-    $total_count = playd_row_col($row2, 'cnt');
-    if ($total_count >= 5) {
-//        sql_query(" UPDATE T_MGR SET M_USE_YN = 'N' WHERE M_ID = '".$m_id."' ");
-        alert('현재 계정은 로그인이 불가능한 상태입니다. 관리자에게 문의하시기 바랍니다.');
-        exit;
-    }
-    // 비밀번호 5번 틀리면 알럿
-    // if($total_count >= 5){
-    //     // set_session('passwd_id', $m_id);
-    //     alert('현재 계정은 로그인이 불가능한 상태입니다. 관리자에게 문의하시기 바랍니다.');
-    //     exit;
-    // }
-
-    alert('로그인 정보가 올바르지 않습니다.');
-}
-
-// 중지한 아이디인가?
-if (playd_row_col($user, 'M_USE_YN') == '0') {
-    alert('비활성화된 아이디이므로 접근하실 수 없습니다.');
-    goto_url($back_url);
-}
 
 // 90일 체크
 $sql = " select count(*) as cnt from T_MGR where M_ID = '".$m_id_sql."' AND DATEDIFF(PASSWD_CHG_DT, NOW()) <= 0 ";

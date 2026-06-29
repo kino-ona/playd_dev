@@ -18,13 +18,13 @@
   $filesize = filesize($down);
 
   if(file_exists($down)){
-    header("Content-Type:application/octet-stream");
-    header("Content-Disposition:attachment;filename=$file");
-    header("Content-Transfer-Encoding:binary");
-    header("Content-Length:".filesize($target_Dir.$file));
-    header("Cache-Control:cache,must-revalidate");
-    header("Pragma:no-cache");
-    header("Expires:0");
+    header("Content-Type: application/octet-stream");
+    header("Content-Disposition: attachment; filename=\"" . $file . "\"; filename*=UTF-8''" . rawurlencode($file));
+    header("Content-Transfer-Encoding: binary");
+    header("Content-Length: " . filesize($down));
+    header("Cache-Control: cache, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
     if(is_file($down)){
         $fp = fopen($down,"r");
         while(!feof($fp)){

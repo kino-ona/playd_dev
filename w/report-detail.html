@@ -49,7 +49,7 @@
 			</div>
 			<div class="article__head">
 				<div class="article__meta article__meta--view">
-					<span><?=substr($itemOne['B_SEND_DT'],0,4)?>.<?=substr($itemOne['B_SEND_DT'],5,2)?></span>
+					<span><?=substr($itemOne['B_SEND_DT'],0,4)?>.<?=substr($itemOne['B_SEND_DT'],5,2)?>.<?=substr($itemOne['B_SEND_DT'],8,2)?></span>
 				</div>
 				<ul class="sns-share">
 					<li><button type="button" class="button button__sns-share button__icon-kakao" onclick="javascript:kakaoShareLink();"><span class="a11y">카카오톡 공유하기</span></button></li>
@@ -62,29 +62,27 @@
 
 		<div class="article-container">
 			<div class="article__content">
-				<?php if ($slideImage){?>
+				<!-- <?php if ($slideImage){?>
 				<div id="swiper" class="swiper-container swiper-container--single">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" style="background-image:url('<?=$slideImage?>')"></div>
 					</div>
 				</div>
-				<?php } ?>
+				<?php } ?> -->
 				<?=$itemOne['B_CONT']?>
 				
 				<?php if ($itemOne['FI_SEQ2']){?>
 				<div class="button__wrap">
-					<div type="button" class="button downloadOpen button__large button__filled-black" onclick="javascript:download('<?=$itemOne['FI_SEQ2']?>','<?=$itemOne['B_LINKURL']?>','<?=$itemOne['B_SEQ']?>');">리포트 다운로드 <i></i> </div>
+					<div type="button" class="button downloadOpen button__large button__filled-black" onclick="javascript:download('<?=$itemOne['FI_SEQ2']?>','<?=$itemOne['B_LINKURL']?>','<?=$itemOne['B_SEQ']?>');">다운로드 <i></i> </div>
 				</div>
 				<?php } ?>
 			</div>
 		</div>
 
 
-
-
 		<div class="sub-content recommended-contents">
 			<div class="sub-content__head">
-				<p class="sub-content__title">추천 리포트</p>
+				<p class="sub-content__title">다른 소식 보기</p>
 				<div class="list-select">목록<a href="report.html" type="button"><i></i></a></div>
 			</div>
 
@@ -113,15 +111,15 @@
 			<div class="list-content">
 				<a href="report-detail.html?seq=<?=$row['B_SEQ']?>" class="list-content__cover">
 					<div class="list-content__image" style="background-image:url(<?=$image?>)" title="<?=$alt?>"></div>
-					<div class="button__wrap">
+					<!-- <div class="button__wrap">
 						<div class="downloadOpen button button__icon-download"  onclick="javascript:download('<?=$row['FI_SEQ']?>','<?=$row['B_LINKURL']?>','<?=$row['B_SEQ']?>');"><span class="a11y">다운로드 받기</span></div>
-					</div>
+					</div> -->
 				</a>
 				<div class="list-content__head">
 					<span class="list-content__sort"><?=$row['B_TYPE']?></span>
 				</div>
 				<a href="report-detail.html?seq=<?=$row['B_SEQ']?>" class="list-content__title"><?=$row['B_TITLE']?></a>
-				<span class="list-content__meta"><?=substr($row['B_SEND_DT'],0,4)?>.<?=substr($row['B_SEND_DT'],5,2)?></span>
+				<span class="list-content__meta"><?=substr($row['B_SEND_DT'],0,4)?>.<?=substr($row['B_SEND_DT'],5,2)?>.<?=substr($row['B_SEND_DT'],8,2)?></span>
 			</div>
 
 			<?php } ?>
@@ -137,27 +135,25 @@ var g_val = '';
 var g_seq = '';
 
 function download(val, url, seq){
-	if(val !== '') {
-		g_url = url;
-		g_val = val;
-		g_seq = seq;
-		layerOpen('report');
-	}else {
-		alert('파일이 존재하지 않습니다.')
+	// 개인정보 수집 팝업 미사용 - 직접 다운로드 처리
+	// g_val = val; g_url = url; g_seq = seq; layerOpen('report');
+	if (url && url !== 'null') {
+		window.open(url);
+	} else if (val) {
+		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	} else {
+		alert('파일이 존재하지 않습니다.');
 	}
-
 }
-
+</script>
+<script>
 function kakaoShareLink(){
-	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
-	var desc = '<?=nvldesc($itemOne['B_BRIEF'])?>';
+	var title = <?=json_encode(nvldesc($itemOne['B_TITLE']))?>;
+	var desc = <?=json_encode(nvldesc($itemOne['B_BRIEF']))?>;
 
 	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share2.jpg';
 	kakaoShare(title, desc, imageUrl);
 }
-
-
-
 </script>
 <?php
   include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.w.php');

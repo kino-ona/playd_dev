@@ -48,7 +48,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 				<p class="sub-content__type"><?=$itemOne['B_TYPE']?></p>
 				<h3 class="sub-content__title"><?=$itemOne['B_TITLE']?></h3>
 				<p>
-					<span class="sub-content__date"><?=substr($itemOne['B_SEND_DT'],0,4)?>.<?=substr($itemOne['B_SEND_DT'],5,2)?></span>
+					<span class="sub-content__date"><?=substr($itemOne['B_SEND_DT'],0,4)?>.<?=substr($itemOne['B_SEND_DT'],5,2)?>.<?=substr($itemOne['B_SEND_DT'],8,2)?></span>
 					<a href="javascript:;" class="sub-content__share"><span class="a11y">공유하기</span></a>
 				</p>
 			</div>
@@ -56,7 +56,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 				<div class="list-content__slide swiper">
 					<div class="swiper-wrapper">
 							<div class="list-content__item swiper-slide">
-								<p><span class="list-content__image" style="background-image:url('<?=$slideImage?>')"></span></p>
+								<!-- <p><span class="list-content__image" style="background-image:url('<?=$slideImage?>')"></span></p> -->
 								<p class="list-content__description"><?=$itemOne['B_CONT']?></p>
 							</div>
 					</div>
@@ -99,7 +99,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 								<p><span class="slide__image" style="background-image:url(<?=$image?>)" title="<?=$alt?>"></span></p>
 								<p class="slide__type"><?=$row['B_TYPE']?></p>
 								<h3 class="slide__title"><?=$row['B_TITLE']?></h3>
-								<span class="slide__date"><?=substr($row['B_SEND_DT'],0,4)?>.<?=substr($row['B_SEND_DT'],5,2)?></span>
+								<span class="slide__date"><?=substr($row['B_SEND_DT'],0,4)?>.<?=substr($row['B_SEND_DT'],5,2)?>.<?=substr($row['B_SEND_DT'],8,2)?></span>
 							</a>
 							<a href="javascript:download('<?=$row['FI_SEQ']?>','<?=$row['B_LINKURL']?>','<?=$row['B_SEQ']?>');" class="slide__download"><span>download</span></a>
 							
@@ -202,26 +202,25 @@ var g_val = '';
 var g_seq = '';
 
 function download(val, url, seq){
-	g_url = url;
-	g_val = val;
-	g_seq = seq;
-	// if(url){
-	// 	window.open(url);
-	// } else {
-	// 	document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
-	// }   
-	layerOpen('report');
+	// 개인정보 수집 팝업 미사용 - 직접 다운로드 처리
+	// g_val = val; g_url = url; g_seq = seq; layerOpen('report');
+	if (url && url !== 'null') {
+		window.open(url);
+	} else if (val) {
+		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	} else {
+		alert('파일이 존재하지 않습니다.');
+	}
 }
-
+</script>
+<script>
 function kakaoShareLink(){
-	var title = '<?=nvldesc($itemOne['B_TITLE'])?>';
-	var desc = '<?=nvldesc($itemOne['B_BRIEF'])?>';
+	var title = <?=json_encode(nvldesc($itemOne['B_TITLE']))?>;
+	var desc = <?=json_encode(nvldesc($itemOne['B_BRIEF']))?>;
 
-	var imageUrl = '<?=getBaseUrl()?>/assets/images/common/sns_share2.jpg';
+	var imageUrl = '<?=(isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST']?>/assets/images/common/sns_share2.jpg';
 	kakaoShare(title, desc, imageUrl);
 }
-
-
 </script>
 	<?php
 include_once($_SERVER["DOCUMENT_ROOT"].'/include/footer.m.php');

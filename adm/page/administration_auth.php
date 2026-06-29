@@ -162,7 +162,7 @@ include_once('./_head.php');
                         <td style="text-align:center;"><input type="checkbox" id="auth_del_c1"  value="Y"></td>
                     </tr>
                     <tr>
-                        <td >└ 리포트</td>
+                        <td >└ News</td>
                         <td style="text-align:center;"><input type="checkbox" id="auth_read_c2"  value="Y"></td>
                         <td style="text-align:center;"><input type="checkbox" id="auth_write_c2"  value="Y"></td>
                         <td style="text-align:center;"><input type="checkbox" id="auth_del_c2"  value="Y"></td>

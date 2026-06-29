@@ -247,11 +247,13 @@
   }
 
   .list-content {
+    width: calc(100% - 50px);
     margin-top: 20px;
     margin-bottom: 30px;
     padding-bottom: 50px;
     background: #FAFAFA;
     padding-left: 25px;
+    padding-right: 25px;
 
     &__image {
       display: block;
@@ -286,10 +288,15 @@
       font-size: 14px;
       line-height: 20px;
     }
+
+    div, p, h1, h2, span, strong {
+      background-color: transparent !important;
+    }
   }
 
   .download {
     display: block;
+    // width: 300px;
     padding: 12.5px 0 12.5px 17px; 
     background-color: #000000;
     color: #ffffff;

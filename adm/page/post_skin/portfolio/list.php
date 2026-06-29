@@ -130,6 +130,7 @@ $cates = sql_query($sql);
     
 	<div class="fr">
     <input type="button" class="btn btn-primary" value="카테고리 등록" onclick="location.href='/adm/page/post_category_list.php'">
+        
     <?if($auth['del']=='Y'){?>
         <input type="submit" class="btn btn-primary" value="선택삭제">
         <?}?>

@@ -90,8 +90,8 @@
 <!--// 20220617 e -->
 
 
-
-<!-- 20220629 s -->
+<!-- 20220629 s : 리포트 다운로드 개인정보 수집 팝업 - 미사용 처리 -->
+<!--
 <div class="layer__body popup reportDownload" id="report" aria-hidden="true" role="dialog">
   <div class="layer__wrap layer__wrap--full">
 		<div class="layer__close">
@@ -104,66 +104,66 @@
 			<div class="layer__content">
 				<div class="content__text">
 					<p class="content__description">간단한 정보를 입력하시면 플레이디 리포트를 빠르게 받아보실 수 있습니다.</p>
-					
-					<input type="hidden" name="CSRFToken2" id="CSRFToken2" value="<?php echo $CSRFToken2; ?>" />
-						
-							<legend>플레이디 리포트 다운로드 신청폼</legend>
-						<div class="input-box input-box--info">
-							<div class="form-field">
-								<label for="user-name" class="input-box--info__label input-box--info__label--necessary">이름</label>
-								<input type="text" id="user-name"  class="input-box--info__input" name="" maxlength="52" placeholder="이름을 입력해 주세요.">
-								<p class="form-warning"></p>
-							</div>
-							<div class="form-field">
-								<label for="user-profession" class="input-box--info__label">직업</label>
-								<input type="text" id="user-profession" class="input-box--info__input" name="" maxlength="52" placeholder="직업을 입력해 주세요.">
-								<p class="form-warning"></p>
-							</div>
-							<div class="form-field">
-								<label for="user-mail" class="input-box--info__label input-box--info__label--necessary">이메일 주소</label>
-								<input type="text" id="user-mail"  class="input-box--info__input" name="" maxlength="320" placeholder="이메일 주소를 입력해 주세요.">
-								<p class="form-warning"></p>
-							</div>
-							<div class="form-field">
-								<label for="user-position" class="input-box--info__label">직급</label>
-								<input type="text" id="user-position" class="input-box--info__input" name="" placeholder="직급을 입력해 주세요.">
-							</div>
-							<div class="form-field">
-								<label for="user-company" class="input-box--info__label input-box--info__label--necessary">회사명(소속)</label>
-								<input type="text" id="user-company" class="input-box--info__input" name="" maxlength="52" placeholder="회사명(소속)을 입력해 주세요.">
-							</div>
-							<div class="form-field">
-								<label for="user-team" class="input-box--info__label">부서(팀명)</label>
-								<input type="text" id="user-team" class="input-box--info__input" name="" maxlength="52" placeholder="부서(팀명)을 입력해 주세요.">
-							</div>
-							<ol class="sub-checkboxs">
-                <li class="sub-checkbox__list">
-                  <label for="sub-checkbox--personal2" class="sub-checkbox__label">
-                    <input type="checkbox" id="sub-checkbox--personal2" name="" class="sub-checkbox__input" onclick="personal2check(this.checked);">
-                    <span><i></i>[필수] 개인정보 수집 및 이용에 동의합니다.</span>
-										<a href="#" onclick="layerOpen('personalPopup');" class="button button__sub-checkbox open__personal">전문보기</a>
-                  </label>
-                </li>
-              </ol>
-							<ol class="sub-checkboxs">
-                <li class="sub-checkbox__list">
-                  <label for="sub-checkbox--marketing" class="sub-checkbox__label">
-                    <input type="checkbox" id="sub-checkbox--marketing" name="" class="sub-checkbox__input">
-                    <span><i></i>[선택] 광고성 정보 수집 및 이용에 동의합니다.</span>
-										<a href="#" onclick="layerOpen('marketingPopup');" class="button button__sub-checkbox open__marketing">전문보기</a>
-                  </label>
-                </li>
-              </ol>
+					<input type="hidden" name="CSRFToken2" id="CSRFToken2" value="">
+					<legend>플레이디 리포트 다운로드 신청폼</legend>
+					<div class="input-box input-box--info">
+						<div class="form-field">
+							<label for="user-name" class="input-box--info__label input-box--info__label--necessary">이름</label>
+							<input type="text" id="user-name" class="input-box--info__input" name="" maxlength="52" placeholder="이름을 입력해 주세요.">
+							<p class="form-warning"></p>
 						</div>
+						<div class="form-field">
+							<label for="user-profession" class="input-box--info__label">직업</label>
+							<input type="text" id="user-profession" class="input-box--info__input" name="" maxlength="52" placeholder="직업을 입력해 주세요.">
+							<p class="form-warning"></p>
+						</div>
+						<div class="form-field">
+							<label for="user-mail" class="input-box--info__label input-box--info__label--necessary">이메일 주소</label>
+							<input type="text" id="user-mail" class="input-box--info__input" name="" maxlength="320" placeholder="이메일 주소를 입력해 주세요.">
+							<p class="form-warning"></p>
+						</div>
+						<div class="form-field">
+							<label for="user-position" class="input-box--info__label">직급</label>
+							<input type="text" id="user-position" class="input-box--info__input" name="" placeholder="직급을 입력해 주세요.">
+						</div>
+						<div class="form-field">
+							<label for="user-company" class="input-box--info__label input-box--info__label--necessary">회사명(소속)</label>
+							<input type="text" id="user-company" class="input-box--info__input" name="" maxlength="52" placeholder="회사명(소속)을 입력해 주세요.">
+						</div>
+						<div class="form-field">
+							<label for="user-team" class="input-box--info__label">부서(팀명)</label>
+							<input type="text" id="user-team" class="input-box--info__input" name="" maxlength="52" placeholder="부서(팀명)을 입력해 주세요.">
+						</div>
+						<ol class="sub-checkboxs">
+              <li class="sub-checkbox__list">
+                <label for="sub-checkbox--personal2" class="sub-checkbox__label">
+                  <input type="checkbox" id="sub-checkbox--personal2" name="" class="sub-checkbox__input" onclick="personal2check(this.checked);">
+                  <span><i></i>[필수] 개인정보 수집 및 이용에 동의합니다.</span>
+									<a href="#" onclick="layerOpen('personalPopup');" class="button button__sub-checkbox open__personal">전문보기</a>
+                </label>
+              </li>
+            </ol>
+						<ol class="sub-checkboxs">
+              <li class="sub-checkbox__list">
+                <label for="sub-checkbox--marketing" class="sub-checkbox__label">
+                  <input type="checkbox" id="sub-checkbox--marketing" name="" class="sub-checkbox__input">
+                  <span><i></i>[선택] 광고성 정보 수집 및 이용에 동의합니다.</span>
+									<a href="#" onclick="layerOpen('marketingPopup');" class="button button__sub-checkbox open__marketing">전문보기</a>
+                </label>
+              </li>
+            </ol>
+					</div>
 				</div>
 				<div class="button__wrap">
-					<input type="button" class="button layer__button form-submit" id="personal2" value="리포트 다운로드" onclick="reportWriteProc(); " />
+					<input type="button" class="button layer__button form-submit" id="personal2" value="리포트 다운로드" onclick="reportWriteProc();" />
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+-->
 <!--// 20220629 e -->
+
 
 <!-- 2024.05.02 -->
 <div class="layer__body popup personalPopup" id="personalPopup" aria-hidden="true" role="dialog">
@@ -430,114 +430,6 @@ function letterOk(){
 
 
 
-function reportWriteProc(){
-	
-	$('#report').find('.form-field').each(function(){
-		$(this).removeClass('warning');
-	});
-
-
-	if($('#report').find('#user-name').val()=='') {
-		alert('이름을 입력해 주세요.');
-		$('#report').find('#user-name').focus();
-		$('#report').find('#user-name').closest('.form-field').addClass('warning');
-		return;
-	}
-	// if($('#report').find('#user-profession').val()==''){
-	// 	alert('직업을 입력해 주세요.');
-	// 	$('#report').find('#user-profession').focus();
-	// 	$('#report').find('#user-profession').closest('.form-field').addClass('warning');
-	// 	return;
-	// }
-	if($('#report').find('#user-mail').val()==''){
-		alert('이메일을 입력해 주세요.');
-		$('#report').find('#user-mail').focus();
-		$('#report').find('#user-mail').closest('.form-field').addClass('warning');
-		return;
-	}
-	if(!validateEmail($('#report').find('#user-mail').val())){
-		alert('이메일을 다시 입력해 주세요.');
-		$('#report').find('#user-mail').focus();
-		$('#report').find('#user-mail').closest('.form-field').addClass('warning');
-		return;
-	}
-	// if($('#user-position').val()==''){
-	// 	alert('직급을 입력해 주세요.');
-	// 	return;
-	// }
-	if($('#report').find('#user-company').val()==''){
-		alert('회사명(소속)을 입력해 주세요.');
-		$('#report').find('#ser-company').focus();
-		$('#report').find('#ser-company').closest('.form-field').addClass('warning');
-
-		return;
-	}
-	// if($('#user-team').val()==''){
-	// 	alert('부서(팀명)을 입력해 주세요.');
-	// 	return;
-	// }
-	if(!$('#report').find("input:checkbox[id='sub-checkbox--personal2']").is(":checked")){
-		alert('개인정보 수집 및 이용에 동의해주세요.');
-		return;
-	}
-
-	var marketing_yn = 'N';
-	if($('#report').find("input:checkbox[id='sub-checkbox--marketing']").is(":checked")){
-		marketing_yn = 'Y';
-	}
-	
-
-	if(isLoading) return;
-	isLoading = true;
-	
-	$.ajax({
-                    type: "POST",
-                    url: '/ajax/ajax_board_proc.php',
-                    data: {
-                        'user_name':$('#report').find('#user-name').val(),
-						'user_profession':$('#report').find('#user-profession').val(),
-						'user_mail':$('#report').find('#user-mail').val(),
-						'user_position':$('#report').find('#user-position').val(),
-						'user_company':$('#report').find('#user-company').val(),
-						'user_team':$('#report').find('#user-team').val(),
-						'user_marketing':marketing_yn,
-						'user_seq':g_seq,
-						'CSRFToken2':'<?php echo $CSRFToken2; ?>',
-						'cmd':'newsreport',
-                    },
-                    dataType: 'json',
-                    timeout: 60000,
-                    cache: false,
-                    crossDomain: false,
-                    error: function (request, error) {
-                        console.log(error + '');
-                    },
-                    success: function (json) {
-						isLoading = false;
-						if(json['success']){
-							//layerOpen('letterFormSubmitted');
-
-							if(g_url=='null') g_url = '';
-							if(g_url != ''){
-								window.open(g_url);
-							} else {
-								document.location.href = '/ajax/ajax_file_down.php?seq=' + g_val;
-							}
-
-							$('#report').find('#user-name').val('');
-							$('#report').find('#user-profession').val('');
-							$('#report').find('#user-mail').val('');
-							$('#report').find('#user-position').val('');
-							$('#report').find('#user-company').val('');
-							$('#report').find('#user-team').val('');
-							layerClose('report');
-						} else {
-							alert('실패하였습니다. 토큰 문제로 관리자에게 문의해 주세요.');
-						}
-                    }
-    });
-
-}
 
 
 
@@ -591,6 +483,7 @@ function checkboxClick(){
 	}
 }
 
+/* 리포트 다운로드 개인정보 수집 팝업 관련 함수 - 미사용 처리
 function personal2check(chk){
 	if(chk){
 		$('#personal2').addClass('submit--active');
@@ -598,6 +491,40 @@ function personal2check(chk){
 		$('#personal2').removeClass('submit--active');
 	}
 }
+
+function reportWriteProc(){
+	$('#report').find('.form-field').each(function(){ $(this).removeClass('warning'); });
+	if($('#report').find('#user-name').val()=='') { alert('이름을 입력해 주세요.'); return; }
+	if($('#report').find('#user-mail').val()=='') { alert('이메일을 입력해 주세요.'); return; }
+	if(!validateEmail($('#report').find('#user-mail').val())) { alert('이메일을 다시 입력해 주세요.'); return; }
+	if($('#report').find('#user-company').val()=='') { alert('회사명(소속)을 입력해 주세요.'); return; }
+	if(!$('#report').find("input:checkbox[id='sub-checkbox--personal2']").is(":checked")) { alert('개인정보 수집 및 이용에 동의해주세요.'); return; }
+	var marketing_yn = $('#report').find("input:checkbox[id='sub-checkbox--marketing']").is(":checked") ? 'Y' : 'N';
+	if(isLoading) return;
+	isLoading = true;
+	$.ajax({
+		type: "POST", url: '/ajax/ajax_board_proc.php',
+		data: { 'user_name':$('#report').find('#user-name').val(), 'user_profession':$('#report').find('#user-profession').val(),
+			'user_mail':$('#report').find('#user-mail').val(), 'user_position':$('#report').find('#user-position').val(),
+			'user_company':$('#report').find('#user-company').val(), 'user_team':$('#report').find('#user-team').val(),
+			'user_marketing':marketing_yn, 'user_seq':g_seq, 'cmd':'newsreport' },
+		dataType: 'json', timeout: 60000, cache: false, crossDomain: false,
+		error: function(request, error){ console.log(error+''); isLoading = false; },
+		success: function(json){
+			isLoading = false;
+			if(json['success']){
+				if(g_url=='null') g_url = '';
+				if(g_url != '') { window.open(g_url); } else { document.location.href = '/ajax/ajax_file_down.php?seq=' + g_val; }
+				layerClose('report');
+			} else { alert('실패하였습니다. 토큰 문제로 관리자에게 문의해 주세요.'); }
+		}
+	});
+}
+
+function clearReport(){
+	$('#report').find('#user-name, #user-profession, #user-mail, #user-position, #user-company, #user-team').val('');
+}
+*/
 
 function clearLetter(){
 	$('#newsLetter').find('#user-name').val('');
@@ -608,14 +535,6 @@ function clearLetter(){
 							$('#newsLetter').find('#user-team').val('');
 }
 
-function clearReport(){
-	$('#report').find('#user-name').val('');
-							$('#report').find('#user-profession').val('');
-							$('#report').find('#user-mail').val('');
-							$('#report').find('#user-position').val('');
-							$('#report').find('#user-company').val('');
-							$('#report').find('#user-team').val('');
-}
 
 </script>
 

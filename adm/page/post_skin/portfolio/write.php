@@ -657,67 +657,10 @@ $("#b_share_seq").change(function(){
      }
  }
 
-
-//  function initFilepickerPDF()
-// {
-//     var masterFileExt = 'pdf';
-//         document.getElementById("b_attach5").addEventListener("change", function(event) {
-//             var files = event.target.files;
-
-//             var html = '';
-//             for (var i=0; i<files.length; i++) {
-//                     var fileSize = files[i].size;
-//                     var ext = getExtensionOfFilename(files[i].name);
-//                     if(masterFileExt.indexOf(ext)==-1){
-//                         alert('PDF 파일만 첨부 가능하며 1건만 등록가능 합니다.');
-//                         $('#b_attach5').val('');
-//                         break;
-//                     }
-//             };
-
-//         }, false);
-
-//     }
-
-
-
  function initFilepickerIMG()
 {
     var masterFileExt = 'jpg,jpeg,png,gif';
     var masterFileSize = 1024*1024*25;
-
-    document.getElementById("b_attach1").addEventListener("change", function(event) {
-    var files = event.target.files;
-
-    var html = '';
-    for (var i=0; i<files.length; i++) {
-            var fileSize = files[i].size;
-            var ext = getExtensionOfFilename(files[i].name);
-            if(masterFileExt.indexOf(ext)==-1){
-                alert('이미지 파일만 등록 가능합니다.');
-                $('#b_attach1').val('');
-                break;
-            }
-        };
-
-    }, false);
-
-
-    document.getElementById("b_attach2").addEventListener("change", function(event) {
-        var files = event.target.files;
-
-        var html = '';
-        for (var i=0; i<files.length; i++) {
-                var fileSize = files[i].size;
-                var ext = getExtensionOfFilename(files[i].name);
-                if(masterFileExt.indexOf(ext)==-1){
-                    alert('이미지 파일만 등록 가능합니다.');
-                    $('#b_attach2').val('');
-                    break;
-                }
-        };
-
-    }, false);
 
    if(document.getElementById("b_attach4") != null){
         document.getElementById("b_attach4").addEventListener("change", function(event) {
@@ -823,6 +766,8 @@ $("#b_share_seq").change(function(){
         }
     }
 
+
+
     function appendFileList(index, filename, orgname){
         var count = appendFileCount(index);
         count = count + 1;
@@ -871,5 +816,6 @@ $("#b_share_seq").change(function(){
 
         $f.find("input[name=token]").val(token);
     }
+
 
  </script>

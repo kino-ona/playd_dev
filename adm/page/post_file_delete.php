@@ -9,16 +9,14 @@ if(!$num){
 
 if (!$post['B_SEQ']) {
     $msg .= "게시물이 존재하지 않습니다..";
-} else if (!file_exists(P1_PATH2.$post['B_FILE'.$num])) {
-    $msg .= '첨부파일이 존재하지 않습니다.';
 } else {
     // 파일삭제
     @unlink(P1_PATH2.$post['B_FILE'.$num]);
     
     $sql = " update {$p1['t_board_table']}
-                set b_file".$num." = null,
-                    b_sysfile".$num." = null
+                set B_FILE".$num." = null
               where b_seq = '{$post['B_SEQ']}' ";
+
     sql_query($sql);
     
     $msg .= "삭제되었습니다.";

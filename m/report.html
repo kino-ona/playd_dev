@@ -25,7 +25,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 	<!-- //header -->
 
     <div class="sub-header">
-      <h2 class="sub-header__title">플레이디 트렌드 리포트를 통해 <br><span>마케팅 인사이트</span>를 얻어 가세요.</h2>
+      <h2 class="sub-header__title">플레이디의 <span>최신 소식</span>과<br>인사이트를 확인하세요</h2>
     </div>
 
 		<div class="search-form">
@@ -96,7 +96,7 @@ include_once($_SERVER["DOCUMENT_ROOT"].'/include/header.m.php');
 			<div class="list-content">
 				<a href="./report-detail.html">
 					<p class="list-content__image" style="background-image: url('/assets/images/w/visual/block_003.jpg')"></p>
-					<p class="list-content__title"><span class="numbering">Trend Report</span> MZ세대 패션앱 트렌드 리포트 2022</p>
+					<p class="list-content__title"><span class="numbering">Report</span> MZ세대 패션앱 트렌드 리포트 2022</p>
 					<p class="list-content__description">
 						2022.03
 					</p>	
@@ -206,7 +206,8 @@ function fetchItemList(json, count){
 			var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
 			var title = json[i]['B_TITLE'].replace('<br/>','').replace('<br>','');
 
-			var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
+			// var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
+			var datestr = json[i]['B_SEND_DT'] ? json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7) + '.' + json[i]['B_SEND_DT'].substring(8,10) : '';
 
 			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE4']){
@@ -229,10 +230,10 @@ function fetchItemList(json, count){
 			html+='<div class="list-content">';
 			html+='<a href="javascript:;">';
 			html+='<div class="list-content__cover"><p class="list-content__image"  onclick="javascript:location.href=\'report-detail.html?seq='+json[i]['B_SEQ']+'\';fbq(\'track\', \'ViewContent\');" style="background-image:url('+image+')"></p></div>';
-			html+='<p class="list-content__title"><span class="numbering">'+nvl(json[i]['B_TYPE'])+'</span> '+title+'</p>';
+			html+='<p class="list-content__title"><span class="numbering">'+nvl(json[i]['B_TYPE']).replace('Trend Report','Report')+'</span> '+title+'</p>';
 			html+='<p class="list-content__description" onclick="fbq(\'track\', \'ViewContent\');">'+datestr+'</p>	';
 			html+='</a>';
-			html+='<a href="javascript:download(\''+json[i]['FI_SEQ']+'\', \''+nvl(json[i]['B_LINKURL'])+'\', \''+nvl(json[i]['B_SEQ'])+'\');fbq(\'track\', \'SubmitApplication\');" class="download"><span>다운로드</span></a>';
+			// html+='<a href="javascript:download(\''+json[i]['FI_SEQ']+'\', \''+nvl(json[i]['B_LINKURL'])+'\', \''+nvl(json[i]['B_SEQ'])+'\');fbq(\'track\', \'SubmitApplication\');" class="download"><span>다운로드</span></a>';
 			html+='</div> ';
 
 
@@ -290,11 +291,15 @@ function enterSelect(){
 }
 
 function download(val, url, seq){
-	g_val = val;
-	g_url = url;
-	g_seq = seq;
-
-	layerOpen('report');
+	// 개인정보 수집 팝업 미사용 - 직접 다운로드 처리
+	// g_val = val; g_url = url; g_seq = seq; layerOpen('report');
+	if (url && url !== 'null') {
+		window.open(url);
+	} else if (val) {
+		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	} else {
+		alert('파일이 존재하지 않습니다.');
+	}
 }
 </script>
 

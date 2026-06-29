@@ -45,7 +45,7 @@ if ($img_file && is_uploaded_file($img_file['tmp_name'])) {
         // 첨부파일 첨부시 첨부파일명에 공백이 포함되어 있으면 일부 PC에서 보이지 않거나 다운로드 되지 않는 현상이 있습니다.
         $fname = P1_TIME_YMDHIS_ORG.'_'.substr($shuffle,0,8).'.'.$r_file_ext;
         // $fname = abs(ip2long($_SERVER['REMOTE_ADDR'])).'_'.substr($shuffle,0,8).'_'.replace_filename($fname);
-
+        
         // 업로드가 안된다면 에러메세지 출력하고 die
         if (!move_uploaded_file($fname_tmp, $data_dir.'/'.$fname)) {
             echo json_encode(array('filename' => '', 'orgname' => '', 'error' => 'upload_failed'), JSON_UNESCAPED_UNICODE);

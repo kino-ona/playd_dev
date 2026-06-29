@@ -56,12 +56,12 @@
         break;
 
       case "report":
-        headerTitle.innerHTML = "리포트";
+        headerTitle.innerHTML = "News";
         subCommonFunction();
         break;
 
       case "report-detail":
-        headerTitle.innerHTML = "리포트";
+        headerTitle.innerHTML = "News";
         subCommonFunction();
         break;
 
@@ -777,13 +777,12 @@
         spaceBetween: 10,
       });
     } else {
-      document.querySelector(
-        ".list-content__slide .list-content__image"
-      ).style.marginRight = "25px";
-      document.querySelector(
-        ".list-content__slide .list-content__description"
-      ).style.marginRight = "25px";
-      document.querySelector(".list-content").style.paddingRight = "25px";
+      const slideImg = document.querySelector(".list-content__slide .list-content__image");
+      const slideDesc = document.querySelector(".list-content__slide .list-content__description");
+      const listContent = document.querySelector(".list-content");
+      if (slideImg) slideImg.style.marginRight = "25px";
+      if (slideDesc) slideDesc.style.marginRight = "25px";
+      if (listContent) listContent.style.paddingRight = "25px";
     }
 
     if (document.querySelectorAll(".slide-swiper .swiper-slide").length > 1) {
@@ -791,12 +790,12 @@
         slidesPerView: 1.05,
       });
     } else {
-      document.querySelector(".slide-swiper .slide__image").style.marginRight =
-        "25px";
-      document.querySelector(".slide-swiper .slide__title").style.marginRight =
-        "25px";
-      document.querySelector(".slide-swiper .slide__download").style.right =
-        "35px";
+      const swipeImg = document.querySelector(".slide-swiper .slide__image");
+      const swipeTitle = document.querySelector(".slide-swiper .slide__title");
+      const swipeDl = document.querySelector(".slide-swiper .slide__download");
+      if (swipeImg) swipeImg.style.marginRight = "25px";
+      if (swipeTitle) swipeTitle.style.marginRight = "25px";
+      if (swipeDl) swipeDl.style.right = "35px";
     }
 
     shareButton.addEventListener("click", (event) => {
@@ -806,76 +805,6 @@
 
     shareClsoeButton.addEventListener("click", (event) => {
       layerClose("share-popup");
-    });
-
-    const formSubmit = document.querySelector(
-      ".report-detail .form-submit--wide"
-    );
-    const formSubmitOpen = document.querySelectorAll(
-      ".report-detail .slide__download"
-    );
-    const formSubmitClose = document.querySelector(
-      ".report-detail .layer__wrap--wide .close"
-    );
-    const formUserName = document.querySelector(".report-detail #user-name");
-    const formUserPosition = document.querySelector(
-      ".report-detail #user-position"
-    );
-    const formUserMail = document.querySelector(".report-detail #user-mail");
-    const needCheck = document.querySelector(
-      ".report-detail #sub-checkbox--personal"
-    );
-    const regEmail =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-
-    formSubmitOpen.forEach((item) => {
-      item.addEventListener("click", (event) => {
-        event.preventDefault();
-        layerOpen("report");
-      });
-    });
-
-    formSubmit.addEventListener("click", (event) => {
-      event.preventDefault();
-      document.querySelectorAll(".form-field").forEach((item) => {
-        item.classList.remove("warning");
-      });
-
-      if (!needCheck.checked) {
-        needCheck.focus();
-        return false;
-      }
-
-      if (!formUserName.value) {
-        formUserName.focus();
-        formUserName.closest(".form-field").classList.add("warning");
-        return false;
-      }
-
-      if (!formUserPosition.value) {
-        formUserPosition.focus();
-        formUserPosition.closest(".form-field").classList.add("warning");
-        return false;
-      }
-
-      if (!formUserMail.value) {
-        formUserMail.focus();
-        formUserMail.closest(".form-field").classList.add("warning");
-        return false;
-      }
-
-      if (!regEmail.test(formUserMail.value)) {
-        formUserMail.focus();
-        formUserMail.closest(".form-field").classList.add("warning");
-        formUserMail.nextElementSibling.innerHTML = "질못된 입력값입니다";
-        return false;
-      }
-
-      layerClose("report");
-    });
-
-    formSubmitClose.addEventListener("click", () => {
-      layerClose("report");
     });
   }
 

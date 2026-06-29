@@ -267,7 +267,9 @@ if($m=='u'){
 
 
 // 해시태그 update
-if (!empty($_POST['br_word']) && is_array($_POST['br_word']) && count($_POST['br_word']) > 0) {
+// if(count($_POST['br_word'] > 0)) {
+// if (!empty($_POST['br_word']) && is_array($_POST['br_word']) && count($_POST['br_word']) > 0) {
+if(!empty($_POST['br_word']) && count($_POST['br_word']) > 0) {
     // 해당 게시글 해시태그 전체 삭제
     $sql_del = " delete
                    from {$p1['t_board_recom_table']}

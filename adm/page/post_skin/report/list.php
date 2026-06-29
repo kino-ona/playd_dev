@@ -23,9 +23,10 @@ if ($board['BC_NOTI_USE_YN'] == 1) $colspan++;
                     <select name="type" id="type">
                         <option value="">구분 선택</option>
                           
-                        <option value="Trend Delivery" <?=$type=='Trend Delivery'?'selected':''?>>Trend Delivery</option>
-                        <option value="VOICE Trend" <?=$type=='VOICE Trend'?'selected':''?>>VOICE Trend</option>
-                        <option value="Trend Overview" <?=$type=='Trend Overview'?'selected':''?>>Trend Overview</option>
+                        <option value="Awards" <?=$type=='Awards'?'selected':''?>>Awards</option>
+                        <option value="Work" <?=$type=='Work'?'selected':''?>>Work</option>
+                        <option value="Finance" <?=$type=='Finance'?'selected':''?>>Finance</option>
+                        <option value="Report" <?=$type=='Report'?'selected':''?>>Report</option>
                         
                     </select>
                    

@@ -106,7 +106,7 @@ function excel_download() {
             <th>직급</th>
             <th>부서(팀명)</th>
             <th>개인정보 수집<br/>동의 여부</th>
-            <th>광고성 정보 수집<br/>동의 여부</th>
+            <th>마케팅 정보 수집<br/>동의 여부</th>
             <!-- <th>수신동의</th> -->
             <th><?php echo subject_sort_link('ns_regdate') ?>신청일</a></th>
         </tr>

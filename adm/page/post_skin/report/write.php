@@ -42,10 +42,10 @@ if($write['B_SEQ']){
                     
                     <select name="b_type" id="b_type">
                         <option value="">선택</option>
-                        <option value="Trend Delivery" <?=$write['B_TYPE']=='Trend Delivery'?'selected':''?>>Trend Delivery</option>
-                        <option value="VOICE Trend" <?=$write['B_TYPE']=='VOICE Trend'?'selected':''?>>VOICE Trend</option>
-                        <option value="Trend Overview" <?=$write['B_TYPE']=='Trend Overview'?'selected':''?>>Trend Overview</option>
-                        
+                        <option value="Awards" <?=$write['B_TYPE']=='Awards'?'selected':''?>>Awards</option>
+                        <option value="Work" <?=$write['B_TYPE']=='Work'?'selected':''?>>Work</option>
+                        <option value="Finance" <?=$write['B_TYPE']=='Finance'?'selected':''?>>Finance</option>
+                        <option value="Report" <?=$write['B_TYPE']=='Report'?'selected':''?>>Report</option>
                     </select>
 
                 </td>
@@ -313,8 +313,12 @@ function send() {
         
     if(confirm("<?=$html_title?> 하시겠습니까?")){
         
-        <?php echo $editor_js;?> // 에디터 사용시 자바스크립트에서 내용을 폼필드로 넣어주며 내용이 입력되었는지 검사함   
-         oEditors.getById["b_cont"].exec("UPDATE_CONTENTS_FIELD",[]);      
+    // <?php echo $editor_js;?> // 에디터 사용시 자바스크립트에서 내용을 폼필드로 넣어주며 내용이 입력되었는지 검사함   
+    //      oEditors.getById["b_cont"].exec("UPDATE_CONTENTS_FIELD",[]);    
+        <?php echo $editor_js;?> // 에디터 사용시 자바스크립트에서 내용을 폼필드로 넣어주며 내용이 입력되었는지 검사함
+        if (typeof oEditors !== 'undefined' && oEditors.getById["b_cont"]) {
+            oEditors.getById["b_cont"].exec("UPDATE_CONTENTS_FIELD",[]);
+        }
 
 
         var b_site = $("input[name='b_site']:checked").val();

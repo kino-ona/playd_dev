@@ -36,7 +36,8 @@ $__playd_http_host = isset($_SERVER['HTTP_HOST']) ? preg_replace('/:\d+$/', '', 
 if ($__playd_http_host === 'localhost' || $__playd_http_host === '127.0.0.1' || $__playd_http_host === '[::1]') {
     define('P1_COOKIE_DOMAIN', '');
 } else {
-    define('P1_COOKIE_DOMAIN', '49.236.137.157');
+    // define('P1_COOKIE_DOMAIN', '49.236.137.157');
+    define('P1_COOKIE_DOMAIN', '.playd.com');
 }
 unset($__playd_http_host);
 

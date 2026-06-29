@@ -65,7 +65,7 @@
 		<ul class="menu">
 			<li class="menu__title"><span>인사이트</span></li>
 			<li class="menu__link"><a href="./letter.html"><span>뉴스레터</span></a></li>
-			<li class="menu__link"><a href="./report.html"><span>리포트</span></a></li>
+			<li class="menu__link"><a href="./report.html"><span>NEWS</span></a></li>
 			<!-- <li class="menu__link"><a href="./column.html"><span>광고컬럼</span></a></li> -->
 		</ul>
 		<ul class="menu">

@@ -24,7 +24,7 @@
 	<div id="container" class="container insight">
 
     <div class="sub-header">
-      <h2 class="sub-header__title"><span class="sub-header__label">리포트</span>플레이디 트렌드 리포트를 통해 <br><strong>마케팅 인사이트</strong>를 얻어 가세요.</h2>
+      <h2 class="sub-header__title"><span class="sub-header__label">NEWS</span>플레이디의 <strong>최신 소식</strong>과<br>인사이트를 확인하세요</h2>
     </div>
 
 		<div class="sub-container">
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<?php for  ($i=0; $row=sql_fetch_array($recommList); $i++) {
+			<!-- <?php for  ($i=0; $row=sql_fetch_array($recommList); $i++) {
 				$b_send_year = substr($row['B_SEND_DT'],0,4);
 				$b_send_month = substr($row['B_SEND_DT'],5,2);
 				
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 			</section>
-			<?php } ?>
+			<?php } ?> -->
 
 
 			<div class="sub-content__head">
@@ -112,7 +112,7 @@
 						</div>
 					</a>
 					<div class="list-content__head">
-						<span class="list-content__sort">Trend Report</span>
+						<span class="list-content__sort">Report</span>
 					</div>
 					<a href="./report-detail.html" class="list-content__title">[2022.05] 국내 기업의 해외 온라인 마케팅 지원 본격화</a>
 					<span class="list-content__meta">2022.03</span>
@@ -260,7 +260,8 @@ function fetchItemList(json, count){
 			var vol = json[i]['B_SEQ'];//count - ((g_page-1) * g_listsize) - i;//json[i]['B_SEQ'];     return records - ((int(page) - 1) * int(listsize) ) - (index -1 )
 			var title = json[i]['B_TITLE'].replace('<br/>','').replace('<br>','');
 
-			var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
+			// var datestr = json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7);
+			var datestr = json[i]['B_SEND_DT'] ? json[i]['B_SEND_DT'].substring(0,4) + '.' + json[i]['B_SEND_DT'].substring(5,7) + '.' + json[i]['B_SEND_DT'].substring(8,10) : '';
 
 			<?php if ($is_mobile){?>
 			if(json[i]['B_FILE4']){
@@ -281,12 +282,12 @@ function fetchItemList(json, count){
 			html+='<div class="list-content">';
 			html+='<a href="javascript:;" class="list-content__cover">';
 			html+='<div class="list-content__image" onclick="javascript:location.href=\'report-detail.html?seq='+json[i]['B_SEQ']+'\'" style="background-image:url('+image+')"></div>';
-			html+='<div class="button__wrap">';
-			html+='<div class="open button button__icon-download"  onclick="javascript:download(\''+json[i]['FI_SEQ']+'\', \''+nvl(json[i]['B_LINKURL'])+'\', \''+nvl(json[i]['B_SEQ'])+'\');"><span class="a11y">다운로드 받기</span></div>';
-			html+='</div>';
+			// html+='<div class="button__wrap">';
+			// html+='<div class="open button button__icon-download"  onclick="javascript:download(\''+json[i]['FI_SEQ']+'\', \''+nvl(json[i]['B_LINKURL'])+'\', \''+nvl(json[i]['B_SEQ'])+'\');"><span class="a11y">다운로드 받기</span></div>';
+			// html+='</div>';
 			html+='</a>';
 			html+='<div class="list-content__head">';
-			html+='<span class="list-content__sort">'+nvl(json[i]['B_TYPE'])+'</span>';
+			html+='<span class="list-content__sort">'+nvl(json[i]['B_TYPE']).replace('Trend Report','Report')+'</span>';
 			html+='</div>';
 			html+='<a href="./report-detail.html?seq='+json[i]['B_SEQ']+'" class="list-content__title">'+title+'</a>';
 			html+='<span class="list-content__meta">'+datestr+'</span>';
@@ -333,12 +334,16 @@ function enterSelect(){
 
 
 
-function download(val, url,seq){
-	g_val = val;
-	g_url = url;
-	g_seq = seq;
-
-	layerOpen('report');
+function download(val, url, seq){
+	// 개인정보 수집 팝업 미사용 - 직접 다운로드 처리
+	// g_val = val; g_url = url; g_seq = seq; layerOpen('report');
+	if (url && url !== 'null') {
+		window.open(url);
+	} else if (val) {
+		document.location.href = '/ajax/ajax_file_down.php?seq=' + val;
+	} else {
+		alert('파일이 존재하지 않습니다.');
+	}
 }
 
 
