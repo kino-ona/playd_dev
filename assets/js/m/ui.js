@@ -46,22 +46,22 @@
         break;
 
       case "letter":
-        headerTitle.innerHTML = "뉴스레터";
+        headerTitle.innerHTML = "P'letter";
         subCommonFunction();
         break;
 
       case "letter-detail":
-        headerTitle.innerHTML = "뉴스레터";
+        headerTitle.innerHTML = "P'letter";
         subCommonFunction();
         break;
 
       case "report":
-        headerTitle.innerHTML = "News";
+        headerTitle.innerHTML = "PRESS";
         subCommonFunction();
         break;
 
       case "report-detail":
-        headerTitle.innerHTML = "News";
+        headerTitle.innerHTML = "PRESS";
         subCommonFunction();
         break;
 
