@@ -68,17 +68,17 @@
 			<li class="menu__link"><a href="./techhub.html"><span>techHUB</span></a></li>
 		</ul>
 		<ul class="menu">
-			<li class="menu__title"><span>NEWS</span></li>
-			<li class="menu__link"><a href="./letter.html"><span>P'letter</span></a></li>
-			<li class="menu__link"><a href="./report.html"><span>PRESS</span></a></li>
-			<!-- <li class="menu__link"><a href="./column.html"><span>광고컬럼</span></a></li> -->
-		</ul>
-		<ul class="menu">
 			<li class="menu__title"><span>플레이디</span></li>
 			<li class="menu__link"><a href="./about.html"><span>ABOUT</span></a></li>
 			<li class="menu__link"><a href="./ir.html"><span>IR</span></a></li>
 			<li class="menu__link"><a href="./ethical.html"><span>윤리경영</span></a></li>
 			<li class="menu__link"><a href="./esg.html"><span>ESG</span></a></li>
+		</ul>
+		<ul class="menu">
+			<li class="menu__title"><span>NEWS</span></li>
+			<li class="menu__link"><a href="./letter.html"><span>P'letter</span></a></li>
+			<li class="menu__link"><a href="./report.html"><span>PRESS</span></a></li>
+			<!-- <li class="menu__link"><a href="./column.html"><span>광고컬럼</span></a></li> -->
 		</ul>
 		<ul class="menu">
 			<li class="menu__title"><span>인재채용</span></li>
@@ -87,7 +87,7 @@
 			<li class="menu__link"><a href="./welfare.html"><span>복리후생</span></a></li>
 		</ul>
 		<ul class="menu">
-			<li class="menu__title"><a href="./contact.html"><span>Contact</span></a></li>
+			<li class="menu__title"><a href="./contact.html"><span>CONTACT</span></a></li>
 		</ul>
 	</div>
 	
