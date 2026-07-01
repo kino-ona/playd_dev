@@ -14,11 +14,17 @@
     $start = ($page - 1) * $listsize;
 
     $where = '';
-    if($order == 'new'){
+    if($b_code == 'report'){
+        if($order == 'hits'){
+            $orderby = ' order by b_hits desc, STR_TO_DATE(B_SEND_DT, \'%Y-%m-%d\') desc, b_seq desc ';
+        } else {
+            $orderby = ' order by STR_TO_DATE(B_SEND_DT, \'%Y-%m-%d\') desc, b_seq desc ';
+        }
+    } else if($order == 'new'){
         $orderby = ' order by b_seq desc ';
     } else if($order == 'hits') {
         $orderby = ' order by b_hits desc , b_seq desc ';
-        
+
     } else {
         $orderby = ' order by b_seq desc ';
     }
