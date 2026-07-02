@@ -34,6 +34,8 @@
     }
     if($mode == 'recomm'){
       $sql.= " order by a.B_HITS DESC, a.B_SEQ DESC limit ".$limit;
+    } else if($b_code == 'report'){
+      $sql.= " order by STR_TO_DATE(a.B_SEND_DT, '%Y-%m-%d') DESC, a.B_SEQ DESC limit ".$limit;
     } else {
       $sql.= " order by a.B_SEQ DESC limit ".$limit;
     }
