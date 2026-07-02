@@ -35,7 +35,10 @@ function select_board_list($b_code, $limit, $exclude_seq, $mode)
 
     if ($mode === 'other') {
         $ex = (int) $exclude_seq;
-        $sql = "SELECT a.*, {$fi} FROM T_BOARD a WHERE a.B_CODE='{$code}' AND a.B_NOTI_YN='Y' AND a.B_SEQ <> {$ex} ORDER BY a.B_SEQ DESC LIMIT {$lim}";
+        $orderby = ($code === 'report')
+            ? "ORDER BY STR_TO_DATE(a.B_SEND_DT, '%Y-%m-%d') DESC, a.B_SEQ DESC"
+            : 'ORDER BY a.B_SEQ DESC';
+        $sql = "SELECT a.*, {$fi} FROM T_BOARD a WHERE a.B_CODE='{$code}' AND a.B_NOTI_YN='Y' AND a.B_SEQ <> {$ex} {$orderby} LIMIT {$lim}";
     } elseif ($mode === '') {
         $sql = "SELECT a.*, {$fi} FROM T_BOARD a WHERE a.B_CODE='{$code}' AND a.B_NOTI_YN='L' ORDER BY a.B_SEQ DESC LIMIT {$lim}";
     } else {
