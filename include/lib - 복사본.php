@@ -8,11 +8,11 @@
   $is_mobile = false;
   if(preg_match($mobile_agent, $_SERVER['HTTP_USER_AGENT'])){
     $is_mobile = true;
-    if(strpos($_SERVER["PHP_SELF"],'/m/') === false){
+    if(strpos($_SERVER["REQUEST_URI"],'/m/') === false){
       header( 'Location: /m/'.$filename );
     }
   }else{
-    if(strpos($_SERVER["PHP_SELF"],'/w/') === false){
+    if(strpos($_SERVER["REQUEST_URI"],'/w/') === false){
       header( 'Location: /w/'.$filename );
     }
   }
