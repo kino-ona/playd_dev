@@ -16,7 +16,13 @@
 	RewriteCond %{REQUEST_FILENAME} -f
 	RewriteRule \.php(\?.*)?$ - [L]
 
-	# 그 외 전부( /m/*.html 등 PHP가 들어 있는 HTML 포함 ) → router.php
+	# 실제 HTML 파일 (PHP 임베디드, AddType으로 PHP가 처리) → 직접 실행
+	# router.php를 거치면 PHP_SELF가 /router.php로 바뀌어 include/lib.php의
+	# PC/모바일 경로 판별(strpos($_SERVER['PHP_SELF'], '/w/'))이 깨져 리다이렉트 루프가 발생함
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteRule \.html(\?.*)?$ - [L]
+
+	# 그 외 전부( 확장자 없는 라우트 등 ) → router.php
 	RewriteRule ^ router.php [L]
 </IfModule>
 
