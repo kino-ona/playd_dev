@@ -690,7 +690,8 @@ $elemT: 150px;
 		.image-block:nth-of-type(6),
 		.image-block:nth-of-type(7),
 		.image-block:nth-of-type(10) {
-			background-position: right center;
+			// background-position: right center;
+			background-position: center center;
 			// &::before {
       //   background: linear-gradient(to top, rgba(0, 0, 0, .5), 50%,rgba(0, 0, 0, 0));
 			// }

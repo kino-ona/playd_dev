@@ -64,7 +64,7 @@ html {
     text-align: left;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 0 0;
+    background-position: center center;
     box-sizing: border-box;
     
 
@@ -76,10 +76,10 @@ html {
     &:nth-child(8) {
 			background-position: center center;
 		}
-    &:nth-child(4),
-    &:nth-child(7)  {
-			background-position: right center;
-		}
+    // &:nth-child(4),
+    // &:nth-child(7)  {
+		// 	background-position: right center;
+		// }
 
     &__item {
 			display: flex;
