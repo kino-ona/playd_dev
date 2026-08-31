@@ -31,8 +31,7 @@
 		var el = document.querySelector('.sectionSwiper');
 		if (!el) return;
 		new Swiper(el, {
-			slidesPerView: 1.12,
-			spaceBetween: 12,
+			slidesPerView: "auto",
 			grabCursor: true,
 		});
 	}
