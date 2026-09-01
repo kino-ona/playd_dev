@@ -334,7 +334,7 @@ boxItems.forEach((item) => {
 //main-popup
 
 const startDate = new Date("2026/06/24 23:59:59");
-const endDate = new Date("2026/07/19 23:59:59");
+const endDate = new Date("2026/09/30 23:59:59");
 const today = Date.now();
 
 if (today >= startDate && today <= endDate) {
