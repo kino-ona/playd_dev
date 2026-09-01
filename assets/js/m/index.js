@@ -37,7 +37,7 @@
 	}
 
   function initPopup() {
-		const startDate = new Date("2026/06/24 23:59:59");
+		const startDate = new Date("2026/09/01 10:00:00");
 		const endDate = new Date("2026/09/30 23:59:59");
 
 		const today = Date.now();
