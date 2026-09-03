@@ -6295,7 +6295,7 @@
       }
     }
   }
-  div, p, h1, h2, span, strong {
+  div:not(.search-form):not(.search-form__wrap), p, h1, h2, span, strong {
     background-color: transparent !important;
   }
 }
