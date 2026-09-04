@@ -364,17 +364,6 @@ if (today >= startDate && today <= endDate) {
         layerClose("Notice");
       }
     });
-
-  document
-    .querySelector(".main-popup .button__wrap .close")
-    .addEventListener("click", () => {
-      if (document.querySelector(".main-popup #checkbox--popup:checked")) {
-        setCookie("main-popup--checked", "true", 1);
-        layerClose("Notice");
-      } else {
-        layerClose("Notice");
-      }
-    });
 }
 
 $(document).ready(function () {
